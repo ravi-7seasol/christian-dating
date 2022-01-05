@@ -9,9 +9,9 @@ import Inbox from "./messageInbox/Inbox";
 import { useLocation } from "react-router";
 
 const Index = () => {
-  const loction = useLocation()
-  const forLayout = ["/", "/signup", "/login"]
-  const forAuthLayout = ["/profile", "/inbox"]
+  const loction = useLocation();
+  const forLayout = ["/", "/signup", "/profile", "/login"];
+  const forAuthLayout = [ "/inbox"];
 
   // const dispatch = useDispatch();
   // useEffect(() => {
@@ -30,25 +30,24 @@ const Index = () => {
 
   return (
     <>
-      {forLayout.includes(loction.pathname) &&
+      {forLayout.includes(loction.pathname) && (
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </Layout>
-      }
+      )}
 
-      {forAuthLayout.includes(loction.pathname) &&
+      {forAuthLayout.includes(loction.pathname) && (
         <AuthLayout>
           <Routes>
-            <Route path="/profile" element={<Profile />} />
             <Route path="/inbox" element={<Inbox />} />
           </Routes>
         </AuthLayout>
-      }
-      
+      )}
     </>
   );
 };

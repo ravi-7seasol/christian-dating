@@ -4,6 +4,9 @@ body {
 }
 @media (min-width: 320px) and (max-width: 768px) {
   /* ========== login page css start =========== */
+  .App {
+    overflow-x: hidden;
+  }
   .login-header {
     display: flex;
     justify-content: flex-start;
@@ -59,18 +62,20 @@ body {
     z-index: 5 !important;
   }
   .login-footer {
+    height: 501px;
     width: 100%;
     position: absolute;
     left: 0;
     bottom: 0;
+    overflow: hidden;
+    z-index: -1;
   }
   .bottom-baloon {
     width: 501px;
     height: 501px;
     position: absolute;
     left: calc(50% - 250.5px);
-    bottom: -378px;
-    z-index: -1;
+    bottom: -410px;
   }
   .bottom-baloon::before,
   .bottom-baloon::after {
@@ -249,7 +254,7 @@ body {
     opacity: 1;
     margin: 0;
   }
-  .header-text{
+  .header-text {
     text-align: left;
     font: normal normal 600 21px/31px Poppins;
     letter-spacing: 0px;
@@ -263,9 +268,103 @@ body {
   .header .steps .step {
     width: 15px;
     height: 15px;
-    background: #e69702 0% 0% no-repeat padding-box;
+    background: #f7f7f7 0% 0% no-repeat padding-box;
     opacity: 1;
     border-radius: 50%;
+  }
+  .header .steps .step.done {
+    background: #e69702 0% 0% no-repeat padding-box;
+  }
+  .gender-btn {
+    border: none;
+    outline: none;
+    margin-top: 10px;
+  }
+  .gender .male {
+    width: 84px;
+    height: 42px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: inset 0px 3px 6px #00000029;
+    border-radius: 10px;
+    opacity: 0.24;
+  }
+
+  .gender .female {
+    width: 84px;
+    height: 42px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: inset 0px 3px 6px #00000029;
+    border-radius: 10px;
+    opacity: 0.5;
+    margin-left: 10px;
+  }
+  .gender-btn.active {
+    box-shadow: 0px 6px 6px #00000052;
+  }
+  .slector select::before {
+    display: none;
+  }
+
+  .slector select {
+    height: 41px;
+    width: 100%;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border: 1px solid #e69702;
+    border-radius: 6px;
+    opacity: 1;
+  }
+  .slector .selected {
+    text-align: left;
+    font: normal normal normal 16px/25px Poppins;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 0.3;
+  }
+  .reactSelector .css-1okebmr-indicatorSeparator {
+    display: none;
+  }
+  .reactSelector .css-26l3qy-menu {
+    margin-top: 0 !important;
+    border: 1px solid #e69702;
+    padding: 0 10px !important;
+    position: unset;
+  }
+  .reactSelector .css-yk16xz-control {
+    border-radius: 6px !important;
+  }
+  .reactSelector .css-1pahdxg-control {
+    border-color: #e69702 !important;
+    box-shadow: none !important;
+  }
+  .reactSelector .css-yt9ioa-option,
+  .reactSelector .css-1n7v3ny-option {
+    border-bottom: 1px solid #acacac !important;
+    text-align: left;
+    font: normal normal normal 16px/25px Poppins;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+  }
+  .reactSelector .css-1n7v3ny-option {
+    background: transparent !important;
+  }
+  .reactSelector .css-yt9ioa-option:last-child {
+    border: none !important;
+  }
+  .reactSelector .css-9gakcf-option {
+    background: #f7c35f !important;
+  }
+  .textarea textarea {
+    width: 100%;
+    height: auto;
+    text-align: left;
+    font: normal normal 600 16px/25px Poppins;
+    letter-spacing: 0px;
+    color: #e69904;
+    opacity: 1;
+    border: none;
+    border-bottom: 1px solid #e69904;
+    padding: 5px;
   }
 }
 

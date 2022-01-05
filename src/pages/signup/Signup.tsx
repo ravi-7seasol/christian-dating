@@ -1,15 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Buttons from "../../components/Buttons";
-import CheckBox from "../../components/Checkbox";
 import InputField from "../../components/Inputfield";
-import {
-  faCheck,
-  faCheckCircle,
-  faCheckSquare,
-  faHome,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const Signup = () => {
   return (

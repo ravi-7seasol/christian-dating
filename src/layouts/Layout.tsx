@@ -13,11 +13,7 @@ const Layout: FC<Props> = ({ children, ...props }) => {
   return (
     <div
       style={{
-        height: "100vh",
-        width: "100%",
-        position: "relative",
-        overflow: "hidden",
-        padding: "50px",
+        padding: "50px 50px 0 50px",
       }}
     >
       <Header />

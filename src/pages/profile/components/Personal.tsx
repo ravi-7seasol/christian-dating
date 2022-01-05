@@ -1,13 +1,24 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Buttons from "../../../components/Buttons";
-import CheckBox from "../../../components/Checkbox";
+import React, { useState } from "react";
+import Select from "react-select";
 import InputField from "../../../components/Inputfield";
 
 const Personal = () => {
+  const [genderActive,setGenderActive]=useState("male")
+  const options = [
+    { value: "Assembly of God", label: "Assembly of God" },
+    { value: "Church of Christ", label: "Church of Christ" },
+    { value: "Baptist", label: "Baptist" },
+    { value: "Catholic", label: "Catholic" },
+    { value: "Evangelical", label: "Evangelical" },
+    { value: "Jewish", label: "Jewish" },
+  ];
+  const handleGenderActive =(e:any, text :any)=>{
+    e.preventDefault()
+    setGenderActive(text)
+  }
   return (
     <>
-     <p className="header-text">Let’s set everything up.</p>
+      <p className="header-text">Let’s set everything up.</p>
       <div className="login">
         <form>
           <InputField
@@ -48,20 +59,21 @@ const Personal = () => {
             type="text"
             fromrowStyleclass=""
           />
-
-          <div style={{ marginTop: "9rem" }}>
-            <Buttons
-              children="Log in"
-              onClick={() => {}}
-              ButtonStyle="login-btn"
-              disabled={false}
-            />
+          <div className="gender">
+            <label className="login-label">Gender</label>
             <br />
-            <div className="text-center w-100 mt-2 dont-have-account">
-              Don’t have an account?{" "}
-              <Link to="/signup" className="dont-have-account-link">
-                Sign up here
-              </Link>
+            <button className={`gender-btn male ${ genderActive ==="male"&& "active"}`} onClick={(e)=>handleGenderActive(e, "male")}>
+              <img src="./assets/img/male.png" alt="male" />
+            </button>
+            <button className={`gender-btn female ${ genderActive ==="female"&& "active"}`} onClick={(e)=>handleGenderActive(e, "female")}>
+              <img src="./assets/img/female.png" alt="female" />
+            </button>
+          </div>
+          <div className="slector">
+            <label className="login-label">Denomination</label>
+
+            <div className="reactSelector mt-3">
+              <Select placeholder="Choose denomination" options={options} />
             </div>
           </div>
         </form>
