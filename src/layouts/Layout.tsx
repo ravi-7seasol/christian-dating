@@ -1,9 +1,6 @@
-import React, { FC } from "react";
-
+import { FC } from "react";
 import Footer from "./footer/Footer";
-import AuthHeader from "./header/AuthHeader";
 import Header from "./header/Header";
-import { RootStateOrAny, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 
 interface Props {
@@ -11,9 +8,7 @@ interface Props {
 }
 
 const Layout: FC<Props> = ({ children, ...props }) => {
-  const { is_loggedin } = useSelector((state: RootStateOrAny) => state.login);
   const location = useLocation();
-  console.log("location", location);
 
   return (
     <div
@@ -25,13 +20,8 @@ const Layout: FC<Props> = ({ children, ...props }) => {
         padding: "50px",
       }}
     >
-      {/* {is_loggedin ? 
-        <AuthHeader /> 
-        :  */}
       <Header />
-      {/* } */}
       <div {...props}>{children}</div>
-      {/* <div className="pb-308" {...props}>{children}</div> */}
       {location.pathname !== "/login" && location.pathname !== "/signup" && (
         <Footer />
       )}
