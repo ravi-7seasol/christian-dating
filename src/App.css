@@ -1,0 +1,303 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+body {
+  font-family: "Poppins", sans-serif;
+}
+@media (min-width: 320px) and (max-width: 768px) {
+  /* ========== login page css start =========== */
+  .login-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+  .login-header .text h5,
+  .login-header .text p {
+    margin: 0;
+    color: #000000;
+    text-align: left;
+    letter-spacing: 0px;
+  }
+  .login-header .text h5 {
+    font: normal normal 600 12px/18px Poppins;
+  }
+  .login-header .text p {
+    font: italic normal normal 6px/9px Poppins;
+    opacity: 0.42;
+  }
+
+  .header-logo img {
+    width: 46px;
+    height: 46px;
+  }
+  .top-baloon {
+    position: absolute;
+    top: -49px;
+    right: -35px;
+    width: 165px;
+    height: 165px;
+  }
+  .top-baloon::before,
+  .top-baloon::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #e69702 0% 0% no-repeat padding-box;
+  }
+  .top-baloon::before {
+    opacity: 0.06;
+    border-radius: 50%;
+    z-index: 9 !important;
+  }
+  .top-baloon::after {
+    transform: scale(1.2);
+    opacity: 0.07;
+    border-radius: 50%;
+    z-index: 5 !important;
+  }
+  .login-footer {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+  .bottom-baloon {
+    width: 501px;
+    height: 501px;
+    position: absolute;
+    left: calc(50% - 250.5px);
+    bottom: -378px;
+    z-index: -1;
+  }
+  .bottom-baloon::before,
+  .bottom-baloon::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #e69702 0% 0% no-repeat padding-box;
+  }
+  .bottom-baloon::before {
+    border-radius: 50%;
+    z-index: 5;
+    opacity: 0.09;
+  }
+  .bottom-baloon::after {
+    border-radius: 50%;
+    opacity: 0.07;
+    z-index: 2;
+    transform: scale(1.15);
+  }
+  .login h2 {
+    text-align: left;
+    font: normal normal bold 35px/53px Poppins;
+    letter-spacing: 0px;
+    color: #000000;
+    margin: 50px 0;
+  }
+  .login .login-label {
+    text-align: left;
+    font: normal normal normal 16px/25px Poppins;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 0.45;
+    margin: 30px 0 0 0 !important;
+  }
+  .login .login-input {
+    border: none;
+    border-bottom: 1px solid #acacac;
+    border-radius: 0;
+    box-shadow: none !important;
+    outline: none !important;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    opacity: 1;
+    padding-left: 0 !important;
+    color: #e69702;
+    font-weight: bold;
+  }
+  .login .login-input:focus {
+    border-color: #e69904 !important;
+  }
+  .login ::placeholder {
+    text-align: left;
+    font: normal normal 600 16px/25px Poppins;
+    letter-spacing: 0px;
+    color: #e69904 !important;
+    opacity: 1;
+  }
+  input[type="password"]::placeholder {
+    letter-spacing: 3px;
+  }
+  .login .login-btn {
+    width: 100%;
+    height: 63px;
+    background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
+      0% no-repeat padding-box;
+    border-radius: 13px;
+    opacity: 1;
+    border: none;
+    box-shadow: none !important;
+    font: normal normal bold 18px/27px Poppins;
+    letter-spacing: 0px;
+    color: #000000 !important;
+  }
+  .container_check {
+    transform: scale(1.2);
+    margin-right: 10px;
+  }
+  .login .rememberme-label {
+    font: normal normal normal 14px/21px Poppins;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+  }
+  .login .forgot-password {
+    font: normal normal normal 14px/21px Poppins;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 0.45;
+  }
+
+  .login .dont-have-account {
+    font: normal normal normal 14px/21px Poppins;
+    letter-spacing: 0px;
+    opacity: 0.45;
+    margin-top: 25px !important;
+  }
+  .login .dont-have-account .dont-have-account-link {
+    color: #e69702;
+  }
+  .login .forgot-password:hover,
+  .login .dont-have-account .dont-have-account-link:hover {
+    color: #e69904 !important;
+  }
+  /* ========== login page css end =========== */
+
+  /* ========== signup page css start =========== */
+  .signup-with-social span {
+    font: normal normal normal 16px/25px Poppins;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 0.45;
+  }
+  .signup-with-social {
+    position: relative;
+  }
+  .signup-with-social::after,
+  .signup-with-social::before {
+    content: "";
+    position: absolute;
+    top: 13px;
+    width: 12%;
+    height: 1px;
+    background: #707070;
+    opacity: 0.25;
+  }
+  .signup-with-social::after {
+    right: 0;
+  }
+  .signup-with-social::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 12%;
+    height: 1px;
+    background: #707070;
+    opacity: 0.25;
+  }
+  .input-field {
+    position: relative;
+  }
+  .input-field img {
+    position: absolute;
+    right: 0;
+    bottom: 15px;
+    width: 21px;
+    height: 21px;
+  }
+  .signup-with-social-icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+  }
+  .signup-with-social-icons figure:nth-child(1) img {
+    width: 30px;
+    height: 30px;
+  }
+  .signup-with-social-icons figure:nth-child(2) img {
+    width: 28px;
+    height: 28px;
+  }
+  .signup-with-social-icons figure:nth-child(3) img {
+    width: 30.5px;
+    height: 22.87px;
+  }
+  /* ========== signup page css end =========== */
+
+  /* ========== profile page css start =========== */
+  .header h1 {
+    font: normal normal bold 35px/53px Poppins;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+    margin: 0;
+  }
+  .header-text{
+    text-align: left;
+    font: normal normal 600 21px/31px Poppins;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 0.5;
+  }
+  .header .steps {
+    display: flex;
+    column-gap: 5px;
+  }
+  .header .steps .step {
+    width: 15px;
+    height: 15px;
+    background: #e69702 0% 0% no-repeat padding-box;
+    opacity: 1;
+    border-radius: 50%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .signup-with-social::after,
+  .signup-with-social::before {
+    width: 25%;
+  }
+}
+@media only screen and (max-width: 491px) {
+  .signup-with-social::after,
+  .signup-with-social::before {
+    width: 15%;
+  }
+}
+@media only screen and (max-width: 369px) {
+  .login .rememberme-label,
+  .login .forgot-password {
+    font-size: 11px;
+  }
+  .login .dont-have-account {
+    font-size: 11px;
+  }
+  .signup-with-social::after,
+  .signup-with-social::before {
+    width: 10%;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .signup-with-social::after,
+  .signup-with-social::before {
+    width: 6%;
+  }
+}

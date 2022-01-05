@@ -3,7 +3,9 @@ const Footer: React.FC<any> = () => {
 
   return (
     <>
-      <h1>Footer</h1>
+      <div className="login-footer">
+        <div className="bottom-baloon"></div>
+      </div>
     </>
   );
 };
