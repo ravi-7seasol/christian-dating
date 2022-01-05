@@ -27,7 +27,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/react-textarea-autosize": "^4.3.6",
     "axios": "^0.21.1",
-    "bootstrap": "^4.6.0",
+    "bootstrap": "^4.6.1",
     "firebase": "^8.7.0",
     "i18next": "^20.3.1",
     "i18next-browser-languagedetector": "^6.1.1",

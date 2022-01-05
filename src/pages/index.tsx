@@ -1,6 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 import Layout from "../layouts/Layout";
 import HomePage from "./homepage/Homepage";
+import Inbox from "./messageInbox/Inbox";
 
 const Index = () => {
   // const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const Index = () => {
     <>
       <Layout>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<Inbox />} />
         </Routes>
       </Layout>
 
