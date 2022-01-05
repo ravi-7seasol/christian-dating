@@ -1,0 +1,445 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+
+@media (max-width:574px) {
+
+    /* ======================================>Auth Header<====================================== */
+    .authheader {
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        opacity: 1;
+        padding: 10px;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .authheader h1 {
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+        margin-bottom: 0px;
+        font-size: 21px;
+        font: normal normal 600 21px/31px Poppins;
+    }
+
+    .profile-pic {
+        position: relative;
+    }
+
+    .notification {
+        width: 10px;
+        height: 10px;
+        background-color: #3AD800;
+        position: absolute;
+        border-radius: 50%;
+        bottom: 1px;
+        right: 0px;
+    }
+
+    /* ======================================>Profile<====================================== */
+
+    .profilr-bg {
+        background-image: url(./assets/img/taylor-8Vt2haq8NSQ-unsplash.png);
+        min-height: 328px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+    .profilr-bg .back-btn {
+        width: 35px;
+        height: 35px;
+        background-color: #FFFFFF;
+        border-radius: 50%;
+        line-height: 29px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+
+    .profilr-bg .singal-btn {
+        background: #000000 0% 0% no-repeat padding-box !important;
+        border: 2px solid #3AD800 !important;
+        border-radius: 6px !important;
+        position: absolute;
+        right: 12px;
+        top: 10px;
+        padding: 5px 15px !important;
+    }
+
+    .over-img-div {
+        position: relative;
+    }
+
+    .verified-picture {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        bottom: 18px;
+        z-index: 1;
+    }
+
+    .verified-picture img {
+        margin-top: 12px;
+    }
+
+    .verified-picture p {
+        font-size: 12px;
+        text-align: left;
+        font: normal normal bold 12px/18px Poppins;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+        margin-bottom: 0px;
+    }
+
+    .over-img-popup {
+        position: absolute;
+        width: 100%;
+        top: -40px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        border: 3px solid #FCFCFC;
+        border-radius: 8px;
+        opacity: 1;
+        padding: 7px;
+    }
+
+    .over-img-popup p {
+        font-size: 12px;
+        text-align: left;
+        font: normal normal normal 12px/18px Poppins;
+        letter-spacing: 0px;
+        color: #000000;
+        margin-bottom: 16px;
+    }
+
+    .over-img-popup span {
+        color: #E69702;
+        font-size: 12px;
+    }
+
+    .name-age {
+        text-align: left;
+        font: normal normal bold 16px/31px Poppins;
+        letter-spacing: 0px;
+        color: #000000;
+        margin-bottom: 0px;
+    }
+
+    .about-mi {
+        text-align: left;
+        font-size: 12px;
+        font: normal normal normal 12px/18px Poppins;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+    }
+
+    .profile-accordion {
+        padding-top: 160px;
+    }
+
+    .accordion-item {
+        border-bottom: 1px solid #E69702 !important;
+        padding-bottom: 10px;
+        margin-bottom: 12px;
+    }
+
+    .accordion-header button {
+        text-align: left;
+        background: none;
+        border: none;
+        font: normal normal bold 12px/18px Poppins;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+        font-size: 12px;
+    }
+
+    .personal-details {
+        padding-top: 30px;
+    }
+
+    .personal-details h2 {
+        text-align: left;
+        font: normal normal bold 16px/25px Poppins;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+        font-size: 16px;
+    }
+
+    .personal-details p {
+        width: 95px;
+        text-align: left;
+        font: normal normal bold 12px/18px Poppins;
+        letter-spacing: 0px;
+        color: #E69702;
+        opacity: 1;
+        font-size: 12px;
+    }
+
+    .personal-details span {
+        text-align: left;
+        font: normal normal normal 12px/18px Poppins;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+        font-size: 12px;
+    }
+
+    .fun-facts {
+        margin-top: 15px;
+    }
+
+    .fun-facts h2 {
+        text-align: left;
+        font: normal normal bold 16px/25px Poppins;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+        font-size: 16px;
+    }
+
+    .fun-facts p {
+        text-align: left;
+        font: normal normal bold 12px/18px Poppins;
+        letter-spacing: 0px;
+        color: #E69702;
+        opacity: 1;
+        font-size: 12px;
+    }
+
+    .fun-facts span {
+        text-align: left;
+        font: normal normal normal 12px/18px Poppins;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+        font-size: 12px;
+    }
+}
+
+
+@media (min-width:574px) and (max-width:767px) {
+
+    /* ======================================>Auth Header<====================================== */
+    .authheader {
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        opacity: 1;
+        padding: 10px;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .authheader h1 {
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+        margin-bottom: 0px;
+        font-size: 21px;
+        font: normal normal 600 21px/31px Poppins;
+    }
+
+    .profile-pic {
+        position: relative;
+    }
+
+    .notification {
+        width: 10px;
+        height: 10px;
+        background-color: #3AD800;
+        position: absolute;
+        border-radius: 50%;
+        bottom: 1px;
+        right: 0px;
+    }
+
+    /* ======================================>Profile<====================================== */
+
+    .profilr-bg {
+        background-image: url(./assets/img/taylor-8Vt2haq8NSQ-unsplash.png);
+        min-height: 328px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+    .profilr-bg .back-btn {
+        width: 35px;
+        height: 35px;
+        background-color: #FFFFFF;
+        border-radius: 50%;
+        line-height: 29px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+
+    .profilr-bg .singal-btn {
+        background: #000000 0% 0% no-repeat padding-box !important;
+        border: 2px solid #3AD800 !important;
+        border-radius: 6px !important;
+        position: absolute;
+        right: 12px;
+        top: 10px;
+        padding: 5px 15px !important;
+    }
+
+    .over-img-div {
+        position: relative;
+    }
+
+
+    .verified-picture {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        bottom: 18px;
+        z-index: 1;
+    }
+
+    .verified-picture img {
+        margin-top: 12px;
+    }
+
+    .verified-picture p {
+        font-size: 12px;
+        text-align: left;
+        font: normal normal bold 12px/18px Poppins;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+        margin-bottom: 0px;
+    }
+
+    .over-img-popup {
+        position: absolute;
+        width: 100%;
+        top: -40px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        border: 3px solid #FCFCFC;
+        border-radius: 8px;
+        opacity: 1;
+        padding: 7px;
+    }
+
+    .over-img-popup p {
+        font-size: 12px;
+        text-align: left;
+        font: normal normal normal 12px/18px Poppins;
+        letter-spacing: 0px;
+        color: #000000;
+        margin-bottom: 16px;
+    }
+
+    .over-img-popup span {
+        color: #E69702;
+        font-size: 12px;
+    }
+
+    .name-age {
+        text-align: left;
+        font: normal normal bold 16px/31px Poppins;
+        letter-spacing: 0px;
+        color: #000000;
+        margin-bottom: 0px;
+    }
+
+    .about-mi {
+        text-align: left;
+        font-size: 12px;
+        font: normal normal normal 12px/18px Poppins;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+    }
+
+    .profile-accordion {
+        padding-top: 60px;
+    }
+
+    .accordion-item {
+        border-bottom: 1px solid #E69702 !important;
+        padding-bottom: 10px;
+        margin-bottom: 12px;
+    }
+
+    .accordion-header button {
+        text-align: left;
+        background: none;
+        border: none;
+        font: normal normal bold 12px/18px Poppins;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+        font-size: 12px;
+    }
+
+    .personal-details {
+        padding-top: 30px;
+    }
+
+    .personal-details h2 {
+        text-align: left;
+        font: normal normal bold 16px/25px Poppins;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+        font-size: 16px;
+    }
+
+    .personal-details p {
+        width: 95px;
+        text-align: left;
+        font: normal normal bold 12px/18px Poppins;
+        letter-spacing: 0px;
+        color: #E69702;
+        opacity: 1;
+        font-size: 12px;
+    }
+
+    .personal-details span {
+        text-align: left;
+        font: normal normal normal 12px/18px Poppins;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+        font-size: 12px;
+    }
+
+    .fun-facts {
+        margin-top: 15px;
+    }
+
+    .fun-facts h2 {
+        text-align: left;
+        font: normal normal bold 16px/25px Poppins;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+        font-size: 16px;
+    }
+
+    .fun-facts p {
+        text-align: left;
+        font: normal normal bold 12px/18px Poppins;
+        letter-spacing: 0px;
+        color: #E69702;
+        opacity: 1;
+        font-size: 12px;
+    }
+
+    .fun-facts span {
+        text-align: left;
+        font: normal normal normal 12px/18px Poppins;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+        font-size: 12px;
+    }
+}

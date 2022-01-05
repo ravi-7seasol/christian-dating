@@ -1,6 +1,8 @@
 import { Routes, Route, Link } from "react-router-dom";
+import AuthLayout from "../layouts/AuthLayout";
 import Layout from "../layouts/Layout";
 import HomePage from "./homepage/Homepage";
+import Profile from "./profile/Profile";
 
 const Index = () => {
   // const dispatch = useDispatch();
@@ -25,6 +27,11 @@ const Index = () => {
           <Route path="/" element={<HomePage />} />
         </Routes>
       </Layout>
+      <AuthLayout>
+        <Routes>
+          <Route path="/" element={<Profile />} />
+        </Routes>
+      </AuthLayout>
 
     </>
   );
