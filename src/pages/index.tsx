@@ -1,6 +1,9 @@
 import { Routes, Route, Link } from "react-router-dom";
 import Layout from "../layouts/Layout";
 import HomePage from "./homepage/Homepage";
+import Login from "./login/Login";
+import Profile from "./profile/Profile";
+import Signup from "./signup/Signup";
 
 const Index = () => {
   // const dispatch = useDispatch();
@@ -23,8 +26,12 @@ const Index = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route  path="/signup" element={<Signup />} />
+          <Route  path="/profile" element={<Profile />} />
         </Routes>
       </Layout>
+      
 
     </>
   );
