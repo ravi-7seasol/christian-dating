@@ -48,7 +48,7 @@ const Signup = () => {
               type="password"
               fromrowStyleclass=""
             />
-            <img src="./assets/images/check-one.png" alt="check" />
+            <img src="./assets/img/check-one.png" alt="check" />
           </div>
           <div className="input-field">
             <InputField
@@ -66,7 +66,7 @@ const Signup = () => {
               type="password"
               fromrowStyleclass=""
             />
-            <img src="./assets/images/check-one.png" alt="check" />
+            <img src="./assets/img/check-one.png" alt="check" />
           </div>
 
           <div style={{ marginTop: "3rem" }}>
@@ -81,13 +81,13 @@ const Signup = () => {
             </div>
             <div className="signup-with-social-icons">
               <figure>
-                <img src="./assets/images/facebook-icon.png" alt="icon" />
+                <img src="./assets/img/facebook-icon.png" alt="icon" />
               </figure>
               <figure>
-                <img src="./assets/images/instagram-icon.png" alt="icon" />
+                <img src="./assets/img/instagram-icon.png" alt="icon" />
               </figure>
               <figure>
-                <img src="./assets/images/gmail-icon.png" alt="icon" />
+                <img src="./assets/img/gmail-icon.png" alt="icon" />
               </figure>
             </div>
           </div>

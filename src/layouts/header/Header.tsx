@@ -5,7 +5,7 @@ const Header: React.FC = () => {
     <>
       <div className="login-header">
         <div className="header-logo">
-          <img src="./assets/images/header-logo.png" alt="header-logo" />
+          <img src="./assets/img/header-logo.png" alt="header-logo" />
         </div>
         <div className="text">
           <h5>Christian Dating</h5>
