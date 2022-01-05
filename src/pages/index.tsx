@@ -5,6 +5,7 @@ import HomePage from "./homepage/Homepage";
 import Login from "./login/Login";
 import Profile from "./profile/Profile";
 import Signup from "./signup/Signup";
+import Inbox from "./messageInbox/Inbox";
 
 const Index = () => {
   // const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const Index = () => {
           <Route path="/login" element={<Login />} />
           <Route  path="/signup" element={<Signup />} />
           <Route  path="/profile" element={<Profile />} />
+          <Route path="/inbox" element={<Inbox />} />
         </Routes>
       </Layout>
     </>
