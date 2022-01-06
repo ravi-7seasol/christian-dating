@@ -48,7 +48,6 @@ const Index = () => {
       {forAuthLayout.includes(loction.pathname) && (
         <AuthLayout>
           <Routes>
-            <Route path="/profile" element={<Profile />} />
             <Route path="/match_or_message" element={<MatchOrMessage />} />
             <Route path="/community" element={<Community />} />
             <Route path="/inbox" element={<Inbox />} />
