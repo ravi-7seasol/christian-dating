@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import Webcam from "react-webcam";
+
 
 const SetProfileImage = ({ stepDone }: any) => {
+  const [photo, setPhoto] = useState();
+  const [camOpen, setCamOpen] = useState(false);
+
+  const openCamera = () => {
+    setCamOpen(true);
+  }
   return (
     <>
       <p className="header-text">Say cheese! Add a picture.</p>
@@ -16,13 +24,20 @@ const SetProfileImage = ({ stepDone }: any) => {
           </div>
 
           <div className="take-picture mx-auto">
-            <img
+           
+            <div >
+              {
+                camOpen?<Webcam className="take-picture-hand" audio={false} screenshotFormat="image/jpeg" />: <img
               className="take-picture-hand"
               src="./assets/img/takePic.png"
               alt="image"
             />
+              }
+               
+            </div>
+             
             <div className="camera">
-              <img src="./assets/img/camera.png" alt="camera" />
+              <img src="./assets/img/camera.png" alt="camera" onClick={openCamera} />
             </div>
           </div>
           <div className="take-picture-text">

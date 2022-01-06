@@ -408,9 +408,15 @@ body {
     position: relative;
   }
   .take-picture .take-picture-hand {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
+    width: 175px;
+    height: 175px;
+    border-radius: 100%;
+  }
+  video {
+    min-height: 100% !important;
+    min-width: 100% !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
   }
   .take-picture .camera {
     position: absolute;
@@ -489,9 +495,8 @@ body {
     right: 10px;
     color: #999;
   }
-  .toggleIcone .css-tj5bde-Svg{
+  .toggleIcone .css-tj5bde-Svg {
     transform: rotate(180deg);
-
   }
 }
 
