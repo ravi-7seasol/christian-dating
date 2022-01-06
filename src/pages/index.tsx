@@ -10,11 +10,12 @@ import { useLocation } from "react-router";
 import ShowProfile from "./profile/components/ShowProfile";
 import MatchOrMessage from "./match-or-message/MatchOrMessage";
 import Community from "./community/Community";
+import SuccessStories from "./success-stories/SuccessStories";
 
 const Index = () => {
   const loction = useLocation()
   const forLayout = ["/", "/signup", "/login", "/profile"]
-  const forAuthLayout = ["/show-profile", "/inbox", "/match_or_message", "/community"]
+  const forAuthLayout = ["/show-profile", "/inbox", "/match_or_message", "/community", "/success_stories"]
 
   // const dispatch = useDispatch();
   // useEffect(() => {
@@ -52,6 +53,7 @@ const Index = () => {
             <Route path="/community" element={<Community />} />
             <Route path="/inbox" element={<Inbox />} />
             <Route path="/show-profile" element={<ShowProfile />} />
+            <Route path="/success_stories" element={<SuccessStories />} />
           </Routes>
         </AuthLayout>
       )}
