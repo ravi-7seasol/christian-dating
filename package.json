@@ -36,7 +36,7 @@
     "prop-types": "^15.7.2",
     "query-string": "^7.0.0",
     "react": "^17.0.2",
-    "react-bootstrap": "^2.0.2",
+    "react-bootstrap": "^2.1.0",
     "react-calendar": "^3.4.0",
     "react-chat-widget": "^3.0.5",
     "react-chatbot-kit": "^1.1.20",

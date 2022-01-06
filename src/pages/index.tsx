@@ -7,11 +7,12 @@ import Profile from "./profile/Profile";
 import Signup from "./signup/Signup";
 import Inbox from "./messageInbox/Inbox";
 import { useLocation } from "react-router";
+import SuccessStories from "./success-stories/SuccessStories";
 
 const Index = () => {
   const loction = useLocation()
   const forLayout = ["/", "/signup", "/login"]
-  const forAuthLayout = ["/profile", "/inbox"]
+  const forAuthLayout = ["/profile", "/inbox", "/success_stories"]
 
   // const dispatch = useDispatch();
   // useEffect(() => {
@@ -45,6 +46,7 @@ const Index = () => {
           <Routes>
             <Route path="/profile" element={<Profile />} />
             <Route path="/inbox" element={<Inbox />} />
+            <Route path="/success_stories" element={<SuccessStories />} />
           </Routes>
         </AuthLayout>
       }
