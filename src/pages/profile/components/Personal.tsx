@@ -37,7 +37,7 @@ const Personal = () => {
             fromrowStyleclass=""
           />
           <div>
-            <label className="login-label">When were you born?</label>
+            <label className="login-label birth-date">When were you born?</label>
             <input
               type="date"
               value="2013-01-08"
@@ -73,7 +73,7 @@ const Personal = () => {
             <label className="login-label">Denomination</label>
 
             <div className="reactSelector mt-3">
-              <Select placeholder="Choose denomination" options={options} />
+              <Select placeholder="Choose denomination" options={options}  className="test" />
             </div>
           </div>
         </form>
