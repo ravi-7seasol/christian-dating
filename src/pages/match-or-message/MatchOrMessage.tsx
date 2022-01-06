@@ -8,7 +8,42 @@ const MatchOrMessage = () => {
         infinite: true,
         centerPadding: "50px",
         slidesToShow: 1,
-        speed: 500
+        speed: 500,
+        responsive: [
+            {
+                breakpoint: 769,
+                settings: {
+                    className: "center",
+                    centerMode: true,
+                    infinite: true,
+                    centerPadding: "160px",
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 550,
+                settings: {
+                    className: "center",
+                    centerMode: true,
+                    infinite: true,
+                    centerPadding: "80px",
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 380,
+                settings: {
+                    className: "center",
+                    centerMode: true,
+                    infinite: true,
+                    centerPadding: "30px",
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
     };
 
 
@@ -113,7 +148,7 @@ const MatchOrMessage = () => {
                         <img src="./assets/img/wrong.png" alt="" width="5%" />
                     </div>
                     <div className='message-bottom-popup-body'>
-                        <p className='message-bottom-popup-body-text'>Could she be the one? you both have a match rating of 89%! Try sending her a message to make the first step.</p>
+                        <p className='message-bottom-popup-body-text'>Could she be the one? you both have a match rating of <span> 89%</span>! Try sending her a message to make the first step.</p>
                     </div>
                 </div>
             </Container>
