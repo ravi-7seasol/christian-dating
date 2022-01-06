@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Select from "react-select";
+import React from "react";
+import ReactSelect from "../../../components/ReactSelect";
 
 const Prefrences = () => {
   const relationStatus = [
@@ -12,6 +12,7 @@ const Prefrences = () => {
   ];
   const relationbuild = [
     { value: "Dating", label: "Dating" },
+    { value: "No dating", label: "No dating" },
    
   ];
   const intent = [
@@ -49,7 +50,7 @@ const Prefrences = () => {
           <div className="slector">
             <label className="login-label">Relationship status</label>
             <div className="reactSelector mt-3">
-              <Select
+              <ReactSelect
                 placeholder="Choose an option "
                 options={relationStatus}
               />
@@ -60,7 +61,7 @@ const Prefrences = () => {
               Who are you interested in meeting?
             </label>
             <div className="reactSelector mt-3">
-              <Select
+              <ReactSelect
                 placeholder="Choose an option "
                 options={meetingIntrest}
               />
@@ -71,7 +72,7 @@ const Prefrences = () => {
             What kind of relationship do you want To build?
             </label>
             <div className="reactSelector mt-3">
-              <Select
+              <ReactSelect
                 placeholder="Choose an option"
                 options={relationbuild}
               />
@@ -82,7 +83,7 @@ const Prefrences = () => {
             What is your intent?
             </label>
             <div className="reactSelector mt-3">
-              <Select
+              <ReactSelect
                 placeholder="Choose intent"
                 options={intent}
               />

@@ -489,12 +489,9 @@ body {
     right: 10px;
     color: #999;
   }
-  .css-tj5bde-Svg{
+  .toggleIcone .css-tj5bde-Svg{
     transform: rotate(180deg);
 
-  }
-  .test{
-    /* display: none; */
   }
 }
 
