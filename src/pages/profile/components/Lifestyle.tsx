@@ -1,4 +1,5 @@
 import Select from "react-select";
+import ReactSelect from "../../../components/ReactSelect";
 
 const Lifestyle = () => {
   const attendChurch = [
@@ -35,7 +36,7 @@ const Lifestyle = () => {
           <div className="slector">
             <label className="login-label">How often do you attend church?</label>
             <div className="reactSelector mt-3">
-              <Select
+              <ReactSelect
                 placeholder="Choose an option "
                 options={attendChurch}
               />
@@ -46,7 +47,7 @@ const Lifestyle = () => {
             How often do you read the Bible?
             </label>
             <div className="reactSelector mt-3">
-              <Select
+              <ReactSelect
                 placeholder="Choose an option "
                 options={readbibal}
               />
@@ -57,7 +58,7 @@ const Lifestyle = () => {
             How often do you workout?
             </label>
             <div className="reactSelector mt-3">
-              <Select
+              <ReactSelect
                 placeholder="Choose an option"
                 options={workout}
                
@@ -69,7 +70,7 @@ const Lifestyle = () => {
             Do you drink alcohol?
             </label>
             <div className="reactSelector mt-3">
-              <Select
+              <ReactSelect
                 placeholder="Choose an option"
                 options={alcohol}
               />
@@ -80,7 +81,7 @@ const Lifestyle = () => {
             Do you smoke?
             </label>
             <div className="reactSelector mt-3">
-              <Select
+              <ReactSelect
                 placeholder="Choose an option"
                 options={smoke}
               />

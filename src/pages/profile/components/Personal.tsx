@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Select from "react-select";
 import InputField from "../../../components/Inputfield";
+import ReactSelect from "../../../components/ReactSelect";
+
 
 const Personal = () => {
   const [genderActive,setGenderActive]=useState("male")
@@ -73,7 +74,7 @@ const Personal = () => {
             <label className="login-label">Denomination</label>
 
             <div className="reactSelector mt-3">
-              <Select placeholder="Choose denomination" options={options}  className="test" />
+              <ReactSelect placeholder="Choose denomination" options={options}/>
             </div>
           </div>
         </form>
