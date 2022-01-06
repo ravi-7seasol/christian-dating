@@ -1,4 +1,5 @@
 import React from "react";
+import InputField from "../../components/Inputfield";
 import "./inbox.css";
 
 const Inbox = () => {
@@ -89,22 +90,79 @@ const Inbox = () => {
               know each other?
             </h2>
           </div>
+          <div>
+            <h3 className="first-text">
+              Hey! I really like your profile and I think we could match really
+              well.
+            </h3>
+            <h2 className="first-text-replay">
+              I see we have very matching interests, would you like to get to
+              know each other?
+            </h2>
+          </div>
+          <div>
+            <h3 className="first-text">
+              Hey! I really like your profile and I think we could match really
+              well.
+            </h3>
+            <h2 className="first-text-replay">
+              I see we have very matching interests, would you like to get to
+              know each other?
+            </h2>
+          </div>
+          <div>
+            <h3 className="first-text">
+              Hey! I really like your profile and I think we could match really
+              well.
+            </h3>
+            <h2 className="first-text-replay">
+              I see we have very matching interests, would you like to get to
+              know each other?
+            </h2>
+          </div>
+          <div>
+            <h3 className="first-text">
+              Hey! I really like your profile and I think we could match really
+              well.
+            </h3>
+            <h2 className="first-text-replay">
+              I see we have very matching interests, would you like to get to
+              know each other?
+            </h2>
+          </div>
         </div>
         <div className="input-area">
-          <div className="choose-picture">
-            <img src="./assets/img/picture-one (1).png" />
+          <div>
+            <div className="choose-picture">
+              <img src="./assets/img/picture-one (1).png" />
+            </div>
           </div>
-          <div className="send-gift">
-            <img src="./assets/img/gift (1).png" />
+          <div>
+            <div className="send-gift">
+              <img src="./assets/img/gift (1).png" />
+            </div>
           </div>
           {/* <div className="text-input-main"> */}
-            <input
-              className="text-input"
-              placeholder="Enter your message here"
-            ></input>
-
-            <img src="./assets/img/grinning-face (1).png" className="emoji-img"/>
-          {/* </div> */}
+          <div className="input-chat">
+          <InputField
+            name=""
+            maxLength={undefined}
+            value={""}
+            lablestyleClass=""
+            InputstyleClass="text-input"
+            onChange={() => {
+              ("");
+            }}
+            disabled={false}
+            label=""
+            placeholder="Enter your message here"
+            type="text"
+            fromrowStyleclass=""
+          />
+            <div className="emoji-img">
+              <img src="./assets/img/grinning-face (1).png" />
+            </div>
+          </div>
         </div>
       </div>
     </>
