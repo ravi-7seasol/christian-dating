@@ -8,7 +8,8 @@ import './Responsive.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/react-datepicker/dist/react-datepicker.css';
 import '../node_modules/react-chat-widget/lib/styles.css';
-
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 ReactDOM.render(
   <React.StrictMode>

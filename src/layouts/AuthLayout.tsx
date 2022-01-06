@@ -9,7 +9,7 @@ const AuthLayout: FC<Props> = ({ children, ...props }) => {
     return(
     <div>
         <AuthHeader /> 
-        <div className={"p-4"} {...props}>{children}</div>
+        <div className={""} {...props}>{children}</div>
     </div>
 )};
 
