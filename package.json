@@ -55,11 +55,13 @@
     "react-router-redux": "^4.0.8",
     "react-scripts": "4.0.3",
     "react-select": "^4.3.1",
+    "react-slick": "^0.28.1",
     "react-switch": "^6.0.0",
     "react-textarea-autosize": "^8.3.3",
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
+    "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.0.16",
     "typescript": "^4.3.2",
     "web-vitals": "^1.1.2"
@@ -91,6 +93,7 @@
   "devDependencies": {
     "@types/react": "^17.0.9",
     "@types/react-dom": "^17.0.6",
-    "@types/react-select": "^4.0.15"
+    "@types/react-select": "^4.0.15",
+    "@types/react-slick": "^0.23.8"
   }
 }
