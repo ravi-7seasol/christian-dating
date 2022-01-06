@@ -13,7 +13,7 @@ const Layout: FC<Props> = ({ children, ...props }) => {
   return (
     <div
       style={{
-        padding: "50px 50px 0 50px",
+        padding: "50px 30px 0 30px",
       }}
     >
       <Header />

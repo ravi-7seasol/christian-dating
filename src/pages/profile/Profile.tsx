@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import Buttons from "../../components/Buttons";
+import Lifestyle from "./components/Lifestyle";
 import Personal from "./components/Personal";
 import Prefrences from "./components/Prefrences";
+import SetProfileImage from "./components/SetProfileImage";
 
 const Profile = () => {
   const [stepDone, setStepDone] = useState(1);
+  const [verified, setVerified] = useState<any>(false);
   const handleNext = () => {
     if (stepDone < 4) {
       setStepDone(stepDone + 1);
+    }else{
+      setVerified(true)
     }
   };
   return (
@@ -26,11 +31,13 @@ const Profile = () => {
         </div>
         {stepDone === 1 && <Personal />}
         {stepDone === 2 && <Prefrences />}
+        {stepDone === 3 && <Lifestyle />}
+        {stepDone === 4 && <SetProfileImage verified={verified} />}
 
         <div className="login">
-          <div style={{ marginTop: "2rem", marginBottom: "1rem" }}>
+          <div style={{ marginTop: verified? "8rem":"4rem", marginBottom: "1rem" }}>
             <Buttons
-              children="Next"
+              children={stepDone > 3 ? "See your profile!" : "Next"}
               onClick={() => handleNext()}
               ButtonStyle="login-btn"
               disabled={false}

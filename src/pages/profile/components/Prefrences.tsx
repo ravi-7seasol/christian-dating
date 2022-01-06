@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import InputField from "../../../components/Inputfield";
 
 const Prefrences = () => {
-  const [genderActive, setGenderActive] = useState("male");
-  const options = [
-    { value: "Assembly of God", label: "Assembly of God" },
-    { value: "Church of Christ", label: "Church of Christ" },
-    { value: "Baptist", label: "Baptist" },
-    { value: "Catholic", label: "Catholic" },
-    { value: "Evangelical", label: "Evangelical" },
-    { value: "Jewish", label: "Jewish" },
+  const relationStatus = [
+    { value: "single", label: "Single" },
+    { value: "married", label: "Married" },
   ];
-  const handleGenderActive = (e: any, text: any) => {
-    e.preventDefault();
-    setGenderActive(text);
-  };
+  const meetingIntrest = [
+    { value: "Men", label: "Men" },
+    { value: "Women", label: "Women" },
+  ];
+  const relationbuild = [
+    { value: "Dating", label: "Dating" },
+   
+  ];
+  const intent = [
+    { value: "I want to build a friendship", label: "I want to build a friendship" },
+    { value: "I want to date with intent to marry", label: "I want to date with intent to marry" },
+   
+  ];
+ 
   return (
     <>
       <p className="header-text">You, and what you prefer.</p>
@@ -33,9 +37,7 @@ const Prefrences = () => {
             ></textarea>
           </div>
           <div className="textarea">
-            <label className="login-label">
-            Short Bio
-            </label>
+            <label className="login-label">Short Bio</label>
             <textarea
               rows={5}
               value={
@@ -43,13 +45,47 @@ const Prefrences = () => {
               }
             ></textarea>
           </div>
-          
-          
-          <div className="slector">
-            <label className="login-label">Denomination</label>
 
+          <div className="slector">
+            <label className="login-label">Relationship status</label>
             <div className="reactSelector mt-3">
-              <Select placeholder="Choose denomination" options={options} />
+              <Select
+                placeholder="Choose an option "
+                options={relationStatus}
+              />
+            </div>
+          </div>
+          <div className="slector">
+            <label className="login-label">
+              Who are you interested in meeting?
+            </label>
+            <div className="reactSelector mt-3">
+              <Select
+                placeholder="Choose an option "
+                options={meetingIntrest}
+              />
+            </div>
+          </div>
+          <div className="slector">
+            <label className="login-label">
+            What kind of relationship do you want To build?
+            </label>
+            <div className="reactSelector mt-3">
+              <Select
+                placeholder="Choose an option"
+                options={relationbuild}
+              />
+            </div>
+          </div>
+          <div className="slector">
+            <label className="login-label">
+            What is your intent?
+            </label>
+            <div className="reactSelector mt-3">
+              <Select
+                placeholder="Choose intent"
+                options={intent}
+              />
             </div>
           </div>
         </form>
