@@ -7,11 +7,12 @@ import Profile from "./profile/Profile";
 import Signup from "./signup/Signup";
 import Inbox from "./messageInbox/Inbox";
 import { useLocation } from "react-router";
+import ShowProfile from "./profile/components/ShowProfile";
 
 const Index = () => {
   const loction = useLocation();
   const forLayout = ["/", "/signup", "/profile", "/login"];
-  const forAuthLayout = [ "/inbox"];
+  const forAuthLayout = [ "/inbox","/show-profile"];
 
   // const dispatch = useDispatch();
   // useEffect(() => {
@@ -45,6 +46,7 @@ const Index = () => {
         <AuthLayout>
           <Routes>
             <Route path="/inbox" element={<Inbox />} />
+            <Route path="/show-profile" element={<ShowProfile />} />
           </Routes>
         </AuthLayout>
       )}

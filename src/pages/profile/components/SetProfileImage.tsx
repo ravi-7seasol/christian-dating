@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
-const SetProfileImage = ({verified }:any) => {
- 
+const SetProfileImage = ({ stepDone }: any) => {
   return (
     <>
       <p className="header-text">Say cheese! Add a picture.</p>
-      {!verified ? (
+      {stepDone === 4 ? (
         <div className="setProfileImage mt-4">
           <p className="guidelines">Guidelines for the perfect picture:</p>
           <span className="span-text">
