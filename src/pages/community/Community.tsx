@@ -7,37 +7,37 @@ const Community = () => {
     const fakedata = [
         {
             Profilepic: "./assets/img/Ellipse 31.png",
-            Name: "Janki",
+            Name: "Lisa",
             namecolor: "#E69702",
             Lastsms: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
         },
         {
             Profilepic: "./assets/img/Ellipse 31.png",
-            Name: "Dhara",
+            Name: "Carl",
             namecolor: "#D10000",
             Lastsms: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
         },
         {
             Profilepic: "./assets/img/Ellipse 31.png",
-            Name: "kemil",
+            Name: "Jeremy",
             namecolor: "#25A706",
             Lastsms: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
         },
         {
             Profilepic: "./assets/img/Ellipse 31.png",
-            Name: "kemil",
+            Name: "Judith",
             namecolor: "#25A706",
             Lastsms: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
         },
         {
             Profilepic: "./assets/img/Ellipse 31.png",
-            Name: "kemil",
+            Name: "Natascha",
             namecolor: "#25A706",
             Lastsms: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
         },
         {
             Profilepic: "./assets/img/Ellipse 31.png",
-            Name: "kemil",
+            Name: "Henry",
             namecolor: "#25A706",
             Lastsms: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
         },
@@ -57,18 +57,24 @@ const Community = () => {
     return (
         <>
             <Container>
-                <div className='community-popup'>
-                    <p>“So now the case is closed. There remains no accusing voice of condemnation against those who are joined in life-union with Jesus, the Anointed One.” <span> Romans‬ ‭8:1‬ ‭TPT‬‬</span></p>
-                </div>
-                <div className="">
-                    {fakedata.map((item, i) => (
-                        <div className='d-flex pt-4 align-items-center' key={i}>
-                            <div className='set-img-position'>
-                                <img src={item.Profilepic} />
-                                <div className='active'></div>
+                <div className="community">
+                    <div className='community-popup'>
+                        <p>“So now the case is closed. There remains no accusing voice of condemnation against those who are joined in life-union with Jesus, the Anointed One.” <span> Romans‬ ‭8:1‬ ‭TPT‬‬</span></p>
+                    </div>
+                    <div className="">
+                        {fakedata.map((item, i) => (
+                            <div className='d-flex pt-4 align-items-center' key={i}>
+                                <div className='set-img-position'>
+                                    <img src={item.Profilepic} />
+                                    <div className='active'></div>
+                                </div>
+                                <div>
+                                    <h6 className='Name ml-3' style={{ color: item.namecolor }} >{item.Name}</h6>
+                                    <p className='last-sms ml-3'>{item.Lastsms}</p>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                     <div className="input-area">
                         <div>
                             <div className="choose-picture">
@@ -80,7 +86,6 @@ const Community = () => {
                                 <img src="./assets/img/gift (1).png" />
                             </div>
                         </div>
-                        {/* <div className="text-input-main"> */}
                         <div className="input-chat">
                             <InputField
                                 name=""
