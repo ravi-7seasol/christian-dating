@@ -8,15 +8,15 @@ const Inbox = () => {
       <div className="inbox-main">
         <div className="inbox-profile-img">
           <div className="profile-content">
-            <img src="./assets/img/person1.png" />
+          <img src="./assets/img/profile-picture.png" />
             <h6>likes you</h6>
           </div>
           <div className="profile-content">
-            <img src="./assets/img/caique-silva-KJE--xk4AWE-unsplash.png" />
+            <img src="./assets/img/profile-picture.png" />
             <h6>you like</h6>
           </div>
           <div className="profile-content">
-            <img src="./assets/img/meritt-thomas-0oRefidSNKc-unsplash.png" />
+          <img src="./assets/img/profile-picture.png" />
             <h6>match</h6>
           </div>
           <div className="profile-content">
@@ -36,11 +36,12 @@ const Inbox = () => {
             </div>
           </div>
           <div className="messages">
-            <div>
+            <div className="chat-profile-img-main">
               <img
                 src="./assets/img/profile-picture.png"
                 className="chat-profile"
               />
+              <div className="offline"></div>
             </div>
             <div className="chat-messages">
               <h4>Valerie</h4>
@@ -57,6 +58,7 @@ const Inbox = () => {
                 src="./assets/img/profile-picture.png"
                 className="chat-profile"
               />
+              <div className="online"></div>
             </div>
             <div className="chat-messages">
               <h4>Shirly</h4>
@@ -65,17 +67,6 @@ const Inbox = () => {
             <h5 className="messages-time-on-off">MATCH</h5>
           </div>
         </div>
-        {/* <div className="Conversation-starters">
-            <h2>Conversation starters</h2>
-            <h3 className="first-text">
-              Hey! I really like your profile and I think we could match really
-              well.
-            </h3>
-            <h3 className="first-text-replay">
-              I see we have very matching interests, would you like to get to
-              know each other?
-            </h3>
-        </div> */}
         <div className="Conversation-starters">
           <div>
             <h2>Conversation starters</h2>
@@ -142,23 +133,22 @@ const Inbox = () => {
               <img src="./assets/img/gift (1).png" />
             </div>
           </div>
-          {/* <div className="text-input-main"> */}
           <div className="input-chat">
-          <InputField
-            name=""
-            maxLength={undefined}
-            value={""}
-            lablestyleClass=""
-            InputstyleClass="text-input"
-            onChange={() => {
-              ("");
-            }}
-            disabled={false}
-            label=""
-            placeholder="Enter your message here"
-            type="text"
-            fromrowStyleclass=""
-          />
+            <InputField
+              name=""
+              maxLength={undefined}
+              value={""}
+              lablestyleClass=""
+              InputstyleClass="text-input"
+              onChange={() => {
+                ("");
+              }}
+              disabled={false}
+              label=""
+              placeholder="Enter your message here"
+              type="text"
+              fromrowStyleclass=""
+            />
             <div className="emoji-img">
               <img src="./assets/img/grinning-face (1).png" />
             </div>
