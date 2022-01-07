@@ -541,7 +541,7 @@
         position: relative;
     }
 
-    .active {
+    .community .active {
         background: #3ad800 0% 0% no-repeat padding-box;
         width: 10px;
         height: 10px;
