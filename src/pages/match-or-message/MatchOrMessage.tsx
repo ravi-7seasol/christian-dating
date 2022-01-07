@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 const MatchOrMessage = () => {
     const settings = {
@@ -50,7 +51,9 @@ const MatchOrMessage = () => {
     return (
         <>
             <div className='match-or-message mt-3'>
-                <img src="./assets/img/left-arrow.png" alt="" width="25px" height="25px" className='ml-3' />
+                <Link to="/show-profile">
+                    <img src="./assets/img/left-arrow.png" alt="" width="25px" height="25px" className='ml-3' />
+                </Link>
                 <p>Profiles based on preference settings</p>
             </div>
             <div className="slider pt-5">
@@ -117,13 +120,17 @@ const MatchOrMessage = () => {
                 <div className='activity-main'>
                     <div className=''>
                         <div className='rewind'>
-                            <img src='./assets/img/Group 17.png' />
+                            <Link to="/community">
+                                <img src='./assets/img/Group 17.png' />
+                            </Link>
                         </div>
                         <p className='text'>rewind</p>
                     </div>
                     <div>
                         <div className='skip-content'>
+                            <Link to="/success_stories">
                             <img src='./assets/img/Group 18.png' />
+                            </Link>
                         </div>
                         <p className='text'>skip</p>
                     </div>
@@ -135,7 +142,9 @@ const MatchOrMessage = () => {
                     </div>
                     <div>
                         <div className='message-content'>
-                            <img src='./assets/img/Group 20.png' />
+                            <Link to="/inbox">
+                                <img src='./assets/img/Group 20.png' />
+                            </Link>
                         </div>
                         <p className='text'>message</p>
                     </div>

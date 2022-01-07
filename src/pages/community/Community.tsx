@@ -66,6 +66,7 @@ const Community = () => {
                             <div className='d-flex pt-4 align-items-center' key={i}>
                                 <div className=''>
                                     <img src={item.Profilepic} />
+                                    <div className=''></div>
                                 </div>
                                 <div>
                                     <h6 className='Name ml-3' style={{ color: item.namecolor }} >{item.Name}</h6>

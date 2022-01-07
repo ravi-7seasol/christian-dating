@@ -4,15 +4,23 @@ import { faArrowAltCircleLeft, faArrowLeft, faArrowsAlt, faCompressArrowsAlt, fa
 
 import { Accordion, Container } from 'react-bootstrap';
 import Buttons from '../../../components/Buttons';
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const ShowProfile = () => {
+    const navigate = useNavigate()
+    const handleRedirect = () => {
+        navigate("/match_or_message")
+    }
     return (
         <>
             <div className="profilr-bg">
                 <div className="back-btn">
-                    <img src="./assets/img/next.png" alt="" width="30px" height="30px" />
+                    <Link to="/">
+                        <img src="./assets/img/next.png" alt="" width="15px" height="20px" />
+                    </Link>
                 </div>
-                <Buttons ButtonStyle='singal-btn' onClick={() => { }} children="Singal" />
+                <Buttons ButtonStyle='singal-btn' onClick={handleRedirect} children="Singal" />
             </div>
             <Container>
                 <div className="over-img-div">

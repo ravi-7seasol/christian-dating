@@ -1,7 +1,11 @@
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 const AuthHeader: React.FC = () => {
   const location = useLocation()
+  const navigate=useNavigate()
+  const handleRedirect=()=>{
+    navigate("/show-profile")
+  }
   return (
     <>
       <div className="authheader">
@@ -13,7 +17,7 @@ const AuthHeader: React.FC = () => {
           {location.pathname === "/community" && <p className="header-bottom-text">Share words of encouragement, voice and express concerns, share favorite scriptures and the good things God has done, is doing, and will do in your life!</p>}
         </div>
         <div className="profile-pic" >
-          <img src="./assets/img/Ellipse.png" alt="" height="5%" />
+          <img src="./assets/img/Ellipse.png" alt="" height="5%" onClick={handleRedirect}/>
           <div className="notification"></div>
         </div>
       </div>

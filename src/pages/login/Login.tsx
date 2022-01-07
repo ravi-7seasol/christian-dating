@@ -1,10 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {useNavigate} from 'react-router'
+import { Link} from "react-router-dom";
 import Buttons from "../../components/Buttons";
 import CheckBox from "../../components/Checkbox";
 import InputField from "../../components/Inputfield";
 
 const Login = () => {
+  const navigate=useNavigate()
+  const handleRedirect=()=>{
+    navigate("/show-profile")
+  }
+
   return (
     <>
       <div className="login">
@@ -63,7 +69,7 @@ const Login = () => {
           <div style={{marginTop:"9rem"}}>
             <Buttons
               children="Log in"
-              onClick={() => {}}
+              onClick={handleRedirect}
               ButtonStyle="login-btn"
               disabled={false}
             />

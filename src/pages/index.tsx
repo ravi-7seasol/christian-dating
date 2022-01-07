@@ -14,7 +14,7 @@ import SuccessStories from "./success-stories/SuccessStories";
 
 const Index = () => {
   const loction = useLocation()
-  const forLayout = ["/", "/signup", "/login", "/profile"]
+  const forLayout = ["/", "/signup", "/profile"]
   const forAuthLayout = ["/show-profile", "/inbox", "/match_or_message", "/community", "/success_stories"]
 
   // const dispatch = useDispatch();
@@ -37,8 +37,8 @@ const Index = () => {
       {forLayout.includes(loction.pathname) && (
         <Layout>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<Login />} />
+            {/* <Route path="/" element={<HomePage />} /> */}
+            <Route path="/" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
