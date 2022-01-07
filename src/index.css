@@ -531,7 +531,7 @@
     }
 
     .community {
-        height: calc(100vh - 125px);
+        height: calc(100vh - 226px);
         overflow: auto;
     }
 
@@ -1078,7 +1078,7 @@
     }
 
     .community {
-        height: calc(100vh - 125px);
+        height: calc(100vh - 226px);
         overflow: auto;
     }
 

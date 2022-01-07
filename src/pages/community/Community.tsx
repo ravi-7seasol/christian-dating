@@ -57,10 +57,10 @@ const Community = () => {
     return (
         <>
             <Container>
-                <div className="community">
                     <div className='community-popup'>
                         <p>“So now the case is closed. There remains no accusing voice of condemnation against those who are joined in life-union with Jesus, the Anointed One.” <span> Romans‬ ‭8:1‬ ‭TPT‬‬</span></p>
                     </div>
+                <div className="community">
                     <div className="">
                         {fakedata.map((item, i) => (
                             <div className='d-flex pt-4 align-items-center' key={i}>
