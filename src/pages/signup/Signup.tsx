@@ -1,9 +1,13 @@
-import React from "react";
+import { useNavigate } from "react-router";
 import Buttons from "../../components/Buttons";
 import InputField from "../../components/Inputfield";
 
 
 const Signup = () => {
+  const navigate=useNavigate()
+  const goToProfileSetting = () => {
+    navigate("/profile")
+  }
   return (
     <>
       <div className="login">
@@ -64,7 +68,7 @@ const Signup = () => {
           <div style={{ marginTop: "3rem" }}>
             <Buttons
               children="Sign up"
-              onClick={() => {}}
+              onClick={goToProfileSetting}
               ButtonStyle="login-btn"
               disabled={false}
             />
