@@ -60,7 +60,7 @@
     margin-left: 2px;
   }
 
-  .inbox-main .messages .messages-content img {
+  .inbox-main .messages .messages-content img{
     width: 25px;
   }
 
@@ -181,7 +181,7 @@
     padding: 10px;
   }
 
-  .inbox-main .input-area {
+  .inbox-main .input-area, .community .input-area {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -193,12 +193,12 @@
     bottom: 0px;
     width: 100%;
   }
-  .inbox-main .input-area .send-gift,
-  .inbox-main .input-area .choose-picture {
+  .inbox-main .input-area .send-gift, .community .input-area .send-gift
+  .inbox-main .input-area .choose-picture, .community .input-area .choose-picture {
     display: grid;
     place-items: center;
   }
-  .inbox-main .input-area .choose-picture {
+  .inbox-main .input-area .choose-picture, .community .input-area .choose-picture {
     width: 35px;
     height: 35px;
     background: #e6e6e6 0% 0% no-repeat padding-box;
@@ -208,12 +208,12 @@
     text-align: center;
     line-height: 34px;
   }
-  .inbox-main .input-area .choose-picture img {
+  .inbox-main .input-area .choose-picture img, .community .input-area .choose-picture img {
     width: 16px;
     height: 16px;
   }
 
-  .inbox-main .input-area .send-gift {
+  .inbox-main .input-area .send-gift, .community .input-area .send-gift {
     width: 35px;
     height: 35px;
     background: #e6e6e6 0% 0% no-repeat padding-box;
@@ -223,12 +223,12 @@
     text-align: center;
     margin: 0 5px;
   }
-  .inbox-main .input-area .send-gift img {
+  .inbox-main .input-area .send-gift img, .community .input-area .send-gift img {
     width: 16.5px;
     height: 16.5px;
   }
 
-  .inbox-main .input-area .text-input-main {
+  .inbox-main .input-area .text-input-main, .community .input-area .text-input-main {
     width: -webkit-fill-available;
     border: transparent !important;
     background: #e6e6e6 0% 0% no-repeat padding-box;
@@ -241,10 +241,10 @@
     letter-spacing: 0px;
     color: #000000;
   }
-  .inbox-main .input-area .input-chat {
+  .inbox-main .input-area .input-chat, .community .input-area .input-chat {
     position: relative;
   }
-  .inbox-main .input-area .input-chat .text-input {
+  .inbox-main .input-area .input-chat .text-input, .community .input-area .input-chat .text-input {
     border: transparent !important;
     width: calc(100vw - 87px) !important;
     height: 35px;
@@ -258,7 +258,7 @@
     color: #000000;
   }
 
-  .inbox-main .input-area .emoji-img {
+  .inbox-main .input-area .emoji-img, .community .input-area .emoji-img {
     position: absolute;
     right: 5px;
     top: calc(50% - 14.5px);

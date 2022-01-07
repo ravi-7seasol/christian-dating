@@ -54,6 +54,17 @@
         right: 0px;
     }
 
+    .header-bottom-text {
+        text-align: center;
+        font: normal normal normal 7px/10px Poppins;
+        font-size: 7px;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 0.58;
+        margin-bottom: 0px;
+        padding: 0 10px;
+    }
+
     /* ======================================>Profile<====================================== */
 
     .profilr-bg {
@@ -505,6 +516,11 @@
         font: normal normal 600 12px/18px Poppins;
         letter-spacing: 0px;
         opacity: 1;
+    }
+
+    .community {
+        height: calc(100vh - 125px);
+        overflow: scroll;
     }
 }
 

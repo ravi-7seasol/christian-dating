@@ -10359,7 +10359,7 @@
     "regenerator-runtime" "^0.13.7"
     "whatwg-fetch" "^3.4.1"
 
-"react-bootstrap@^2.0.2":
+"react-bootstrap@^2.1.0":
   "integrity" "sha512-ZbEq8in6XzoDh4dyrANVwqeqrj1oRqL56unlBYzjsvdWPIaBP/B7qLMHCvnwuzpANwMrh/hSNpIocKn6rvOFIQ=="
   "resolved" "https://registry.npmjs.org/react-bootstrap/-/react-bootstrap-2.1.0.tgz"
   "version" "2.1.0"
@@ -10463,7 +10463,7 @@
     "strip-ansi" "6.0.0"
     "text-table" "0.2.0"
 
-"react-dom@*", "react-dom@^0.14.0 || ^15.0.0 || ^16 || ^17", "react-dom@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0", "react-dom@^15.3.0 || ^16.0.0 || ^17.0.0", "react-dom@^15.5.4 || ^16.0.0", "react-dom@^15.5.x || ^16.x || ^17.x", "react-dom@^16.13.1", "react-dom@^16.3.0 || ^17.0.0-0", "react-dom@^16.8.0 || ^17.0.0", "react-dom@^16.9.0 || ^17", "react-dom@^16.x", "react-dom@^17.0.2", "react-dom@>= 15", "react-dom@>=16.14.0", "react-dom@>=16.3.0", "react-dom@>=16.6.0", "react-dom@>=16.8":
+"react-dom@*", "react-dom@^0.14.0 || ^15.0.0 || ^16 || ^17", "react-dom@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0", "react-dom@^15.3.0 || ^16.0.0 || ^17.0.0", "react-dom@^15.5.4 || ^16.0.0", "react-dom@^15.5.x || ^16.x || ^17.x", "react-dom@^16.13.1", "react-dom@^16.3.0 || ^17.0.0-0", "react-dom@^16.8.0 || ^17.0.0", "react-dom@^16.9.0 || ^17", "react-dom@^16.x", "react-dom@^17.0.2", "react-dom@>= 15", "react-dom@>=15.3.0", "react-dom@>=16.14.0", "react-dom@>=16.3.0", "react-dom@>=16.6.0", "react-dom@>=16.8":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"
@@ -10741,7 +10741,12 @@
     "react" "16.6.0"
     "webpack" "4.23.1"
 
-"react@*", "react@^0.14.0 || ^15.0.0 || ^16 || ^17", "react@^0.14.0 || ^15.0.0 || ^16.0.0-0", "react@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0", "react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^15.5.4 || ^16.0.0", "react@^15.5.x || ^16.x || ^17.x", "react@^16.0 || ^17.0.0", "react@^16.13.1", "react@^16.3.0 || ^17.0.0", "react@^16.3.0 || ^17.0.0-0", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0-rc.1", "react@^16.8.3 || ^17", "react@^16.9.0 || ^17", "react@^16.x", "react@^17.0.2", "react@>= 15", "react@>= 16", "react@>= 16.8.0", "react@>=0.14.0", "react@>=15.0.0", "react@>=16.14.0", "react@>=16.3.0", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@>=16.x", "react@16.13.1", "react@17.0.2":
+"react-webcam@^6.0.0":
+  "integrity" "sha512-pw7067WYnDHRjAXYXrsLeig9/AAxCFDnnaEJzZ5ep6UZoYMqF4UNRtVkeTk0LotpwqT/c8vHisn/+QodNbUsQA=="
+  "resolved" "https://registry.npmjs.org/react-webcam/-/react-webcam-6.0.0.tgz"
+  "version" "6.0.0"
+
+"react@*", "react@^0.14.0 || ^15.0.0 || ^16 || ^17", "react@^0.14.0 || ^15.0.0 || ^16.0.0-0", "react@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0", "react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^15.5.4 || ^16.0.0", "react@^15.5.x || ^16.x || ^17.x", "react@^16.0 || ^17.0.0", "react@^16.13.1", "react@^16.3.0 || ^17.0.0", "react@^16.3.0 || ^17.0.0-0", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0-rc.1", "react@^16.8.3 || ^17", "react@^16.9.0 || ^17", "react@^16.x", "react@^17.0.2", "react@>= 15", "react@>= 16", "react@>= 16.8.0", "react@>=0.14.0", "react@>=15.0.0", "react@>=15.3.0", "react@>=16.14.0", "react@>=16.3.0", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@>=16.x", "react@16.13.1", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"

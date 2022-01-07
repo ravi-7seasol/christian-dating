@@ -10,7 +10,7 @@ const AuthHeader: React.FC = () => {
         </div>
         <div>
           <h1>{location.pathname === "/show-profile" && "Profile" || location.pathname === "/match_or_message" && "Match or Message" || location.pathname === "/inbox" && "Inbox" || location.pathname === "/community" && "Community"}</h1>
-          {location.pathname === "/community" && <p>Share words of encouragement, voice and express concerns, share favorite scriptures and the good things God has done, is doing, and will do in your life!</p>}
+          {location.pathname === "/community" && <p className="header-bottom-text">Share words of encouragement, voice and express concerns, share favorite scriptures and the good things God has done, is doing, and will do in your life!</p>}
         </div>
         <div className="profile-pic" >
           <img src="./assets/img/Ellipse.png" alt="" height="5%" />
