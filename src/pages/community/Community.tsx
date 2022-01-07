@@ -44,8 +44,9 @@ const Community = () => {
                 <div className="">
                     {fakedata.map((item,i) => (
                         <div className='d-flex pt-4 align-items-center' key={i}>
-                            <div className=''>
+                            <div className='set-img-position'>
                                 <img src={item.Profilepic} />
+                                <div className='active'></div>
                             </div>
                             <div>
                                 <h6 className='Name ml-3' style={{ color: item.namecolor }} >{item.Name}</h6>

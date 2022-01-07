@@ -26,6 +26,7 @@
     font: normal normal normal 8px/12px Poppins;
     margin: 0px !important;
     text-align: center;
+    padding: 10px 6px 0 0;
   }
 
   .inbox-profile-img .profile-content {
@@ -89,6 +90,7 @@
 
   .inbox-main .messages .chat-profile-img-main {
     margin-top: 8px;
+    position: relative
   }
 
   .messages .chat-messages h4 {
@@ -263,5 +265,25 @@
     right: 5px;
     top: calc(50% - 14.5px);
   }
+
+  .inbox-main .online{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #E30000 0% 0% no-repeat padding-box;
+    position: absolute;
+    top: 41px;
+    left: 42px;
+  }
   
+  .inbox-main .offline {
+    background: #3AD800 0% 0% no-repeat padding-box;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    top: 41px;
+    left: 42px;
+  }
+
 }
