@@ -20,7 +20,7 @@ const ShowProfile = () => {
                         <img src="./assets/img/next.png" alt="" width="10px" height="15px" />
                     </Link>
                 </div>
-                <Buttons ButtonStyle='singal-btn' onClick={handleRedirect} children="Singal" />
+                <Buttons ButtonStyle='single-btn' onClick={handleRedirect} children="Single" />
             </div>
             <Container>
                 <div className="over-img-div">
