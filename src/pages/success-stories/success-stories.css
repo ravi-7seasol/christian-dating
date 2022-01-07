@@ -17,7 +17,7 @@
 
   .successStories-main .card-main {
     padding: 10px;
-    margin: 0 10px;
+    margin: 0 30px;
     background: #ffffff 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
     border-radius: 10px;
@@ -63,7 +63,94 @@
   .pop-over {
     position: absolute;
     padding: 10px;
+    margin: 0 10px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font: normal normal normal 10px/16px Poppins;
+    top: 130px;
+    z-index: 1;
+  }
+
+  .overlay {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(236 235 239);
+    z-index: 1;
+    opacity: 0.5;
+  }
+}
+
+@media (min-width: 574px) and (max-width:768px) {
+  .successStories-main .top-img .bg-img {
+    width: 100%;
+    position: relative;
+  }
+
+  .successStories-main .top-img .back-img {
+    position: absolute;
+    top: 74px;
+    left: 0;
+  }
+
+  .successStories-main .card-position {
+    position: absolute;
+    top: 222px;
+  }
+
+  .successStories-main .card-main {
+    padding: 10px;
     margin: 0 30px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  .successStories-main  .person-name {
+    margin-left: 15px;
+    margin-top: 6px;
+  }
+
+  .successStories-main  .person-name h5 {
+    font-size: 12px;
+    font: normal normal 600 12px/18px Poppins;
+    letter-spacing: 0px;
+    color: #000000;
+    margin: 0;
+    opacity: 1;
+  }
+
+  .successStories-main  .person-name p {
+    font-size: 10px;
+    font: normal normal normal 10px/16px Poppins;
+    letter-spacing: 0px;
+    color: #1d1d1d;
+    opacity: 1;
+  }
+
+  .successStories-main .card-main .card-content p {
+    font-size: 10px;
+    font: normal normal normal 10px/16px Poppins;
+    letter-spacing: 0px;
+    color: #1d1d1d;
+    opacity: 1;
+    margin-top: 15px;
+  }
+
+  .successStories-main .after-over {
+    position: absolute;
+    top: 115px;
+  }
+
+  .pop-over {
+    position: absolute;
+    padding: 10px;
+    margin: 0 10px;
     background: #ffffff 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
     border-radius: 10px;
