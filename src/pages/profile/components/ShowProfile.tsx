@@ -17,7 +17,7 @@ const ShowProfile = () => {
             <div className="profilr-bg">
                 <div className="back-btn">
                     <Link to="/">
-                        <img src="./assets/img/next.png" alt="" width="15px" height="20px" />
+                        <img src="./assets/img/next.png" alt="" width="10px" height="15px" />
                     </Link>
                 </div>
                 <Buttons ButtonStyle='singal-btn' onClick={handleRedirect} children="Singal" />

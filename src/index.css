@@ -88,7 +88,7 @@
         position: relative;
     }
 
-    .profilr-bg .back-btn {
+    /* .profilr-bg .back-btn {
         width: 35px;
         height: 35px;
         background-color: #ffffff;
@@ -97,7 +97,7 @@
         position: absolute;
         top: 10px;
         left: 10px;
-    }
+    } */
 
     .profilr-bg .singal-btn {
         background: #000000 0% 0% no-repeat padding-box !important;
@@ -629,7 +629,7 @@
         position: relative;
     }
 
-    .profilr-bg .back-btn {
+    /* .profilr-bg .back-btn {
         width: 35px;
         height: 35px;
         background-color: #ffffff;
@@ -638,7 +638,7 @@
         position: absolute;
         top: 10px;
         left: 10px;
-    }
+    } */
 
     .profilr-bg .singal-btn {
         background: #000000 0% 0% no-repeat padding-box !important;
