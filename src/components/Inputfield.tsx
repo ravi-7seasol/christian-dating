@@ -26,7 +26,7 @@ const InputField: React.FC<Props> = ({ name, maxLength, value, lablestyleClass, 
     }
 
     return (
-        <Form.Group className={`mb-0 ${fromrowStyleclass}`}>
+        <Form.Group className={`${fromrowStyleclass}`}>
             {label && <Form.Label className={lablestyleClass}>{label}</Form.Label>}
 
             {type === 'textarea' ? (
