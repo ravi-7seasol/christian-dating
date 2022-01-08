@@ -255,7 +255,22 @@ input[type="password"]::placeholder {
   width: 30.5px;
   height: 22.87px;
 }
-
+.kep-login-facebook  {
+  all: unset !important;
+}
+#insta{
+  display: none;
+}
+#google{
+  display: none;
+}
+figure{
+  margin: 0 !important;
+}
+.ErrMsg{
+  color: #ff4757;
+  font-size: 14px;
+}
 @media (min-width: 200px) and (max-width: 768px) {
   /* ========== login page css start =========== */
   .layout-padding{

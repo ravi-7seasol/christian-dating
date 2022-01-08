@@ -1,3 +1,5 @@
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router";
@@ -37,6 +39,7 @@ const Login = () => {
                 type="email"
                 fromrowStyleclass=""
               />
+              <label className="ErrMsg" htmlFor="error"> <FontAwesomeIcon icon={faTimesCircle}/> Email or password wrong</label>
               <InputField
                 name=""
                 maxLength={undefined}
