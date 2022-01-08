@@ -11,16 +11,12 @@ const Layout: FC<Props> = ({ children, ...props }) => {
   const location = useLocation();
 
   return (
-    <div
-      style={{
-        padding: "50px 30px 0 30px",
-      }}
-    >
-      <Header />
+    <div className="layout-padding">
+      {/* <Header /> */}
       <div {...props}>{children}</div>
-      {location.pathname !== "/login" && location.pathname !== "/signup" && (
-        <Footer />
-      )}
+      {/* {location.pathname !== "/login" && location.pathname !== "/signup" && (
+        // <Footer />
+      )} */}
     </div>
   );
 };
