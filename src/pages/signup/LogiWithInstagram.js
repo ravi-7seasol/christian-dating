@@ -1,16 +1,12 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react'
 import InstagramLogin from 'react-instagram-login'
 const FacbookAppId = "634703847650865"
 
 const LogiWithInstagram = () => {
     const responseInstagram = (response) => {
-        debugger
         console.log("instagram response ======= response", response);
     };
 
     const failureResponseInstagram = (response) => {
-        debugger
         console.log("instagram failureResponseFacebook ===== failureResponseFacebook", response);
     };
 
