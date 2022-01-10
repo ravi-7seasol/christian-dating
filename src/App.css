@@ -56,6 +56,13 @@ body {
   width: 177px;
   height: 177px;
 }
+.profile-header-baloon {
+  position: fixed;
+  width: 100vw;
+  background: #fff;
+  height: 13vh;
+  z-index: 1;
+}
 .profile-header-baloon .top-baloon {
   position: absolute;
   top: -85px;
@@ -539,14 +546,16 @@ input[type="date"]:before {
 /* @media (min-width: 200px) and (max-width: 768px) { */
   @media only screen and (max-width: 768px){
   /* ========== login page css start =========== */
+  .profile-header-baloon{
+      height: 12vh;
+      left: 0;
+      padding: 37px 0 0 22px;
+  }
   .layout-padding {
     padding: 30px 30px 0 30px;
   }
   .login-card {
     all: unset;
-  }
-  .App {
-    overflow-x: hidden;
   }
   .login-header {
     padding: 0;
