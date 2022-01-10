@@ -2,7 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleLeft, faArrowLeft, faArrowsAlt, faCompressArrowsAlt, faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 
-import { Accordion, Container } from 'react-bootstrap';
+import { Accordion, Col, Container, Row } from 'react-bootstrap';
 import Buttons from '../../../components/Buttons';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -15,12 +15,39 @@ const ShowProfile = () => {
     return (
         <>
             <div className="profilr-bg">
-                <div className="back-btn">
-                    <Link to="/">
-                        <img src="./assets/img/next.png" alt="" width="10px" height="15px" />
-                    </Link>
+                <div>
+                    <div className="back-btn">
+                        <Link to="/">
+                            <img src="./assets/img/next.png" alt="" width="10px" height="15px" />
+                        </Link>
+                    </div>
+                    <Buttons ButtonStyle='single-btn' onClick={handleRedirect} children="Single" />
                 </div>
-                <Buttons ButtonStyle='single-btn' onClick={handleRedirect} children="Single" />
+                <Container>
+                    <div className='over-img-div-991'>
+                        <Row>
+                            <Col md={3}>
+                                <div className='profile-pic'>
+                                    <img src="./assets/img/taylor-8Vt2haq8NSQ-unsplash.png" alt="" />
+                                    <div className="verified-picture">
+                                        <img src="./assets/img/poltgon-group.png" alt="" />
+                                        <p>Verified picture</p>
+                                    </div>
+                                </div>
+                            </Col>
+                            <Col md={9}>
+                                <div className="over-img-popup">
+                                    <div className="d-flex align-items-center mb-3">
+                                        <h5 className='name-age'>John doe, 36</h5>
+                                        <img src="./assets/img/male.png" alt="" height="6%" width="6%" className='ml-3' />
+                                    </div>
+                                    <p>USA, San Francisco Bay Area | Religion: <span> Catholic </span></p>
+                                    <p className='about-mi'>Hi I’m John, I’m a single father of 3 and I love camping, being outdoors and overall nature. I also have 2 dogs!</p>
+                                </div>
+                            </Col>
+                        </Row>
+                    </div>
+                </Container>
             </div>
             <Container>
                 <div className="over-img-div">
