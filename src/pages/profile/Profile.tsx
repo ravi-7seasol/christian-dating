@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import Buttons from "../../components/Buttons";
+import Footer from "../../layouts/footer/Footer";
+import Header from "../../layouts/header/Header";
 import Lifestyle from "./components/Lifestyle";
 import Personal from "./components/Personal";
 import Prefrences from "./components/Prefrences";
@@ -9,17 +11,21 @@ import SetProfileImage from "./components/SetProfileImage";
 const Profile = () => {
   const [stepDone, setStepDone] = useState(1);
   // const [verified, setVerified] = useState<any>(false);
-  const nevigate = useNavigate()
+  const nevigate = useNavigate();
   const handleNext = () => {
     if (stepDone < 5) {
       setStepDone(stepDone + 1);
-    }else{
-      nevigate("/show-profile")
+    } else {
+      nevigate("/show-profile");
     }
   };
   return (
-    <>
-      <div>
+    <div style={{height:"100vh", overflowY:"auto"}}>
+      <div className="profile-header-baloon">
+
+        <Header />
+      </div>
+      <div className="container-width mx-auto">
         <div className="header mt-3">
           <div className="d-flex justify-content-between align-items-center">
             <h1>Profile</h1>
@@ -34,10 +40,15 @@ const Profile = () => {
         {stepDone === 1 && <Personal />}
         {stepDone === 2 && <Prefrences />}
         {stepDone === 3 && <Lifestyle />}
-        {stepDone >= 4 &&  <SetProfileImage stepDone={stepDone} />}
+        {stepDone >= 4 && <SetProfileImage stepDone={stepDone} />}
 
         <div className="login">
-          <div style={{ marginTop: stepDone>4? "8rem":"4rem", marginBottom: "1rem" }}>
+          <div
+            style={{
+              marginTop: stepDone > 4 ? "8rem" : "4rem",
+              marginBottom: "1rem",
+            }}
+          >
             <Buttons
               children={stepDone > 3 ? "See your profile!" : "Next"}
               onClick={() => handleNext()}
@@ -47,7 +58,8 @@ const Profile = () => {
           </div>
         </div>
       </div>
-    </>
+      <Footer />
+    </div>
   );
 };
 

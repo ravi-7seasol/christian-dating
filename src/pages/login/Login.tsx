@@ -17,7 +17,7 @@ const Login = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center h-100">
+    <div className="d-flex justify-content-center align-items-center" style={{minHeight:"100vh" }}>
       <Container>
         <div className="login-card">
           <Header />

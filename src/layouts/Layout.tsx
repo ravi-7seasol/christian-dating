@@ -11,7 +11,7 @@ const Layout: FC<Props> = ({ children, ...props }) => {
   const location = useLocation();
 
   return (
-    <div className="layout-padding">
+    <div className="layout-padding" style={{height:"100vh", overflowY:"auto"}}>
       {/* <Header /> */}
       <div {...props}>{children}</div>
       {/* {location.pathname !== "/login" && location.pathname !== "/signup" && (
