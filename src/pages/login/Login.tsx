@@ -1,13 +1,11 @@
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
 import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import Buttons from "../../components/Buttons";
 import CheckBox from "../../components/Checkbox";
 import InputField from "../../components/Inputfield";
-import Footer from "../../layouts/footer/Footer";
 import Header from "../../layouts/header/Header";
 
 const Login = () => {

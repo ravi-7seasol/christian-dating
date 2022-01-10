@@ -20,12 +20,11 @@ const Profile = () => {
     }
   };
   return (
-    <div style={{height:"100vh", overflowY:"auto"}}>
-      <div className="profile-header-baloon">
-
+    <div >
+      <div className="profile-header-baloon" style={{position:"fixed", width:"100vw", top:"0"}}>
         <Header />
       </div>
-      <div className="container-width mx-auto">
+      <div className="container-width mx-auto" style={{marginTop:"15vh"}}>
         <div className="header mt-3">
           <div className="d-flex justify-content-between align-items-center">
             <h1>Profile</h1>

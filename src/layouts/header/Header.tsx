@@ -1,11 +1,10 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 
 const Header: React.FC = () => {
   return (
     <>
 
-      <div className="login-header">
+      <div className="login-header ">
         <div className="header-logo">
           <img src="./assets/img/header-logo.png" alt="header-logo" />
         </div>
@@ -13,8 +12,8 @@ const Header: React.FC = () => {
           <h5>Christian Dating</h5>
           <p>Build Divine Connections</p>
         </div>
-        <div className="top-baloon"></div>
       </div>
+        <div className="top-baloon"></div>
       
     </>
   );

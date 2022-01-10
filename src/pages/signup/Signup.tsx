@@ -54,7 +54,6 @@ const Signup = () => {
     <>
       <div
         className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "100vh" , overflowY:"auto" }}
       >
         <Container>
           <div className="login-card">
