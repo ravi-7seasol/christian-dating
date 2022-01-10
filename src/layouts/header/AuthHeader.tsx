@@ -26,24 +26,26 @@ const AuthHeader: React.FC = () => {
         </div>
       </div>
       <Navbar bg="light" className="authnave">
-        <Navbar.Brand href="#home">
-          <img
-            src="./assets/img/Group 28.png"
-            className="d-inline-block align-top"
-          />
-        </Navbar.Brand>
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto">
-            <Link to="/match_or_message">Match-or-Message</Link>
-            <Link to="/community">Community</Link>
-            <Link to="/inbox">Inbox</Link>
-            <Link to="/success_stories">Success-stories</Link>
-            <div className="profile-pic" >
-              <img src="./assets/img/Ellipse.png" alt="" onClick={handleRedirect} />
-              <div className="notification"></div>
-            </div>
-          </Nav>
-        </Navbar.Collapse>
+        <Container>
+          <Navbar.Brand href="#home">
+            <img
+              src="./assets/img/Group 28.png"
+              className="d-inline-block align-top"
+            />
+          </Navbar.Brand>
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ml-auto">
+              <Link to="/match_or_message">Match-or-Message</Link>
+              <Link to="/community">Community</Link>
+              <Link to="/inbox">Inbox</Link>
+              <Link to="/success_stories">Success-stories</Link>
+              <div className="profile-pic" >
+                <img src="./assets/img/Ellipse.png" alt="" onClick={handleRedirect} />
+                <div className="notification"></div>
+              </div>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
       </Navbar>
     </>
   );
