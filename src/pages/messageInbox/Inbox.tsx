@@ -10,9 +10,10 @@ const Inbox = () => {
   return (
     <>
       <div className="inbox-main">
+        {/* <div style={{ height:"100vh", overflow:"hidden"}}> */}
         <Row>
-          <Col md={4}>
-            <div className="inbox-profile-img">
+          <Col md={4} style={{ overflow: "scroll", height: "100vh" }}>
+            <div className="inbox-profile-img" >
               <div className="profile-content">
                 <img src="./assets/img/profile-picture.png" />
                 <h6>likes you</h6>
@@ -74,35 +75,80 @@ const Inbox = () => {
                 </div>
                 <h5 className="messages-time-on-off">MATCH</h5>
               </div>
-            </div>
-          </Col>
-          <Col md={8}>
-            <div className="Conversation-starters">
-              <div>
-                <h2>Conversation starters</h2>
-              {width > 768 && (
-                <div className="mb-4">
-                  <div className="messages">
+              <div className="messages">
                 <div className="chat-profile-img-main">
                   <img
                     src="./assets/img/profile-picture.png"
                     className="chat-profile"
                   />
-                  <div className="online"></div>
+                  <div className="offline"></div>
                 </div>
                 <div className="chat-messages">
-                  <h4>Valerie</h4>
-                  {/* <p>
+                  <h4>Shirly</h4>
+                  <p>Start a conversation with Shirly…</p>
+                </div>
+                <h5 className="messages-time-on-off">MATCH</h5>
+              </div>
+              <div className="messages">
+                <div className="chat-profile-img-main">
+                  <img
+                    src="./assets/img/profile-picture.png"
+                    className="chat-profile"
+                  />
+                  <div className="offline"></div>
+                </div>
+                <div className="chat-messages">
+                  <h4>Shirly</h4>
+                  <p>Start a conversation with Shirly…</p>
+                </div>
+                <h5 className="messages-time-on-off">MATCH</h5>
+              </div>
+              <div className="messages">
+                <div className="chat-profile-img-main">
+                  <img
+                    src="./assets/img/profile-picture.png"
+                    className="chat-profile"
+                  />
+                  <div className="offline"></div>
+                </div>
+                <div className="chat-messages">
+                  <h4>Shirly</h4>
+                  <p>Start a conversation with Shirly…</p>
+                </div>
+                <h5 className="messages-time-on-off">MATCH</h5>
+              </div>
+            </div>
+          </Col>
+          <Col md={8} style={{ overflow: "scroll", height: "calc(100vh - 100px)" }}>
+            <div
+              className="Conversation-starters"
+              style={{ overflowY: "scroll" }}
+            >
+              <div>
+                <h2>Conversation starters</h2>
+                {width > 767 && (
+                  <div className="mb-4">
+                    <div className="messages">
+                      <div className="chat-profile-img-main">
+                        <img
+                          src="./assets/img/profile-picture.png"
+                          className="chat-profile"
+                        />
+                        <div className="online"></div>
+                      </div>
+                      <div className="chat-messages">
+                        <h4>Valerie</h4>
+                        {/* <p>
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                   </p> */}
-                  <h6 className="messages-time">12:15</h6>
-                </div>
-                <div >
-                  {/* <div className="messages-counts">2</div> */}
-                </div>
-              </div>
-                </div>
-              )}
+                        <h6 className="messages-time">12:15</h6>
+                      </div>
+                      <div>
+                        {/* <div className="messages-counts">2</div> */}
+                      </div>
+                    </div>
+                  </div>
+                )}
                 <h3 className="first-text">
                   Hey! I really like your profile and I think we could match
                   really well.
@@ -187,6 +233,7 @@ const Inbox = () => {
             </div>
           </Col>
         </Row>
+        {/* </div> */}
       </div>
     </>
   );
