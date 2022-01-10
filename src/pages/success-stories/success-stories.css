@@ -1,3 +1,136 @@
+/* <<<<==========================================Web View==========================================>>>> */
+
+.successStories-main .top-img .bg-img {
+  width: 100%;
+  position: relative;
+}
+
+.successStories-main .top-img .back-img {
+  position: absolute;
+  top: 74px;
+  left: 0;
+}
+
+.successStories-main .card-position {
+  position: absolute;
+  top: 515px !important;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.successStories-main .card-main {
+  padding: 10px;
+  margin: 0 10px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: 300px;
+}
+
+.successStories-main .person-name {
+  margin-left: 15px;
+  margin-top: 6px;
+}
+
+.successStories-main .person-name h5 {
+  font-size: 12px;
+  font: normal normal 600 12px/18px Poppins;
+  letter-spacing: 0px;
+  color: #000000;
+  margin: 0;
+  opacity: 1;
+}
+
+.successStories-main .person-name p {
+  font-size: 10px;
+  font: normal normal normal 10px/16px Poppins;
+  letter-spacing: 0px;
+  color: #1d1d1d;
+  opacity: 1;
+}
+
+.successStories-main .card-main .card-content p {
+  font-size: 10px;
+  font: normal normal normal 10px/16px Poppins;
+  letter-spacing: 0px;
+  color: #1d1d1d;
+  opacity: 1;
+  margin-top: 15px;
+}
+
+.successStories-main .after-over {
+  position: absolute;
+  top: 515px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pop-over {
+  position: absolute;
+  padding: 10px;
+  margin: 0 10px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font: normal normal normal 10px/16px Poppins;
+  top: 130px;
+  z-index: 1;
+  width: 400px;
+  justify-content: center;
+}
+
+.overlay {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(236 235 239);
+  z-index: 1;
+  opacity: 0.5;
+}
+
+/* .successStories-main .add-btn-div{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+} */
+
+.successStories-main .post-btn {
+  position: fixed;
+  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
+    0% no-repeat padding-box;
+    font-weight: 600;
+    border: none;
+    bottom: 0;
+    border-radius: 100%;
+    font-size: 30px;
+    width: 54px;
+    right: 20px;
+    box-shadow: none !important;
+}
+.successStories-main .post-btn:active:focus:hover {
+  position: fixed;
+  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
+    0% no-repeat padding-box;
+    font-weight: 600;
+    border: none !important;
+    bottom: 0;
+    border-radius: 100%;
+    font-size: 30px;
+    width: 54px;
+    right: 20px;
+    box-shadow: none !important;
+}
+
+.successStories-main .card-position:last-child{
+  padding-bottom: 50px;
+}
+
 @media (max-width: 574px) {
   .successStories-main .top-img .bg-img {
     width: 100%;
@@ -11,25 +144,26 @@
   }
 
   .successStories-main .card-position {
-    position: absolute;
-    top: 115px;
+    position: absolute !important;
+    top: 115px !important;
   }
 
   .successStories-main .card-main {
-    padding: 10px;
-    margin: 0 30px;
-    background: #ffffff 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #00000029;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    padding: 10px !important;
+    margin: 0 30px !important;
+    background: #ffffff 0% 0% no-repeat padding-box !important;
+    box-shadow: 0px 3px 6px #00000029 !important;
+    border-radius: 10px !important;
+    margin-bottom: 20px !important;
+    width: fit-content !important;
   }
 
-  .successStories-main  .person-name {
+  .successStories-main .person-name {
     margin-left: 15px;
     margin-top: 6px;
   }
 
-  .successStories-main  .person-name h5 {
+  .successStories-main .person-name h5 {
     font-size: 12px;
     font: normal normal 600 12px/18px Poppins;
     letter-spacing: 0px;
@@ -38,7 +172,96 @@
     opacity: 1;
   }
 
-  .successStories-main  .person-name p {
+  .successStories-main .person-name p {
+    font-size: 10px;
+    font: normal normal normal 10px/16px Poppins;
+    letter-spacing: 0px;
+    color: #1d1d1d;
+    opacity: 1;
+  }
+
+  .successStories-main .card-main .card-content p {
+    font-size: 10px;
+    font: normal normal normal 10px/16px Poppins;
+    letter-spacing: 0px;
+    color: #1d1d1d;
+    opacity: 1;
+    margin-top: 15px;
+  }
+
+  .successStories-main .after-over {
+    position: absolute !important;
+    top: 115px !important;
+  }
+
+  .pop-over {
+    position: absolute;
+    padding: 10px !important;
+    margin: 0 10px !important;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px !important;
+    margin-bottom: 20px !important;
+    font: normal normal normal 10px/16px Poppins !important;
+    top: 130px !important;
+    z-index: 1 !important;
+    width: auto !important;
+  }
+
+  .overlay {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(236 235 239);
+    z-index: 1;
+    opacity: 0.5;
+  }
+}
+
+@media (min-width: 574px) and (max-width: 767px) {
+  .successStories-main .top-img .bg-img {
+    width: 100%;
+    position: relative;
+  }
+
+  .successStories-main .top-img .back-img {
+    position: absolute;
+    top: 74px;
+    left: 0;
+  }
+
+  .successStories-main .card-position {
+    position: absolute !important;
+    top: 222px !important;
+  }
+
+  .successStories-main .card-main {
+    padding: 10px;
+    width: auto !important;
+    margin: 0 30px !important;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .successStories-main .person-name {
+    margin-left: 15px;
+    margin-top: 6px;
+  }
+
+  .successStories-main .person-name h5 {
+    font-size: 12px;
+    font: normal normal 600 12px/18px Poppins;
+    letter-spacing: 0px;
+    color: #000000;
+    margin: 0;
+    opacity: 1;
+  }
+
+  .successStories-main .person-name p {
     font-size: 10px;
     font: normal normal normal 10px/16px Poppins;
     letter-spacing: 0px;
@@ -74,7 +297,7 @@
   }
 
   .overlay {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     width: 100%;
@@ -85,7 +308,7 @@
   }
 }
 
-@media (min-width: 574px) and (max-width:768px) {
+@media (min-width: 768px) and (max-width: 990px) {
   .successStories-main .top-img .bg-img {
     width: 100%;
     position: relative;
@@ -99,24 +322,29 @@
 
   .successStories-main .card-position {
     position: absolute;
-    top: 222px;
+    top: 265px !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* width: 1140px; */
   }
 
   .successStories-main .card-main {
     padding: 10px;
-    margin: 0 30px;
+    margin: 0 10px;
     background: #ffffff 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
     border-radius: 10px;
     margin-bottom: 20px;
+    width: 300px;
   }
 
-  .successStories-main  .person-name {
+  .successStories-main .person-name {
     margin-left: 15px;
     margin-top: 6px;
   }
 
-  .successStories-main  .person-name h5 {
+  .successStories-main .person-name h5 {
     font-size: 12px;
     font: normal normal 600 12px/18px Poppins;
     letter-spacing: 0px;
@@ -125,7 +353,7 @@
     opacity: 1;
   }
 
-  .successStories-main  .person-name p {
+  .successStories-main .person-name p {
     font-size: 10px;
     font: normal normal normal 10px/16px Poppins;
     letter-spacing: 0px;
@@ -144,7 +372,10 @@
 
   .successStories-main .after-over {
     position: absolute;
-    top: 115px;
+    top: 265px !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .pop-over {
@@ -158,10 +389,12 @@
     font: normal normal normal 10px/16px Poppins;
     top: 130px;
     z-index: 1;
+    width: 450px;
+    justify-content: center;
   }
 
   .overlay {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     width: 100%;
@@ -171,3 +404,117 @@
     opacity: 0.5;
   }
 }
+
+@media (min-width: 991px) and (max-width: 1199px) {
+  .successStories-main .top-img .bg-img {
+    width: 100%;
+    position: relative;
+  }
+
+  .successStories-main .top-img .back-img {
+    position: absolute;
+    top: 74px;
+    left: 0;
+  }
+
+  .successStories-main .card-position {
+    position: absolute;
+    top: 375px !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* width: 1140px; */
+  }
+
+  .successStories-main .card-main {
+    padding: 10px;
+    margin: 0 10px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 300px;
+  }
+
+  .successStories-main .person-name {
+    margin-left: 15px;
+    margin-top: 6px;
+  }
+
+  .successStories-main .person-name h5 {
+    font-size: 12px;
+    font: normal normal 600 12px/18px Poppins;
+    letter-spacing: 0px;
+    color: #000000;
+    margin: 0;
+    opacity: 1;
+  }
+
+  .successStories-main .person-name p {
+    font-size: 10px;
+    font: normal normal normal 10px/16px Poppins;
+    letter-spacing: 0px;
+    color: #1d1d1d;
+    opacity: 1;
+  }
+
+  .successStories-main .card-main .card-content p {
+    font-size: 10px;
+    font: normal normal normal 10px/16px Poppins;
+    letter-spacing: 0px;
+    color: #1d1d1d;
+    opacity: 1;
+    margin-top: 15px;
+  }
+
+  .successStories-main .after-over {
+    position: absolute;
+    top: 375px !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pop-over {
+    position: absolute;
+    padding: 10px;
+    margin: 0 10px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font: normal normal normal 10px/16px Poppins;
+    top: 130px;
+    z-index: 1;
+    width: 400px;
+    justify-content: center;
+  }
+
+  .overlay {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(236 235 239);
+    z-index: 1;
+    opacity: 0.5;
+  }
+}
+
+.add-post-model-footer{
+  border-top: none !important;
+}
+.add-post-model-header{
+  border-bottom: none !important;
+}
+
+.add-post-model-body{
+  border: 1px solid #e3e3e3 !important; 
+}
+
+.add-post-model-body:focus{
+  border: 1px solid #e3e3e3 !important;
+  outline: none !important;
+}
+
