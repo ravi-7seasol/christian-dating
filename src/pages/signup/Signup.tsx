@@ -9,7 +9,7 @@ import GoogleLogin from "react-google-login";
 import LogiWithInstagram from "./LogiWithInstagram";
 import { Container } from "react-bootstrap";
 import Header from "../../layouts/header/Header";
-import { useEffect } from "react";
+
 
 const GoogleAppId =
   "1043350539750-lldkb9r1i0pc3d3l66lupb9np2olict4.apps.googleusercontent.com";
@@ -44,12 +44,18 @@ const Signup = () => {
   };
 
   const Google = () => {
-    document.getElementById("google")!.getElementsByTagName("button")[0].click();
+    document
+      .getElementById("google")!
+      .getElementsByTagName("button")[0]
+      .click();
   };
 
   return (
     <>
-      <div className="d-flex justify-content-center align-items-center h-100">
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "100vh" , overflowY:"auto" }}
+      >
         <Container>
           <div className="login-card">
             <Header />

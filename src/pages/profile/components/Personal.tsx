@@ -63,10 +63,10 @@ const Personal = () => {
           <div className="gender">
             <label className="login-label">Gender</label>
             <br />
-            <button className={`gender-btn male ${ genderActive ==="male"&& "active"}`} onClick={(e)=>handleGenderActive(e, "male")}>
+            <button className={`gender-btn male ${ genderActive ==="male"&& "gender-active"}`} onClick={(e)=>handleGenderActive(e, "male")}>
               <img src="./assets/img/male.png" alt="male" />
             </button>
-            <button className={`gender-btn female ${ genderActive ==="female"&& "active"}`} onClick={(e)=>handleGenderActive(e, "female")}>
+            <button className={`gender-btn female ${ genderActive ==="female"&& "gender-active"}`} onClick={(e)=>handleGenderActive(e, "female")}>
               <img src="./assets/img/female.png" alt="female" />
             </button>
           </div>
