@@ -7,10 +7,45 @@ const MatchOrMessage = () => {
         className: "center",
         centerMode: true,
         infinite: true,
-        centerPadding: "50px",
+        centerPadding: "450px",
         slidesToShow: 1,
+        slidesToScroll: 2,
         speed: 500,
         responsive: [
+
+            {
+                breakpoint: 1300,
+                settings: {
+                    className: "center",
+                    centerMode: true,
+                    infinite: true,
+                    centerPadding: "390px",
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 1100,
+                settings: {
+                    className: "center",
+                    centerMode: true,
+                    infinite: true,
+                    centerPadding: "320px",
+                    slidesToShow: 1,
+                    slidesToScroll: 3
+                }
+            },
+            {
+                breakpoint: 870,
+                settings: {
+                    className: "center",
+                    centerMode: true,
+                    infinite: true,
+                    centerPadding: "200px",
+                    slidesToShow: 1,
+                    slidesToScroll: 3
+                }
+            },
             {
                 breakpoint: 769,
                 settings: {
@@ -129,7 +164,7 @@ const MatchOrMessage = () => {
                     <div>
                         <div className='skip-content'>
                             <Link to="/success_stories">
-                            <img src='./assets/img/Group 18.png' />
+                                <img src='./assets/img/Group 18.png' />
                             </Link>
                         </div>
                         <p className='text'>skip</p>
@@ -149,8 +184,8 @@ const MatchOrMessage = () => {
                         <p className='text'>message</p>
                     </div>
                 </div>
-            </Container>
-            <Container>
+            {/* </Container>
+            <Container> */}
                 <div className='message-bottom-popup'>
                     <div className='message-bottom-popup-header'>
                         <img src="./assets/img/notification-ball.png" alt="" width="5%" />
