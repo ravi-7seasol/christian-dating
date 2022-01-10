@@ -184,12 +184,10 @@ const MatchOrMessage = () => {
                         <p className='text'>message</p>
                     </div>
                 </div>
-            {/* </Container>
-            <Container> */}
                 <div className='message-bottom-popup'>
                     <div className='message-bottom-popup-header'>
-                        <img src="./assets/img/notification-ball.png" alt="" width="5%" />
-                        <img src="./assets/img/wrong.png" alt="" width="5%" />
+                        <img src="./assets/img/notification-ball.png" alt="" />
+                        <img src="./assets/img/wrong.png" alt="" />
                     </div>
                     <div className='message-bottom-popup-body'>
                         <p className='message-bottom-popup-body-text'>Could she be the one? you both have a match rating of <span> 89%</span>! Try sending her a message to make the first step.</p>

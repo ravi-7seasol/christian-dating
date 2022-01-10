@@ -15,15 +15,15 @@ const ShowProfile = () => {
     return (
         <>
             <div className="profilr-bg">
-                <div>
-                    <div className="back-btn">
-                        <Link to="/">
-                            <img src="./assets/img/next.png" alt="" width="10px" height="15px" />
-                        </Link>
-                    </div>
-                    <Buttons ButtonStyle='single-btn' onClick={handleRedirect} children="Single" />
-                </div>
                 <Container>
+                    <div className='set-backbtn-singlebtn'>
+                        <div className="back-btn">
+                            <Link to="/">
+                                <img src="./assets/img/next.png" alt="" width="10px" height="15px" />
+                            </Link>
+                        </div>
+                        <Buttons ButtonStyle='single-btn' onClick={handleRedirect} children="Single" />
+                    </div>
                     <div className='over-img-div-991'>
                         <Row>
                             <Col md={3}>
@@ -39,7 +39,7 @@ const ShowProfile = () => {
                                 <div className="over-img-popup">
                                     <div className="d-flex align-items-center mb-3">
                                         <h5 className='name-age'>John doe, 36</h5>
-                                        <img src="./assets/img/male.png" alt="" height="6%" width="6%" className='ml-3' />
+                                        <img src="./assets/img/male.png" alt="" className='ml-3' />
                                     </div>
                                     <p>USA, San Francisco Bay Area | Religion: <span> Catholic </span></p>
                                     <p className='about-mi'>Hi I’m John, I’m a single father of 3 and I love camping, being outdoors and overall nature. I also have 2 dogs!</p>
@@ -59,7 +59,7 @@ const ShowProfile = () => {
                         <p>USA, San Francisco Bay Area | Religion: <span> Catholic </span></p>
                         <div className="d-flex align-items-center mb-3">
                             <h5 className='name-age'>John doe, 36</h5>
-                            <img src="./assets/img/male.png" alt="" height="8%" width="8%" className='ml-3' />
+                            <img src="./assets/img/male.png" alt="" className='ml-3' />
                         </div>
                         <p className='about-mi'>Hi I’m John, I’m a single father of 3 and I love camping, being outdoors and overall nature. I also have 2 dogs!</p>
                     </div>
