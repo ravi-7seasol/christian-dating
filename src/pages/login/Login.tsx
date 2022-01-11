@@ -1,5 +1,6 @@
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { log } from "console";
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router";
@@ -17,34 +18,60 @@ const Login = () => {
     email: "",
     password: ""
   })
+  const [checked, setChecked] = useState(false);
+
 
   const onInputValueChange = (e: any) => {
     setLoginData({
       ...loginData,
       [e.target.name]: e.target.value
     })
+    if (e.target.name === "checked") {
+      setChecked(e.target.checked);
+    }
+    
   }
 
   const handleRedirect = () => {
     navigate("/show-profile");
   };
 
+  useEffect(() => {
+    if (localStorage.getItem("email")) {
+    
+      const temp:string = localStorage.getItem("email") ?? '';
+    
+         setLoginData({ email:JSON.parse(temp) , password:"" })
+      
+     
+    }
+  }, [])
+
   const logIn = () => {
     const val = {
 
     }
-  const body = xwwwFormUrlencoded(loginData);
+    if (checked) {
+      localStorage.setItem("email", JSON.stringify(loginData.email));
+    }
+    const body = xwwwFormUrlencoded(loginData);
+    
   
     ApiPost('loginuser', body)
       .then((res: any) => {
-        console.log("res",res);
+        console.log("res", res);
+        if (res) {
+           localStorage.setItem("token", JSON.stringify(res.token));
+        }
+       
         
-        // navigate("/show-profile");
+        navigate("/show-profile");
       }).catch((error) => {
         console.log(error);
 
       })
   }
+ 
 
 
   return (
@@ -91,12 +118,12 @@ const Login = () => {
                   <CheckBox
                     type="checkbox"
                     label=""
-                    name=""
+                    name="checked"
                     id=""
                     value={""}
                     styleCheck="remember-checkbox"
-                    onChange={() => { }}
-                    checked={false}
+                    onChange={(e) => {onInputValueChange(e)}}
+                    checked={checked}
                   />
                   <label htmlFor="checkbox" className="rememberme-label">
                     Remember me
