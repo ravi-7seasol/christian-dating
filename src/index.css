@@ -210,6 +210,7 @@
     padding-top: 160px;
 }
 
+
 .accordion-item {
     border-bottom: 1px solid #e69702 !important;
     padding-bottom: 10px;
@@ -232,6 +233,7 @@
 .accordion-body{
     font-size: 16px !important;
 }
+
 
 .personal-details {
     padding-top: 30px;
@@ -405,7 +407,7 @@
 .activity-main {
     margin: 65px 15px 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .activity-main .rewind {
@@ -616,6 +618,10 @@
         position: relative;
     }
 
+    .name-age{
+        font-size: 16px;
+    }
+
     .over-img-popup {
         position: absolute;
         width: 100%;
@@ -682,6 +688,10 @@
         position: relative;
     }
 
+    .name-age{
+        font-size: 18px;
+    }
+
     .over-img-popup {
         position: absolute;
         width: 100%;
@@ -725,6 +735,10 @@
         background-size: cover;
         position: relative;
         padding: 100px 0;
+    }
+
+    .name-age{
+        font-size: 20px;
     }
 
     .over-img-div {
@@ -873,6 +887,10 @@
         background-size: cover;
         position: relative;
         padding: 100px 0;
+    }
+
+    .name-age{
+        font-size: 22px;
     }
 
     .over-img-div {
@@ -1032,6 +1050,11 @@
         position: relative;
         padding: 100px 0;
     }
+
+    .name-age{
+        font-size: 18px;
+    }
+
 
     .over-img-div {
         position: relative;
