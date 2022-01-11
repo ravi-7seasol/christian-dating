@@ -9,6 +9,9 @@ import GoogleLogin from "react-google-login";
 import LogiWithInstagram from "./LogiWithInstagram";
 import { Container } from "react-bootstrap";
 import Header from "../../layouts/header/Header";
+import { useEffect, useState } from "react";
+import { xwwwFormUrlencoded } from "../../helper/utils";
+import { ApiPost} from "../../helper/API/ApiData";
 
 
 const GoogleAppId =
@@ -17,8 +20,70 @@ const FacbookAppId = "634703847650865";
 
 const Signup = () => {
   const navigate = useNavigate();
+  
+  const [signupData, setSignupData] = useState({
+    email: "",
+    password: "",
+    confirm_password:""
+  })
+  const [formErrors, setFormErrors]=useState<any>()
+  const onInputValueChange = (e: any) => {
+    setSignupData({
+      ...signupData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+
+  const validation = (values:any) => {
+    const error:any = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!values.email) {
+      error.email = "Please Enter Email ";
+    }else if (!values.email.match(regex)) {
+      error.email = "Enter Valid Email";  
+    } 
+    if (!values.password) {
+      error.password = "Please Enter Password";
+    }else if (values.password.length < 8) {
+      error.password = "minimum length of the password is 8";
+    } 
+    if (!values.confirm_password) {
+      error.confirm_password = "Please Enter Confirm Password";
+    }else if (signupData.password !== signupData.confirm_password) {
+      error.confirm_password="Password is not same"
+    }
+    return error;
+  }
+  
+
+
+
+
+ 
+
+
   const goToProfileSetting = () => {
-    navigate("/profile");
+
+    setFormErrors(validation(signupData));
+    if (formErrors && Object.keys(formErrors).length === 0) {
+      const body = xwwwFormUrlencoded(signupData);
+      ApiPost('signupuser', body)
+      .then((res: any) => {
+        console.log("res", res.status);
+        if (res.status === "true") {
+          navigate("/profile");
+        }
+        
+       
+      }).catch((error) => {
+        console.log(error);
+
+      })
+
+      
+    }
+    
   };
 
   const componentClicked = () => {
@@ -62,13 +127,13 @@ const Signup = () => {
               <h2>Sign up</h2>
               <form>
                 <InputField
-                  name=""
+                  name="email"
                   maxLength={undefined}
-                  value={""}
+                  value={signupData.email}
                   lablestyleClass="login-label"
                   InputstyleClass="login-input"
-                  onChange={() => {
-                    ("");
+                  onChange={(e) => {
+                    onInputValueChange(e);
                   }}
                   disabled={false}
                   label="Email address"
@@ -76,15 +141,16 @@ const Signup = () => {
                   type="email"
                   fromrowStyleclass=""
                 />
+                <span>{formErrors && formErrors.email}</span>
                 <div className="input-field">
                   <InputField
-                    name=""
+                    name="password"
                     maxLength={undefined}
-                    value={""}
+                    value={signupData.password}
                     lablestyleClass="login-label"
                     InputstyleClass="login-input"
-                    onChange={() => {
-                      ("");
+                    onChange={(e) => {
+                      onInputValueChange(e);
                     }}
                     disabled={false}
                     label="Password"
@@ -92,25 +158,29 @@ const Signup = () => {
                     type="password"
                     fromrowStyleclass=""
                   />
-                  <img src="./assets/img/check-one.png" alt="check" />
+                  
+                  {formErrors && formErrors.password===undefined?<img src="./assets/img/check-one.png" alt="check" />:""}
+                  
                 </div>
                 <div className="input-field">
                   <InputField
-                    name=""
+                    name="confirm_password"
                     maxLength={undefined}
-                    value={""}
+                    value={signupData.confirm_password}
                     lablestyleClass="login-label"
                     InputstyleClass="login-input"
-                    onChange={() => {
-                      ("");
+                    onChange={(e) => {
+                      onInputValueChange(e)
                     }}
                     disabled={false}
                     label="Confirm Password"
                     placeholder="*********"
                     type="password"
                     fromrowStyleclass=""
-                  />
-                  <img src="./assets/img/check-one.png" alt="check" />
+                  />{formErrors && formErrors.confirm_password===undefined?<img src="./assets/img/check-one.png" alt="check" />:""}
+                  
+                  {/* <img src="./assets/img/check-one.png" alt="check" /> */}
+                   <span>{formErrors && formErrors.confirm_password}</span>
                 </div>
 
                 <div style={{ marginTop: "3rem" }}>
