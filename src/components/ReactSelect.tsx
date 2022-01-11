@@ -13,7 +13,7 @@ const ReactSelect: React.FC<Props> = ({ options, placeholder }) => {
   };
   return (
     <>
-      <div className={`${addClass? "toggleIcone":''}`}>
+      <div className={`${addClass? "toggleIcone":''} react-select-scroll`}>
         <Select placeholder={placeholder} options={options} onMenuOpen={handleClass} onMenuClose={handleClass}/>
       </div>
     </>

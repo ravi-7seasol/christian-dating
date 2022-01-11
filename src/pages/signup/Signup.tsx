@@ -118,7 +118,7 @@ const Signup = () => {
   return (
     <>
       <div
-        className="d-flex justify-content-center align-items-center"
+        className="d-flex justify-content-center align-items-center" style={{minHeight:"100vh" }}
       >
         <Container>
           <div className="login-card">

@@ -12,7 +12,7 @@ const Inbox = () => {
       <div className="inbox-main">
         {/* <div style={{ height:"100vh", overflow:"hidden"}}> */}
         <Row>
-          <Col md={4} style={{ overflow: "scroll", height: "100vh" }}>
+          <Col md={4}>
             <div className="inbox-profile-img" >
               <div className="profile-content">
                 <img src="./assets/img/profile-picture.png" />
@@ -32,7 +32,7 @@ const Inbox = () => {
               </div>
             </div>
             <div className="border-content"></div>
-            <div>
+            <div className="handle-chat-scroll">
               <div className="messages">
                 <div className="messages-content">
                   <img src="./assets/img/messenger.png" />
@@ -40,6 +40,120 @@ const Inbox = () => {
                 </div>
                 <div>
                   <h3 className="Messages-text">Messages</h3>
+                </div>
+              </div>
+              <div className="messages">
+                <div className="chat-profile-img-main">
+                  <img
+                    src="./assets/img/profile-picture.png"
+                    className="chat-profile"
+                  />
+                  <div className="online"></div>
+                </div>
+                <div className="chat-messages">
+                  <h4>Valerie</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                  </p>
+                </div>
+                <div className="messages-time">
+                  <h6>12:15</h6>
+                  <div className="messages-counts">2</div>
+                </div>
+              </div>
+              <div className="messages">
+                <div className="chat-profile-img-main">
+                  <img
+                    src="./assets/img/profile-picture.png"
+                    className="chat-profile"
+                  />
+                  <div className="online"></div>
+                </div>
+                <div className="chat-messages">
+                  <h4>Valerie</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                  </p>
+                </div>
+                <div className="messages-time">
+                  <h6>12:15</h6>
+                  <div className="messages-counts">2</div>
+                </div>
+              </div>
+              <div className="messages">
+                <div className="chat-profile-img-main">
+                  <img
+                    src="./assets/img/profile-picture.png"
+                    className="chat-profile"
+                  />
+                  <div className="online"></div>
+                </div>
+                <div className="chat-messages">
+                  <h4>Valerie</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                  </p>
+                </div>
+                <div className="messages-time">
+                  <h6>12:15</h6>
+                  <div className="messages-counts">2</div>
+                </div>
+              </div>
+              <div className="messages">
+                <div className="chat-profile-img-main">
+                  <img
+                    src="./assets/img/profile-picture.png"
+                    className="chat-profile"
+                  />
+                  <div className="online"></div>
+                </div>
+                <div className="chat-messages">
+                  <h4>Valerie</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                  </p>
+                </div>
+                <div className="messages-time">
+                  <h6>12:15</h6>
+                  <div className="messages-counts">2</div>
+                </div>
+              </div>
+              <div className="messages">
+                <div className="chat-profile-img-main">
+                  <img
+                    src="./assets/img/profile-picture.png"
+                    className="chat-profile"
+                  />
+                  <div className="online"></div>
+                </div>
+                <div className="chat-messages">
+                  <h4>Valerie</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                  </p>
+                </div>
+                <div className="messages-time">
+                  <h6>12:15</h6>
+                  <div className="messages-counts">2</div>
+                </div>
+              </div>
+              <div className="messages">
+                <div className="chat-profile-img-main">
+                  <img
+                    src="./assets/img/profile-picture.png"
+                    className="chat-profile"
+                  />
+                  <div className="online"></div>
+                </div>
+                <div className="chat-messages">
+                  <h4>Valerie</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                  </p>
+                </div>
+                <div className="messages-time">
+                  <h6>12:15</h6>
+                  <div className="messages-counts">2</div>
                 </div>
               </div>
               <div className="messages">
@@ -119,15 +233,12 @@ const Inbox = () => {
               </div>
             </div>
           </Col>
-          <Col md={8} style={{ overflow: "scroll", height: "calc(100vh - 100px)" }}>
-            <div
-              className="Conversation-starters"
-              style={{ overflowY: "scroll" }}
-            >
-              <div>
-                <h2>Conversation starters</h2>
+          <Col md={8} className="ps-0 Conversation-starters-scroll" >
+            <div className="Conversation-starters">
+              <div className="bg-white chat-top-header">
+                
                 {width > 767 && (
-                  <div className="mb-4">
+
                     <div className="messages">
                       <div className="chat-profile-img-main">
                         <img
@@ -138,26 +249,14 @@ const Inbox = () => {
                       </div>
                       <div className="chat-messages">
                         <h4>Valerie</h4>
-                        {/* <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                  </p> */}
                         <h6 className="messages-time">12:15</h6>
                       </div>
-                      <div>
-                        {/* <div className="messages-counts">2</div> */}
-                      </div>
                     </div>
-                  </div>
+
                 )}
-                <h3 className="first-text">
-                  Hey! I really like your profile and I think we could match
-                  really well.
-                </h3>
-                <h2 className="first-text-replay">
-                  I see we have very matching interests, would you like to get
-                  to know each other?
-                </h2>
+
               </div>
+              <div className="text-grid px-3">                
               <div>
                 <h3 className="first-text">
                   Hey! I really like your profile and I think we could match
@@ -198,7 +297,8 @@ const Inbox = () => {
                   to know each other?
                 </h2>
               </div>
-              <div className="input-area">
+              </div>
+              <div className="input-area px-3">
                 <div>
                   <div className="choose-picture">
                     <img src="./assets/img/picture-one (1).png" />
