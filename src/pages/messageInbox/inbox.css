@@ -1,12 +1,8 @@
 .inbox-main {
   padding: 10px;
-  /* height: calc(100vh - 92px); */
-  height: 100vh;
+  height: calc(100vh - 56px);
   overflow: hidden !important;
-}
-.App{
-  overflow: hidden !important;
-  height: 100vh !important;
+  /* background: red; */
 }
 
 /* <<<<======================Web view=======================>>>> */
@@ -15,7 +11,12 @@
   display: flex;
   justify-content: space-between;
 }
-
+.handle-chat-scroll {
+  overflow-y: auto !important;
+  height: calc(100vh - 193px);
+  /* background: #000; */
+  padding-right: 10px;
+}
 .inbox-main .inbox-profile-img .like-counter {
   width: 55px;
   height: 55px;
@@ -106,14 +107,13 @@
   margin: 10px 0 0 12px;
 }
 
-.messages .chat-messages h6{
+.messages .chat-messages h6 {
   font: normal normal bold 10px/16px Poppins;
   color: #e69702;
   opacity: 1;
   font-size: 10px;
   margin-left: 14px;
-
-} 
+}
 
 .messages .chat-messages p {
   font: normal normal bold 10px/16px Poppins;
@@ -127,7 +127,7 @@
   margin-left: auto;
 }
 
-.inbox-main .messages-time h6{
+.inbox-main .messages-time h6 {
   font: normal normal bold 10px/16px Poppins;
   color: #e69702;
   opacity: 1;
@@ -158,9 +158,20 @@
 }
 
 /* <<<<========================right side content========================>>>> */
-
+.Conversation-starters-scroll {
+  overflow-y: hidden !important;
+  height: 100vh;
+  padding: 0 !important;
+}
 .inbox-main .Conversation-starters {
+  height: calc(100vh - 66px);
+  position: relative;
+}
+.inbox-main .Conversation-starters .text-grid {
   display: grid;
+  height: calc(100vh - 174px);
+  overflow-y: scroll;
+  padding: 20px 0;
 }
 .inbox-main .Conversation-starters h2 {
   margin-bottom: 25px;
@@ -206,127 +217,147 @@
 /* ============================================================================================================================================= */
 
 .inbox-main .input-area,
-  .community .input-area {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* margin-top: 70px; */
-    padding: 10px 0;
-    /* position: fixed; */
-    left: 0;
-    background: #fff;
-    bottom: 0px;
-    width: 100%;
-  }
-  .inbox-main .input-area .send-gift,
-  .community .input-area .send-gift .inbox-main .input-area .choose-picture,
-  .community .input-area .choose-picture {
-    display: grid;
-    place-items: center;
-  }
-  .inbox-main .input-area .choose-picture,
-  .community .input-area .choose-picture {
-    width: 35px;
-    height: 35px;
-    background: #e6e6e6 0% 0% no-repeat padding-box;
-    opacity: 1;
-    color: #e6e6e6;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 34px;
-  }
-  .inbox-main .input-area .choose-picture img,
-  .community .input-area .choose-picture img {
-    width: 16px;
-    height: 16px;
-  }
+.community .input-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  position: absolute;
+  left: 0;
+  background: #fff;
+  bottom: 0;
+  width: 100%;
+}
+.inbox-main .input-area .send-gift,
+.community .input-area .send-gift .inbox-main .input-area .choose-picture,
+.community .input-area .choose-picture {
+  display: grid;
+  place-items: center;
+}
+.inbox-main .input-area .choose-picture,
+.community .input-area .choose-picture {
+  width: 35px;
+  height: 35px;
+  background: #e6e6e6 0% 0% no-repeat padding-box;
+  opacity: 1;
+  color: #e6e6e6;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 34px;
+}
+.inbox-main .input-area .choose-picture img,
+.community .input-area .choose-picture img {
+  width: 16px;
+  height: 16px;
+}
 
-  .inbox-main .input-area .send-gift,
-  .community .input-area .send-gift {
-    width: 35px;
-    height: 35px;
-    background: #e6e6e6 0% 0% no-repeat padding-box;
-    opacity: 1;
-    color: #e6e6e6;
-    border-radius: 50%;
-    text-align: center;
-    margin: 0 5px;
-  }
-  .inbox-main .input-area .send-gift img,
-  .community .input-area .send-gift img {
-    width: 16.5px;
-    height: 16.5px;
-  }
+.inbox-main .input-area .send-gift,
+.community .input-area .send-gift {
+  width: 35px;
+  height: 35px;
+  background: #e6e6e6 0% 0% no-repeat padding-box;
+  opacity: 1;
+  color: #e6e6e6;
+  border-radius: 50%;
+  text-align: center;
+  margin: 0 5px;
+}
+.inbox-main .input-area .send-gift img,
+.community .input-area .send-gift img {
+  width: 16.5px;
+  height: 16.5px;
+}
 
-  .inbox-main .input-area .text-input-main,
-  .community .input-area .text-input-main {
-    width: -webkit-fill-available;
-    border: transparent !important;
-    background: #e6e6e6 0% 0% no-repeat padding-box;
-    border-radius: 18px;
-    opacity: 1;
-    padding-left: 15px;
-    text-align: left;
-    font: normal normal normal 10px/16px Poppins;
-    width: -webkit-fill-available;
-    letter-spacing: 0px;
-    color: #000000;
-  }
-  .inbox-main .input-area .input-chat,
-  .community .input-area .input-chat {
-    position: relative;
-    width: 100%;
-    /* width: calc(100vw - 87px) !important; */
-  }
-  .inbox-main .input-area .input-chat .text-input,
-  .community .input-area .input-chat .text-input {
-    border: transparent !important;
-    height: 35px;
-    background: #e6e6e6 0% 0% no-repeat padding-box;
-    border-radius: 18px;
-    opacity: 1;
-    padding-left: 15px;
-    text-align: left;
-    font: normal normal normal 10px/16px Poppins;
-    letter-spacing: 0px;
-    color: #000000;
-  }
+.inbox-main .input-area .text-input-main,
+.community .input-area .text-input-main {
+  width: -webkit-fill-available;
+  border: transparent !important;
+  background: #e6e6e6 0% 0% no-repeat padding-box;
+  border-radius: 18px;
+  opacity: 1;
+  padding-left: 15px;
+  text-align: left;
+  font: normal normal normal 10px/16px Poppins;
+  width: -webkit-fill-available;
+  letter-spacing: 0px;
+  color: #000000;
+}
+.inbox-main .input-area .input-chat,
+.community .input-area .input-chat {
+  position: relative;
+  width: 100%;
+  /* width: calc(100vw - 87px) !important; */
+}
+.inbox-main .input-area .input-chat .text-input,
+.community .input-area .input-chat .text-input {
+  border: transparent !important;
+  height: 35px;
+  background: #e6e6e6 0% 0% no-repeat padding-box;
+  border-radius: 18px;
+  opacity: 1;
+  padding-left: 15px;
+  text-align: left;
+  font: normal normal normal 10px/16px Poppins;
+  letter-spacing: 0px;
+  color: #000000;
+}
 
-  .inbox-main .input-area .emoji-img,
-  .community .input-area .emoji-img {
-    position: absolute;
-    right: 5px;
-    top: calc(50% - 14.5px);
-  }
+.inbox-main .input-area .emoji-img,
+.community .input-area .emoji-img {
+  position: absolute;
+  right: 5px;
+  top: calc(50% - 14.5px);
+}
 
-  .inbox-main .online {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    position: absolute;
-    top: 41px;
-    background: #3ad800 0% 0% no-repeat padding-box;
-    left: 42px;
-  }
-  
-  .inbox-main .offline {
-    background: #e30000 0% 0% no-repeat padding-box;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    position: absolute;
-    top: 41px;
-    left: 42px;
-  }
+.inbox-main .online {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 41px;
+  background: #3ad800 0% 0% no-repeat padding-box;
+  left: 42px;
+}
+
+.inbox-main .offline {
+  background: #e30000 0% 0% no-repeat padding-box;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 41px;
+  left: 42px;
+}
 
 @media (min-width: 320px) and (max-width: 768px) {
- 
-  .inbox-main{
-    overflow-y: auto !important;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .inbox-main {
+      height: calc(100vh - 55px);
   }
   .inbox-main .inbox-profile-img {
     display: flex;
     justify-content: space-between;
+  }
+  .handle-chat-scroll {
+    height: 188px;
+  }
+  .chat-top-header{
+    display: none;
+  }
+
+  .Conversation-starters-scroll {
+    height: calc(100vh - 349px);
+
+}
+
+  .inbox-main .Conversation-starters {
+    height: calc( 100vh - 350px);
+
+  }
+  .inbox-main .Conversation-starters .text-grid {
+    height: calc(100vh - 405px);
   }
 
   .inbox-main .inbox-profile-img .like-counter {
@@ -360,7 +391,7 @@
     width: auto;
     height: 2px;
     background-color: #e69702;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-left: 10px;
   }
 
@@ -431,7 +462,7 @@
     margin-left: auto;
   }
 
-  .inbox-main .messages-time h6{
+  .inbox-main .messages-time h6 {
     font: normal normal bold 10px/16px Poppins;
     color: #e69702;
     opacity: 1;
@@ -606,7 +637,7 @@
     top: 41px;
     left: 42px;
   }
-  
+
   .inbox-main .offline {
     background: #e30000 0% 0% no-repeat padding-box;
     width: 10px;
@@ -617,4 +648,3 @@
     left: 42px;
   }
 }
-
