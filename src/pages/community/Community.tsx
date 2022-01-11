@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
+import { Col, Container, Row } from 'react-bootstrap'
 import InputField from '../../components/Inputfield'
 // import '../messageInbox/inbox.css'
 
@@ -52,6 +52,12 @@ const Community = () => {
             Name: "jony",
             namecolor: "#25A706",
             Lastsms: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+        },
+        {
+            Profilepic: "./assets/img/Ellipse 31.png",
+            Name: "jony",
+            namecolor: "#25A706",
+            Lastsms: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
         }
     ]
     return (
@@ -75,19 +81,26 @@ const Community = () => {
                             </div>
                         ))}
                     </div>
-                    <div className='set-input-area'>
-                        <div className="input-area">
-                            <div>
+                </div>
+            {/* </Container> */}
+            <div className="Remember">
+                <p>Remember, public chat is only meant for encouragement.</p>
+            </div>
+            {/* <Container> */}
+                <div className="fotterinput">
+                    <Row>
+                        <Col xs={4} sm={2}>
+                            <div className="d-flex">
                                 <div className="choose-picture">
                                     <img src="./assets/img/picture-one (1).png" />
                                 </div>
-                            </div>
-                            <div>
                                 <div className="send-gift">
                                     <img src="./assets/img/gift (1).png" />
                                 </div>
                             </div>
-                            <div className="input-chat">
+                        </Col>
+                        <Col xs={8} sm={10}>
+                            <div>
                                 <InputField
                                     name=""
                                     maxLength={undefined}
@@ -103,12 +116,9 @@ const Community = () => {
                                     type="text"
                                     fromrowStyleclass=""
                                 />
-                                <div className="emoji-img">
-                                    <img src="./assets/img/grinning-face (1).png" />
-                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </Col>
+                    </Row>
                 </div>
             </Container>
         </>
