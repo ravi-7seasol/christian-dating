@@ -2,7 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleLeft, faArrowLeft, faArrowsAlt, faCompressArrowsAlt, faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 
-import { Accordion, Col, Container, Row } from 'react-bootstrap';
+import { Accordion, Button, Col, Container, Row } from 'react-bootstrap';
 import Buttons from '../../../components/Buttons';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -12,6 +12,56 @@ const ShowProfile = () => {
     const handleRedirect = () => {
         navigate("/match_or_message")
     }
+
+    const accordion = [
+        {
+            Header: "My story (How you came to Christ)",
+            Body: "“I own my own Software Development company. I love jazz and go watch my favorite bands as often as possible. To get out of my head, I go rock climbing. I grew up in a very political family and I carry on that tradition by being active in the local campaigns. I find a lot of peace by attending church on Sunday mornings and by being a part of that community."
+        },
+        {
+            Header: "About me",
+            Body: "“I own my own Software Development company. I love jazz and go watch my favorite bands as often as possible. To get out of my head, I go rock climbing. I grew up in a very political family and I carry on that tradition by being active in the local campaigns. I find a lot of peace by attending church on Sunday mornings and by being a part of that community."
+        },
+        {
+            Header: "Lifestyle",
+            Body: "“I own my own Software Development company. I love jazz and go watch my favorite bands as often as possible. To get out of my head, I go rock climbing. I grew up in a very political family and I carry on that tradition by being active in the local campaigns. I find a lot of peace by attending church on Sunday mornings and by being a part of that community."
+        },
+        {
+            Header: "Personality",
+            Body: "“I own my own Software Development company. I love jazz and go watch my favorite bands as often as possible. To get out of my head, I go rock climbing. I grew up in a very political family and I carry on that tradition by being active in the local campaigns. I find a lot of peace by attending church on Sunday mornings and by being a part of that community."
+        },
+    ]
+
+    const personal = [
+        {
+            label: "I’m looking for:",
+            detail: "A dating partner with intent to marry"
+        },
+        {
+            label: "Body type:",
+            detail: "Fit body type"
+        },
+        {
+            label: "Children: ",
+            detail: "Yes, 3"
+        },
+        {
+            label: "Pets:",
+            detail: "I got 2 dogs"
+        },
+        {
+            label: "Language:",
+            detail: "English"
+        },
+        {
+            label: "Education: ",
+            detail: "Well educated"
+        },
+        {
+            label: "Career:",
+            detail: "Engineer"
+        },
+    ]
     return (
         <>
             <div className="profilr-bg">
@@ -68,61 +118,23 @@ const ShowProfile = () => {
             <Container>
                 <div className="profile-accordion">
                     <Accordion defaultActiveKey="0">
-                        <Accordion.Item eventKey="0">
-                            <Accordion.Header>My story (How you came to Christ)</Accordion.Header>
-                            <Accordion.Body>
-                                “I own my own Software Development company. I love jazz and go watch my favorite bands as often as possible. To get out of my head, I go rock climbing. I grew up in a very political family and I carry on that tradition by being active in the local campaigns. I find a lot of peace by attending church on Sunday mornings and by being a part of that community.
-                            </Accordion.Body>
-                        </Accordion.Item>
-                        <Accordion.Item eventKey="1">
-                            <Accordion.Header>About me</Accordion.Header>
-                            <Accordion.Body>
-                                “I own my own Software Development company. I love jazz and go watch my favorite bands as often as possible. To get out of my head, I go rock climbing. I grew up in a very political family and I carry on that tradition by being active in the local campaigns. I find a lot of peace by attending church on Sunday mornings and by being a part of that community.
-                            </Accordion.Body>
-                        </Accordion.Item>
-                        <Accordion.Item eventKey="2">
-                            <Accordion.Header>Lifestyle</Accordion.Header>
-                            <Accordion.Body>
-                                “I own my own Software Development company. I love jazz and go watch my favorite bands as often as possible. To get out of my head, I go rock climbing. I grew up in a very political family and I carry on that tradition by being active in the local campaigns. I find a lot of peace by attending church on Sunday mornings and by being a part of that community.
-                            </Accordion.Body>
-                        </Accordion.Item>
-                        <Accordion.Item eventKey="3">
-                            <Accordion.Header>Personality</Accordion.Header>
-                            <Accordion.Body>
-                                “I own my own Software Development company. I love jazz and go watch my favorite bands as often as possible. To get out of my head, I go rock climbing. I grew up in a very political family and I carry on that tradition by being active in the local campaigns. I find a lot of peace by attending church on Sunday mornings and by being a part of that community.
-                            </Accordion.Body>
-                        </Accordion.Item>
+                        {accordion.map((item, i) => (
+                            <Accordion.Item eventKey={i.toString()}>
+                                <Accordion.Header>{item.Header}</Accordion.Header>
+                                <Accordion.Body>
+                                    {item.Body}
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        ))}
                     </Accordion>
                     <div className="personal-details">
                         <h2>Personal</h2>
-                        <div className='d-flex mt-2'>
-                            <p>I’m looking for:</p>
-                            <span className='ml-2'> A dating partner with intent to marry</span>
-                        </div>
-                        <div className="d-flex mt-2">
-                            <p>Body type:</p>
-                            <span className='ml-2'> Fit body type</span>
-                        </div>
-                        <div className="d-flex mt-2">
-                            <p>Children: </p>
-                            <span className='ml-2'> Yes, 3</span>
-                        </div>
-                        <div className="d-flex mt-2">
-                            <p>Pets:</p>
-                            <span className='ml-2'> I got 2 dogs</span>
-                        </div>
-                        <div className="d-flex mt-2">
-                            <p>Language:</p>
-                            <span className='ml-2'> English</span>
-                        </div>
-                        <div className="d-flex mt-2">
-                            <p>Education: </p>
-                            <span className='ml-2'>Well educated</span>
-                        </div>
-                        <div className="d-flex mt-2">
-                            <p>Career: </p>
-                            <span className='ml-2'>Engineer</span>
-                        </div>
+                        {personal.map((item) => (
+                            <div className='d-flex mt-2'>
+                                <p>{item.label}</p>
+                                <span className='ml-2'>{item.detail}</span>
+                            </div>
+                        ))}
                     </div>
                     <div className="fun-facts">
                         <h2>Fun facts</h2>
