@@ -27,7 +27,7 @@ const AuthHeader: React.FC = () => {
       </div>
       <Navbar bg="light" className="authnave">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand onClick={handleRedirect}>
             <img
               src="./assets/img/Group 28.png"
               className="d-inline-block align-top"
