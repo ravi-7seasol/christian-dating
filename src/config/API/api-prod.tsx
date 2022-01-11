@@ -1,15 +1,17 @@
-const protocol = 'http';
-const host = '192.168.1.48';
-const port = '5000';
-const trailUrl = 'api/v1';
+// const protocol = 'http';
+// const host = '192.168.1.48';
+const host = 'https://appvelo.com/sm_app';
+// const port = '5000';
+const trailUrl = 'api';
 
-const hostUrl = `${protocol}://${host}${port ? ':' + port : ''}/`;
-const endpoint = `${protocol}://${host}${(port ? ':' + port : '')}/${trailUrl}`;
+const hostUrl = `${host}/`;
+// const endpoint = `${protocol}://${host}${(port ? ':' + port : '')}/${trailUrl}`;
+const endpoint = `${host}/${trailUrl}`;
 
 export default {
-    protocol: protocol,
+    // protocol: protocol,
     host: host,
-    port: port,
+    // port: port,
     apiUrl: trailUrl,
     endpoint: endpoint,
     hostUrl: hostUrl

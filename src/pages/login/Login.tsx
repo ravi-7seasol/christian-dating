@@ -1,21 +1,54 @@
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import Buttons from "../../components/Buttons";
 import CheckBox from "../../components/Checkbox";
 import InputField from "../../components/Inputfield";
+import { ApiPost, ApiPostNoAuth } from "../../helper/API/ApiData";
+import { xwwwFormUrlencoded } from "../../helper/utils";
 import Header from "../../layouts/header/Header";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: ""
+  })
+
+  const onInputValueChange = (e: any) => {
+    setLoginData({
+      ...loginData,
+      [e.target.name]: e.target.value
+    })
+  }
+
   const handleRedirect = () => {
     navigate("/show-profile");
   };
 
+  const logIn = () => {
+    const val = {
+
+    }
+  const body = xwwwFormUrlencoded(loginData);
+  
+    ApiPost('loginuser', body)
+      .then((res: any) => {
+        console.log("res",res);
+        
+        // navigate("/show-profile");
+      }).catch((error) => {
+        console.log(error);
+
+      })
+  }
+
+
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{minHeight:"100vh" }}>
+    <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
       <Container>
         <div className="login-card">
           <Header />
@@ -23,13 +56,13 @@ const Login = () => {
             <h2>Login</h2>
             <form>
               <InputField
-                name=""
+                name="email"
                 maxLength={undefined}
-                value={""}
+                value={loginData.email}
                 lablestyleClass="login-label"
                 InputstyleClass="login-input"
-                onChange={() => {
-                  ("");
+                onChange={(e: any) => {
+                  onInputValueChange(e);
                 }}
                 disabled={false}
                 label="Email address"
@@ -37,15 +70,15 @@ const Login = () => {
                 type="email"
                 fromrowStyleclass=""
               />
-              <label className="ErrMsg" htmlFor="error"> <FontAwesomeIcon icon={faTimesCircle}/> Email or password wrong</label>
+              <label className="ErrMsg" htmlFor="error"> <FontAwesomeIcon icon={faTimesCircle} /> Email or password wrong</label>
               <InputField
-                name=""
+                name="password"
                 maxLength={undefined}
-                value={""}
+                value={loginData.password}
                 lablestyleClass="login-label"
                 InputstyleClass="login-input"
-                onChange={() => {
-                  ("");
+                onChange={(e: any) => {
+                  onInputValueChange(e);
                 }}
                 disabled={false}
                 label="Password"
@@ -62,7 +95,7 @@ const Login = () => {
                     id=""
                     value={""}
                     styleCheck="remember-checkbox"
-                    onChange={() => {}}
+                    onChange={() => { }}
                     checked={false}
                   />
                   <label htmlFor="checkbox" className="rememberme-label">
@@ -76,7 +109,7 @@ const Login = () => {
               <div style={{ marginTop: "9rem" }}>
                 <Buttons
                   children="Log in"
-                  onClick={handleRedirect}
+                  onClick={logIn}
                   ButtonStyle="login-btn"
                   disabled={false}
                 />

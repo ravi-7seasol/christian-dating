@@ -24,9 +24,9 @@ interface apiResponse {
 
 
 export const ApiGet = (type: string) => {
-    const s = type.includes('?') ? '&' : '?';
+    // const s = type.includes('?') ? '&' : '?';
     return new Promise((resolve, reject) => {
-        axios.get(`${BaseURL}${type}${s}lang=${AuthStorage.getLang()}`, getHttpOptions())
+        axios.get(`${BaseURL}${type}`, getHttpOptions())
             .then((responseJson: apiResponse) => {
                 resolve(responseJson.data);
             })
@@ -48,9 +48,9 @@ export const ApiGet = (type: string) => {
 
 
 export const ApiGetNoAuth = (type: string) => {
-    const s = type.includes('?') ? '&' : '?';
+    // const s = type.includes('?') ? '&' : '?';
     return new Promise((resolve, reject) => {
-        axios.get(`${BaseURL}${type}${s}lang=${AuthStorage.getLang()}`, getHttpOptions({ ...defaultHeaders, isAuth: false }))
+        axios.get(`${BaseURL}${type}`, getHttpOptions({ ...defaultHeaders, isAuth: false }))
             .then((responseJson: apiResponse) => {
                 resolve(responseJson.data);
             })
@@ -72,9 +72,9 @@ export const ApiGetNoAuth = (type: string) => {
 
 
 export const ApiPost = (type: string, userData: any) => {
-    const s = type.includes('?') ? '&' : '?';
+    // const s = type.includes('?') ? '&' : '?';
     return new Promise((resolve, reject) => {
-        axios.post(`${BaseURL}${type}${s}lang=${AuthStorage.getLang()}`, userData, getHttpOptions())
+        axios.post(`${BaseURL}${type}`, userData, getHttpOptions())
             .then((responseJson: apiResponse) => {
                 resolve(responseJson.data);
             })
@@ -96,9 +96,9 @@ export const ApiPost = (type: string, userData: any) => {
 
 
 export const ApiPostNoAuth = (type: string, userData: any) => {
-    const s = type.includes('?') ? '&' : '?';
+    // const s = type.includes('?') ? '&' : '?';
     return new Promise((resolve, reject) => {
-        axios.post(`${BaseURL}${type}${s}lang=${AuthStorage.getLang()}`, userData, getHttpOptions({ ...defaultHeaders, isAuth: false }))
+        axios.post(`${BaseURL}${type}`, userData, getHttpOptions({ ...defaultHeaders, isAuth: false }))
             .then((responseJson: apiResponse) => {
                 resolve(responseJson.data);
             })
@@ -120,9 +120,9 @@ export const ApiPostNoAuth = (type: string, userData: any) => {
 
 
 export const ApiPatch = (type: String, userData: any) => {
-    const s = type.includes('?') ? '&' : '?';
+    // const s = type.includes('?') ? '&' : '?';
     return new Promise((resolve, reject) => {
-        axios.patch(`${BaseURL}${type}${s}lang=${AuthStorage.getLang()}`, userData, getHttpOptions())
+        axios.patch(`${BaseURL}${type}`, userData, getHttpOptions())
             .then((responseJson: apiResponse) => {
                 resolve(responseJson);
             })
@@ -144,9 +144,9 @@ export const ApiPatch = (type: String, userData: any) => {
 
 
 export const ApiDelete = (type: string, userData: any) => {
-    const s = type.includes('?') ? '&' : '?';
+    // const s = type.includes('?') ? '&' : '?';
     return new Promise((resolve, reject) => {
-        axios.delete(`${BaseURL}${type}${s}lang=${AuthStorage.getLang()}`, getHttpOptions())
+        axios.delete(`${BaseURL}${type}`, getHttpOptions())
             .then((responseJson: apiResponse) => {
                 resolve(responseJson);
             })
@@ -167,9 +167,9 @@ export const ApiDelete = (type: string, userData: any) => {
 }
 
 export const ApiPut = (type: string, userData: any) => {
-    const s = type.includes('?') ? '&' : '?';
+    // const s = type.includes('?') ? '&' : '?';
     return new Promise((resolve, reject) => {
-        axios.put(`${BaseURL}${type}${s}lang=${AuthStorage.getLang()}`, userData, getHttpOptions())
+        axios.put(`${BaseURL}${type}`, userData, getHttpOptions())
             .then((responseJson: any) => {
                 resolve(responseJson);
             })
@@ -194,16 +194,19 @@ export const ApiPut = (type: string, userData: any) => {
 export const getHttpOptions = (options = defaultHeaders) => {
     let headers = {
         Authorization: "",
-        'Content-Type': "application/json",
-
+        'Content-Type': "application/x-www-form-urlencoded",
+        'Access-Control-Allow-Origin': null,
+        'Access-Control-Allow-credentials': true 
+        
     };
+    // "Origin, X-Requested-With, Content-Type, Accept"
 
     if (options.hasOwnProperty('isAuth') && options.isAuth) {
         headers['Authorization'] = AuthStorage.getToken() ?? "";
     }
 
     if (options.hasOwnProperty('isJsonRequest') && options.isJsonRequest) {
-        headers['Content-Type'] = 'application/json';
+        headers['Content-Type'] = 'application/x-www-form-urlencoded';
     }
 
     if (options.hasOwnProperty('AdditionalParams') && options.AdditionalParams) {

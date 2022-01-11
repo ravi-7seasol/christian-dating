@@ -42,3 +42,15 @@ export const checkImageURL = (nationality: string) => {
   }
   return url_image
 }
+
+export const xwwwFormUrlencoded = (formData: any) => {
+  var formBody: any = [];
+  for (var property in formData) {
+    var encodedKey = encodeURIComponent(property);
+    var encodedValue = encodeURIComponent(formData[property]);
+    formBody.push(encodedKey + "=" + encodedValue);
+  }
+  formBody = formBody.join("&");
+
+  return formBody
+}
