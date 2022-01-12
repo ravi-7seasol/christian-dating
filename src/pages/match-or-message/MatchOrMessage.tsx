@@ -82,73 +82,82 @@ const MatchOrMessage = () => {
         ]
     };
 
+    const slider = [
+        {
+            img: "./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png",
+            verifiedpic: "./assets/img/poltgon-group.png",
+            verifiedtext: "Verified picture",
+            address: "USA, San Francisco Bay Area | Religion: ",
+            addressspan:"Catholic",
+            name: "John doe, 36",
+            genderimg: "./assets/img/male.png",
+        },
+        {
+            img: "./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png",
+            verifiedpic: "./assets/img/poltgon-group.png",
+            verifiedtext: "Verified picture",
+            address: "USA, San Francisco Bay Area | Religion: ",
+            addressspan:"Catholic",
+            name: "John doe, 36",
+            genderimg: "./assets/img/male.png",
+        },
+        {
+            img: "./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png",
+            verifiedpic: "./assets/img/poltgon-group.png",
+            verifiedtext: "Verified picture",
+            address: "USA, San Francisco Bay Area | Religion: ",
+            addressspan:"Catholic",
+            name: "John doe, 36",
+            genderimg: "./assets/img/male.png",
+        },
+        {
+            img: "./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png",
+            verifiedpic: "./assets/img/poltgon-group.png",
+            verifiedtext: "Verified picture",
+            address: "USA, San Francisco Bay Area | Religion: ",
+            addressspan:"Catholic",
+            name: "John doe, 36",
+            genderimg: "./assets/img/male.png",
+        },
+        {
+            img: "./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png",
+            verifiedpic: "./assets/img/poltgon-group.png",
+            verifiedtext: "Verified picture",
+            address: "USA, San Francisco Bay Area | Religion: ",
+            addressspan:"Catholic",
+            name: "John doe, 36",
+            genderimg: "./assets/img/male.png",
+        },
+    ]
 
     return (
         <>
-            <div className='match-or-message mt-3'>
-                <Link to="/show-profile">
-                    <img src="./assets/img/left-arrow.png" alt="" width="25px" height="25px" className='ml-3' />
-                </Link>
-                <p>Profiles based on preference settings</p>
-            </div>
+            <Container>
+                <div className='match-or-message mt-3'>
+                    <Link to="/show-profile">
+                        <img src="./assets/img/left-arrow.png" alt="" width="25px" height="25px" className='ml-3' />
+                    </Link>
+                    <p>Profiles based on preference settings</p>
+                </div>
+            </Container>
             <div className="slider pt-5">
                 <Slider {...settings}>
-                    <div className='slider-card'>
-                        <img src="./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png" width="100%" />
-                        <div className="slid-verified-picture">
-                            <img src="./assets/img/poltgon-group.png" alt="" />
-                            <p>Verified picture</p>
-                        </div>
-                        <div className="slid-img-popup">
-                            <p>USA, San Francisco Bay Area | Religion: <span> Catholic </span></p>
-                            <div className="d-flex align-items-center mb-3">
-                                <h5 className='name-age'>John doe, 36</h5>
-                                <img src="./assets/img/male.png" alt="" height="8%" width="8%" className='ml-3' />
+                    {slider.map((item) => (
+                        <div className='slider-card'>
+                            <img src={item.img} width="100%" />
+                            <div className="slid-verified-picture">
+                                <img src={item.verifiedpic} alt="" />
+                                <p>{item.verifiedtext}</p>
+                            </div>
+                            <div className="slid-img-popup">
+                                <p>{item.address}<span> {item.addressspan} </span></p>
+                                <div className="d-flex align-items-center mb-3">
+                                    <h5 className='name-age'>{item.name}</h5>
+                                    <img src={item.genderimg} alt="" height="8%" width="8%" className='ml-3' />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className='slider-card'>
-                        <img src="./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png" width="100%" />
-                        <div className="slid-verified-picture">
-                            <img src="./assets/img/poltgon-group.png" alt="" />
-                            <p>Verified picture</p>
-                        </div>
-                        <div className="slid-img-popup">
-                            <p>USA, San Francisco Bay Area | Religion: <span> Catholic </span></p>
-                            <div className="d-flex align-items-center mb-3">
-                                <h5 className='name-age'>John doe, 36</h5>
-                                <img src="./assets/img/male.png" alt="" height="8%" width="8%" className='ml-3' />
-                            </div>
-                        </div>
-                    </div>
-                    <div className='slider-card'>
-                        <img src="./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png" width="100%" />
-                        <div className="slid-verified-picture">
-                            <img src="./assets/img/poltgon-group.png" alt="" />
-                            <p>Verified picture</p>
-                        </div>
-                        <div className="slid-img-popup">
-                            <p>USA, San Francisco Bay Area | Religion: <span> Catholic </span></p>
-                            <div className="d-flex align-items-center mb-3">
-                                <h5 className='name-age'>John doe, 36</h5>
-                                <img src="./assets/img/male.png" alt="" height="8%" width="8%" className='ml-3' />
-                            </div>
-                        </div>
-                    </div>
-                    <div className='slider-card'>
-                        <img src="./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png" width="100%" />
-                        <div className="slid-verified-picture">
-                            <img src="./assets/img/poltgon-group.png" alt="" />
-                            <p>Verified picture</p>
-                        </div>
-                        <div className="slid-img-popup">
-                            <p>USA, San Francisco Bay Area | Religion: <span> Catholic </span></p>
-                            <div className="d-flex align-items-center mb-3">
-                                <h5 className='name-age'>John doe, 36</h5>
-                                <img src="./assets/img/male.png" alt="" height="8%" width="8%" className='ml-3' />
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </Slider>
             </div>
             <Container>

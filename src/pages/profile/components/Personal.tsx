@@ -1,39 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputField from "../../../components/Inputfield";
 import ReactSelect from "../../../components/ReactSelect";
 
 
-const Personal = () => {
-  const [genderActive,setGenderActive]=useState("male")
+const Personal = (props:any) => {
+
+  const personalData = {
+    name:'',
+    dob:'',
+    address:'',
+    gender:'',
+    denomination:'',
+  }
+  const [personal, setPersonal] = useState(personalData)
+
+  useEffect(() => {
+    props.personalData(personal)
+  }, [personal])
+
   const options = [
-    { value: "Assembly of God", label: "Assembly of God" },
-    { value: "Church of Christ", label: "Church of Christ" },
-    { value: "Baptist", label: "Baptist" },
-    { value: "Catholic", label: "Catholic" },
-    { value: "Evangelical", label: "Evangelical" },
-    { value: "Jewish", label: "Jewish" },
+    { value: "1", label: "1" },
+    { value: "2", label: "2" },
+    { value: "3", label: "3" },
+    { value: "4", label: "4" },
+    { value: "5", label: "5" },
+    { value: "6", label: "6" },
   ];
+
+  const selectValue = (value: string, type: string) => {
+    if(type === "denomination") {
+      return options.find((data: any) => data.value === value)
+    }
+  } 
+
   const handleGenderActive =(e:any, text :any)=>{
     e.preventDefault()
-    setGenderActive(text)
+    setPersonal({...personal, gender:text})
   }
+
+  const handleChange =(e:any)=>{
+    e.preventDefault()       
+    setPersonal({...personal, [e.target.name] : e.target.value})
+  }
+
   return (
     <>
       <p className="header-text">Let’s set everything up.</p>
       <div className="login">
         <form>
           <InputField
-            name=""
+            name="name"
             maxLength={undefined}
-            value={""}
+            value={personal.name}
             lablestyleClass="login-label"
             InputstyleClass="login-input"
-            onChange={() => {
-              ("");
-            }}
+            onChange={(e) => handleChange(e)}
             disabled={false}
             label="Let’s start with your name"
-            placeholder="Jhon"
+            placeholder="John"
             type="text"
             fromrowStyleclass=""
           />
@@ -41,19 +65,19 @@ const Personal = () => {
             <label className="login-label birth-date">When were you born?</label>
             <input
               type="date"
-              value="2013-01-08"
+              value={personal.dob}
               className="login-input w-100"
+              name="dob"
+              onChange={(e)=>handleChange(e)}
             />
           </div>
           <InputField
-            name=""
+            name="address"
             maxLength={undefined}
-            value={""}
+            value={personal.address}
             lablestyleClass="login-label"
             InputstyleClass="login-input"
-            onChange={() => {
-              ("");
-            }}
+            onChange={(e) => handleChange(e)}
             disabled={false}
             label="Where do you live?"
             placeholder="Town name, city"
@@ -63,10 +87,10 @@ const Personal = () => {
           <div className="gender">
             <label className="login-label">Gender</label>
             <br />
-            <button className={`gender-btn male ${ genderActive ==="male"&& "gender-active"}`} onClick={(e)=>handleGenderActive(e, "male")}>
+            <button className={`gender-btn male ${ personal.gender ==="male"&& "gender-active"}`} onClick={(e)=>handleGenderActive(e, "male")}>
               <img src="./assets/img/male.png" alt="male" />
             </button>
-            <button className={`gender-btn female ${ genderActive ==="female"&& "gender-active"}`} onClick={(e)=>handleGenderActive(e, "female")}>
+            <button className={`gender-btn female ${ personal.gender ==="female"&& "gender-active"}`} onClick={(e)=>handleGenderActive(e, "female")}>
               <img src="./assets/img/female.png" alt="female" />
             </button>
           </div>
@@ -74,7 +98,7 @@ const Personal = () => {
             <label className="login-label">Denomination</label>
 
             <div className="reactSelector mt-3">
-              <ReactSelect placeholder="Choose denomination" options={options}/>
+              <ReactSelect placeholder="Choose denomination" options={options} onChange={(e:any) => setPersonal({...personal, denomination:e.value})} value={selectValue(personal.denomination, "denomination")} />
             </div>
           </div>
         </form>

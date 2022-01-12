@@ -1,7 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactSelect from "../../../components/ReactSelect";
 
-const Prefrences = () => {
+const Prefrences = (props:any) => {
+
+  const [prefrences, setPrefrences] = useState({
+    your_story:'',
+    short_bio:'',
+    relationship_status:'',
+    intrusted_in_meating:'',
+    relationship_want_to_build:'',
+    your_intenet:''
+  })
+
+  useEffect(() => {
+    props.prefrencesData(prefrences)
+  }, [prefrences])
+
+  const handleChange = (e:any) => {    
+    setPrefrences({...prefrences, [e.target.name] : e.target.value})
+  }
+
+  const selectValue = (value:string, type:string) => {
+    if(type === "relationship_want_to_build"){
+      return relationStatus.find((data:any)=> data.value === value)
+    }
+    else if(type === "intrusted_in_meating"){
+      return meetingIntrest.find((data:any)=> data.value === value)
+    }
+    else if(type === "relationship_status"){
+      return relationbuild.find((data:any)=> data.value === value)
+    }
+    else if(type === "your_intenet"){
+      return intent.find((data:any)=>data.value === value)
+    }
+  }
+
   const relationStatus = [
     { value: "single", label: "Single" },
     { value: "married", label: "Married" },
@@ -32,27 +65,28 @@ const Prefrences = () => {
             </label>
             <textarea
               rows={3}
-              value={
-                "Hi I’m John, I’m a single father of 3 and I love camping, being outdoors and overall nature. I also have 2 dogs!"
-              }
+              value={prefrences.your_story}
+              onChange={(e) => handleChange(e)}
+              name='your_story'
             ></textarea>
           </div>
           <div className="textarea">
             <label className="login-label">Short Bio</label>
             <textarea
               rows={5}
-              value={
-                "“I own my own Software Development company. I love jazz and go watch my favorite bands as often as possible. To get out of my head, I go rock climbing. I grew up in a very political family and I carry on that tradition by being active in the local campaigns. I find a lot of peace by attending church on Sunday mornings and by being a part of that community."
-              }
+              value={prefrences.short_bio}
+              onChange={(e) => handleChange(e)}
+              name='short_bio'
             ></textarea>
           </div>
-
           <div className="slector">
             <label className="login-label">Relationship status</label>
             <div className="reactSelector mt-3">
               <ReactSelect
                 placeholder="Choose an option "
                 options={relationStatus}
+                onChange={(e:any)=> setPrefrences({...prefrences,relationship_status: e.value})}
+                value={selectValue(prefrences.relationship_status, 'relationship_status')}
               />
             </div>
           </div>
@@ -64,6 +98,8 @@ const Prefrences = () => {
               <ReactSelect
                 placeholder="Choose an option "
                 options={meetingIntrest}
+                onChange={(e:any)=> setPrefrences({...prefrences, intrusted_in_meating:e.value})}
+                value={selectValue(prefrences.intrusted_in_meating, 'intrusted_in_meating')}
               />
             </div>
           </div>
@@ -75,6 +111,8 @@ const Prefrences = () => {
               <ReactSelect
                 placeholder="Choose an option"
                 options={relationbuild}
+                onChange={(e:any)=> setPrefrences({...prefrences, relationship_want_to_build:e.value})}
+                value={selectValue(prefrences.relationship_want_to_build, 'relationship_want_to_build')}
               />
             </div>
           </div>
@@ -86,6 +124,8 @@ const Prefrences = () => {
               <ReactSelect
                 placeholder="Choose intent"
                 options={intent}
+                onChange={(e:any)=>setPrefrences({...prefrences, your_intenet:e.value})}
+                value={selectValue(prefrences.your_intenet, 'your_intenet')}
               />
             </div>
           </div>
