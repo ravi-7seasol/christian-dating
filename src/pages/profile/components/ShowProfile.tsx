@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleLeft, faArrowLeft, faArrowsAlt, faCompressArrowsAlt, faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 
@@ -6,12 +6,37 @@ import { Accordion, Button, Col, Container, Row } from 'react-bootstrap';
 import Buttons from '../../../components/Buttons';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+import AuthStorage from '../../../helper/AuthStorage';
+import { xwwwFormUrlencoded } from '../../../helper/utils';
+import { ApiGet, ApiPost } from '../../../helper/API/ApiData';
 
 const ShowProfile = () => {
+
+    const [getProfileData, setGetProfileData] = useState('')
+
     const navigate = useNavigate()
     const handleRedirect = () => {
         navigate("/match_or_message")
     }
+
+    useEffect(() => {
+        const id = {
+            id: '13'
+        }
+        const body = xwwwFormUrlencoded(id);
+
+        ApiPost(`getsingleuser`,body)
+            .then((res: any) => {
+                setGetProfileData(res.user)
+               
+            }).catch((error: any) => {
+                console.log(error);
+            })
+    }, [])
+
+    useEffect(() => {
+        console.log("getProfileData",getProfileData);
+    }, [getProfileData])
 
     const accordion = [
         {
@@ -88,7 +113,7 @@ const ShowProfile = () => {
                             <Col md={9}>
                                 <div className="over-img-popup">
                                     <div className="d-flex align-items-center mb-3">
-                                        <h5 className='name-age'>John doe, 36</h5>
+                                        <h5 className='name-age'>{}John doe, 36</h5>
                                         <img src="./assets/img/male.png" alt="" className='ml-3' />
                                     </div>
                                     <p>USA, San Francisco Bay Area | Religion: <span> Catholic </span></p>

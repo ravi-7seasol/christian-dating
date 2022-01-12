@@ -15,6 +15,10 @@ const Personal = (props:any) => {
   const [personal, setPersonal] = useState(personalData)
 
   useEffect(() => {
+    setPersonal({...personal, name:props.editPersonalData.firstname, dob:props.editPersonalData.dob, address:props.editPersonalData.address, gender:props.editPersonalData.gender, denomination:props.editPersonalData.denomination})
+  }, [props.editPersonalData])
+
+  useEffect(() => {
     props.personalData(personal)
   }, [personal])
 
