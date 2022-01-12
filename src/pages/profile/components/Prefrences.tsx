@@ -16,6 +16,10 @@ const Prefrences = (props:any) => {
     props.prefrencesData(prefrences)
   }, [prefrences])
 
+  useEffect(() => {
+    setPrefrences({...prefrences, your_story:props.editPrefrencesData.your_story, short_bio:props.editPrefrencesData.short_bio, relationship_status:props.editPrefrencesData.relationship_status, intrusted_in_meating:props.editPrefrencesData.intrusted_in_meating, relationship_want_to_build:props.editPrefrencesData.relationship_want_to_build, your_intenet:props.editPrefrencesData.your_intenet,})
+  }, [props.editPrefrencesData])
+
   const handleChange = (e:any) => {    
     setPrefrences({...prefrences, [e.target.name] : e.target.value})
   }

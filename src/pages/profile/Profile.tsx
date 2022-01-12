@@ -11,68 +11,84 @@ import Personal from "./components/Personal";
 import Prefrences from "./components/Prefrences";
 import SetProfileImage from "./components/SetProfileImage";
 
-const Profile = (props:any) => {
+const Profile = (props: any) => {
   const [profile, setProfile] = useState({
     token: AuthStorage.getToken(),
-    name:'',
-    dob:'',
-    address:'',
-    gender:'',
-    denomination:0,
-    your_story:'',
-    short_bio:'',
-    relationship_status:'',
-    intrusted_in_meating:'',
-    relationship_want_to_build:'',
-    your_intenet:'',
-    how_often_church:'',
-    read_bible:'',
-    workout:'', 
-    consume_alcohol:'',
-    smoke:'',
+    name: '',
+    dob: '',
+    address: '',
+    gender: '',
+    denomination: 0,
+    your_story: '',
+    short_bio: '',
+    relationship_status: '',
+    intrusted_in_meating: '',
+    relationship_want_to_build: '',
+    your_intenet: '',
+    how_often_church: '',
+    read_bible: '',
+    workout: '',
+    consume_alcohol: '',
+    smoke: '',
   })
+  const [getData, setGetData] = useState('')
+
   const [stepDone, setStepDone] = useState(1);
   const nevigate = useNavigate();
+
+  useEffect(() => {
+    const id = {
+      id: '13'
+    }
+    const body = xwwwFormUrlencoded(id);
+      ApiPost(`getsingleuser`, body)
+      .then((res: any) => {
+        setGetData(res.user)
+        // setProfile({...profile, name:res.user.firstname, dob:res.user.dob, address:res.user.address, gender:res.user.gender, denomination:res.user.denomination, your_story:res.user.your_story, short_bio:res.user.short_bio, relationship_status:res.user.relationship_status, intrusted_in_meating:res.user.intrusted_in_meating, relationship_want_to_build:res.user.relationship_want_to_build, your_intenet:res.user.your_intenet, how_often_church:res.user.how_often_church, read_bible:res.user.read_bible, workout:res.user.workout, consume_alcohol:res.user.consume_alcohol, smoke:res.user.smoke})
+      }).catch((error: any) => {
+        console.log(error);
+      })
+  }, [])
+
   const handleNext = () => {
     if (stepDone < 5) {
       setStepDone(stepDone + 1);
     } else {
       const body = xwwwFormUrlencoded(profile);
-      
+
       ApiPost('updateprofile', body)
         .then((res: any) => {
-          console.log("res",res);
-          if(res.status === "true")
-          {
+          console.log("res", res);
+          if (res.status === "true") {
             nevigate("/show-profile");
           }
-          else{
+          else {
             alert(`${res.msg}`)
           }
-        }).catch((error:any) => {
+        }).catch((error: any) => {
           console.log(error);
         })
     }
   };
 
-  const personal = (data:any) => {
-    setProfile({...profile, name:data.name, dob:data.dob, address:data.address, gender:data.gender, denomination:parseInt(data.denomination)})
+  const personal = (data: any) => {
+    setProfile({ ...profile, name: data.name, dob: data.dob, address: data.address, gender: data.gender, denomination: parseInt(data.denomination) })
   }
 
-  const prefrences = (data:any) => {
-    setProfile({...profile, your_story:data.your_story, short_bio:data.short_bio, relationship_status:data.relationship_status, intrusted_in_meating:data.intrusted_in_meating, relationship_want_to_build:data.relationship_want_to_build, your_intenet:data.your_intenet})
+  const prefrences = (data: any) => {
+    setProfile({ ...profile, your_story: data.your_story, short_bio: data.short_bio, relationship_status: data.relationship_status, intrusted_in_meating: data.intrusted_in_meating, relationship_want_to_build: data.relationship_want_to_build, your_intenet: data.your_intenet })
   }
 
-  const lifeStyle = (data:any) => {
-    setProfile({...profile, how_often_church:data.how_often_church, read_bible:data.read_bible, workout:data.workout, consume_alcohol:data.consume_alcohol, smoke:data.smoke})
+  const lifeStyle = (data: any) => {
+    setProfile({ ...profile, how_often_church: data.how_often_church, read_bible: data.read_bible, workout: data.workout, consume_alcohol: data.consume_alcohol, smoke: data.smoke })
   }
 
   return (
     <div >
-      <div className="profile-header-baloon" style={{position:"fixed", width:"100vw", top:"0"}}>
+      <div className="profile-header-baloon" style={{ position: "fixed", width: "100vw", top: "0" }}>
         <Header />
       </div>
-      <div className="container-width mx-auto" style={{marginTop:"15vh"}}>
+      <div className="container-width mx-auto" style={{ marginTop: "15vh" }}>
         <div className="header mt-3">
           <div className="d-flex justify-content-between align-items-center">
             <h1>Profile</h1>
@@ -84,9 +100,9 @@ const Profile = (props:any) => {
             </div>
           </div>
         </div>
-        {stepDone === 1 && <Personal personalData={personal}/>}
-        {stepDone === 2 && <Prefrences prefrencesData={prefrences}/>}
-        {stepDone === 3 && <Lifestyle lifeStyleData={lifeStyle}/>}
+        {stepDone === 1 && <Personal personalData={personal} editPersonalData={getData} />}
+        {stepDone === 2 && <Prefrences prefrencesData={prefrences} editPrefrencesData={getData} />}
+        {stepDone === 3 && <Lifestyle lifeStyleData={lifeStyle} editLifeStyleData={getData} />}
         {stepDone >= 4 && <SetProfileImage stepDone={stepDone} />}
 
         <div className="login">
