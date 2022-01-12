@@ -1,15 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Buttons from "../../components/Buttons";
 import PostSuccessStories from "../../components/models/PostSuccessStories";
+import { ApiPost } from "../../helper/API/ApiData";
+import { xwwwFormUrlencoded } from "../../helper/utils";
 import "./success-stories.css";
 
 const SuccessStories = () => {
   const [tog, setTog] = useState(false);
   const [pop, setPop] = useState(false);
   const [second, setSecond] = useState(false);
-  const [postData, setPostData] = useState(false)
+  const [postData, setPostData] = useState(false);
+  const [storySort, setStorysort] = useState({
+    sort: "asc"
+  });
+  const [storiesData, setStoriesData] = useState([]);
+  const [selectedID, setSelectedID] = useState("");
+
+  useEffect(() => {
+    const body = xwwwFormUrlencoded(storySort);
+    ApiPost('stories', body)
+      .then((res: any) => {
+        setStoriesData(res.story);  
+      }).catch((error) => {
+        console.log(error);
+
+      })
+  }, [])
+
+  const openCard = (item: any) => {
+    if (selectedID === item.id) {
+      setSelectedID("")
+    } else {
+      setSelectedID(item.id)
+    }
+  }
+
   return (
     <>
       <div className="successStories-main">
@@ -20,31 +47,34 @@ const SuccessStories = () => {
           </Link>
         </div>
         {/* <Container> */}
-        <div className={tog || pop || second ? "after-over " : "card-position"}>
-          <div className={tog || pop || second ? "overlay" : ""}></div>
-          <div
-            className={tog ? "pop-over" : "card-main"}
-            onClick={() => setTog(!tog)}
-          >
-            <div className="d-flex">
-              <div>
-                <img src="./assets/img/Ellipse 22.png" />
+        <div className={selectedID ? "after-over " : "card-position"}>
+          <div className={selectedID ? "overlay" : ""}></div>
+
+          {
+            storiesData?.map((data: any, i) => (
+              <div key={i}
+                className={selectedID === data.id ? "pop-over" : "card-main"}
+                onClick={() => openCard(data)}
+              >
+                <div className="d-flex">
+                  <div>
+                    <img src="./assets/img/Ellipse 22.png" />
+                  </div>
+                  <div className="person-name">
+                    <h5>{data.name}</h5>
+                    <p>{data?.city}, {data?.country}</p>
+                  </div>
+                </div>
+                <div className="card-content">
+                  <p>
+                    {data.story_desc}
+                  </p>
+                </div>
               </div>
-              <div className="person-name">
-                <h5>James Marcus</h5>
-                <p>Town, ST</p>
-              </div>
-            </div>
-            <div className="card-content">
-              <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                penatibus et magnis dis parturient montes, nascetur ridiculus
-                mus.
-              </p>
-            </div>
-          </div>
-          <div
+            ))
+          }
+
+          {/* <div
             className={pop ? "pop-over " : "card-main"}
             onClick={() => setPop(!pop)}
           >
@@ -201,15 +231,15 @@ const SuccessStories = () => {
                 mus.
               </p>
             </div>
-          </div>
-            <Buttons onClick={() => {setPostData(true)}} ButtonStyle="post-btn">
-              +
-            </Buttons>
+           </div> */}
+          <Buttons onClick={() => { setPostData(true) }} ButtonStyle="post-btn">
+            +
+          </Buttons>
         </div>
         {/* </Container> */}
       </div>
 
-      <PostSuccessStories show={postData} onhide={()=>setPostData(false)}/>
+      <PostSuccessStories show={postData} onhide={() => setPostData(false)} />
     </>
   );
 };
