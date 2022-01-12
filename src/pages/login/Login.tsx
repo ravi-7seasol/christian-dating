@@ -82,7 +82,7 @@ const Login = () => {
 
 
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
+    <div className="d-flex justify-content-center align-items-center main-page" style={{ height: "100vh" }}>
       <Container>
         <div className="login-card">
           <Header />
@@ -136,7 +136,7 @@ const Login = () => {
                     Remember me
                   </label>
                 </div>
-                <Link to="/login" className="forgot-password">
+                <Link to="/forgot-password" className="forgot-password">
                   Forgot password?
                 </Link>
               </div>

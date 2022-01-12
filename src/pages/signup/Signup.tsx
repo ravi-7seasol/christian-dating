@@ -14,6 +14,7 @@ import { xwwwFormUrlencoded } from "../../helper/utils";
 import { ApiPost } from "../../helper/API/ApiData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 
 const GoogleAppId =
@@ -185,6 +186,12 @@ const goToProfileSetting = () => {
                     ButtonStyle="login-btn"
                     disabled={false}
                   />
+                   <div className="text-center w-100 mt-2 dont-have-account">
+                  Back to &nbsp;
+                  <Link to="/" className="dont-have-account-link">
+                    Sign in
+                  </Link>
+                </div>
                   <div className="signup-with-social text-center mt-4">
                     <span>Or sign up with socials</span>
                   </div>

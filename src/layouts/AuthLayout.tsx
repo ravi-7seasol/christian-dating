@@ -7,7 +7,7 @@ interface Props {
 
 const AuthLayout: FC<Props> = ({ children, ...props }) => {
     return(
-    <div>
+    <div style={{paddingTop:"56px"}} >
         <AuthHeader /> 
         <div className={""} {...props}>{children}</div>
     </div>

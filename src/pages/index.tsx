@@ -13,11 +13,12 @@ import Community from "./community/Community";
 import SuccessStories from "./success-stories/SuccessStories";
 import { useEffect } from "react";
 import AuthStorage from "../helper/AuthStorage";
+import ForgotPassword from "./forgotpassword/ForgotPassword";
 
 const Index = () => {
   const loction = useLocation()
   const navigate = useNavigate()
-  const forLayout = ["/", "/signup", "/profile"]
+  const forLayout = ["/", "/signup", "/profile","/forgot-password"]
   const forAuthLayout = ["/show-profile", "/inbox", "/match_or_message", "/community", "/success_stories"]
 
   // const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const Index = () => {
             <Route path="/" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
           </Routes>
         </Layout>
       )}
