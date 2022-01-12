@@ -9,11 +9,11 @@ const Inbox = () => {
 
   return (
     <>
-      <div className="inbox-main">
+      <div className="inbox-main px-3">
         {/* <div style={{ height:"100vh", overflow:"hidden"}}> */}
         <Row>
           <Col md={4}>
-            <div className="inbox-profile-img" >
+            <div className="inbox-profile-img">
               <div className="profile-content">
                 <img src="./assets/img/profile-picture.png" />
                 <h6>likes you</h6>
@@ -233,70 +233,68 @@ const Inbox = () => {
               </div>
             </div>
           </Col>
-          <Col md={8} className="ps-0 Conversation-starters-scroll" >
+          <Col md={8} className="ps-0 Conversation-starters-scroll">
             <div className="Conversation-starters">
               <div className="bg-white chat-top-header">
-                
                 {width > 767 && (
-
-                    <div className="messages">
-                      <div className="chat-profile-img-main">
-                        <img
-                          src="./assets/img/profile-picture.png"
-                          className="chat-profile"
-                        />
-                        <div className="online"></div>
-                      </div>
-                      <div className="chat-messages">
-                        <h4>Valerie</h4>
-                        <h6 className="messages-time">12:15</h6>
-                      </div>
+                  <div className="messages">
+                    <div className="chat-profile-img-main">
+                      <img
+                        src="./assets/img/profile-picture.png"
+                        className="chat-profile"
+                      />
+                      <div className="online"></div>
                     </div>
-
+                    <div className="chat-messages">
+                      <h4>Valerie</h4>
+                      <h6 className="messages-time">12:15</h6>
+                    </div>
+                  </div>
                 )}
-
               </div>
-              <div className="text-grid px-3">                
-              <div>
-                <h3 className="first-text">
-                  Hey! I really like your profile and I think we could match
-                  really well.
-                </h3>
-                <h2 className="first-text-replay">
-                  I see we have very matching interests, would you like to get
-                  to know each other?
-                </h2>
-              </div>
-              <div>
-                <h3 className="first-text">
-                  Hey! I really like your profile and I think we could match
-                  really well.
-                </h3>
-                <h2 className="first-text-replay">
-                  I see we have very matching interests, would you like to get
-                  to know each other?
-                </h2>
-              </div>
-              <div>
-                <h3 className="first-text">
-                  Hey! I really like your profile and I think we could match
-                  really well.
-                </h3>
-                <h2 className="first-text-replay">
-                  I see we have very matching interests, would you like to get
-                  to know each other?
-                </h2>
-              </div>
-              <div>
-                <h3 className="first-text">
-                  Hey! I really like your profile and I think we could match
-                  really well.
-                </h3>
-                <h2 className="first-text-replay">
-                  I see we have very matching interests, would you like to get
-                  to know each other?
-                </h2>
-              </div>
+              <div className="text-grid px-3">
+                <div style={{display:"grid", gridTemplateRows:"repeat(auto, 100px)"}}>
+                  <div>
+                    <h3 className="first-text">
+                      Hey! I really like your profile and I think we could match
+                      really well.
+                    </h3>
+                    <h2 className="first-text-replay">
+                      I see we have very matching interests, would you like to
+                      get to know each other?
+                    </h2>
+                  </div>
+                  <div>
+                    <h3 className="first-text">
+                      Hey! I really like your profile and I think we could match
+                      really well.
+                    </h3>
+                    <h2 className="first-text-replay">
+                      I see we have very matching interests, would you like to
+                      get to know each other?
+                    </h2>
+                  </div>
+                  <div>
+                    <h3 className="first-text">
+                      Hey! I really like your profile and I think we could match
+                      really well.
+                    </h3>
+                    <h2 className="first-text-replay">
+                      I see we have very matching interests, would you like to
+                      get to know each other?
+                    </h2>
+                  </div>
+                  <div>
+                    <h3 className="first-text">
+                      Hey! I really like your profile and I think we could match
+                      really well.
+                    </h3>
+                    <h2 className="first-text-replay">
+                      I see we have very matching interests, would you like to
+                      get to know each other?
+                    </h2>
+                  </div>
+                </div>
               </div>
               <div className="input-area px-3">
                 <div>
