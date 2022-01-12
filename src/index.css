@@ -1,5 +1,51 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+
+.auth-show-profile{
+    width: 120px;
+    height: max-content;
+    background: #fff;
+    position: absolute;
+    z-index: 5555;
+    bottom: -100px;
+    left: calc(50% - 60px);
+    border-radius: 5px;
+    box-shadow: 4px 3px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+
+}
+.auth-show-profile ul{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    
+}
+.auth-show-profile ul li{
+    list-style: none;
+    font:  13px/30px Poppins;
+    /* display: block; */
+    font-weight: 100;
+    
+    
+}
+.auth-show-profile ul li:hover{
+    background: rgba(0, 0, 0, 0.1);
+
+}
+.auth-show-profile ul li a{
+    /* opacity: 0.3; */
+    color: #acacac;
+}
+.menu-logo,.page-name{
+    display: none;
+}
+.page-name h1{
+    font: normal normal 600 21px/31px Poppins;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+    margin: 0;
+}
 .slick-slider .slick-list .slick-track .slick-active .slid-verified-picture {
     display: flex;
 }
@@ -55,7 +101,7 @@
 }
 
 .authnave {
-    display: none !important;
+    /* display: none !important; */
 }
 
 .authheader {
@@ -665,6 +711,8 @@
 }
 
 /* ======================================>Max-Width:574px<====================================== */
+
+
 
 @media (max-width: 574px) {
 
@@ -1291,4 +1339,19 @@
         overflow: auto;
     }
 
+}
+@media only screen and (max-width: 1024px)  {
+    .auth-show-profile{
+        right: 0 !important;
+        left: unset;
+        /* display: none; */
+    }
+}
+@media only screen and (max-width: 767px)  {
+    .navLinks, .uncommon-logo{
+        display: none !important;
+    }
+    .menu-logo,.page-name{
+        display: block;
+    }
 }

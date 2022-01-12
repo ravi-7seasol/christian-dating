@@ -5,9 +5,9 @@ body {
 ::-webkit-scrollbar {
   width: 5px;
 }
-.inbox-main .Conversation-starters .text-grid::-webkit-scrollbar{
+/* .inbox-main .Conversation-starters .text-grid::-webkit-scrollbar{
   width: 10px !important;
-}
+} */
 .css-dq1sse-MenuList::-webkit-scrollbar{
   display: none !important;
 }
