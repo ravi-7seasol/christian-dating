@@ -11,7 +11,9 @@ import { Container } from "react-bootstrap";
 import Header from "../../layouts/header/Header";
 import { useEffect, useState } from "react";
 import { xwwwFormUrlencoded } from "../../helper/utils";
-import { ApiPost} from "../../helper/API/ApiData";
+import { ApiPost } from "../../helper/API/ApiData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 
 const GoogleAppId =
@@ -20,13 +22,13 @@ const FacbookAppId = "634703847650865";
 
 const Signup = () => {
   const navigate = useNavigate();
-  
+
   const [signupData, setSignupData] = useState({
     email: "",
     password: "",
-    confirm_password:""
+    confirm_password: ""
   })
-  const [formErrors, setFormErrors]=useState<any>()
+  const [formErrors, setFormErrors] = useState<any>()
   const onInputValueChange = (e: any) => {
     setSignupData({
       ...signupData,
@@ -35,55 +37,48 @@ const Signup = () => {
   }
 
 
-  const validation = (values:any) => {
-    const error:any = {};
+  const validation = (values: any) => {
+    const error: any = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (!values.email) {
       error.email = "Please Enter Email ";
-    }else if (!values.email.match(regex)) {
-      error.email = "Enter Valid Email";  
-    } 
+    } else if (!values.email.match(regex)) {
+      error.email = "Enter Valid Email";
+    }
     if (!values.password) {
       error.password = "Please Enter Password";
-    }else if (values.password.length < 8) {
+    } else if (values.password.length < 8) {
       error.password = "minimum length of the password is 8";
-    } 
+    }
     if (!values.confirm_password) {
       error.confirm_password = "Please Enter Confirm Password";
-    }else if (signupData.password !== signupData.confirm_password) {
-      error.confirm_password="Password is not same"
+    } else if (signupData.password !== signupData.confirm_password) {
+      error.confirm_password = "Password is not same"
     }
     return error;
   }
-  
 
-
-
-
- 
-
-
-  const goToProfileSetting = () => {
+const goToProfileSetting = () => {
 
     setFormErrors(validation(signupData));
     if (formErrors && Object.keys(formErrors).length === 0) {
       const body = xwwwFormUrlencoded(signupData);
       ApiPost('signupuser', body)
-      .then((res: any) => {
-        console.log("res", res.status);
-        if (res.status === "true") {
-          navigate("/profile");
-        }
-        
-       
-      }).catch((error) => {
-        console.log(error);
+        .then((res: any) => {
+          console.log("res", res.status);
+          if (res.status === "true") {
+            navigate("/profile");
+          }
 
-      })
 
-      
+        }).catch((error) => {
+          console.log(error);
+
+        })
+
+
     }
-    
+
   };
 
   const componentClicked = () => {
@@ -118,7 +113,7 @@ const Signup = () => {
   return (
     <>
       <div
-        className="d-flex justify-content-center align-items-center" style={{minHeight:"100vh" }}
+        className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}
       >
         <Container>
           <div className="login-card">
@@ -141,7 +136,7 @@ const Signup = () => {
                   type="email"
                   fromrowStyleclass=""
                 />
-                <span>{formErrors && formErrors.email}</span>
+                {formErrors?.email !== undefined && < label className="ErrMsg" htmlFor="error"> <FontAwesomeIcon icon={faTimesCircle} />{formErrors.email}</label>}
                 <div className="input-field">
                   <InputField
                     name="password"
@@ -158,9 +153,9 @@ const Signup = () => {
                     type="password"
                     fromrowStyleclass=""
                   />
-                  
-                  {formErrors && formErrors.password===undefined?<img src="./assets/img/check-one.png" alt="check" />:""}
-                  
+
+                  {formErrors && formErrors.password === undefined ? <img src="./assets/img/check-one.png" alt="check" /> : ""}
+                  {formErrors?.password !== undefined && < label className="ErrMsg" htmlFor="error"> <FontAwesomeIcon icon={faTimesCircle} />{formErrors.password}</label>}
                 </div>
                 <div className="input-field">
                   <InputField
@@ -177,10 +172,10 @@ const Signup = () => {
                     placeholder="*********"
                     type="password"
                     fromrowStyleclass=""
-                  />{formErrors && formErrors.confirm_password===undefined?<img src="./assets/img/check-one.png" alt="check" />:""}
-                  
-                  {/* <img src="./assets/img/check-one.png" alt="check" /> */}
-                   <span>{formErrors && formErrors.confirm_password}</span>
+                  />{formErrors && formErrors.confirm_password === undefined ? <img src="./assets/img/check-one.png" alt="check" /> : ""}
+                  {formErrors?.confirm_password !== undefined && < label className="ErrMsg" htmlFor="error"> <FontAwesomeIcon icon={faTimesCircle} />{formErrors.confirm_password}</label>}
+
+
                 </div>
 
                 <div style={{ marginTop: "3rem" }}>
@@ -226,8 +221,8 @@ const Signup = () => {
                         buttonText=""
                         onSuccess={responseGoogle}
                         onFailure={responseGoogle1}
-                        // cookiePolicy={'single_host_origin'}
-                        // icon={<img src="./assets/img/gmail-icon.png" alt="icon" />}
+                      // cookiePolicy={'single_host_origin'}
+                      // icon={<img src="./assets/img/gmail-icon.png" alt="icon" />}
                       />
                     </div>
                   </div>

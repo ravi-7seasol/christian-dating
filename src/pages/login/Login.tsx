@@ -1,6 +1,6 @@
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { log } from "console";
+import { error, log } from "console";
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router";
@@ -21,6 +21,7 @@ const Login = () => {
     password: ""
   })
   const [rememberMe, setRememberMe] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
 
   const onInputValueChange = (e: any) => {
@@ -30,55 +31,31 @@ const Login = () => {
     })
     if (e.target.name === "rememberMe") {
       setRememberMe(e.target.checked);
-    }
+    }}
 
-  }
 
-  const handleRedirect = () => {
-    navigate("/show-profile");
-  };
-
-  useEffect(() => {
+    useEffect(() => {
     const email = AuthStorage.getStorageData(STORAGEKEY.email);
     if (email) {
-
-      // const emailId:string = localStorage.getItem(STORAGEKEY.email) ?? '';
-
-      //    setLoginData({ email:JSON.parse(email) , password:"" })
-      // const email: string = AuthStorage.getStorageData(STORAGEKEY.email) ?? '';
-
-      // const emailId: string = AuthStorage.getStorageData(STORAGEKEY.email) ?? '';
       setLoginData({ ...loginData, email: email });
-
-
-
     }
-    console.log("EMAIL", localStorage.getItem(STORAGEKEY.email));
-
-
-  }, [])
+    }, [])
 
   const logIn = () => {
-
     const body = xwwwFormUrlencoded(loginData);
-
-
     ApiPost('loginuser', body)
       .then((res: any) => {
-        console.log("res", res);
         if (rememberMe) {
-
           AuthStorage.setStorageData(STORAGEKEY.email, loginData.email, rememberMe);
         }
-
         if (res) {
           AuthStorage.setStorageData(STORAGEKEY.token, res.token, false);
-
+          setErrorMsg(res.msg)
         }
-
-
-        navigate("/show-profile");
-      }).catch((error) => {
+        if (res.status === "true") {
+          navigate("/show-profile");
+        }
+        }).catch((error) => {
         console.log(error);
 
       })
@@ -109,7 +86,7 @@ const Login = () => {
                 type="email"
                 fromrowStyleclass=""
               />
-              <label className="ErrMsg" htmlFor="error"> <FontAwesomeIcon icon={faTimesCircle} /> Email or password wrong</label>
+              
               <InputField
                 name="password"
                 maxLength={undefined}
@@ -145,6 +122,8 @@ const Login = () => {
                   Forgot password?
                 </Link>
               </div>
+              <br/>
+              {errorMsg && errorMsg !== "User Successfully logged in" && < label className="ErrMsg" htmlFor="error"> <FontAwesomeIcon icon={faTimesCircle} />{errorMsg}</label>}
               <div style={{ marginTop: "9rem" }}>
                 <Buttons
                   children="Log in"
@@ -164,8 +143,8 @@ const Login = () => {
           </div>
           {/* <Footer /> */}
         </div>
-      </Container>
-    </div>
+      </Container >
+    </div >
   );
 };
 
