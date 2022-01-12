@@ -11,6 +11,8 @@ import InputField from "../../components/Inputfield";
 import { ApiPost, ApiPostNoAuth } from "../../helper/API/ApiData";
 import { xwwwFormUrlencoded } from "../../helper/utils";
 import Header from "../../layouts/header/Header";
+import AuthStorage from "../../helper/AuthStorage";
+import STORAGEKEY from "../../config/APP/app.config";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,7 +20,7 @@ const Login = () => {
     email: "",
     password: ""
   })
-  const [checked, setChecked] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
 
 
   const onInputValueChange = (e: any) => {
@@ -26,10 +28,10 @@ const Login = () => {
       ...loginData,
       [e.target.name]: e.target.value
     })
-    if (e.target.name === "checked") {
-      setChecked(e.target.checked);
+    if (e.target.name === "rememberMe") {
+      setRememberMe(e.target.checked);
     }
-    
+
   }
 
   const handleRedirect = () => {
@@ -37,41 +39,51 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("email")) {
-    
-      const temp:string = localStorage.getItem("email") ?? '';
-    
-         setLoginData({ email:JSON.parse(temp) , password:"" })
-      
-     
+    const email = AuthStorage.getStorageData(STORAGEKEY.email);
+    if (email) {
+
+      // const emailId:string = localStorage.getItem(STORAGEKEY.email) ?? '';
+
+      //    setLoginData({ email:JSON.parse(email) , password:"" })
+      // const email: string = AuthStorage.getStorageData(STORAGEKEY.email) ?? '';
+
+      // const emailId: string = AuthStorage.getStorageData(STORAGEKEY.email) ?? '';
+      setLoginData({ ...loginData, email: email });
+
+
+
     }
+    console.log("EMAIL", localStorage.getItem(STORAGEKEY.email));
+
+
   }, [])
 
   const logIn = () => {
-    const val = {
 
-    }
-    if (checked) {
-      localStorage.setItem("email", JSON.stringify(loginData.email));
-    }
     const body = xwwwFormUrlencoded(loginData);
-    
-  
+
+
     ApiPost('loginuser', body)
       .then((res: any) => {
         console.log("res", res);
-        if (res) {
-           localStorage.setItem("token", JSON.stringify(res.token));
+        if (rememberMe) {
+
+          AuthStorage.setStorageData(STORAGEKEY.email, loginData.email, rememberMe);
         }
-       
-        
+
+        if (res) {
+          AuthStorage.setStorageData(STORAGEKEY.token, res.token, false);
+
+        }
+
+
         navigate("/show-profile");
       }).catch((error) => {
         console.log(error);
 
       })
   }
- 
+
 
 
   return (
@@ -118,12 +130,12 @@ const Login = () => {
                   <CheckBox
                     type="checkbox"
                     label=""
-                    name="checked"
+                    name="rememberMe"
                     id=""
                     value={""}
                     styleCheck="remember-checkbox"
-                    onChange={(e) => {onInputValueChange(e)}}
-                    checked={checked}
+                    onChange={(e) => { onInputValueChange(e) }}
+                    checked={rememberMe}
                   />
                   <label htmlFor="checkbox" className="rememberme-label">
                     Remember me
