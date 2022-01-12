@@ -22,6 +22,14 @@ const Login = () => {
   })
   const [rememberMe, setRememberMe] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [userLoginData, setUserLoginData] = useState({
+    email: "",
+    image: "",
+    msg: "",
+    status: "",
+    user_id: "",
+    username: ""
+  })
 
 
   const onInputValueChange = (e: any) => {
@@ -31,35 +39,45 @@ const Login = () => {
     })
     if (e.target.name === "rememberMe") {
       setRememberMe(e.target.checked);
-    }}
+    }
+  }
 
 
-    useEffect(() => {
+  useEffect(() => {
     const email = AuthStorage.getStorageData(STORAGEKEY.email);
     if (email) {
       setLoginData({ ...loginData, email: email });
     }
-    }, [])
+  }, [])
 
   const logIn = () => {
     const body = xwwwFormUrlencoded(loginData);
     ApiPost('loginuser', body)
       .then((res: any) => {
+
         if (rememberMe) {
           AuthStorage.setStorageData(STORAGEKEY.email, loginData.email, rememberMe);
         }
         if (res) {
-          AuthStorage.setStorageData(STORAGEKEY.token, res.token, false);
-          setErrorMsg(res.msg)
+          AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
+          setErrorMsg(res.msg);
+          setUserLoginData({ ...userLoginData, email: res.email, image: res.image, msg: res.msg, status: res.status, user_id: res.user_id, username: res.username });
         }
+
         if (res.status === "true") {
           navigate("/show-profile");
         }
-        }).catch((error) => {
+      }).catch((error) => {
         console.log(error);
 
       })
+
   }
+  useEffect(() => {
+    if (userLoginData.email !== "" && userLoginData.image !== "", userLoginData.msg !== "", userLoginData.status !== "", userLoginData.user_id !== "", userLoginData.username !== "") {
+      AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(userLoginData), true)
+    }
+  }, [userLoginData])
 
 
 
@@ -86,7 +104,7 @@ const Login = () => {
                 type="email"
                 fromrowStyleclass=""
               />
-              
+
               <InputField
                 name="password"
                 maxLength={undefined}
@@ -122,7 +140,7 @@ const Login = () => {
                   Forgot password?
                 </Link>
               </div>
-              <br/>
+              <br />
               {errorMsg && errorMsg !== "User Successfully logged in" && < label className="ErrMsg" htmlFor="error"> <FontAwesomeIcon icon={faTimesCircle} />{errorMsg}</label>}
               <div style={{ marginTop: "9rem" }}>
                 <Buttons
