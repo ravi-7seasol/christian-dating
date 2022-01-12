@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Buttons from "../../components/Buttons";
+import { ApiPost } from "../../helper/API/ApiData";
+import AuthStorage from "../../helper/AuthStorage";
+import { xwwwFormUrlencoded } from "../../helper/utils";
 import Footer from "../../layouts/footer/Footer";
 import Header from "../../layouts/header/Header";
 import Lifestyle from "./components/Lifestyle";
@@ -8,17 +11,62 @@ import Personal from "./components/Personal";
 import Prefrences from "./components/Prefrences";
 import SetProfileImage from "./components/SetProfileImage";
 
-const Profile = () => {
+const Profile = (props:any) => {
+  const [profile, setProfile] = useState({
+    token: AuthStorage.getToken(),
+    name:'',
+    dob:'',
+    address:'',
+    gender:'',
+    denomination:0,
+    your_story:'',
+    short_bio:'',
+    relationship_status:'',
+    intrusted_in_meating:'',
+    relationship_want_to_build:'',
+    your_intenet:'',
+    how_often_church:'',
+    read_bible:'',
+    workout:'', 
+    consume_alcohol:'',
+    smoke:'',
+  })
   const [stepDone, setStepDone] = useState(1);
-  // const [verified, setVerified] = useState<any>(false);
   const nevigate = useNavigate();
   const handleNext = () => {
     if (stepDone < 5) {
       setStepDone(stepDone + 1);
     } else {
-      nevigate("/show-profile");
+      const body = xwwwFormUrlencoded(profile);
+      
+      ApiPost('updateprofile', body)
+        .then((res: any) => {
+          console.log("res",res);
+          if(res.status === "true")
+          {
+            nevigate("/show-profile");
+          }
+          else{
+            alert(`${res.msg}`)
+          }
+        }).catch((error:any) => {
+          console.log(error);
+        })
     }
   };
+
+  const personal = (data:any) => {
+    setProfile({...profile, name:data.name, dob:data.dob, address:data.address, gender:data.gender, denomination:parseInt(data.denomination)})
+  }
+
+  const prefrences = (data:any) => {
+    setProfile({...profile, your_story:data.your_story, short_bio:data.short_bio, relationship_status:data.relationship_status, intrusted_in_meating:data.intrusted_in_meating, relationship_want_to_build:data.relationship_want_to_build, your_intenet:data.your_intenet})
+  }
+
+  const lifeStyle = (data:any) => {
+    setProfile({...profile, how_often_church:data.how_often_church, read_bible:data.read_bible, workout:data.workout, consume_alcohol:data.consume_alcohol, smoke:data.smoke})
+  }
+
   return (
     <div >
       <div className="profile-header-baloon" style={{position:"fixed", width:"100vw", top:"0"}}>
@@ -36,9 +84,9 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        {stepDone === 1 && <Personal />}
-        {stepDone === 2 && <Prefrences />}
-        {stepDone === 3 && <Lifestyle />}
+        {stepDone === 1 && <Personal personalData={personal}/>}
+        {stepDone === 2 && <Prefrences prefrencesData={prefrences}/>}
+        {stepDone === 3 && <Lifestyle lifeStyleData={lifeStyle}/>}
         {stepDone >= 4 && <SetProfileImage stepDone={stepDone} />}
 
         <div className="login">
