@@ -7,7 +7,7 @@
     background: #fff;
     position: absolute;
     z-index: 5555;
-    bottom: -100px;
+    bottom: -95px;
     left: calc(50% - 60px);
     border-radius: 5px;
     box-shadow: 4px 3px 10px rgba(0, 0, 0, 0.3);
@@ -101,7 +101,11 @@
 }
 
 .authnave {
-    /* display: none !important; */
+    background-color: #f8f9fa!important;
+    position: fixed !important;
+    z-index: 555;
+    width: 100%;
+    top: 0;
 }
 
 .authheader {

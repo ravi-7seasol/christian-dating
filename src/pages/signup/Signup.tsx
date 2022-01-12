@@ -12,6 +12,7 @@ import Header from "../../layouts/header/Header";
 import { useEffect, useState } from "react";
 import { xwwwFormUrlencoded } from "../../helper/utils";
 import { ApiPost} from "../../helper/API/ApiData";
+import { Link } from "react-router-dom";
 
 
 const GoogleAppId =
@@ -190,6 +191,12 @@ const Signup = () => {
                     ButtonStyle="login-btn"
                     disabled={false}
                   />
+                   <div className="text-center w-100 mt-2 dont-have-account">
+                  Back to &nbsp;
+                  <Link to="/" className="dont-have-account-link">
+                    Sign in
+                  </Link>
+                </div>
                   <div className="signup-with-social text-center mt-4">
                     <span>Or sign up with socials</span>
                   </div>
