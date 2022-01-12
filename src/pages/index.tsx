@@ -6,31 +6,40 @@ import Login from "./login/Login";
 import Profile from "./profile/Profile";
 import Signup from "./signup/Signup";
 import Inbox from "./messageInbox/Inbox";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import ShowProfile from "./profile/components/ShowProfile";
 import MatchOrMessage from "./match-or-message/MatchOrMessage";
 import Community from "./community/Community";
 import SuccessStories from "./success-stories/SuccessStories";
+import { useEffect } from "react";
+import AuthStorage from "../helper/AuthStorage";
 
 const Index = () => {
   const loction = useLocation()
+  const navigate = useNavigate()
   const forLayout = ["/", "/signup", "/profile"]
   const forAuthLayout = ["/show-profile", "/inbox", "/match_or_message", "/community", "/success_stories"]
 
   // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   if (AuthStorage.isUserAuthenticated()) {
-  //     ApiGet("user/validate")
-  //       .then((res) => {
-  //         dispatch(changeLoginState(true));
-  //         // console.log("Is Authenticated", AuthStorage.isUserAuthenticated());
-  //       })
-  //       .catch((error) => {
-  //         AuthStorage.deauthenticateUser();
-  //         history.push("/");
-  //       });
-  //   }
-  // }, []);
+  useEffect(() => {
+    console.log("loction", loction);
+
+    if (AuthStorage.isUserAuthenticated()) {
+      // ApiGet("user/validate")
+      //   .then((res) => {
+      //     dispatch(changeLoginState(true));
+      //     // console.log("Is Authenticated", AuthStorage.isUserAuthenticated());
+      //   })
+      //   .catch((error) => {
+      //     AuthStorage.deauthenticateUser();
+      //     history.push("/");
+      //   });
+    } else {
+      if (!forLayout.includes(loction.pathname)) {
+        navigate("/");
+      } 
+    }
+  }, []);
 
   return (
     <>
