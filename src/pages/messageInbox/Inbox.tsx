@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import InputField from "../../components/Inputfield";
+import InpEmoji from "../../components/InputEmoji";
 import "./inbox.css";
 
 const Inbox = () => {
   const { innerWidth: width, innerHeight: height } = window;
   console.log("width", width);
+  const [ openGift, setOpenGift ] = useState(false)
 
   return (
     <>
@@ -304,11 +306,19 @@ const Inbox = () => {
                 </div>
                 <div>
                   <div className="send-gift">
-                    <img src="./assets/img/gift (1).png" />
+                    <img src="./assets/img/gift (1).png" onClick={()=>setOpenGift(!openGift)} />
+                   {openGift && <div className="gifts">
+                    <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
+                    <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
+                    <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
+                    <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
+                    <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
+                    <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />                      
+                    </div>}
                   </div>
                 </div>
                 <div className="input-chat">
-                  <InputField
+                  {/* <InputField
                     name=""
                     maxLength={undefined}
                     value={""}
@@ -322,10 +332,12 @@ const Inbox = () => {
                     placeholder="Enter your message here"
                     type="text"
                     fromrowStyleclass=""
-                  />
-                  <div className="emoji-img">
+                  /> */}
+                  <InpEmoji/>
+                 
+                  {/* <div className="emoji-img">
                     <img src="./assets/img/grinning-face (1).png" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
