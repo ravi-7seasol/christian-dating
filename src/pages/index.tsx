@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import AuthLayout from "../layouts/AuthLayout";
 import Layout from "../layouts/Layout";
-import HomePage from "./homepage/Homepage";
 import Login from "./login/Login";
 import Profile from "./profile/Profile";
 import Signup from "./signup/Signup";
@@ -11,6 +10,8 @@ import ShowProfile from "./profile/components/ShowProfile";
 import MatchOrMessage from "./match-or-message/MatchOrMessage";
 import Community from "./community/Community";
 import SuccessStories from "./success-stories/SuccessStories";
+import Terms_of_use from "./terms-of-use/Terms_of_use";
+import Privacy_Policy from "./privacy-policy/Privacy_Policy";
 import { useEffect } from "react";
 import AuthStorage from "../helper/AuthStorage";
 import ForgotPassword from "./forgotpassword/ForgotPassword";
@@ -19,7 +20,7 @@ import EditProfile from '../pages/profile/components/EditProfile'
 const Index = () => {
   const loction = useLocation()
   const navigate = useNavigate()
-  const forLayout = ["/", "/signup", "/profile","/forgot-password"]
+  const forLayout = ["/", "/signup", "/profile","/forgot-password", "/terms-of-use", "/privacy-policy"]
   const forAuthLayout = ["/show-profile", "/inbox", "/match_or_message", "/community", "/success_stories", "/edit-profile"]
 
   // const dispatch = useDispatch();
@@ -48,11 +49,12 @@ const Index = () => {
       {forLayout.includes(loction.pathname) && (
         <Layout>
           <Routes>
-            {/* <Route path="/" element={<HomePage />} /> */}
             <Route path="/" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/terms-of-use" element={<Terms_of_use />} />
+            <Route path="/privacy-policy" element={<Privacy_Policy />} />
           </Routes>
         </Layout>
       )}

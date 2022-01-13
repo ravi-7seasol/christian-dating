@@ -122,9 +122,13 @@ const Login = () => {
                   Forgot password?
                 </Link>
               </div>
+              <div className="Terms-of-use">
+                <p><Link to="/terms-of-use?from=login" className="forgot-password">Terms of use</Link></p>
+                <p><Link to="/privacy-policy?from=login" className="forgot-password">Privacy Policy</Link></p>
+              </div>
               <br />
               {errorMsg && errorMsg !== "User Successfully logged in" && < label className="ErrMsg" htmlFor="error"> <FontAwesomeIcon icon={faTimesCircle} />{errorMsg}</label>}
-              <div style={{ marginTop: "9rem" }}>
+              <div style={{ marginTop: "6rem" }}>
                 <Buttons
                   children="Log in"
                   onClick={logIn}

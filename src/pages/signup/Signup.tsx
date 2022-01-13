@@ -70,7 +70,6 @@ const Signup = () => {
   }
 
   const goToProfileSetting = () => {
-
     if (validation()) {
       return
     }
@@ -182,6 +181,10 @@ const Signup = () => {
                   {formErrors?.confirm_password !== undefined && < label className="ErrMsg" htmlFor="error"> <FontAwesomeIcon icon={faTimesCircle} />{formErrors.confirm_password}</label>}
 
 
+                </div>
+                <div className="Terms-of-use">
+                  <p><Link to="/terms-of-use?from=signup" className="forgot-password">Terms of use</Link></p>
+                  <p><Link to="/privacy-policy?from=signup" className="forgot-password">Privacy Policy</Link></p>
                 </div>
 
                 <div style={{ marginTop: "3rem" }}>
