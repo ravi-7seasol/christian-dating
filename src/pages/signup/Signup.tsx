@@ -37,49 +37,54 @@ const Signup = () => {
     })
   }
 
-
-  const validation = (values: any) => {
+  console.log("FORMERRORS", formErrors);
+  const validation = () => {
+    let flag = false
     const error: any = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    if (!values.email) {
+    if (!signupData.email) {
       error.email = "Please Enter Email ";
-    } else if (!values.email.match(regex)) {
+      flag = true
+    } else if (!signupData.email.match(regex)) {
       error.email = "Enter Valid Email";
+      flag = true
     }
-    if (!values.password) {
+    if (!signupData.password) {
       error.password = "Please Enter Password";
-    } else if (values.password.length < 8) {
-      error.password = "minimum length of the password is 8";
+      flag = true
+    } else if (signupData.password.length < 8) {
+      error.password = "Minimum length of the password is 8";
+      flag = true
     }
-    if (!values.confirm_password) {
+    if (!signupData.confirm_password) {
       error.confirm_password = "Please Enter Confirm Password";
+      flag = true
     } else if (signupData.password !== signupData.confirm_password) {
-      error.confirm_password = "Password is not same"
+      error.confirm_password = "Password is not same";
+      flag = true
     }
-    return error;
+
+    setFormErrors(error)
+
+    return flag;
   }
 
-const goToProfileSetting = () => {
+  const goToProfileSetting = () => {
 
-    setFormErrors(validation(signupData));
-    if (formErrors && Object.keys(formErrors).length === 0) {
-      const body = xwwwFormUrlencoded(signupData);
-      ApiPost('signupuser', body)
-        .then((res: any) => {
-          console.log("res", res.status);
-          if (res.status === "true") {
-            navigate("/profile");
-          }
-
-
-        }).catch((error) => {
-          console.log(error);
-
-        })
-
-
+    if (validation()) {
+      return
     }
 
+    const body = xwwwFormUrlencoded(signupData);
+    ApiPost('signupuser', body)
+      .then((res: any) => {
+        console.log("res", res.status);
+        if (res.status === "true") {
+          navigate("/profile");
+        }
+      }).catch((error) => {
+        console.log(error);
+      })
   };
 
   const componentClicked = () => {
@@ -155,7 +160,7 @@ const goToProfileSetting = () => {
                     fromrowStyleclass=""
                   />
 
-                  {formErrors && formErrors.password === undefined ? <img src="./assets/img/check-one.png" alt="check" /> : ""}
+                  {formErrors && formErrors.password == undefined ? <img src="./assets/img/check-one.png" alt="check" /> : ""}
                   {formErrors?.password !== undefined && < label className="ErrMsg" htmlFor="error"> <FontAwesomeIcon icon={faTimesCircle} />{formErrors.password}</label>}
                 </div>
                 <div className="input-field">
@@ -186,12 +191,12 @@ const goToProfileSetting = () => {
                     ButtonStyle="login-btn"
                     disabled={false}
                   />
-                   <div className="text-center w-100 mt-2 dont-have-account">
-                  Back to &nbsp;
-                  <Link to="/" className="dont-have-account-link">
-                    Sign in
-                  </Link>
-                </div>
+                  <div className="text-center w-100 mt-2 dont-have-account">
+                    Back to &nbsp;
+                    <Link to="/" className="dont-have-account-link">
+                      Sign in
+                    </Link>
+                  </div>
                   <div className="signup-with-social text-center mt-4">
                     <span>Or sign up with socials</span>
                   </div>

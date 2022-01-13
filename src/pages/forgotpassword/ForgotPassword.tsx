@@ -1,6 +1,6 @@
 import { faCheckCircle, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Buttons from "../../components/Buttons";
@@ -15,6 +15,7 @@ const ForgotPassword = () => {
     email: "",
   });
   const [successMsg, setSuccessMsg] = useState("");
+  const [formErrors, setFormErrors] = useState<any>()
 
   const onInputValueChange = (e: any) => {
     setEmailData({
@@ -23,15 +24,47 @@ const ForgotPassword = () => {
     })
   }
 
+  const validation = () => {
+    let flag = false
+    const error: any = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailData.email) {
+      error.email = "Please Enter Email ";
+      flag = true
+    } else if (!emailData.email.match(regex)) {
+      error.email = "Enter Valid Email";
+      flag = true
+    }
+
+    setFormErrors(error)
+
+    return flag;
+  }
+
+
+
   const forgotPassword = () => {
+    if (validation()) {
+      return
+    }
+
+
     const body = xwwwFormUrlencoded(emailData);
     ApiPost('forgotpassword', body)
       .then((res: any) => {
-        setSuccessMsg(res.msg);
+        console.log("RES", res);
+        if (res.status === "true") {
+          setSuccessMsg(res.msg);
+          setFormErrors("")
+        }
+
+
       }).catch((error) => {
         console.log(error);
 
       })
+
+
   }
   return (
     <>
@@ -61,8 +94,12 @@ const ForgotPassword = () => {
 
                 <br />
                 {
-                  successMsg ? < label className="SuccessMsg"><FontAwesomeIcon icon={faCheckCircle} /> {successMsg}</label> : null
+                  successMsg && < label className="SuccessMsg"><FontAwesomeIcon icon={faCheckCircle} /> {successMsg}</label>
                 }
+                {
+                  formErrors?.email !== undefined && < label className="ErrMsg"><FontAwesomeIcon icon={faTimesCircle} /> {formErrors.email}</label>
+                }
+
 
 
                 <div style={{ marginTop: "9rem" }}>
