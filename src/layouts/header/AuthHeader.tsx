@@ -72,7 +72,7 @@ const AuthHeader: React.FC = () => {
                         <Link to="/edit-profile">Edit Profile</Link>
                       </li>
                       <li>
-                        <Link to="/profile">My Profile</Link>
+                        <Link to="/show-profile">My Profile</Link>
                       </li>
                       <li>
                         <Link onClick={logOut} to={""}>logout</Link>
