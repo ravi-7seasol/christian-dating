@@ -9,10 +9,49 @@ import { Link } from 'react-router-dom';
 import AuthStorage from '../../../helper/AuthStorage';
 import { xwwwFormUrlencoded } from '../../../helper/utils';
 import { ApiGet, ApiPost } from '../../../helper/API/ApiData';
+import moment from 'moment';
 
 const ShowProfile = () => {
 
-    const [getProfileData, setGetProfileData] = useState('')
+    const [getProfileData, setGetProfileData] = useState({
+        name: '',
+        dob: '',
+        address: '',
+        gender: '',
+        denomination: 0,
+        your_story: '',
+        short_bio: '',
+        relationship_status: '',
+        intrusted_in_meating: '',
+        relationship_want_to_build: '',
+        your_intenet: '',
+        how_often_church: '',
+        read_bible: '',
+        workout: '',
+        consume_alcohol: '',
+        smoke: '',
+
+        body_type: "",
+        career: "",
+        children: "",
+        city: "",
+        code: null,
+        country: "",
+        education: "",
+        email: "",
+        funfacts: "",
+        id: "",
+        image: null,
+        is_active: "",
+        is_verify: "",
+        language: "",
+        lastname: "",
+        mobile_no: "",
+        pets: "",
+        profile_picture: "",
+        state: "",
+        token: "",
+    })
 
     const navigate = useNavigate()
     const handleRedirect = () => {
@@ -25,66 +64,65 @@ const ShowProfile = () => {
         }
         const body = xwwwFormUrlencoded(id);
 
-        ApiPost(`getsingleuser`,body)
+        ApiPost(`getsingleuser`, body)
             .then((res: any) => {
-                setGetProfileData(res.user)
-               
+                setGetProfileData({
+                    ...getProfileData, name: res.user.firstname, dob: res.user.dob, address: res.user.address, gender: res.user.gender, denomination: res.user.denomination, your_story: res.user.your_story, short_bio: res.user.short_bio, relationship_status: res.user.relationship_status, intrusted_in_meating: res.user.intrusted_in_meating, relationship_want_to_build: res.user.relationship_want_to_build, your_intenet: res.user.your_intenet, how_often_church: res.user.how_often_church, read_bible: res.user.read_bible, workout: res.user.workout, consume_alcohol: res.user.consume_alcohol, smoke: res.user.smoke,
+                    body_type: res.user.body_type, career: res.user.career, children: res.user.children, city: res.user.city, code: res.user.code, country: res.user.country, education: res.user.education, email: res.user.email, funfacts: res.user.funfacts, id: res.user.id, image: res.user.image, is_active: res.user.is_active, is_verify: res.user.is_verify, language: res.user.language, lastname: res.user.lastname, mobile_no: res.user.mobile_no, pets: res.user.pets, profile_picture: res.user.profile_picture, state: res.user.state, token: res.user.token
+                })
+
             }).catch((error: any) => {
                 console.log(error);
             })
     }, [])
 
-    useEffect(() => {
-        console.log("getProfileData",getProfileData);
-    }, [getProfileData])
-
     const accordion = [
         {
             Header: "My story (How you came to Christ)",
-            Body: "“I own my own Software Development company. I love jazz and go watch my favorite bands as often as possible. To get out of my head, I go rock climbing. I grew up in a very political family and I carry on that tradition by being active in the local campaigns. I find a lot of peace by attending church on Sunday mornings and by being a part of that community."
+            Body: getProfileData.your_story
         },
         {
             Header: "About me",
-            Body: "“I own my own Software Development company. I love jazz and go watch my favorite bands as often as possible. To get out of my head, I go rock climbing. I grew up in a very political family and I carry on that tradition by being active in the local campaigns. I find a lot of peace by attending church on Sunday mornings and by being a part of that community."
+            Body: ""
         },
         {
             Header: "Lifestyle",
-            Body: "“I own my own Software Development company. I love jazz and go watch my favorite bands as often as possible. To get out of my head, I go rock climbing. I grew up in a very political family and I carry on that tradition by being active in the local campaigns. I find a lot of peace by attending church on Sunday mornings and by being a part of that community."
+            Body: ""
         },
         {
             Header: "Personality",
-            Body: "“I own my own Software Development company. I love jazz and go watch my favorite bands as often as possible. To get out of my head, I go rock climbing. I grew up in a very political family and I carry on that tradition by being active in the local campaigns. I find a lot of peace by attending church on Sunday mornings and by being a part of that community."
+            Body: ""
         },
     ]
 
     const personal = [
         {
             label: "I’m looking for:",
-            detail: "A dating partner with intent to marry"
+            detail: getProfileData.your_intenet
         },
         {
             label: "Body type:",
-            detail: "Fit body type"
+            detail: getProfileData.body_type
         },
         {
             label: "Children: ",
-            detail: "Yes, 3"
+            detail: getProfileData.children
         },
         {
             label: "Pets:",
-            detail: "I got 2 dogs"
+            detail: getProfileData.pets
         },
         {
             label: "Language:",
-            detail: "English"
+            detail: getProfileData.language
         },
         {
             label: "Education: ",
-            detail: "Well educated"
+            detail: getProfileData.education
         },
         {
             label: "Career:",
-            detail: "Engineer"
+            detail: getProfileData.career
         },
     ]
     return (
@@ -105,19 +143,18 @@ const ShowProfile = () => {
                                 <div className='profile-pic'>
                                     <img src="./assets/img/taylor-8Vt2haq8NSQ-unsplash.png" alt="" />
                                     <div className="verified-picture">
-                                        <img src="./assets/img/poltgon-group.png" alt="" />
-                                        <p>Verified picture</p>
+                                        {getProfileData.is_verify === "1" ? <><img src="./assets/img/poltgon-group.png" alt="" /><p>Verified picture</p></> : ''}
                                     </div>
                                 </div>
                             </Col>
                             <Col md={9}>
                                 <div className="over-img-popup">
                                     <div className="d-flex align-items-center mb-3">
-                                        <h5 className='name-age'>{}John doe, 36</h5>
-                                        <img src="./assets/img/male.png" alt="" className='ml-3' />
+                                        <h5 className='name-age'>{getProfileData.name}, {moment().diff(moment(getProfileData.dob, 'YYYY-MM-DD'), 'years')}</h5>
+                                        {getProfileData.gender === "male" ? <img src="./assets/img/male.png" alt="" className='ml-3' /> : <img src="./assets/img/female.png" alt="" className='ml-3' />}
                                     </div>
-                                    <p>USA, San Francisco Bay Area | Religion: <span> Catholic </span></p>
-                                    <p className='about-mi'>Hi I’m John, I’m a single father of 3 and I love camping, being outdoors and overall nature. I also have 2 dogs!</p>
+                                    <p>{getProfileData.address} | Religion: <span> Catholic </span></p>
+                                    <p className='about-mi'>{getProfileData.short_bio}</p>
                                 </div>
                             </Col>
                         </Row>
@@ -127,50 +164,45 @@ const ShowProfile = () => {
             <Container>
                 <div className="over-img-div">
                     <div className="verified-picture">
-                        <img src="./assets/img/poltgon-group.png" alt="" />
-                        <p>Verified picture</p>
+                        {getProfileData.is_verify === "1" ? <><img src="./assets/img/poltgon-group.png" alt="" /><p>Verified picture</p></> : ''}
                     </div>
                     <div className="over-img-popup">
-                        <p>USA, San Francisco Bay Area | Religion: <span> Catholic </span></p>
+                        <p>{getProfileData.address} | Religion: <span> Catholic </span></p>
                         <div className="d-flex align-items-center mb-3">
-                            <h5 className='name-age'>John doe, 36</h5>
+                            <h5 className='name-age'>{getProfileData.name}, {moment().diff(moment(getProfileData.dob, 'YYYY-MM-DD'), 'years')}</h5>
                             <img src="./assets/img/male.png" alt="" className='ml-3' />
                         </div>
-                        <p className='about-mi'>Hi I’m John, I’m a single father of 3 and I love camping, being outdoors and overall nature. I also have 2 dogs!</p>
+                        <p className='about-mi'>{getProfileData.short_bio}</p>
                     </div>
                 </div>
             </Container>
             <Container>
                 <div className="profile-accordion">
                     <Accordion defaultActiveKey="0">
-                        {accordion.map((item, i) => (
+                        {accordion.map((item, i) =>(
                             <Accordion.Item eventKey={i.toString()}>
-                                <Accordion.Header>{item.Header}</Accordion.Header>
-                                <Accordion.Body>
-                                    {item.Body}
-                                </Accordion.Body>
-                            </Accordion.Item>
+                            <Accordion.Header>{item.Header}</Accordion.Header>
+                            <Accordion.Body>
+                                {item.Body}
+                            </Accordion.Body>
+                        </Accordion.Item>
                         ))}
                     </Accordion>
                     <div className="personal-details">
                         <h2>Personal</h2>
-                        {personal.map((item) => (
-                            <div className='d-flex mt-2'>
-                                <p>{item.label}</p>
-                                <span className='ml-2'>{item.detail}</span>
-                            </div>
-                        ))}
+                        {personal.map((item) => {
+                            if (item.detail !== "") {
+                                return <div className='d-flex mt-2'>
+                                    <p>{item.label}</p>
+                                    <span className='ml-2'>{item.detail}</span>
+                                </div>
+                            }
+                        }
+                        )}
                     </div>
                     <div className="fun-facts">
                         <h2>Fun facts</h2>
-                        <div className="d-flex mt-2">
-                            <p>#1</p>
-                            <span className='ml-2'>I always sneeze 3 times in a row!</span>
-                        </div>
-                        <div className="d-flex mt-2">
-                            <p>#2</p>
-                            <span className='ml-2'>I tend to say “Ahem” a lot after my sentences.</span>
-                        </div>
+                        {getProfileData.funfacts !== "" && getProfileData.funfacts}
                     </div>
                 </div>
             </Container>

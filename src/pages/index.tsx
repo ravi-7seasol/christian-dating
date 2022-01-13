@@ -14,12 +14,13 @@ import SuccessStories from "./success-stories/SuccessStories";
 import { useEffect } from "react";
 import AuthStorage from "../helper/AuthStorage";
 import ForgotPassword from "./forgotpassword/ForgotPassword";
+import EditProfile from '../pages/profile/components/EditProfile'
 
 const Index = () => {
   const loction = useLocation()
   const navigate = useNavigate()
   const forLayout = ["/", "/signup", "/profile","/forgot-password"]
-  const forAuthLayout = ["/show-profile", "/inbox", "/match_or_message", "/community", "/success_stories"]
+  const forAuthLayout = ["/show-profile", "/inbox", "/match_or_message", "/community", "/success_stories", "/edit-profile"]
 
   // const dispatch = useDispatch();
   useEffect(() => {
@@ -64,6 +65,7 @@ const Index = () => {
             <Route path="/inbox" element={<Inbox />} />
             <Route path="/show-profile" element={<ShowProfile />} />
             <Route path="/success_stories" element={<SuccessStories />} />
+            <Route path="/edit-profile" element={<EditProfile />} />
           </Routes>
         </AuthLayout>
       )}
