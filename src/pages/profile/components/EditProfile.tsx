@@ -306,7 +306,7 @@ const ShowProfile = () => {
                     </div>
                     <div className="over-img-popup">
                         <p>
-                            <InputField
+                            Address : <InputField
                                 name="address"
                                 maxLength={undefined}
                                 value={editProfileData.address}
@@ -321,10 +321,11 @@ const ShowProfile = () => {
                                 type="text"
                                 fromrowStyleclass=""
                             />
-                            | Religion: <span> Catholic </span></p>
+                            | Religion: <ReactSelect placeholder="Choose Religion" options={options} onChange={(e: any) => setEditProfileData({ ...editProfileData, religion: e.value })} value={selectValue(editProfileData.religion, "religion")} />
+                        </p>
                         <div className="d-flex align-items-center mb-3">
                             <h5 className='name-age'>
-                                <InputField
+                                Name : <InputField
                                     name="firstname"
                                     maxLength={undefined}
                                     value={editProfileData.firstname}
@@ -339,7 +340,7 @@ const ShowProfile = () => {
                                     type="text"
                                     fromrowStyleclass=""
                                 />
-                                <InputField
+                                DOB : <InputField
                                     name="dob"
                                     maxLength={undefined}
                                     value={editProfileData.dob}
@@ -367,7 +368,7 @@ const ShowProfile = () => {
                             </div>
                         </div>
                         <p className='about-mi'>
-                            <InputField
+                            Short Bio : <InputField
                                 name="short_bio"
                                 maxLength={undefined}
                                 value={editProfileData.short_bio}
