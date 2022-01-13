@@ -55,7 +55,7 @@ const ShowProfile = () => {
         token: "",
     })
     const [funFacts, setFunFacts] = useState([{
-        value: "1"
+        value: ""
     }])
 
     const incrementBtn = () => {

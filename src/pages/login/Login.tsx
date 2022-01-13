@@ -22,15 +22,6 @@ const Login = () => {
   })
   const [rememberMe, setRememberMe] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [userLoginData, setUserLoginData] = useState({
-    email: "",
-    image: "",
-    msg: "",
-    status: "",
-    user_id: "",
-    username: ""
-  })
-
 
   const onInputValueChange = (e: any) => {
     setLoginData({
@@ -41,7 +32,6 @@ const Login = () => {
       setRememberMe(e.target.checked);
     }
   }
-
 
   useEffect(() => {
     const email = AuthStorage.getStorageData(STORAGEKEY.email);
@@ -54,33 +44,25 @@ const Login = () => {
     const body = xwwwFormUrlencoded(loginData);
     ApiPost('loginuser', body)
       .then((res: any) => {
-
         if (rememberMe) {
           AuthStorage.setStorageData(STORAGEKEY.email, loginData.email, rememberMe);
         }
         if (res) {
           AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
           setErrorMsg(res.msg);
-          setUserLoginData({ ...userLoginData, email: res.email, image: res.image, msg: res.msg, status: res.status, user_id: res.user_id, username: res.username });
         }
-
+        let newData = res
+        delete newData.token
+        delete newData.msg
+        AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
         if (res.status === "true") {
           navigate("/show-profile");
         }
       }).catch((error) => {
         console.log(error);
-
       })
-
   }
-  useEffect(() => {
-    if (userLoginData.email !== "" && userLoginData.image !== "", userLoginData.msg !== "", userLoginData.status !== "", userLoginData.user_id !== "", userLoginData.username !== "") {
-      AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(userLoginData), true)
-    }
-  }, [userLoginData])
-
-
-
+    
   return (
     <div className="d-flex justify-content-center align-items-center main-page" style={{ height: "100vh" }}>
       <Container>

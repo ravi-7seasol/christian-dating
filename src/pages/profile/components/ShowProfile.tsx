@@ -54,6 +54,18 @@ const ShowProfile = () => {
     })
 
     const navigate = useNavigate()
+
+    const [id, setId] = useState<any>(0)
+
+    const handleid =(i:any)=>{
+        if(id===i){
+            setId(undefined)
+        }else{
+
+            setId(i) 
+        }
+    }
+    
     const handleRedirect = () => {
         navigate("/match_or_message")
     }
@@ -181,7 +193,8 @@ const ShowProfile = () => {
                     <Accordion defaultActiveKey="0">
                         {accordion.map((item, i) =>(
                             <Accordion.Item eventKey={i.toString()}>
-                            <Accordion.Header>{item.Header}</Accordion.Header>
+                            <Accordion.Header onClick={()=>handleid(i)}>{item.Header}
+                            <img src="./assets/img/down-arrow.png" alt="" width="2%" className={`${id === i && 'rotate-img'}`}/></Accordion.Header>
                             <Accordion.Body>
                                 {item.Body}
                             </Accordion.Body>

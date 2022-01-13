@@ -2,15 +2,21 @@ import { useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import AuthStorage from "../../helper/AuthStorage";
 
 const AuthHeader: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [showProfile, setShowProfile] = useState(false);
-  const handleRedirect = () => {
-    navigate("/show-profile");
+  const openMenu = () => {
     setShowProfile(!showProfile);
   };
+  const handleRedirect = () => {
+    navigate("/show-profile");
+  };
+  const logOut = () => {
+    AuthStorage.deauthenticateUser()
+  }
   return (
     <>
       {/* <div className="small-header">
@@ -56,7 +62,7 @@ const AuthHeader: React.FC = () => {
                 <img
                   src="./assets/img/Ellipse.png"
                   alt=""
-                  onClick={handleRedirect}
+                  onClick={openMenu}
                 />
                 <div className="notification"></div>
                 {showProfile && (
@@ -66,10 +72,10 @@ const AuthHeader: React.FC = () => {
                         <Link to="/edit-profile">Edit Profile</Link>
                       </li>
                       <li>
-                        <Link to="">My Profile</Link>
+                        <Link to="/profile">My Profile</Link>
                       </li>
                       <li>
-                        <Link to="">logout</Link>
+                        <Link onClick={logOut} to={""}>logout</Link>
                       </li>
                     </ul>
                   </div>
