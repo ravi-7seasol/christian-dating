@@ -1,18 +1,76 @@
-import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Buttons from "../../components/Buttons";
 import InputField from "../../components/Inputfield";
+import { ApiPost } from "../../helper/API/ApiData";
+import { xwwwFormUrlencoded } from "../../helper/utils";
 import Header from "../../layouts/header/Header";
 
 const ForgotPassword = () => {
+
+  const [emailData, setEmailData] = useState({
+    email: "",
+  });
+  const [successMsg, setSuccessMsg] = useState("");
+  const [formErrors, setFormErrors] = useState<any>()
+
+  const onInputValueChange = (e: any) => {
+    setEmailData({
+      ...emailData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const validation = () => {
+    let flag = false
+    const error: any = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailData.email) {
+      error.email = "Please Enter Email ";
+      flag = true
+    } else if (!emailData.email.match(regex)) {
+      error.email = "Enter Valid Email";
+      flag = true
+    }
+
+    setFormErrors(error)
+
+    return flag;
+  }
+
+
+
+  const forgotPassword = () => {
+    if (validation()) {
+      return
+    }
+
+
+    const body = xwwwFormUrlencoded(emailData);
+    ApiPost('forgotpassword', body)
+      .then((res: any) => {
+        console.log("RES", res);
+        if (res.status === "true") {
+          setSuccessMsg(res.msg);
+          setFormErrors("")
+        }
+
+
+      }).catch((error) => {
+        console.log(error);
+
+      })
+
+
+  }
   return (
     <>
       <div
         className="d-flex justify-content-center align-items-center main-page"
-        style={{ height: "100vh" }} 
+        style={{ height: "100vh" }}
       >
         <Container>
           <div className="login-card">
@@ -23,26 +81,31 @@ const ForgotPassword = () => {
                 <InputField
                   name="email"
                   maxLength={undefined}
-                  value=""
+                  value={emailData.email}
                   lablestyleClass="login-label"
                   InputstyleClass="login-input"
-                  onChange={(e: any) => {}}
+                  onChange={(e: any) => { onInputValueChange(e) }}
                   disabled={false}
                   label="Email address"
                   placeholder="email@example.com"
                   type="email"
                   fromrowStyleclass=""
                 />
-                <label className="ErrMsg" htmlFor="error">
-                  {" "}
-                  <FontAwesomeIcon icon={faTimesCircle} /> Email or password
-                  wrong
-                </label>
+
+                <br />
+                {
+                  successMsg && < label className="SuccessMsg"><FontAwesomeIcon icon={faCheckCircle} /> {successMsg}</label>
+                }
+                {
+                  formErrors?.email !== undefined && < label className="ErrMsg"><FontAwesomeIcon icon={faTimesCircle} /> {formErrors.email}</label>
+                }
+
+
 
                 <div style={{ marginTop: "9rem" }}>
                   <Buttons
                     children="Log in"
-                    onClick={() => {}}
+                    onClick={() => { forgotPassword() }}
                     ButtonStyle="login-btn"
                     disabled={false}
                   />
