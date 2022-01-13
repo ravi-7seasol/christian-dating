@@ -14,6 +14,7 @@ import { xwwwFormUrlencoded } from "../../helper/utils";
 import { ApiPost } from "../../helper/API/ApiData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 
 const GoogleAppId =
@@ -58,7 +59,7 @@ const Signup = () => {
     return error;
   }
 
-const goToProfileSetting = () => {
+  const goToProfileSetting = () => {
 
     setFormErrors(validation(signupData));
     if (formErrors && Object.keys(formErrors).length === 0) {
@@ -176,6 +177,10 @@ const goToProfileSetting = () => {
                   {formErrors?.confirm_password !== undefined && < label className="ErrMsg" htmlFor="error"> <FontAwesomeIcon icon={faTimesCircle} />{formErrors.confirm_password}</label>}
 
 
+                </div>
+                <div className="Terms-of-use">
+                  <p><Link to="/terms-of-use?from=signup" className="forgot-password">Terms of use</Link></p>
+                  <p><Link to="/privacy-policy?from=signup" className="forgot-password">Privacy Policy</Link></p>
                 </div>
 
                 <div style={{ marginTop: "3rem" }}>

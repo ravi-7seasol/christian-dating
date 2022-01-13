@@ -234,6 +234,10 @@
     font-size: 12px;
 }
 
+.rotate-img{
+    transform: rotate(180deg);
+}
+
 .name-age {
     text-align: left;
     font: normal normal bold 16px/31px Poppins;
@@ -274,6 +278,10 @@
     font-size: 18px;
     padding: 0px;
     width: 100%;
+}
+
+.accordion-header button img{
+    float: right;
 }
 
 .accordion-body {
@@ -710,11 +718,29 @@
 
 }
 
+/* ======================================>Terms_of_use<====================================== */
+
+.Terms-of-use{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 35px;
+}
+
+.Terms{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
 /* ======================================>Max-Width:574px<====================================== */
 
 
 
 @media (max-width: 574px) {
+
+    .login h2{
+        font-size: 30px;
+    }
 
 
     /* ======================================>Profile<====================================== */

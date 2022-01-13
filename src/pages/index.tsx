@@ -11,10 +11,12 @@ import ShowProfile from "./profile/components/ShowProfile";
 import MatchOrMessage from "./match-or-message/MatchOrMessage";
 import Community from "./community/Community";
 import SuccessStories from "./success-stories/SuccessStories";
+import Terms_of_use from "./terms-of-use/Terms_of_use";
+import Privacy_Policy from "./privacy-policy/Privacy_Policy";
 
 const Index = () => {
   const loction = useLocation()
-  const forLayout = ["/", "/signup", "/profile"]
+  const forLayout = ["/", "/signup", "/profile", "/terms-of-use", "/privacy-policy"]
   const forAuthLayout = ["/show-profile", "/inbox", "/match_or_message", "/community", "/success_stories"]
 
   // const dispatch = useDispatch();
@@ -41,6 +43,8 @@ const Index = () => {
             <Route path="/" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/terms-of-use" element={<Terms_of_use />} />
+            <Route path="/privacy-policy" element={<Privacy_Policy />} />
           </Routes>
         </Layout>
       )}
