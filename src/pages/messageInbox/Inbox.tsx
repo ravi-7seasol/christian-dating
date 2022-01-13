@@ -7,7 +7,9 @@ import "./inbox.css";
 const Inbox = () => {
   const { innerWidth: width, innerHeight: height } = window;
   console.log("width", width);
-  const [ openGift, setOpenGift ] = useState(false)
+  const [openGift, setOpenGift] = useState(false);
+
+ 
 
   return (
     <>
@@ -255,7 +257,12 @@ const Inbox = () => {
                 )}
               </div>
               <div className="text-grid px-3">
-                <div style={{display:"grid", gridTemplateRows:"repeat(auto, 100px)"}}>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateRows: "repeat(auto, 100px)",
+                  }}
+                >
                   <div>
                     <h3 className="first-text">
                       Hey! I really like your profile and I think we could match
@@ -301,20 +308,34 @@ const Inbox = () => {
               <div className="input-area px-3">
                 <div>
                   <div className="choose-picture">
-                    <img src="./assets/img/picture-one (1).png" />
+                    <label htmlFor="inputFile">
+                      <img src="./assets/img/picture-one (1).png" />
+                    </label>
+
+                    <input
+                      className="input-choose-file"
+                      id="inputFile"
+                      type="file"
+                      style={{ display: "none" }}
+                    />
                   </div>
                 </div>
                 <div>
                   <div className="send-gift">
-                    <img src="./assets/img/gift (1).png" onClick={()=>setOpenGift(!openGift)} />
-                   {openGift && <div className="gifts">
-                    <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
-                    <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
-                    <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
-                    <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
-                    <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
-                    <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />                      
-                    </div>}
+                    <img
+                      src="./assets/img/gift (1).png"
+                      onClick={() => setOpenGift(!openGift)}
+                    />
+                    {openGift && (
+                      <div className="gifts">
+                        <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
+                        <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
+                        <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
+                        <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
+                        <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
+                        <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="input-chat">
@@ -333,8 +354,8 @@ const Inbox = () => {
                     type="text"
                     fromrowStyleclass=""
                   /> */}
-                  <InpEmoji/>
-                 
+                  <InpEmoji />
+
                   {/* <div className="emoji-img">
                     <img src="./assets/img/grinning-face (1).png" />
                   </div> */}

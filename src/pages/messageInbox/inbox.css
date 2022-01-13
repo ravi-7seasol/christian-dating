@@ -5,7 +5,9 @@
 }
 .inbox-main .input-area .send-gift{
   position: relative;
+  cursor: pointer;
 }
+
 .inbox-main .input-area .send-gift .gifts{
   position: absolute;
   top: -110px;
@@ -13,12 +15,13 @@
   width: 200px;
   height: 100px;
   box-shadow: 5px 3px 10px rgba(0, 0, 0, 0.3);
-  z-index: 5556666999999999999999;
+  z-index: 555 !important;
   border-radius: 5px;
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
   column-gap: 5px;
+  background: #ffffff;
 }
 .inbox-main .input-area .send-gift .gifts img{
   width: 40px;
@@ -350,11 +353,17 @@
 }
 
 @media (min-width: 320px) and (max-width: 768px) {
+  .emoji-mart {
+    width: 97% !important;
+  }
+  .react-emoji-picker--wrapper {
+    width: 282px;
+  }
   ::-webkit-scrollbar {
     display: none;
   }
   .inbox-main {
-      height: calc(100vh - 55px);
+      height: calc(100vh - 59px);
   }
   .inbox-main .inbox-profile-img {
     display: flex;
