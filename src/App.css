@@ -8,10 +8,10 @@ body {
 /* .inbox-main .Conversation-starters .text-grid::-webkit-scrollbar{
   width: 10px !important;
 } */
-.css-dq1sse-MenuList::-webkit-scrollbar{
+.css-dq1sse-MenuList::-webkit-scrollbar {
   display: none !important;
 }
-.layout-padding::-webkit-scrollbar{
+.layout-padding::-webkit-scrollbar {
   display: none !important;
 }
 
@@ -47,7 +47,6 @@ body {
   overflow-y: auto !important;
   overflow-x: hidden;
   height: 100vh !important;
-  
 }
 
 .login-header {
@@ -326,6 +325,10 @@ figure {
   color: #ff4757;
   font-size: 14px;
 }
+.SuccessMsg {
+  color: #05c105;
+  font-size: 14px;
+}
 .header .steps {
   display: flex;
   column-gap: 5px;
@@ -429,7 +432,7 @@ figure {
   padding: 5px;
   outline: none !important;
 }
-.textarea textarea::-webkit-scrollbar{
+.textarea textarea::-webkit-scrollbar {
   display: none;
 }
 .setProfileImage .guidelines {
@@ -574,17 +577,17 @@ input[type="date"]:before {
   margin-top: 50px;
 }
 /* @media (min-width: 200px) and (max-width: 768px) { */
-  @media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px) {
   /* ========== login page css start =========== */
-  .main-page{
+  .main-page {
     height: unset !important;
     padding-top: 40px;
     overflow: hidden;
   }
-  .profile-header-baloon{
-      height: 12vh;
-      left: 0;
-      padding: 37px 0 0 22px;
+  .profile-header-baloon {
+    height: 12vh;
+    left: 0;
+    padding: 37px 0 0 22px;
   }
   .layout-padding {
     padding: 30px 30px 0 30px;
@@ -664,7 +667,7 @@ input[type="date"]:before {
   }
   .slector select::before {
     display: none;
-  } 
+  }
   .reactSelector .css-1okebmr-indicatorSeparator {
     display: none;
   }
@@ -695,7 +698,7 @@ input[type="date"]:before {
   }
   .reactSelector .css-yt9ioa-option:last-child {
     border: none !important;
-  } 
+  }
   .take-picture {
     width: 190px;
     height: 190px;
@@ -755,7 +758,7 @@ input[type="date"]:before {
   .signup-with-social::before {
     width: 15%;
   }
-  .forgot-password-text{
+  .forgot-password-text {
     font-size: 25px !important;
   }
 }
@@ -787,7 +790,7 @@ input[type="date"]:before {
   .signup-with-social::before {
     width: 6%;
   }
-  
+
   .login .login-label {
     font: normal normal normal 14px/23px Poppins;
   }
