@@ -11,11 +11,12 @@ import ShowProfile from "./profile/components/ShowProfile";
 import MatchOrMessage from "./match-or-message/MatchOrMessage";
 import Community from "./community/Community";
 import SuccessStories from "./success-stories/SuccessStories";
-
+import EditProfile from './profile/components/EditProfile';
+ 
 const Index = () => {
   const loction = useLocation()
   const forLayout = ["/", "/signup", "/profile"]
-  const forAuthLayout = ["/show-profile", "/inbox", "/match_or_message", "/community", "/success_stories"]
+  const forAuthLayout = ["/show-profile", "/inbox", "/match_or_message", "/community", "/success_stories", "/edit-profile"]
 
   // const dispatch = useDispatch();
   // useEffect(() => {
@@ -53,6 +54,7 @@ const Index = () => {
             <Route path="/inbox" element={<Inbox />} />
             <Route path="/show-profile" element={<ShowProfile />} />
             <Route path="/success_stories" element={<SuccessStories />} />
+            <Route path="/edit-profile" element={<EditProfile />} />
           </Routes>
         </AuthLayout>
       )}

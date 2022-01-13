@@ -63,13 +63,13 @@ const AuthHeader: React.FC = () => {
                   <div className="auth-show-profile">
                     <ul>
                       <li>
-                        <Link to="#/">Edit Profile</Link>
+                        <Link to="/edit-profile">Edit Profile</Link>
                       </li>
                       <li>
-                        <Link to="#/">My Profile</Link>
+                        <Link to="">My Profile</Link>
                       </li>
                       <li>
-                        <Link to="#/">logout</Link>
+                        <Link to="">logout</Link>
                       </li>
                     </ul>
                   </div>
