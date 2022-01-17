@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import InputField from "../../components/Inputfield";
 import InpEmoji from "../../components/InputEmoji";
 import "./inbox.css";
@@ -142,6 +142,7 @@ const Inbox = () => {
     <>
       <div className="inbox-main px-3">
         {/* <div style={{ height:"100vh", overflow:"hidden"}}> */}
+        <Container>
         <Row>
           <Col md={4}>
             <div className="inbox-profile-img">
@@ -370,9 +371,9 @@ const Inbox = () => {
             </div>
           </Col>
           {
-            tog ? <div>
+            tog ? <Col md={8}>
 
-              <Col md={8} className="ps-0 Conversation-starters-scroll">
+              <div className="ps-0 Conversation-starters-scroll">
                 <div className="Conversation-starters" >
                   <div className="bg-white chat-top-header">
                     {width > 767 && (
@@ -399,7 +400,7 @@ const Inbox = () => {
 
                           <div key={i}>
 
-                            <h3 className={data.sender_id !== currentUser ? "first-text" : "first-text-replay"}>
+                            <h3 className={data.sender_id !== currentUser ? "first-text" : "first-text-replay"} key={i}>
                               {data.message}
                             </h3>
                           </div>
@@ -479,14 +480,15 @@ const Inbox = () => {
                     </div>
                   </div>
                 </div>
-              </Col>
+              </div>
               ))
-            </div>
+            </Col>
               : <></>
           }
 
         </Row>
         {/* </div> */}
+        </Container>
       </div>
     </>
   );

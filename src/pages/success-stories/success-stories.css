@@ -17,6 +17,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
 }
 
 .successStories-main .card-main {
@@ -66,6 +67,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
 }
 
 .pop-over {
@@ -81,7 +83,7 @@
   z-index: 1;
   width: 450px;
   justify-content: center;
-  
+
 }
 
 .overlay {
@@ -103,39 +105,39 @@
 
 .successStories-main .post-btn {
   position: fixed;
-  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
-    0% no-repeat padding-box;
-    font-weight: 600;
-    border: none;
-    bottom: 20px;
-    border-radius: 100%;
-    font-size: 30px;
-    width: 54px;
-    right: 20px;
-    box-shadow: none !important;
-}
-.successStories-main .post-btn:active:focus:hover {
-  position: fixed;
-  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
-    0% no-repeat padding-box;
-    font-weight: 600;
-    border: none !important;
-    bottom: 0;
-    border-radius: 100%;
-    font-size: 30px;
-    width: 54px;
-    right: 20px;
-    box-shadow: none !important;
+  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
+  font-weight: 600;
+  border: none;
+  bottom: 20px;
+  border-radius: 100%;
+  font-size: 30px;
+  width: 54px;
+  right: 20px;
+  box-shadow: none !important;
 }
 
-.successStories-main .card-position:last-child{
-  padding-bottom: 50px;
+.successStories-main .post-btn:active:focus:hover {
+  position: fixed;
+  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
+  font-weight: 600;
+  border: none !important;
+  bottom: 0;
+  border-radius: 100%;
+  font-size: 30px;
+  width: 54px;
+  right: 20px;
+  box-shadow: none !important;
 }
+
+/* .successStories-main .card-position:last-child{
+  padding-bottom: 50px;
+} */
 
 @media (max-width: 574px) {
   .successStories-main .top-img .bg-img {
     width: 100%;
     position: relative;
+    height: 25vh;
   }
 
   .successStories-main .top-img .back-img {
@@ -151,12 +153,12 @@
 
   .successStories-main .card-main {
     padding: 10px !important;
-    margin: 0 30px !important;
+    margin: 0 0px !important;
     background: #ffffff 0% 0% no-repeat padding-box !important;
     box-shadow: 0px 3px 6px #00000029 !important;
     border-radius: 10px !important;
     margin-bottom: 20px !important;
-    width: fit-content !important;
+    width: 280px !important;
   }
 
   .successStories-main .person-name {
@@ -206,7 +208,7 @@
     font: normal normal normal 10px/16px Poppins !important;
     top: 130px !important;
     z-index: 1 !important;
-    width: auto !important;
+    width: 300px !important;
   }
 
   .overlay {
@@ -233,14 +235,15 @@
     left: 0;
   }
 
+  /* 
   .successStories-main .card-position {
     position: absolute !important;
     top: 222px !important;
-  }
+  } */
 
   .successStories-main .card-main {
     padding: 10px;
-    width: auto !important;
+    width: 300px !important;
     margin: 0 30px !important;
     background: #ffffff 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
@@ -321,14 +324,14 @@
     left: 0;
   }
 
-  .successStories-main .card-position {
+  /* .successStories-main .card-position {
     position: absolute;
     top: 200px !important;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /* width: 1140px; */
-  }
+    width: 1140px;
+  } */
 
   .successStories-main .card-main {
     padding: 10px;
@@ -418,14 +421,14 @@
     left: 0;
   }
 
-  .successStories-main .card-position {
+  /* .successStories-main .card-position {
     position: absolute;
     top: 250px !important;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /* width: 1140px; */
-  }
+    width: 1140px;
+  } */
 
   .successStories-main .card-main {
     padding: 10px;
@@ -503,19 +506,19 @@
   }
 }
 
-.add-post-model-footer{
+.add-post-model-footer {
   border-top: none !important;
 }
-.add-post-model-header{
+
+.add-post-model-header {
   border-bottom: none !important;
 }
 
-.add-post-model-body{
-  border: 1px solid #e3e3e3 !important; 
+.add-post-model-body {
+  border: 1px solid #e3e3e3 !important;
 }
 
-.add-post-model-body:focus{
+.add-post-model-body:focus {
   border: 1px solid #e3e3e3 !important;
   outline: none !important;
 }
-

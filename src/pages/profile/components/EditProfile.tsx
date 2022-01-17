@@ -261,7 +261,7 @@ const ShowProfile = () => {
                                                 }}
                                                 disabled={false}
                                                 label="First Name :"
-                                                placeholder="John"
+                                                placeholder="Enter first name"
                                                 type="text"
                                                 fromrowStyleclass=""
                                             />
@@ -276,7 +276,7 @@ const ShowProfile = () => {
                                                 }}
                                                 disabled={false}
                                                 label="LastName :"
-                                                placeholder="deo"
+                                                placeholder="Enter last name"
                                                 type="text"
                                                 fromrowStyleclass=""
                                             />
