@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputEmoji from "react-input-emoji";
+import Message from "./Message";
 
-const InpEmoji = ({getMData}) => {
+const InpEmoji = (props) => {
   const [text, setText] = useState("");
-  function handleOnEnter (text) {
-    console.log('enter', text)
+  function handleOnEnter(text) {
+    props.getMData(text);
   }
+
   return (
     <>
       <InputEmoji

@@ -7,15 +7,21 @@ import STORAGEKEY from "../../config/APP/app.config";
 import AuthStorage from "../../helper/AuthStorage";
 import { xwwwFormUrlencoded } from "../../helper/utils";
 import { ApiPost } from "../../helper/API/ApiData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 const Inbox = () => {
   const { innerWidth: width, innerHeight: height } = window;
-  console.log("width", width);
   const [openGift, setOpenGift] = useState(false);
   const [selectedID, setSelectedID] = useState("");
   const [tog, setTog] = useState(false);
   const [selectedData, setSelectedData] = useState<any>();
-  const [messageData, setMessageData] = useState("");
+  const [messageData, setMessageData] = useState<any>("");
+  const [chatList, setChatList] = useState<any>();
+  const [chatData, setChatData] = useState<any>();
+  const [currentUser, setCurrentUser] = useState<any>();
+  const [gif, setGif] = useState<any>();
+  const [gifTog, setGifTog] = useState(false)
 
 
   useEffect(() => {
@@ -29,92 +35,72 @@ const Inbox = () => {
 
     ApiPost('getchatlist', body)
       .then((res: any) => {
-        console.log(res)
+        setChatList(res);
+
       }).catch((error) => {
         console.log(error);
 
       })
   }, [])
-  const chatList = {
-    total_unread_message: "5",
-    chats: [{
-      participant_id: 1,
-      participant_name: "raju",
-      participant_image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mirchiplay.com%2Fhumour%2F9-phir-hera-pheri-memes-more-deadly-than-covid-19%2F&psig=AOvVaw3c40q94Z2AWvG1phiKK0Dw&ust=1642150616744000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCKCP3_KtrvUCFQAAAAAdAAAAABAD"
-    },
-    {
-      participant_id: 2,
-      participant_name: "kaju",
-      participant_image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fallmemetemplates.wordpress.com%2F2020%2F07%2F20%2Fdeewane-huye-paagal-meme-templates%2F&psig=AOvVaw3DtSLjK-fEVY6GQYBWpZFs&ust=1642150720456000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCMCn9aOurvUCFQAAAAAdAAAAABAM"
+
+  const gifList = {
+    gif: [{
+      id: 1,
+      src: "https://tenor.com/view/tu-samjha-nhi-tu-nhi-smajha-akshay-kumar-akshay-kumar-in-car-gif-23496568.gif"
     }, {
-      participant_id: 3,
-      participant_name: "baju",
-      participant_image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fallmemetemplates.wordpress.com%2F2020%2F07%2F20%2Fdeewane-huye-paagal-meme-templates%2F&psig=AOvVaw3DtSLjK-fEVY6GQYBWpZFs&ust=1642150720456000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCMCn9aOurvUCFQAAAAAdAAAAABAR"
+      id: 2,
+      src: "https://tenor.com/view/sunda-ko-aa-mast-naha-dho-ke-aa-paresh-rawal-baburao-hera-pheri-gif-21333158.gif"
+    }, {
+      id: 3,
+      src: "https://tenor.com/view/sabbir31x-khopdi-tod-sale-ka-hera-pheri-khopdi-tod-sale-ka-gif-15736102.gif"
+    }, {
+      id: 4,
+      src: "https://tenor.com/view/akshay-kumar-50rupaya-kat-overacting-hera-pheri-baburao-bollywood-gif-15503267.gif"
+    }, {
+      id: 5,
+      src: "https://tenor.com/view/has-re-halkat-has-hera-pheri-lol-laugh-akshay-kumar-gif-17189201.gif"
     }]
-
   }
-  const chat = {
-    chats: [
-      {
-        participant_id: 1,
-        participant_name: "raju",
-        participant_image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mirchiplay.com%2Fhumour%2F9-phir-hera-pheri-memes-more-deadly-than-covid-19%2F&psig=AOvVaw3c40q94Z2AWvG1phiKK0Dw&ust=1642150616744000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCKCP3_KtrvUCFQAAAAAdAAAAABAD",
-        message: "Hello From the raju",
-        send_or_receive: "send"
-      },
-      {
-        participant_id: 1,
-        participant_name: "raju",
-        participant_image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mirchiplay.com%2Fhumour%2F9-phir-hera-pheri-memes-more-deadly-than-covid-19%2F&psig=AOvVaw3c40q94Z2AWvG1phiKK0Dw&ust=1642150616744000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCKCP3_KtrvUCFQAAAAAdAAAAABAD",
-        message: "Hello From the raju Hello From the raju Hello From the raju Hello From the raju Hello From the raju",
-        send_or_receive: "receive"
-      },
-      {
-        participant_id: 1,
-        participant_name: "raju",
-        participant_image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mirchiplay.com%2Fhumour%2F9-phir-hera-pheri-memes-more-deadly-than-covid-19%2F&psig=AOvVaw3c40q94Z2AWvG1phiKK0Dw&ust=1642150616744000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCKCP3_KtrvUCFQAAAAAdAAAAABAD",
-        message: "Hello From the raju",
-        send_or_receive: "receive"
-      },
-      {
-        participant_id: 1,
-        participant_name: "raju",
-        participant_image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mirchiplay.com%2Fhumour%2F9-phir-hera-pheri-memes-more-deadly-than-covid-19%2F&psig=AOvVaw3c40q94Z2AWvG1phiKK0Dw&ust=1642150616744000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCKCP3_KtrvUCFQAAAAAdAAAAABAD",
-        message: "Hello From the raju",
-        send_or_receive: "send"
-      },
-      {
-        participant_id: 2,
-        participant_name: "kaju",
-        participant_image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fallmemetemplates.wordpress.com%2F2020%2F07%2F20%2Fdeewane-huye-paagal-meme-templates%2F&psig=AOvVaw3DtSLjK-fEVY6GQYBWpZFs&ust=1642150720456000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCMCn9aOurvUCFQAAAAAdAAAAABAM",
-        message: "Hello From the kaju",
-        send_or_receive: "receive"
-      }, {
-        participant_id: 3,
-        participant_name: "baju",
-        participant_image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fallmemetemplates.wordpress.com%2F2020%2F07%2F20%2Fdeewane-huye-paagal-meme-templates%2F&psig=AOvVaw3DtSLjK-fEVY6GQYBWpZFs&ust=1642150720456000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCMCn9aOurvUCFQAAAAAdAAAAABAR",
-        message: "Hello from the baju ",
-        send_or_receive: "receive"
-      }
-    ]
-  }
-  const messageOpen = (item: any) => {
 
-    setSelectedID(item.participant_id);
-    setTog(true);
-    setSelectedData(item);
+  const getChat = () => {
     const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
 
     const getChatData = {
       token: tokenID,
-      participant_id: item.participant_id,
+      participant_id: selectedID,
     }
 
     const body = xwwwFormUrlencoded(getChatData);
 
     ApiPost('getchat', body)
       .then((res: any) => {
-        console.log(res)
+        setChatData(res)
+        setCurrentUser(res.current_user);
+      }).catch((error) => {
+        console.log(error);
+
+      })
+  }
+
+
+  const messageOpen = (item: any) => {
+
+    setSelectedID(item.receiver_id);
+    setTog(true);
+    setSelectedData(item);
+    const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
+
+    const getChatData = {
+      token: tokenID,
+      participant_id: item.receiver_id,
+    }
+
+    const body = xwwwFormUrlencoded(getChatData);
+
+    ApiPost('getchat', body)
+      .then((res: any) => {
+        setChatData(res)
+        setCurrentUser(res.current_user);
       }).catch((error) => {
         console.log(error);
 
@@ -122,12 +108,35 @@ const Inbox = () => {
 
   }
   const getMessageData = (message: string) => {
-    setMessageData(message);
+    if (message !== "") {
+      setMessageData(message);
+      const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
+      const sendMessage = {
+        token: tokenID,
+        participant_id: parseInt(selectedID),
+        message: message
+      }
+      const body = xwwwFormUrlencoded(sendMessage);
+      ApiPost('sendmessage', body)
+        .then((res: any) => {
+          getChat();
+        }).catch((error) => {
+          console.log(error);
+
+        })
+    }
+
+  }
+  const openGif = (item: any) => {
+    setGif(item);
+    setOpenGift(false);
+    setGifTog(true);
+  }
+  const closeGif = () => {
+    setGifTog(false);
   }
 
-  useEffect(() => {
-    console.log("messageData", messageData);
-  }, [messageData])
+
 
   return (
     <>
@@ -158,14 +167,14 @@ const Inbox = () => {
               <div className="messages">
                 <div className="messages-content">
                   <img src="./assets/img/messenger.png" />
-                  <div className="messages-notification">{chatList.total_unread_message}</div>
+                  <div className="messages-notification">{chatList?.total_unread_message}</div>
                 </div>
                 <div>
                   <h3 className="Messages-text">Messages</h3>
                 </div>
               </div>
               {
-                chatList.chats.map((data: any, i: number) => (
+                chatList?.chat.map((data: any, i: number) => (
                   <div className="messages" key={i} onClick={() => { messageOpen(data) }}>
                     <div className="chat-profile-img-main">
                       <img
@@ -175,7 +184,7 @@ const Inbox = () => {
                       <div className="online"></div>
                     </div>
                     <div className="chat-messages">
-                      <h4>{data.participant_name}</h4>
+                      <h4>{data.receiver_name}</h4>
                       <p>
                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                       </p>
@@ -376,7 +385,7 @@ const Inbox = () => {
                           <div className="online"></div>
                         </div>
                         <div className="chat-messages">
-                          <h4>{selectedData?.participant_name}</h4>
+                          <h4>{selectedData.receiver_name}</h4>
                           {/* <h4>Test</h4> */}
                           <h6 className="messages-time">12:15</h6>
                         </div>
@@ -386,19 +395,13 @@ const Inbox = () => {
                   <div className="text-grid px-3">
                     <div style={{ display: "grid", gridTemplateRows: "repeat(auto, 100px)" }}>
                       {
-                        chat.chats.map((data: any, i: number) => (data.participant_id === selectedID &&
+                        chatData?.chat.map((data: any, i: number) => (data.receiver_id === selectedID &&
 
                           <div key={i}>
-                            {data.send_or_receive === "send" &&
-                              <h3 className="first-text">
-                                {data.message}
-                              </h3>
-                            }
-                            {data.send_or_receive === "receive" &&
-                              <h2 className="first-text-replay">
-                                {data.message}
-                              </h2>
-                            }
+
+                            <h3 className={data.sender_id !== currentUser ? "first-text" : "first-text-replay"}>
+                              {data.message}
+                            </h3>
                           </div>
 
                         ))}
@@ -433,6 +436,18 @@ const Inbox = () => {
                           get to know each other?
                         </h2>
                       </div> */}
+                      {
+                        gifTog && <div className="gif-container">
+                          <div className="icon">
+                            <FontAwesomeIcon icon={faTimesCircle} onClick={() => closeGif()} />
+                          </div>
+                          <img src={gif} className="gifbig" ></img>
+
+                          <button className="submit"><FontAwesomeIcon icon={faPaperPlane} /></button>
+
+                        </div>
+                      }
+
                     </div>
                   </div>
                   <div className="input-area px-3">
@@ -445,36 +460,22 @@ const Inbox = () => {
                       <div className="send-gift">
                         <img src="./assets/img/gift (1).png" onClick={() => setOpenGift(!openGift)} />
                         {openGift && <div className="gifts">
+
+                          {/* <img src="https://tenor.com/view/tu-samjha-nhi-tu-nhi-smajha-akshay-kumar-akshay-kumar-in-car-gif-23496568.gif" />
                           <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
                           <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
                           <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
                           <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
-                          <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
-                          <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" />
+                          <img src="https://c.tenor.com/t7aI5VVWTvwAAAAM/gift-christmas-gift.gif" /> */}
+                          {gifList.gif.map((data: any, i: number) => (
+                            <img src={data.src} key={i} onClick={() => { openGif(data.src) }} />
+                          ))}
+
                         </div>}
                       </div>
                     </div>
                     <div className="input-chat">
-                      {/* <InputField
-                    name=""
-                    maxLength={undefined}
-                    value={""}
-                    lablestyleClass=""
-                    InputstyleClass="text-input"
-                    onChange={() => {
-                      ("");
-                    }}
-                    disabled={false}
-                    label=""
-                    placeholder="Enter your message here"
-                    type="text"
-                    fromrowStyleclass=""
-                  /> */}
                       <InpEmoji getMData={getMessageData} />
-
-                      {/* <div className="emoji-img">
-                    <img src="./assets/img/grinning-face (1).png" />
-                  </div> */}
                     </div>
                   </div>
                 </div>
