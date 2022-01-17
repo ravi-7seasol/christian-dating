@@ -22,7 +22,7 @@ const SuccessStories = () => {
     const body = xwwwFormUrlencoded(storySort);
     ApiPost('stories', body)
       .then((res: any) => {
-        setStoriesData(res.story);  
+        setStoriesData(res.story);
       }).catch((error) => {
         console.log(error);
 
@@ -37,8 +37,44 @@ const SuccessStories = () => {
     }
   }
 
+  const dt= 
+   [{
+      id: 1,
+      name: "bhargav",
+      story_desc: "Sab ka malik ak",
+      city: "surat",
+      country: "india"
+
+    }, {
+      id: 2,
+      name: "kemil",
+      story_desc: "ab ki bar modi srakar",
+      city: "surat",
+      country: "india"
+    }, {
+      id: 3,
+      name: "piyush",
+      story_desc: "modi he to munkin he",
+      city: "surat",
+      country: "india"
+    }, {
+      id: 4,
+      name: "jenis",
+      story_desc: "Sab ka malik atm to bade hevy driver ho, bhai",
+      city: "surat",
+      country: "india"
+    }, {
+      id: 5,
+      name: "mitesh",
+      story_desc: "moj kar di mabete vah",
+      city: "surat",
+      country: "india"
+    }]
+  
+
   return (
     <>
+    <div className={selectedID ? "overlay" : ""}></div>
       <div className="successStories-main">
         <div className="top-img">
           <img src="./assets/img/Group28.png" className="bg-img" />
@@ -46,35 +82,37 @@ const SuccessStories = () => {
             <img src="./assets/img/Group 16.png" className="back-img" />
           </Link>
         </div>
-        {/* <Container> */}
-        <div className={selectedID ? "after-over " : "card-position"}>
-          <div className={selectedID ? "overlay" : ""}></div>
+        {/* <Container className="position-relative">  */}
+          <div className={selectedID ? "after-over " : "card-position"}>
+            
 
-          {
-            storiesData?.map((data: any, i) => (
-              <div key={i}
-                className={selectedID === data.id ? "pop-over" : "card-main"}
-                onClick={() => openCard(data)}
-              >
-                <div className="d-flex">
-                  <div>
-                    <img src="./assets/img/Ellipse 22.png" />
-                  </div>
-                  <div className="person-name">
-                    <h5>{data.name}</h5>
-                    <p>{data?.city}, {data?.country}</p>
-                  </div>
+            {/* <div className="d-flex flex-wrap justify-content-center"> */}
+            {
+              dt?.map((data: any, i) => (
+                  <div key={i}
+                    className={selectedID === data.id ? "pop-over" : "card-main"}
+                    onClick={() => openCard(data)}
+                  >
+                    <div className="d-flex">
+                      <div>
+                        <img src="./assets/img/Ellipse 22.png" />
+                      </div>
+                      <div className="person-name">
+                        <h5>{data.name}</h5>
+                        <p>{data?.city}, {data?.country}</p>
+                      </div>
+                    </div>
+                    <div className="card-content">
+                      <p>
+                        {data.story_desc}
+                      </p>
+                    </div>
                 </div>
-                <div className="card-content">
-                  <p>
-                    {data.story_desc}
-                  </p>
-                </div>
-              </div>
-            ))
-          }
+              ))
+            }
+            {/* </div> */}
 
-          {/* <div
+            {/* <div
             className={pop ? "pop-over " : "card-main"}
             onClick={() => setPop(!pop)}
           >
@@ -232,10 +270,10 @@ const SuccessStories = () => {
               </p>
             </div>
            </div> */}
-          <Buttons onClick={() => { setPostData(true) }} ButtonStyle="post-btn">
-            +
-          </Buttons>
-        </div>
+            <Buttons onClick={() => { setPostData(true) }} ButtonStyle="post-btn">
+              +
+            </Buttons>
+          </div>
         {/* </Container> */}
       </div>
 
