@@ -2,133 +2,134 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
+import ImageSwap from '../../components/imageswap/ImageSwap';
 const MatchOrMessage = () => {
-    const settings = {
-        className: "center",
-        centerMode: true,
-        infinite: true,
-        centerPadding: "450px",
-        slidesToShow: 1,
-        slidesToScroll: 2,
-        speed: 500,
-        responsive: [
+    // const settings = {
+    //     className: "center",
+    //     centerMode: true,
+    //     infinite: true,
+    //     centerPadding: "450px",
+    //     slidesToShow: 1,
+    //     slidesToScroll: 2,
+    //     speed: 500,
+    //     responsive: [
 
-            {
-                breakpoint: 1300,
-                settings: {
-                    className: "center",
-                    centerMode: true,
-                    infinite: true,
-                    centerPadding: "390px",
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                }
-            },
-            {
-                breakpoint: 1100,
-                settings: {
-                    className: "center",
-                    centerMode: true,
-                    infinite: true,
-                    centerPadding: "320px",
-                    slidesToShow: 1,
-                    slidesToScroll: 3
-                }
-            },
-            {
-                breakpoint: 870,
-                settings: {
-                    className: "center",
-                    centerMode: true,
-                    infinite: true,
-                    centerPadding: "200px",
-                    slidesToShow: 1,
-                    slidesToScroll: 3
-                }
-            },
-            {
-                breakpoint: 769,
-                settings: {
-                    className: "center",
-                    centerMode: true,
-                    infinite: true,
-                    centerPadding: "160px",
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            },
-            {
-                breakpoint: 550,
-                settings: {
-                    className: "center",
-                    centerMode: true,
-                    infinite: true,
-                    centerPadding: "80px",
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            },
-            {
-                breakpoint: 380,
-                settings: {
-                    className: "center",
-                    centerMode: true,
-                    infinite: true,
-                    centerPadding: "30px",
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
-    };
+    //         {
+    //             breakpoint: 1300,
+    //             settings: {
+    //                 className: "center",
+    //                 centerMode: true,
+    //                 infinite: true,
+    //                 centerPadding: "390px",
+    //                 slidesToShow: 1,
+    //                 slidesToScroll: 1,
+    //             }
+    //         },
+    //         {
+    //             breakpoint: 1100,
+    //             settings: {
+    //                 className: "center",
+    //                 centerMode: true,
+    //                 infinite: true,
+    //                 centerPadding: "320px",
+    //                 slidesToShow: 1,
+    //                 slidesToScroll: 3
+    //             }
+    //         },
+    //         {
+    //             breakpoint: 870,
+    //             settings: {
+    //                 className: "center",
+    //                 centerMode: true,
+    //                 infinite: true,
+    //                 centerPadding: "200px",
+    //                 slidesToShow: 1,
+    //                 slidesToScroll: 3
+    //             }
+    //         },
+    //         {
+    //             breakpoint: 769,
+    //             settings: {
+    //                 className: "center",
+    //                 centerMode: true,
+    //                 infinite: true,
+    //                 centerPadding: "160px",
+    //                 slidesToShow: 1,
+    //                 slidesToScroll: 1
+    //             }
+    //         },
+    //         {
+    //             breakpoint: 550,
+    //             settings: {
+    //                 className: "center",
+    //                 centerMode: true,
+    //                 infinite: true,
+    //                 centerPadding: "80px",
+    //                 slidesToShow: 1,
+    //                 slidesToScroll: 1
+    //             }
+    //         },
+    //         {
+    //             breakpoint: 380,
+    //             settings: {
+    //                 className: "center",
+    //                 centerMode: true,
+    //                 infinite: true,
+    //                 centerPadding: "30px",
+    //                 slidesToShow: 1,
+    //                 slidesToScroll: 1
+    //             }
+    //         }
+    //     ]
+    // };
 
-    const slider = [
-        {
-            img: "./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png",
-            verifiedpic: "./assets/img/poltgon-group.png",
-            verifiedtext: "Verified picture",
-            address: "USA, San Francisco Bay Area | Religion: ",
-            addressspan:"Catholic",
-            name: "John doe, 36",
-            genderimg: "./assets/img/male.png",
-        },
-        {
-            img: "./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png",
-            verifiedpic: "./assets/img/poltgon-group.png",
-            verifiedtext: "Verified picture",
-            address: "USA, San Francisco Bay Area | Religion: ",
-            addressspan:"Catholic",
-            name: "John doe, 36",
-            genderimg: "./assets/img/male.png",
-        },
-        {
-            img: "./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png",
-            verifiedpic: "./assets/img/poltgon-group.png",
-            verifiedtext: "Verified picture",
-            address: "USA, San Francisco Bay Area | Religion: ",
-            addressspan:"Catholic",
-            name: "John doe, 36",
-            genderimg: "./assets/img/male.png",
-        },
-        {
-            img: "./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png",
-            verifiedpic: "./assets/img/poltgon-group.png",
-            verifiedtext: "Verified picture",
-            address: "USA, San Francisco Bay Area | Religion: ",
-            addressspan:"Catholic",
-            name: "John doe, 36",
-            genderimg: "./assets/img/male.png",
-        },
-        {
-            img: "./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png",
-            verifiedpic: "./assets/img/poltgon-group.png",
-            verifiedtext: "Verified picture",
-            address: "USA, San Francisco Bay Area | Religion: ",
-            addressspan:"Catholic",
-            name: "John doe, 36",
-            genderimg: "./assets/img/male.png",
-        },
-    ]
+    // const slider = [
+    //     {
+    //         img: "./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png",
+    //         verifiedpic: "./assets/img/poltgon-group.png",
+    //         verifiedtext: "Verified picture",
+    //         address: "USA, San Francisco Bay Area | Religion: ",
+    //         addressspan:"Catholic",
+    //         name: "John doe, 36",
+    //         genderimg: "./assets/img/male.png",
+    //     },
+    //     {
+    //         img: "./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png",
+    //         verifiedpic: "./assets/img/poltgon-group.png",
+    //         verifiedtext: "Verified picture",
+    //         address: "USA, San Francisco Bay Area | Religion: ",
+    //         addressspan:"Catholic",
+    //         name: "John doe, 36",
+    //         genderimg: "./assets/img/male.png",
+    //     },
+    //     {
+    //         img: "./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png",
+    //         verifiedpic: "./assets/img/poltgon-group.png",
+    //         verifiedtext: "Verified picture",
+    //         address: "USA, San Francisco Bay Area | Religion: ",
+    //         addressspan:"Catholic",
+    //         name: "John doe, 36",
+    //         genderimg: "./assets/img/male.png",
+    //     },
+    //     {
+    //         img: "./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png",
+    //         verifiedpic: "./assets/img/poltgon-group.png",
+    //         verifiedtext: "Verified picture",
+    //         address: "USA, San Francisco Bay Area | Religion: ",
+    //         addressspan:"Catholic",
+    //         name: "John doe, 36",
+    //         genderimg: "./assets/img/male.png",
+    //     },
+    //     {
+    //         img: "./assets/img/valerie-elash-RfoISVdKM4U-unsplash.png",
+    //         verifiedpic: "./assets/img/poltgon-group.png",
+    //         verifiedtext: "Verified picture",
+    //         address: "USA, San Francisco Bay Area | Religion: ",
+    //         addressspan:"Catholic",
+    //         name: "John doe, 36",
+    //         genderimg: "./assets/img/male.png",
+    //     },
+    // ]
 
     return (
         <>
@@ -140,8 +141,8 @@ const MatchOrMessage = () => {
                     <p>Profiles based on preference settings</p>
                 </div>
             </Container>
-            <div className="slider pt-5">
-                <Slider {...settings}>
+            {/* <div className="slider pt-5"> */}
+                {/* <Slider {...settings}>
                     {slider.map((item) => (
                         <div className='slider-card'>
                             <img src={item.img} width="100%" />
@@ -158,8 +159,9 @@ const MatchOrMessage = () => {
                             </div>
                         </div>
                     ))}
-                </Slider>
-            </div>
+                </Slider> */}
+            {/* </div> */}
+                <ImageSwap/>
             <Container>
                 <div className='activity-main'>
                     <div className=''>

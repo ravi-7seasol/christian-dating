@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowAltCircleLeft, faArrowLeft, faArrowsAlt, faCompressArrowsAlt, faLocationArrow } from "@fortawesome/free-solid-svg-icons";
+// import { faArrowAltCircleLeft, faArrowLeft, faArrowsAlt, faCompressArrowsAlt, faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 
 import { Accordion, Button, Col, Container, Row } from 'react-bootstrap';
 import Buttons from '../../../components/Buttons';
@@ -52,6 +52,23 @@ const ShowProfile = () => {
         state: "",
         token: "",
     })
+
+    const navigate = useNavigate()
+
+    const [id, setId] = useState<any>(0)
+
+    const handleid =(i:any)=>{
+        if(id===i){
+            setId(undefined)
+        }else{
+
+            setId(i) 
+        }
+    }
+    
+    const handleRedirect = () => {
+        navigate("/match_or_message")
+    }
 
     useEffect(() => {
         const id = {
@@ -150,6 +167,7 @@ const ShowProfile = () => {
                                 <div className="over-img-popup">
                                     <div className="d-flex align-items-center mb-3">
                                         <h5 className='name-age'>{getProfileData.firstname} {getProfileData.lastname} , {moment().diff(moment(getProfileData.dob, 'YYYY-MM-DD'), 'years')}</h5>
+                                        {/* <h5 className='name-age'>{getProfileData.firstname} {getProfileData.lastname}, {moment().diff(moment(getProfileData.dob, 'YYYY-MM-DD'), 'years')}</h5> */}
                                         {getProfileData.gender === "male" ? <img src="./assets/img/male.png" alt="" className='ml-3' /> : <img src="./assets/img/female.png" alt="" className='ml-3' />}
                                     </div>
                                     <p>{getProfileData.address} | Religion: {getProfileData.religion}</p>
@@ -180,7 +198,8 @@ const ShowProfile = () => {
                     <Accordion defaultActiveKey="0">
                         {accordion.map((item, i) =>(
                             <Accordion.Item eventKey={i.toString()}>
-                            <Accordion.Header>{item.Header}</Accordion.Header>
+                            <Accordion.Header onClick={()=>handleid(i)}>{item.Header}
+                            <img src="./assets/img/down-arrow.png" alt="" width="20px" className={`${id === i && 'rotate-img'}`}/></Accordion.Header>
                             <Accordion.Body>
                                 {item.Body}
                             </Accordion.Body>

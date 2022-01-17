@@ -10,6 +10,17 @@ import ReactSelect from '../../../components/ReactSelect';
 
 const ShowProfile = () => {
 
+    const [id, setId] = useState<any>(0)
+
+    const handleid = (i: any) => {
+        if (id === i) {
+            setId(undefined)
+        } else {
+
+            setId(i)
+        }
+    }
+
     const [editProfileData, setEditProfileData] = useState({
         firstname: '',
         dob: '',
@@ -55,7 +66,7 @@ const ShowProfile = () => {
         token: "",
     })
     const [funFacts, setFunFacts] = useState([{
-        value: "1"
+        value: ""
     }])
 
     const incrementBtn = () => {
@@ -65,9 +76,11 @@ const ShowProfile = () => {
     }
 
     const decrementBtn = (i: number) => {
-        let val = [...funFacts]
-        val.splice(i, 1)
-        setFunFacts(val)
+        if (funFacts.length > 1) {
+            let val = [...funFacts]
+            val.splice(i, 1)
+            setFunFacts(val)
+        }
     }
 
     const funFactsHandleChange = (e: any, i: number) => {
@@ -94,10 +107,10 @@ const ShowProfile = () => {
         setEditProfileData({ ...editProfileData, gender: text })
     }
 
-    const navigate = useNavigate()
-    const handleRedirect = () => {
-        navigate("/match_or_message")
-    }
+    useEffect(() => {
+        let data = funFacts.map((data: any) => data.value).join()
+        setEditProfileData({ ...editProfileData, funfacts: data })
+    }, [funFacts])
 
     useEffect(() => {
         const id = {
@@ -194,13 +207,15 @@ const ShowProfile = () => {
         <>
             <div className="profilr-bg">
                 <Container>
-                    <div className='set-backbtn-singlebtn col-12'>
+                    <div className='set-backbtn-singlebtn '>
                         <div className="back-btn">
                             <Link to="/">
                                 <img src="./assets/img/next.png" alt="" width="10px" height="15px" />
                             </Link>
                         </div>
-                        <ReactSelect placeholder="Single" options={relationOption} onChange={(e: any) => setEditProfileData({ ...editProfileData, relationship_status: e.value })} value={selectValue(editProfileData.relationship_status, "relationship_status")} />
+                        <div className="select">
+                            <ReactSelect placeholder="Single" options={relationOption} onChange={(e: any) => setEditProfileData({ ...editProfileData, relationship_status: e.value })} value={selectValue(editProfileData.relationship_status, "relationship_status")} />
+                        </div>
                     </div>
                     <div className='over-img-div-991'>
                         <Row>
@@ -214,40 +229,55 @@ const ShowProfile = () => {
                             </Col>
                             <Col md={9}>
                                 <div className="over-img-popup">
-                                    <div className="d-flex align-items-center mb-3 ">
-                                        <h5 className='name-age col-4'>
-                                            Name : <InputField
+                                    <div className="d-flex justify-content-between mb-3 ">
+                                        <div className='name-age '>
+                                            <InputField
                                                 name="firstname"
                                                 maxLength={undefined}
                                                 value={editProfileData.firstname}
-                                                lablestyleClass="name-label"
-                                                InputstyleClass="name-input"
+                                                lablestyleClass="login-label"
+                                                InputstyleClass="login-input"
                                                 onChange={(e: any) => {
                                                     handleChange(e);
                                                 }}
                                                 disabled={false}
-                                                label=""
+                                                label="First Name :"
                                                 placeholder="John"
                                                 type="text"
                                                 fromrowStyleclass=""
                                             />
-                                            DOB : <InputField
-                                                name="dob"
+                                            <InputField
+                                                name="lastname"
                                                 maxLength={undefined}
-                                                value={editProfileData.dob}
-                                                lablestyleClass="dob-label"
-                                                InputstyleClass="dob-input"
+                                                value={editProfileData.lastname}
+                                                lablestyleClass="login-label"
+                                                InputstyleClass="login-input"
                                                 onChange={(e: any) => {
                                                     handleChange(e);
                                                 }}
                                                 disabled={false}
-                                                label=""
-                                                placeholder=""
+                                                label="LastName :"
+                                                placeholder="deo"
                                                 type="text"
                                                 fromrowStyleclass=""
                                             />
-                                        </h5>
-                                        <div className="gender col-4">
+                                            <InputField
+                                                name="dob"
+                                                maxLength={undefined}
+                                                value={editProfileData.dob}
+                                                lablestyleClass="login-label"
+                                                InputstyleClass="login-input"
+                                                onChange={(e: any) => {
+                                                    handleChange(e);
+                                                }}
+                                                disabled={false}
+                                                label="DOB :"
+                                                placeholder=""
+                                                type="date"
+                                                fromrowStyleclass=""
+                                            />
+                                        </div>
+                                        <div className="gender">
                                             <label className="login-label">Gender</label>
                                             <br />
                                             <button className={`gender-btn male ${editProfileData.gender === "male" && "gender-active"}`} onClick={(e) => handleGenderActive(e, "male")}>
@@ -258,41 +288,51 @@ const ShowProfile = () => {
                                             </button>
                                         </div>
                                     </div>
-                                    <p>
-                                        Address : <InputField
+                                    <div className='religin-set'>
+                                        <InputField
                                             name="address"
                                             maxLength={undefined}
                                             value={editProfileData.address}
-                                            lablestyleClass="address-label"
-                                            InputstyleClass="address-input"
+                                            lablestyleClass="login-label"
+                                            InputstyleClass="login-input"
                                             onChange={(e: any) => {
                                                 handleChange(e);
                                             }}
                                             disabled={false}
-                                            label=""
+                                            label="Address :"
                                             placeholder="address"
                                             type="text"
                                             fromrowStyleclass=""
                                         />
-                                        Religion : <ReactSelect placeholder="Choose Religion" options={options} onChange={(e: any) => setEditProfileData({ ...editProfileData, religion: e.value })} value={selectValue(editProfileData.religion, "religion")} />
-                                    </p>
-                                    <p className='about-mi'>
-                                        Short Bio : <InputField
+
+                                        <div className="editprofile-slector">
+                                            <label htmlFor="" className='login-label'>Religion</label>
+                                            <div className="reactSelector mt-3">
+                                                <ReactSelect
+                                                    placeholder="Choose Religion"
+                                                    options={options}
+                                                    onChange={(e: any) => setEditProfileData({ ...editProfileData, religion: e.value })}
+                                                    value={selectValue(editProfileData.religion, "religion")}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <InputField
                                             name="short_bio"
                                             maxLength={undefined}
                                             value={editProfileData.short_bio}
-                                            lablestyleClass="short_bio-label"
-                                            InputstyleClass="short_bio-input"
+                                            lablestyleClass="login-label"
+                                            InputstyleClass="login-input"
                                             onChange={(e: any) => {
                                                 handleChange(e);
                                             }}
                                             disabled={false}
-                                            label=""
+                                            label="Short Bio :"
                                             placeholder="short_bio"
                                             type="text"
                                             fromrowStyleclass=""
                                         />
-                                    </p>
+                                    </div>
                                 </div>
                             </Col>
                         </Row>
@@ -300,113 +340,142 @@ const ShowProfile = () => {
                 </Container>
             </div>
             <Container>
-                <div className="over-img-div">
-                    <div className="verified-picture">
-                        {editProfileData.is_verify === "1" ? <><img src="./assets/img/poltgon-group.png" alt="" /><p>Verified picture</p></> : ''}
-                    </div>
-                    <div className="over-img-popup">
-                        <p>
-                            Address : <InputField
-                                name="address"
-                                maxLength={undefined}
-                                value={editProfileData.address}
-                                lablestyleClass="address-label"
-                                InputstyleClass="address-input"
-                                onChange={(e: any) => {
-                                    handleChange(e);
-                                }}
-                                disabled={false}
-                                label=""
-                                placeholder="address"
-                                type="text"
-                                fromrowStyleclass=""
-                            />
-                            | Religion: <ReactSelect placeholder="Choose Religion" options={options} onChange={(e: any) => setEditProfileData({ ...editProfileData, religion: e.value })} value={selectValue(editProfileData.religion, "religion")} />
-                        </p>
-                        <div className="d-flex align-items-center mb-3">
-                            <h5 className='name-age'>
-                                Name : <InputField
-                                    name="firstname"
+                <div className='editprofile-over-img-popup'>
+                    <div className="over-img-div">
+                        <div className="verified-picture">
+                            {editProfileData.is_verify === "1" ? <><p><img src="./assets/img/poltgon-group.png" alt="" />Verified picture</p></> : ''}
+                        </div>
+                        <div className="over-img-popup">
+                            <div>
+                                <InputField
+                                    name="address"
                                     maxLength={undefined}
-                                    value={editProfileData.firstname}
-                                    lablestyleClass="name-label"
-                                    InputstyleClass="name-input"
+                                    value={editProfileData.address}
+                                    lablestyleClass="login-label"
+                                    InputstyleClass="login-input"
                                     onChange={(e: any) => {
                                         handleChange(e);
                                     }}
                                     disabled={false}
-                                    label=""
-                                    placeholder="John"
+                                    label="Address : "
+                                    placeholder="address"
                                     type="text"
                                     fromrowStyleclass=""
                                 />
-                                DOB : <InputField
-                                    name="dob"
+                                <div className="editprofile-slector">
+                                    <label htmlFor="" className='login-label'>Religion</label>
+                                    <div className="reactSelector mt-3">
+                                        <ReactSelect
+                                            placeholder="Choose Religion"
+                                            options={options}
+                                            onChange={(e: any) => setEditProfileData({ ...editProfileData, religion: e.value })}
+                                            value={selectValue(editProfileData.religion, "religion")}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="align-items-center mb-3">
+                                <div className='name-age'>
+                                    <InputField
+                                        name="firstname"
+                                        maxLength={undefined}
+                                        value={editProfileData.firstname}
+                                        lablestyleClass="login-label"
+                                        InputstyleClass="login-input"
+                                        onChange={(e: any) => {
+                                            handleChange(e);
+                                        }}
+                                        disabled={false}
+                                        label="First Name :"
+                                        placeholder="John"
+                                        type="text"
+                                        fromrowStyleclass=""
+                                    />
+                                    <InputField
+                                        name="lastname"
+                                        maxLength={undefined}
+                                        value={editProfileData.lastname}
+                                        lablestyleClass="login-label"
+                                        InputstyleClass="login-input"
+                                        onChange={(e: any) => {
+                                            handleChange(e);
+                                        }}
+                                        disabled={false}
+                                        label="LastName :"
+                                        placeholder="deo"
+                                        type="text"
+                                        fromrowStyleclass=""
+                                    />
+                                    <InputField
+                                        name="dob"
+                                        maxLength={undefined}
+                                        value={editProfileData.dob}
+                                        lablestyleClass="login-label"
+                                        InputstyleClass="login-input"
+                                        onChange={(e: any) => {
+                                            handleChange(e);
+                                        }}
+                                        disabled={false}
+                                        label="DOB :"
+                                        placeholder=""
+                                        type="text"
+                                        fromrowStyleclass=""
+                                    />
+                                </div>
+                                <div className="gender">
+                                    <label className="login-label">Gender</label>
+                                    <br />
+                                    <button className={`gender-btn male ${editProfileData.gender === "male" && "gender-active"}`} onClick={(e) => handleGenderActive(e, "male")}>
+                                        <img src="./assets/img/male.png" alt="male" />
+                                    </button>
+                                    <button className={`gender-btn female ${editProfileData.gender === "female" && "gender-active"}`} onClick={(e) => handleGenderActive(e, "female")}>
+                                        <img src="./assets/img/female.png" alt="female" />
+                                    </button>
+                                </div>
+                            </div>
+                            <div className='about-mi'>
+                                <InputField
+                                    name="short_bio"
                                     maxLength={undefined}
-                                    value={editProfileData.dob}
-                                    lablestyleClass="dob-label"
-                                    InputstyleClass="dob-input"
+                                    value={editProfileData.short_bio}
+                                    lablestyleClass="login-label"
+                                    InputstyleClass="login-input"
                                     onChange={(e: any) => {
                                         handleChange(e);
                                     }}
                                     disabled={false}
-                                    label=""
-                                    placeholder=""
+                                    label="Short Bio :"
+                                    placeholder="short_bio"
                                     type="text"
                                     fromrowStyleclass=""
                                 />
-                            </h5>
-                            <div className="gender">
-                                <label className="login-label">Gender</label>
-                                <br />
-                                <button className={`gender-btn male ${editProfileData.gender === "male" && "gender-active"}`} onClick={(e) => handleGenderActive(e, "male")}>
-                                    <img src="./assets/img/male.png" alt="male" />
-                                </button>
-                                <button className={`gender-btn female ${editProfileData.gender === "female" && "gender-active"}`} onClick={(e) => handleGenderActive(e, "female")}>
-                                    <img src="./assets/img/female.png" alt="female" />
-                                </button>
                             </div>
                         </div>
-                        <p className='about-mi'>
-                            Short Bio : <InputField
-                                name="short_bio"
-                                maxLength={undefined}
-                                value={editProfileData.short_bio}
-                                lablestyleClass="short_bio-label"
-                                InputstyleClass="short_bio-input"
-                                onChange={(e: any) => {
-                                    handleChange(e);
-                                }}
-                                disabled={false}
-                                label=""
-                                placeholder="short_bio"
-                                type="text"
-                                fromrowStyleclass=""
-                            />
-                        </p>
                     </div>
                 </div>
             </Container>
             <Container>
-                <div className="profile-accordion">
+                <div className="">
                     <Accordion defaultActiveKey="0">
                         {accordion.map((item, i) => (
                             <Accordion.Item eventKey={i.toString()}>
-                                <Accordion.Header>{item.Header}</Accordion.Header>
+                                <Accordion.Header onClick={() => handleid(i)}>{item.Header}
+                                    <img src="./assets/img/down-arrow.png" alt="" width="20px" className={`${id === i && 'rotate-img'}`} /></Accordion.Header>
+
                                 <Accordion.Body>
                                     <InputField
                                         name={item.Name}
                                         maxLength={undefined}
                                         value={item.Body}
-                                        lablestyleClass="label"
-                                        InputstyleClass="input"
+                                        lablestyleClass="login-label"
+                                        InputstyleClass="login-input"
                                         onChange={(e: any) => {
                                             handleChange(e);
                                         }}
                                         disabled={false}
                                         label=""
                                         placeholder=""
-                                        type="text"
+                                        type="textarea"
                                         fromrowStyleclass=""
                                     />
                                 </Accordion.Body>
@@ -416,15 +485,15 @@ const ShowProfile = () => {
                     <div className="personal-details">
                         <h2>Personal</h2>
                         {personal.map((item) => (
-                            <div className='d-flex mt-2'>
-                                <p>{item.label}</p>
-                                <span className='ml-2'>
+                            <div className='d-flex mt-2 align-items-center'>
+                                <p className='mb-0 col-3 col-md-3 col-sm-2'>{item.label}</p>
+                                <span className='ml-2 col-9 col-md-6 col-sm-10'>
                                     <InputField
                                         name={item.Name}
                                         maxLength={undefined}
                                         value={item.detail}
-                                        lablestyleClass="label"
-                                        InputstyleClass="input"
+                                        lablestyleClass="login-label"
+                                        InputstyleClass="login-input"
                                         onChange={(e: any) => {
                                             handleChange(e);
                                         }}
@@ -441,38 +510,43 @@ const ShowProfile = () => {
                     <div className="fun-facts">
                         <h2>Fun facts</h2>
                         <div className="d-flex mt-2">
-                            <span className='ml-2'>
+                            <span className='ml-2 col-12 p-0'>
                                 {
                                     funFacts.map((data: any, i: number) => (
-                                        <>
-                                            <InputField
-                                                name={`funfacts${i}`}
-                                                maxLength={undefined}
-                                                value={data.value}
-                                                lablestyleClass="label"
-                                                InputstyleClass="input"
-                                                onChange={(e: any) => {
-                                                    funFactsHandleChange(e, i);
-                                                }}
-                                                disabled={false}
-                                                label=""
-                                                placeholder=""
-                                                type="text"
-                                                fromrowStyleclass=""
-                                            />
-                                            <button className='btn btn-default' onClick={() => decrementBtn(i)}>
-                                                -
-                                            </button>
-                                        </>
+                                        <div className='d-flex mb-2'>
+                                            <div className='col-6 p-0'> 
+                                                <InputField
+                                                    name={`funfacts${i}`}
+                                                    maxLength={undefined}
+                                                    value={data.value}
+                                                    lablestyleClass="login-label"
+                                                    InputstyleClass="login-input"
+                                                    onChange={(e: any) => {
+                                                        funFactsHandleChange(e, i);
+                                                    }}
+                                                    disabled={false}
+                                                    label=""
+                                                    placeholder=""
+                                                    type="text"
+                                                    fromrowStyleclass=""
+                                                />
+                                            </div>
+                                            {/* <button className='btn btn-default' > */}
+                                            <img src="./assets/img/minus-button.png" alt="" width="20px" height="20px" className=' m-2' onClick={() => decrementBtn(i)} />
+                                            {/* </button> */}
+                                            {funFacts.length - 1 === i && (
+                                                <img src="./assets/img/plus.png" alt="" width="20px" height="20px" className='m-2 ' onClick={incrementBtn} />
+                                            )
+                                            }
+                                        </div>
                                     ))
                                 }
-                                <button className='btn btn-default' onClick={incrementBtn}>
-                                    +
-                                </button>
                             </span>
                         </div>
                     </div>
-                    <Buttons ButtonStyle="" children='Save' onClick={() => { }} disabled={false} />
+                    <div className='edit-profile-footer-btn'>
+                        <Buttons ButtonStyle="login-btn" children='Save' onClick={() => { }} disabled={false} />
+                    </div>
                 </div>
             </Container>
         </>
