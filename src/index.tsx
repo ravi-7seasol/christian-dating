@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-import './helper/i18n/index'
+// import './helper/i18n/index'
 import './Responsive.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/react-datepicker/dist/react-datepicker.css';

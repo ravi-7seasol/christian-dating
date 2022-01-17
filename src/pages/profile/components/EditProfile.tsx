@@ -7,6 +7,7 @@ import { xwwwFormUrlencoded } from '../../../helper/utils';
 import { ApiPost } from '../../../helper/API/ApiData';
 import InputField from '../../../components/Inputfield';
 import ReactSelect from '../../../components/ReactSelect';
+import AuthStorage from '../../../helper/AuthStorage';
 
 const ShowProfile = () => {
 
@@ -20,8 +21,10 @@ const ShowProfile = () => {
             setId(i)
         }
     }
+    const navigate = useNavigate()
 
     const [editProfileData, setEditProfileData] = useState({
+        token: AuthStorage.getToken(),
         firstname: '',
         dob: '',
         gender: '',
@@ -63,7 +66,6 @@ const ShowProfile = () => {
         mobile_no: "",
         profile_picture: "",
         state: "",
-        token: "",
     })
     const [funFacts, setFunFacts] = useState([{
         value: ""
@@ -122,13 +124,30 @@ const ShowProfile = () => {
             .then((res: any) => {
                 setEditProfileData({
                     ...editProfileData, firstname: res.user.firstname, dob: res.user.dob, address: res.user.address, gender: res.user.gender, denomination: res.user.denomination, your_story: res.user.your_story, short_bio: res.user.short_bio, relationship_status: res.user.relationship_status, intrusted_in_meating: res.user.intrusted_in_meating, relationship_want_to_build: res.user.relationship_want_to_build, your_intenet: res.user.your_intenet, how_often_church: res.user.how_often_church, read_bible: res.user.read_bible, workout: res.user.workout, consume_alcohol: res.user.consume_alcohol, smoke: res.user.smoke,
-                    body_type: res.user.body_type, career: res.user.career, children: res.user.children, city: res.user.city, code: res.user.code, country: res.user.country, education: res.user.education, email: res.user.email, funfacts: res.user.funfacts, id: res.user.id, image: res.user.image, is_active: res.user.is_active, is_verify: res.user.is_verify, language: res.user.language, lastname: res.user.lastname, mobile_no: res.user.mobile_no, pets: res.user.pets, profile_picture: res.user.profile_picture, state: res.user.state, token: res.user.token
+                    body_type: res.user.body_type, career: res.user.career, children: res.user.children, city: res.user.city, code: res.user.code, country: res.user.country, education: res.user.education, email: res.user.email, id: res.user.id, image: res.user.image, is_active: res.user.is_active, is_verify: res.user.is_verify, language: res.user.language, lastname: res.user.lastname, mobile_no: res.user.mobile_no, pets: res.user.pets, profile_picture: res.user.profile_picture, state: res.user.state, token: AuthStorage.getToken()
                 })
+                setFunFacts(res.user.funfacts.split(',').map((data:any)=>({value:data})))
 
             }).catch((error: any) => {
                 console.log(error);
             })
     }, [])
+
+    const editProfileBtn = () => {
+        const body = xwwwFormUrlencoded(editProfileData);
+        ApiPost('updateprofile', body)
+        .then((res: any) => {
+          console.log("res", res);
+          if (res.status === "true") {
+            navigate("/show-profile");
+          }
+          else {              
+            alert(`${res.msg}`)
+          }
+        }).catch((error: any) => {
+          console.log(error);
+        })
+    }
 
     const accordion = [
         {
@@ -545,7 +564,7 @@ const ShowProfile = () => {
                         </div>
                     </div>
                     <div className='edit-profile-footer-btn'>
-                        <Buttons ButtonStyle="login-btn" children='Save' onClick={() => { }} disabled={false} />
+                        <Buttons ButtonStyle="login-btn" children='Save' onClick={() => editProfileBtn()} disabled={false} />
                     </div>
                 </div>
             </Container>
