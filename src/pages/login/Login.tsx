@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { log } from "console";
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import Buttons from "../../components/Buttons";
@@ -11,8 +12,10 @@ import InputField from "../../components/Inputfield";
 import { ApiPost, ApiPostNoAuth } from "../../helper/API/ApiData";
 import { xwwwFormUrlencoded } from "../../helper/utils";
 import Header from "../../layouts/header/Header";
+import { setIsLoading } from "../../redux/actions/loadingAction";
 
 const Login = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
@@ -48,6 +51,7 @@ const Login = () => {
   }, [])
 
   const logIn = () => {
+    dispatch(setIsLoading(true))
     const val = {
 
     }
@@ -59,6 +63,7 @@ const Login = () => {
   
     ApiPost('loginuser', body)
       .then((res: any) => {
+        dispatch(setIsLoading(false))
         console.log("res", res);
         if (res) {
            localStorage.setItem("token", JSON.stringify(res.token));
@@ -68,6 +73,7 @@ const Login = () => {
         navigate("/show-profile");
       }).catch((error) => {
         console.log(error);
+        dispatch(setIsLoading(false))
 
       })
   }
@@ -75,6 +81,7 @@ const Login = () => {
 
 
   return (
+    <>
     <div className="d-flex justify-content-center align-items-center main-page" style={{ height: "100vh" }}>
       <Container>
         <div className="login-card">
@@ -133,7 +140,7 @@ const Login = () => {
                   Forgot password?
                 </Link>
               </div>
-              <div style={{ marginTop: "9rem" }}>
+              <div style={{ marginTop: "1rem" }}>
                 <Buttons
                   children="Log in"
                   onClick={logIn}
@@ -154,6 +161,8 @@ const Login = () => {
         </div>
       </Container>
     </div>
+    
+    </>
   );
 };
 

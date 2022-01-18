@@ -8,10 +8,10 @@ body {
 /* .inbox-main .Conversation-starters .text-grid::-webkit-scrollbar{
   width: 10px !important;
 } */
-.css-dq1sse-MenuList::-webkit-scrollbar{
+.css-dq1sse-MenuList::-webkit-scrollbar {
   display: none !important;
 }
-.layout-padding::-webkit-scrollbar{
+.layout-padding::-webkit-scrollbar {
   display: none !important;
 }
 
@@ -47,7 +47,6 @@ body {
   overflow-y: auto !important;
   overflow-x: hidden;
   height: 100vh !important;
-  
 }
 
 .login-header {
@@ -425,11 +424,15 @@ figure {
   color: #e69904;
   opacity: 1;
   border: none;
-  border-bottom: 1px solid #e69904;
+  border-bottom: 1px solid #acacac;
   padding: 5px;
   outline: none !important;
+  border-radius: unset !important;
 }
-.textarea textarea::-webkit-scrollbar{
+.textarea textarea:focus{
+  border-bottom: 1px solid #e69904;
+}
+.textarea textarea::-webkit-scrollbar {
   display: none;
 }
 .setProfileImage .guidelines {
@@ -534,6 +537,10 @@ video {
 input[type="date"] {
   position: relative;
   padding: 10px;
+
+  -webkit-appearance: none !important ;
+  /* -webkit-appearance: textfield !important;
+  -moz-appearance: textfield !important; */
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -552,7 +559,7 @@ input[type="date"]:before {
   width: 20px;
   height: 20px;
   position: absolute;
-  top: 18px;
+  /* top: 18px; */
   right: 10px;
   color: #999;
 }
@@ -574,17 +581,17 @@ input[type="date"]:before {
   margin-top: 50px;
 }
 /* @media (min-width: 200px) and (max-width: 768px) { */
-  @media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px) {
   /* ========== login page css start =========== */
-  .main-page{
+  .main-page {
     height: unset !important;
     padding-top: 40px;
     overflow: hidden;
   }
-  .profile-header-baloon{
-      height: 12vh;
-      left: 0;
-      padding: 37px 0 0 22px;
+  .profile-header-baloon {
+    height: 12vh;
+    left: 0;
+    padding: 37px 0 0 22px;
   }
   .layout-padding {
     padding: 30px 30px 0 30px;
@@ -664,7 +671,7 @@ input[type="date"]:before {
   }
   .slector select::before {
     display: none;
-  } 
+  }
   .reactSelector .css-1okebmr-indicatorSeparator {
     display: none;
   }
@@ -695,7 +702,7 @@ input[type="date"]:before {
   }
   .reactSelector .css-yt9ioa-option:last-child {
     border: none !important;
-  } 
+  }
   .take-picture {
     width: 190px;
     height: 190px;
@@ -755,7 +762,7 @@ input[type="date"]:before {
   .signup-with-social::before {
     width: 15%;
   }
-  .forgot-password-text{
+  .forgot-password-text {
     font-size: 25px !important;
   }
 }
@@ -787,7 +794,7 @@ input[type="date"]:before {
   .signup-with-social::before {
     width: 6%;
   }
-  
+
   .login .login-label {
     font: normal normal normal 14px/23px Poppins;
   }
