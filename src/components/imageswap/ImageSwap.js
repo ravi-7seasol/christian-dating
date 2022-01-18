@@ -63,15 +63,14 @@ const ImageSwap = () => {
 
   const onSwipe = (direction, item) => {
     console.log(item, direction);
-    // res = arr1.filter(item => !arr2.includes(item));
-
-    if (direction === "left") {
+     if (direction === "left") {
       setLeft([...left, item]);
       console.log("left");
     } else if (direction === "right") {
       setRight([...right, item]);
     }
   };
+
   useEffect(() => {
     const lefts = data.filter((item) => !left.includes(item));
     setData(lefts);
@@ -106,7 +105,7 @@ const ImageSwap = () => {
           key={i}
           className={`swap-card`}
         >
-          <div className="card-inner" style={{transform:i===0 && "translateY(-10px)" }}>
+          <div className="card-inner" style={{transform:i===0 ? "translateY(-20px)": i===1 &&"translateY(-10px)" }}>
             <img src={item.img} />
             {/* {row.length - 1 &&  ( */}
               <div className="details">
