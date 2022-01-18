@@ -3,10 +3,12 @@
   height: calc(100vh - 56px);
   overflow: hidden !important;
 }
+
 .inbox-main .input-area .send-gift {
   position: relative;
   cursor: pointer;
 }
+
 .inbox-main .input-area .send-gift .gifts {
   position: absolute;
   top: -110px;
@@ -22,22 +24,26 @@
   column-gap: 5px;
   background: #ffffff;
 }
+
 .inbox-main .input-area .send-gift .gifts img {
   width: 40px;
   height: 40px;
 }
+
 /* <<<<======================Web view=======================>>>> */
 
 .inbox-main .inbox-profile-img {
   display: flex;
   justify-content: space-between;
 }
+
 .handle-chat-scroll {
   overflow-y: auto !important;
   height: calc(100vh - 193px);
   /* background: #000; */
   padding-right: 10px;
 }
+
 .inbox-main .inbox-profile-img .like-counter {
   width: 55px;
   height: 55px;
@@ -65,6 +71,7 @@
 .inbox-profile-img .profile-content .like-counter-content {
   padding-top: 14px;
 }
+
 .border-content {
   width: auto;
   height: 2px;
@@ -184,16 +191,22 @@
   height: 100vh;
   padding: 0 !important;
 }
+
 .inbox-main .Conversation-starters {
   height: calc(100vh - 66px);
   position: relative;
 }
-.inbox-main .Conversation-starters .text-grid {
-  display: grid;
+
+.inbox-main .Conversation-starters .scrool {
   height: calc(100vh - 174px);
   overflow-y: scroll;
   padding: 20px 0;
 }
+
+.inbox-main .Conversation-starters .text-grid {
+  display: grid;
+}
+
 .inbox-main .Conversation-starters h2 {
   margin-bottom: 25px;
   font-size: 16px !important;
@@ -207,8 +220,7 @@
 .inbox-main .Conversation-starters .first-text {
   border-radius: 11px;
   opacity: 1;
-  background: transparent linear-gradient(258deg, #f7c35f 0%, #e69702 100%) 0%
-    0% no-repeat padding-box;
+  background: transparent linear-gradient(258deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
   font-size: 10px;
   width: fit-content;
   margin-right: 20%;
@@ -222,8 +234,7 @@
 .inbox-main .Conversation-starters .first-text-replay {
   border-radius: 11px;
   opacity: 1;
-  background: transparent linear-gradient(258deg, #f7c35f 0%, #e69702 100%) 0%
-    0% no-repeat padding-box;
+  background: transparent linear-gradient(258deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
   font-size: 10px !important;
   width: fit-content;
   margin-left: 20%;
@@ -249,12 +260,14 @@
   bottom: 0;
   width: 100%;
 }
+
 .inbox-main .input-area .send-gift,
 .community .input-area .send-gift .inbox-main .input-area .choose-picture,
 .community .input-area .choose-picture {
   display: grid;
   place-items: center;
 }
+
 .inbox-main .input-area .choose-picture,
 .community .input-area .choose-picture {
   width: 35px;
@@ -266,6 +279,7 @@
   text-align: center;
   line-height: 34px;
 }
+
 .inbox-main .input-area .choose-picture img,
 .community .input-area .choose-picture img {
   width: 16px;
@@ -283,6 +297,7 @@
   text-align: center;
   margin: 0 5px;
 }
+
 .inbox-main .input-area .send-gift img,
 .community .input-area .send-gift img {
   width: 16.5px;
@@ -303,12 +318,14 @@
   letter-spacing: 0px;
   color: #000000;
 }
+
 .inbox-main .input-area .input-chat,
 .community .input-area .input-chat {
   position: relative;
   width: 100%;
   /* width: calc(100vw - 87px) !important; */
 }
+
 .inbox-main .input-area .input-chat .text-input,
 .community .input-area .input-chat .text-input {
   border: transparent !important;
@@ -350,26 +367,42 @@
   left: 42px;
 }
 
+.inbox-main .input-area .input-chat img{
+    display: none;
+  }
+
 @media (min-width: 320px) and (max-width: 768px) {
+
+  .react-input-emoji--placeholder {
+    font-size: 9px !important;
+    left: 9px !important;
+  }
+
   .emoji-mart {
     width: 97% !important;
   }
+
   .react-emoji-picker--wrapper {
     width: 282px;
   }
+
   ::-webkit-scrollbar {
     display: none;
   }
+
   .inbox-main {
     height: calc(100vh - 55px);
   }
+
   .inbox-main .inbox-profile-img {
     display: flex;
     justify-content: space-between;
   }
+
   .handle-chat-scroll {
     height: 188px;
   }
+
   .chat-top-header {
     display: none;
   }
@@ -381,7 +414,8 @@
   .inbox-main .Conversation-starters {
     height: calc(100vh - 350px);
   }
-  .inbox-main .Conversation-starters .text-grid {
+
+  .inbox-main .Conversation-starters .scrool {
     height: calc(100vh - 405px);
   }
 
@@ -412,6 +446,7 @@
   .inbox-profile-img .profile-content .like-counter-content {
     padding-top: 14px;
   }
+
   .border-content {
     width: auto;
     height: 2px;
@@ -516,9 +551,11 @@
     margin-left: 10px;
     text-align: center;
   }
+
   .inbox-main .Conversation-starters {
     display: grid;
   }
+
   .inbox-main .Conversation-starters h2 {
     margin-bottom: 25px;
     font-size: 16px !important;
@@ -532,8 +569,7 @@
   .inbox-main .Conversation-starters .first-text {
     border-radius: 11px;
     opacity: 1;
-    background: transparent linear-gradient(258deg, #f7c35f 0%, #e69702 100%) 0%
-      0% no-repeat padding-box;
+    background: transparent linear-gradient(258deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
     font-size: 10px;
     width: fit-content;
     margin-right: 20%;
@@ -547,8 +583,7 @@
   .inbox-main .Conversation-starters .first-text-replay {
     border-radius: 11px;
     opacity: 1;
-    background: transparent linear-gradient(258deg, #f7c35f 0%, #e69702 100%) 0%
-      0% no-repeat padding-box;
+    background: transparent linear-gradient(258deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
     font-size: 10px !important;
     width: fit-content;
     margin-left: 20%;
@@ -573,23 +608,26 @@
     bottom: 0px;
     width: 100%;
   }
+
   .inbox-main .input-area .send-gift,
   .community .input-area .send-gift .inbox-main .input-area .choose-picture,
   .community .input-area .choose-picture {
     display: grid;
     place-items: center;
   }
+
   .inbox-main .input-area .choose-picture,
   .community .input-area .choose-picture {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     background: #e6e6e6 0% 0% no-repeat padding-box;
     opacity: 1;
     color: #e6e6e6;
     border-radius: 50%;
     text-align: center;
-    line-height: 34px;
+    line-height: 26px;
   }
+
   .inbox-main .input-area .choose-picture img,
   .community .input-area .choose-picture img {
     width: 16px;
@@ -598,8 +636,8 @@
 
   .inbox-main .input-area .send-gift,
   .community .input-area .send-gift {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     background: #e6e6e6 0% 0% no-repeat padding-box;
     opacity: 1;
     color: #e6e6e6;
@@ -607,6 +645,7 @@
     text-align: center;
     margin: 0 5px;
   }
+
   .inbox-main .input-area .send-gift img,
   .community .input-area .send-gift img {
     width: 16.5px;
@@ -627,10 +666,19 @@
     letter-spacing: 0px;
     color: #000000;
   }
+
   .inbox-main .input-area .input-chat,
   .community .input-area .input-chat {
     position: relative;
   }
+
+  .inbox-main .input-area .input-chat img{
+    position: absolute;
+    display: block;
+    top: 19px;
+    right: 58px;
+  }
+
   .inbox-main .input-area .input-chat .text-input,
   .community .input-area .input-chat .text-input {
     border: transparent !important;
@@ -673,6 +721,7 @@
     left: 42px;
   }
 }
+
 /*=========bhargav==========*/
 .gif-container {
   height: 250px;
@@ -682,14 +731,17 @@
   justify-content: center;
   position: relative;
 }
+
 .gif-big {
   height: 150px;
   margin-top: 35px;
 }
+
 .gif-container .icon {
   position: absolute;
   right: 10px;
 }
+
 .gif-container .submit {
   position: absolute;
   right: 10px;
