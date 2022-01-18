@@ -197,6 +197,26 @@
     margin: 0 10px;
 }
 
+.nav-popup{
+    background: #fff;
+    padding: 15px;
+    position: absolute;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    top: 35px;
+    z-index: 2;
+}
+
+.nav-popup .nav-links{
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-popup .nav-links a{
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    margin: 10px 10px;
+}
 /* ============================================>Profile<============================================ */
 
 .set-backbtn-singlebtn {
