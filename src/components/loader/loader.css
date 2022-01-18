@@ -1,0 +1,33 @@
+.isLoader{
+    width: 200px;
+    height: 200px;
+    background: #f3f3f3;
+    border-radius: 50%;
+    position: relative;
+    border: 8px solid transparent;
+    border-left: 8px solid #e69904;
+    animation: spin 1s linear infinite;
+
+}
+.isLoader::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% ,-50%);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #fff;
+   
+  
+}
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

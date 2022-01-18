@@ -428,9 +428,13 @@ figure {
   color: #e69904;
   opacity: 1;
   border: none;
-  border-bottom: 1px solid #e69904;
+  border-bottom: 1px solid #acacac;
   padding: 5px;
   outline: none !important;
+  border-radius: unset !important;
+}
+.textarea textarea:focus{
+  border-bottom: 1px solid #e69904;
 }
 .textarea textarea::-webkit-scrollbar {
   display: none;
@@ -537,6 +541,10 @@ video {
 input[type="date"] {
   position: relative;
   padding: 10px;
+
+  -webkit-appearance: none !important ;
+  /* -webkit-appearance: textfield !important;
+  -moz-appearance: textfield !important; */
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -555,7 +563,7 @@ input[type="date"]:before {
   width: 20px;
   height: 20px;
   position: absolute;
-  top: 18px;
+  /* top: 18px; */
   right: 10px;
   color: #999;
 }

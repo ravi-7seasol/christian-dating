@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import * as Hammer from "hammerjs";
+// import * as Hammer from "hammerjs";
+import TinderCard from "react-tinder-card";
+
 
 const ImageSwap = () => {
-  const [left, setLeft] = useState([]);
-  const [rigth, setRigth] = useState([]);
-  const [imagesData, setimagesData] = useState([
+  const [data, setData] = useState([
     {
       id: 0,
       img: "https://placeimg.com/600/300/people",
@@ -58,158 +58,59 @@ const ImageSwap = () => {
     },
   ]);
 
-  const removeItem = (id, events) => {
-    if (events === "panleft") {
-      setLeft([...left, imagesData.find((elem) => elem.id === parseInt(id))]);
-    } else if (events === "panright") {
-      setRigth([...rigth, imagesData.find((elem) => elem.id === parseInt(id))]);
-      // setimagesData(imagesData.filter((elem) => elem.id !== parseInt(id)));
+  const [left, setLeft] = useState([]);
+  const [right, setRight] = useState([]);
+
+  const onSwipe = (direction, item) => {
+    console.log(item, direction);
+    // res = arr1.filter(item => !arr2.includes(item));
+
+    if (direction === "left") {
+      setLeft([...left, item]);
+      console.log("left");
+    } else if (direction === "right") {
+      setRight([...right, item]);
     }
   };
   useEffect(() => {
-    // console.log("itemInd",itemInd);
-    var tinderContainer = document.querySelector(".tinder");
-    var allCards = document.querySelectorAll(".tinder--card");
-    var nope = document.getElementById("nope");
-    var love = document.getElementById("love");
+    const lefts = data.filter((item) => !left.includes(item));
+    setData(lefts);
+    console.log("left", left);
+  }, [left]);
 
-    function initCards(card, index) {
-      var newCards = document.querySelectorAll(".tinder--card:not(.removed)");
+  useEffect(() => {
+    const rights = data.filter((item) => !right.includes(item));
+    setData(rights);
+    console.log("right", right);
+  }, [right]);
 
-      newCards.forEach(function (card, index) {
-        // console.log("card",index);
-        card.style.zIndex = allCards.length - index;
-        card.style.transform =
-          "scale(" + (20 - index) / 20 + ") translateY(-" + 30 * index + "px)";
-        card.style.opacity = (10 - index) / 10;
-      });
+  useEffect(() => {
+    console.log("data", data);
+  }, [data]);
 
-      tinderContainer.classList.add("loaded");
-    }
+  // const onCardLeftScreen = (myIdentifier) => {
+  //   console.log(myIdentifier);
+  // };
 
-    initCards();
-
-    allCards.forEach(function (el, ind) {
-      var hammertime = new Hammer(el);
-
-      hammertime.on("pan", function (event) {
-        el.classList.add("moving");
-      });
-
-      hammertime.on("pan", function (event) {
-        if (event.deltaX === 0) return;
-        if (event.center.x === 0 && event.center.y === 0) return;
-
-        tinderContainer.classList.toggle("tinder_love", event.deltaX > 0);
-        tinderContainer.classList.toggle("tinder_nope", event.deltaX < 0);
-
-        var xMulti = event.deltaX * 0.03;
-        var yMulti = event.deltaY / 80;
-        var rotate = xMulti * yMulti;
-
-        event.target.style.transform =
-          "translate(" +
-          event.deltaX +
-          "px, " +
-          event.deltaY +
-          "px) rotate(" +
-          rotate +
-          "deg)";
-      });
-
-      hammertime.on("panend", function (event) {
-        // console.log("event",event);
-        el.classList.remove("moving");
-        tinderContainer.classList.remove("tinder_love");
-        tinderContainer.classList.remove("tinder_nope");
-
-        var moveOutWidth = document.body.clientWidth;
-        var keep =
-          Math.abs(event.deltaX) < 80 || Math.abs(event.velocityX) < 0.5;
-
-        event.target.classList.toggle("removed", !keep);
-
-        if (keep) {
-          event.target.style.transform = "";
-        } else {
-          var endX = Math.max(
-            Math.abs(event.velocityX) * moveOutWidth,
-            moveOutWidth
-          );
-          var toX = event.deltaX > 0 ? endX : -endX;
-          var endY = Math.abs(event.velocityY) * moveOutWidth;
-          var toY = event.deltaY > 0 ? endY : -endY;
-          var xMulti = event.deltaX * 0.03;
-          var yMulti = event.deltaY / 80;
-          var rotate = xMulti * yMulti;
-
-          event.target.style.transform =
-            "translate(" +
-            toX +
-            "px, " +
-            (toY + event.deltaY) +
-            "px) rotate(" +
-            rotate +
-            "deg)";
-          initCards();
-          removeItem(event.target.id, event.additionalEvent);
-        }
-      });
-    });
-
-    function createButtonListener(love) {
-      return function (event) {
-        var cards = document.querySelectorAll(".tinder--card:not(.removed)");
-        console.log("cards", cards);
-        var moveOutWidth = document.body.clientWidth * 1.5;
-
-        if (!cards.length) return false;
-
-        var card = cards[0];
-
-        card.classList.add("removed");
-
-        if (love) {
-          card.style.transform =
-            "translate(" + moveOutWidth + "px, -100px) rotate(-30deg)";
-        } else {
-          card.style.transform =
-            "translate(-" + moveOutWidth + "px, -100px) rotate(30deg)";
-        }
-
-        initCards();
-
-        event.preventDefault();
-      };
-    }
-
-    var nopeListener = createButtonListener(false);
-    var loveListener = createButtonListener(true);
-
-    // nope.addEventListener('click', nopeListener);
-    // love.addEventListener('click', loveListener);
-  }, [left, rigth, imagesData]);
+  
 
   return (
-    <>
-      <div className="tinder">
-        <div className="tinder--status">
-          <i className="fa fa-remove"></i>
-          <i className="fa fa-heart"></i>
-        </div>
-
-        <div className="tinder--cards">
-          {imagesData.length > 0 &&
-            imagesData.map((item, i) => (
-              <div className="tinder--card" id={item.id} key={i}>
-                <img src={item.img} />
-                <div className="card-details">
-                  {/* <h3>
-                    {" "}
-                    {item.name} {i + 1}{" "}
-                  </h3>
-                  <p> {item.text} </p> */}
-                  <div className="">
+    <div className="cards-container">
+      {data.length>0 && data.map((item, i, row) => {
+        console.log("row", row.length - 1 );
+        return(
+          <TinderCard
+          onSwipe={(dir) => onSwipe(dir, item)}
+          // onCardLeftScreen={(item) => onCardLeftScreen(item)}
+          preventSwipe={["up", "down"]}
+          key={i}
+          className={`swap-card`}
+        >
+          <div className="card-inner" style={{transform:i===0 && "translateY(-10px)" }}>
+            <img src={item.img} />
+            {/* {row.length - 1 &&  ( */}
+              <div className="details">
+              <div className="">
                     <p>
                       {item.address}
                       <span> {item.addressspan} </span>
@@ -230,17 +131,14 @@ const ImageSwap = () => {
                       <button>View profile</button>
                     </div>
                   </div>
-                </div>
               </div>
-            ))}
-        </div>
-
-        {/* <div className="tinder--buttons">
-    <button id="nope"><i className="fa fa-remove"></i></button>
-    <button id="love"><i className="fa fa-heart"></i></button>
-  </div> */}
-      </div>
-    </>
+            {/* )} */}
+          </div>
+        </TinderCard>
+        )
+      }
+      )}
+    </div>
   );
 };
 

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { error, log } from "console";
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import Buttons from "../../components/Buttons";
@@ -13,8 +14,10 @@ import { xwwwFormUrlencoded } from "../../helper/utils";
 import Header from "../../layouts/header/Header";
 import AuthStorage from "../../helper/AuthStorage";
 import STORAGEKEY from "../../config/APP/app.config";
+import { setIsLoading } from "../../redux/actions/loadingAction";
 
 const Login = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
@@ -41,9 +44,11 @@ const Login = () => {
   }, [])
 
   const logIn = () => {
+    dispatch(setIsLoading(true))
     const body = xwwwFormUrlencoded(loginData);
     ApiPost('loginuser', body)
       .then((res: any) => {
+        dispatch(setIsLoading(false))
         if (rememberMe) {
           AuthStorage.setStorageData(STORAGEKEY.email, loginData.email, rememberMe);
         }
@@ -60,95 +65,99 @@ const Login = () => {
         }
       }).catch((error) => {
         console.log(error);
+        dispatch(setIsLoading(false))
+
       })
   }
-    
-  return (
-    <div className="d-flex justify-content-center align-items-center main-page" style={{ height: "100vh" }}>
-      <Container>
-        <div className="login-card">
-          <Header />
-          <div className="login">
-            <h2>Login</h2>
-            <form>
-              <InputField
-                name="email"
-                maxLength={undefined}
-                value={loginData.email}
-                lablestyleClass="login-label"
-                InputstyleClass="login-input"
-                onChange={(e: any) => {
-                  onInputValueChange(e);
-                }}
-                disabled={false}
-                label="Email address"
-                placeholder="email@example.com"
-                type="email"
-                fromrowStyleclass=""
-              />
 
-              <InputField
-                name="password"
-                maxLength={undefined}
-                value={loginData.password}
-                lablestyleClass="login-label"
-                InputstyleClass="login-input"
-                onChange={(e: any) => {
-                  onInputValueChange(e);
-                }}
-                disabled={false}
-                label="Password"
-                placeholder="*********"
-                type="password"
-                fromrowStyleclass=""
-              />
-              <div className="d-flex justify-content-between mt-2">
-                <div className="d-flex align-items-center">
-                  <CheckBox
-                    type="checkbox"
-                    label=""
-                    name="rememberMe"
-                    id=""
-                    value={""}
-                    styleCheck="remember-checkbox"
-                    onChange={(e) => { onInputValueChange(e) }}
-                    checked={rememberMe}
-                  />
-                  <label htmlFor="checkbox" className="rememberme-label">
-                    Remember me
-                  </label>
-                </div>
-                <Link to="/forgot-password" className="forgot-password">
-                  Forgot password?
-                </Link>
-              </div>
-              <div className="Terms-of-use">
-                <p><Link to="/terms-of-use?from=login" className="forgot-password">Terms of use</Link></p>
-                <p><Link to="/privacy-policy?from=login" className="forgot-password">Privacy Policy</Link></p>
-              </div>
-              <br />
-              {errorMsg && errorMsg !== "User Successfully logged in" && < label className="ErrMsg" htmlFor="error"> <FontAwesomeIcon icon={faTimesCircle} />{errorMsg}</label>}
-              <div style={{ marginTop: "6rem" }}>
-                <Buttons
-                  children="Log in"
-                  onClick={logIn}
-                  ButtonStyle="login-btn"
+  return (
+    <>
+      <div className="d-flex justify-content-center align-items-center main-page" style={{ height: "100vh" }}>
+        <Container>
+          <div className="login-card">
+            <Header />
+            <div className="login">
+              <h2>Login</h2>
+              <form>
+                <InputField
+                  name="email"
+                  maxLength={undefined}
+                  value={loginData.email}
+                  lablestyleClass="login-label"
+                  InputstyleClass="login-input"
+                  onChange={(e: any) => {
+                    onInputValueChange(e);
+                  }}
                   disabled={false}
+                  label="Email address"
+                  placeholder="email@example.com"
+                  type="email"
+                  fromrowStyleclass=""
                 />
-                <br />
-                <div className="text-center w-100 mt-2 dont-have-account">
-                  Don’t have an account?{" "}
-                  <Link to="/signup" className="dont-have-account-link">
-                    Sign up here
+
+                <InputField
+                  name="password"
+                  maxLength={undefined}
+                  value={loginData.password}
+                  lablestyleClass="login-label"
+                  InputstyleClass="login-input"
+                  onChange={(e: any) => {
+                    onInputValueChange(e);
+                  }}
+                  disabled={false}
+                  label="Password"
+                  placeholder="*********"
+                  type="password"
+                  fromrowStyleclass=""
+                />
+                <div className="d-flex justify-content-between mt-2">
+                  <div className="d-flex align-items-center">
+                    <CheckBox
+                      type="checkbox"
+                      label=""
+                      name="rememberMe"
+                      id=""
+                      value={""}
+                      styleCheck="remember-checkbox"
+                      onChange={(e) => { onInputValueChange(e) }}
+                      checked={rememberMe}
+                    />
+                    <label htmlFor="checkbox" className="rememberme-label">
+                      Remember me
+                    </label>
+                  </div>
+                  <Link to="/forgot-password" className="forgot-password">
+                    Forgot password?
                   </Link>
                 </div>
-              </div>
-            </form>
+                <div className="Terms-of-use">
+                  <p><Link to="/terms-of-use?from=login" className="forgot-password">Terms of use</Link></p>
+                  <p><Link to="/privacy-policy?from=login" className="forgot-password">Privacy Policy</Link></p>
+                </div>
+                <br />
+                {errorMsg && errorMsg !== "User Successfully logged in" && < label className="ErrMsg" htmlFor="error"> <FontAwesomeIcon icon={faTimesCircle} />{errorMsg}</label>}
+                <div style={{ marginTop: "1rem" }}>
+                  <Buttons
+                    children="Log in"
+                    onClick={logIn}
+                    ButtonStyle="login-btn"
+                    disabled={false}
+                  />
+                  <br />
+                  <div className="text-center w-100 mt-2 dont-have-account">
+                    Don’t have an account?{" "}
+                    <Link to="/signup" className="dont-have-account-link">
+                      Sign up here
+                    </Link>
+                  </div>
+                </div>
+              </form>
+            </div>
+            {/* <Footer /> */}
           </div>
-          {/* <Footer /> */}
-        </div>
-      </Container >
-    </div >
+        </Container>
+      </div>
+    </>
   );
 };
 
