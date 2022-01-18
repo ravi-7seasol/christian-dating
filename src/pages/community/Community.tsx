@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
 import InputField from '../../components/Inputfield'
 import { ApiPost } from '../../helper/API/ApiData'
 import { xwwwFormUrlencoded } from '../../helper/utils'
+import { setIsLoading } from '../../redux/actions/loadingAction'
 // import '../messageInbox/inbox.css'
 
 const Community = () => {
@@ -64,29 +66,30 @@ const Community = () => {
     // ]
 
     const [getTopicList, setGetTopicList] = useState([])
+    const dispatch = useDispatch()
 
     useEffect(() => {
         console.log("getTopicList",getTopicList);
     }, [getTopicList])
 
     useEffect(() => {
-
+        dispatch(setIsLoading(true))
         let data = {
             sort: "asc"
         }
-
         const body = xwwwFormUrlencoded(data);
-
         ApiPost('gettopicslist', body)
             .then((res: any) => {
                 // console.log("res gettopiclist => ", res);
+                dispatch(setIsLoading(false))
             }).catch((error: any) => {
                 console.log(error);
+                dispatch(setIsLoading(false))
             })
     }, [])
 
     useEffect(() => {
-
+        dispatch(setIsLoading(true))
         let data = {
             topic_id : "5"
         }
@@ -97,8 +100,10 @@ const Community = () => {
             .then((res: any) => {
                 // console.log("res gettopic", res);
                 setGetTopicList(res.topic_comment)
+                dispatch(setIsLoading(false))
             }).catch((error: any) => {
                 console.log(error);
+                dispatch(setIsLoading(false))
             })
     }, [])
 

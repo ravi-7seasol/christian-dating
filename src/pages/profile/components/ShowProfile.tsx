@@ -10,6 +10,8 @@ import AuthStorage from '../../../helper/AuthStorage';
 import { xwwwFormUrlencoded } from '../../../helper/utils';
 import { ApiGet, ApiPost } from '../../../helper/API/ApiData';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { setIsLoading } from '../../../redux/actions/loadingAction';
 
 const ShowProfile = () => {
 
@@ -56,7 +58,7 @@ const ShowProfile = () => {
         lifestyle:'',
     })
 
-    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const [id, setId] = useState<any>(0)
 
@@ -70,6 +72,7 @@ const ShowProfile = () => {
     }
 
     useEffect(() => {
+        dispatch(setIsLoading(true))
         const id = {
             id: '13'
         }
@@ -81,9 +84,12 @@ const ShowProfile = () => {
                     ...getProfileData, firstname: res.user.firstname, dob: res.user.dob, address: res.user.address, gender: res.user.gender, denomination: res.user.denomination, your_story: res.user.your_story, short_bio: res.user.short_bio, relationship_status: res.user.relationship_status, intrusted_in_meating: res.user.intrusted_in_meating, relationship_want_to_build: res.user.relationship_want_to_build, your_intenet: res.user.your_intenet, how_often_church: res.user.how_often_church, read_bible: res.user.read_bible, workout: res.user.workout, consume_alcohol: res.user.consume_alcohol, smoke: res.user.smoke, religion:res.user.religion,
                     body_type: res.user.body_type, career: res.user.career, children: res.user.children, city: res.user.city, code: res.user.code, country: res.user.country, education: res.user.education, email: res.user.email, funfacts: res.user.funfacts, id: res.user.id, image: res.user.image, is_active: res.user.is_active, is_verify: res.user.is_verify, language: res.user.language, lastname: res.user.lastname, mobile_no: res.user.mobile_no, pets: res.user.pets, profile_picture: res.user.profile_picture, state: res.user.state, token: res.user.token, aboutme:res.user.aboutme, lifestyle:res.user.lifestyle, personality:res.user.personality,
                 })
+                dispatch(setIsLoading(false))
 
             }).catch((error: any) => {
                 console.log(error);
+                dispatch(setIsLoading(false))
+
             })
     }, [])
 

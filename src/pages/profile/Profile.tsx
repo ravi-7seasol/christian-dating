@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import Buttons from "../../components/Buttons";
 import { ApiPost } from "../../helper/API/ApiData";
@@ -6,6 +7,7 @@ import AuthStorage from "../../helper/AuthStorage";
 import { xwwwFormUrlencoded } from "../../helper/utils";
 import Footer from "../../layouts/footer/Footer";
 import Header from "../../layouts/header/Header";
+import { setIsLoading } from "../../redux/actions/loadingAction";
 import Lifestyle from "./components/Lifestyle";
 import Personal from "./components/Personal";
 import Prefrences from "./components/Prefrences";
@@ -34,8 +36,11 @@ const Profile = (props: any) => {
 
   const [stepDone, setStepDone] = useState(1);
   const nevigate = useNavigate();
+  const dispatch = useDispatch()
 
   const handleNext = () => {
+    dispatch(setIsLoading(true))
+
     if (stepDone < 5) {
       setStepDone(stepDone + 1);
     } else {
@@ -44,14 +49,17 @@ const Profile = (props: any) => {
       ApiPost('updateprofile', body)
         .then((res: any) => {
           console.log("res", res);
+          dispatch(setIsLoading(false))
           if (res.status === "true") {
             nevigate("/show-profile");
           }
           else {
+            dispatch(setIsLoading(false))
             alert(`${res.msg}`)
           }
         }).catch((error: any) => {
           console.log(error);
+          dispatch(setIsLoading(false))
         })
     }
   };

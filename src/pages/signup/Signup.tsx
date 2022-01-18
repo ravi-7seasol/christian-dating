@@ -15,6 +15,8 @@ import { ApiPost } from "../../helper/API/ApiData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setIsLoading } from "../../redux/actions/loadingAction";
 
 const GoogleAppId =
   "1043350539750-lldkb9r1i0pc3d3l66lupb9np2olict4.apps.googleusercontent.com";
@@ -22,6 +24,7 @@ const FacbookAppId = "634703847650865";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const [signupData, setSignupData] = useState({
     email: "",
@@ -72,11 +75,13 @@ const Signup = () => {
     if (validation()) {
       return
     }
-
+    dispatch(setIsLoading(true))
     const body = xwwwFormUrlencoded(signupData);
     ApiPost('signupuser', body)
       .then((res: any) => {
         console.log("res", res.status);
+        dispatch(setIsLoading(false))
+
         if (res.status === "true") {
           navigate({
             pathname: '/',
@@ -85,6 +90,7 @@ const Signup = () => {
         }
       }).catch((error) => {
         console.log(error);
+        dispatch(setIsLoading(false))
       })
   };
 

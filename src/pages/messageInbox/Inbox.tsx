@@ -9,6 +9,8 @@ import { xwwwFormUrlencoded } from "../../helper/utils";
 import { ApiPost } from "../../helper/API/ApiData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { setIsLoading } from "../../redux/actions/loadingAction";
+import { useDispatch } from "react-redux";
 
 const Inbox = () => {
   const { innerWidth: width, innerHeight: height } = window;
@@ -23,8 +25,10 @@ const Inbox = () => {
   const [gif, setGif] = useState<any>();
   const [gifTog, setGifTog] = useState(false)
 
+  const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(setIsLoading(true))
     const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
 
     const token = {
@@ -36,10 +40,10 @@ const Inbox = () => {
     ApiPost('getchatlist', body)
       .then((res: any) => {
         setChatList(res);
-
+        dispatch(setIsLoading(false))
       }).catch((error) => {
         console.log(error);
-
+        dispatch(setIsLoading(false))
       })
   }, [])
 
@@ -63,6 +67,7 @@ const Inbox = () => {
   }
 
   const getChat = () => {
+    dispatch(setIsLoading(true))
     const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
 
     const getChatData = {
@@ -76,15 +81,16 @@ const Inbox = () => {
       .then((res: any) => {
         setChatData(res)
         setCurrentUser(res.current_user);
+        dispatch(setIsLoading(false))
       }).catch((error) => {
         console.log(error);
-
+        dispatch(setIsLoading(false))
       })
   }
 
 
   const messageOpen = (item: any) => {
-
+    dispatch(setIsLoading(true))
     setSelectedID(item.receiver_id);
     setTog(true);
     setSelectedData(item);
@@ -101,9 +107,10 @@ const Inbox = () => {
       .then((res: any) => {
         setChatData(res)
         setCurrentUser(res.current_user);
+        dispatch(setIsLoading(false))
       }).catch((error) => {
         console.log(error);
-
+        dispatch(setIsLoading(false))
       })
 
   }
@@ -115,6 +122,7 @@ const Inbox = () => {
   const getMessageData = (message: string) => {
     console.log("Message",message);
     
+    dispatch(setIsLoading(true))
     if (message !== "") {
       setMessageData(message);
       const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
@@ -127,9 +135,10 @@ const Inbox = () => {
       ApiPost('sendmessage', body)
         .then((res: any) => {
           getChat();
+          dispatch(setIsLoading(false))
         }).catch((error) => {
           console.log(error);
-
+          dispatch(setIsLoading(false))
         })
     }
 

@@ -8,6 +8,8 @@ import { ApiPost } from '../../../helper/API/ApiData';
 import InputField from '../../../components/Inputfield';
 import ReactSelect from '../../../components/ReactSelect';
 import AuthStorage from '../../../helper/AuthStorage';
+import { setIsLoading } from '../../../redux/actions/loadingAction';
+import { useDispatch } from 'react-redux';
 
 const ShowProfile = () => {
 
@@ -22,6 +24,7 @@ const ShowProfile = () => {
         }
     }
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const [editProfileData, setEditProfileData] = useState({
         token: AuthStorage.getToken(),
@@ -115,6 +118,7 @@ const ShowProfile = () => {
     }, [funFacts])
 
     useEffect(() => {
+        dispatch(setIsLoading(true))
         const id = {
             id: '13'
         }
@@ -127,9 +131,10 @@ const ShowProfile = () => {
                     body_type: res.user.body_type, career: res.user.career, children: res.user.children, city: res.user.city, code: res.user.code, country: res.user.country, education: res.user.education, email: res.user.email, id: res.user.id, image: res.user.image, is_active: res.user.is_active, is_verify: res.user.is_verify, language: res.user.language, lastname: res.user.lastname, mobile_no: res.user.mobile_no, pets: res.user.pets, profile_picture: res.user.profile_picture, state: res.user.state, token: AuthStorage.getToken()
                 })
                 setFunFacts(res.user.funfacts.split(',').map((data:any)=>({value:data})))
-
+                dispatch(setIsLoading(false))
             }).catch((error: any) => {
                 console.log(error);
+                dispatch(setIsLoading(false))
             })
     }, [])
 
