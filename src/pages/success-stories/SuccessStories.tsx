@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Buttons from "../../components/Buttons";
 import PostSuccessStories from "../../components/models/PostSuccessStories";
 import { ApiPost } from "../../helper/API/ApiData";
 import { xwwwFormUrlencoded } from "../../helper/utils";
+import { setIsLoading } from "../../redux/actions/loadingAction";
 import "./success-stories.css";
 
 const SuccessStories = () => {
@@ -17,15 +19,18 @@ const SuccessStories = () => {
   });
   const [storiesData, setStoriesData] = useState([]);
   const [selectedID, setSelectedID] = useState("");
+  const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(setIsLoading(true))
     const body = xwwwFormUrlencoded(storySort);
     ApiPost('stories', body)
       .then((res: any) => {
         setStoriesData(res.story);
+        dispatch(setIsLoading(false))
       }).catch((error) => {
         console.log(error);
-
+        dispatch(setIsLoading(false))
       })
   }, [])
 

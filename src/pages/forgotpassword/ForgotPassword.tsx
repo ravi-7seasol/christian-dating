@@ -2,15 +2,18 @@ import { faCheckCircle, faTimesCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Buttons from "../../components/Buttons";
 import InputField from "../../components/Inputfield";
 import { ApiPost } from "../../helper/API/ApiData";
 import { xwwwFormUrlencoded } from "../../helper/utils";
 import Header from "../../layouts/header/Header";
+import { setIsLoading } from "../../redux/actions/loadingAction";
 
 const ForgotPassword = () => {
 
+  const dispatch = useDispatch()
   const [emailData, setEmailData] = useState({
     email: "",
   });
@@ -48,12 +51,14 @@ const ForgotPassword = () => {
       return
     }
 
-
+    dispatch(setIsLoading(true))
     const body = xwwwFormUrlencoded(emailData);
     ApiPost('forgotpassword', body)
       .then((res: any) => {
         console.log("RES", res);
+        dispatch(setIsLoading(false))
         if (res.status === "true") {
+          dispatch(setIsLoading(false))
           setSuccessMsg(res.msg);
           setFormErrors("")
         }
