@@ -11,11 +11,7 @@ const Lifestyle = (props:any) => {
     consume_alcohol:'',
     smoke:'',
   })
-
-  useEffect(() => {
-    setLifeStyle({...lifeStyle, how_often_church:props.editLifeStyleData.how_often_church, read_bible:props.editLifeStyleData.read_bible, workout:props.editLifeStyleData.workout, consume_alcohol:props.editLifeStyleData.consume_alcohol, smoke:props.editLifeStyleData.smoke})
-  }, [props.editLifeStyleData])
-
+  
   useEffect(() => {
     props.lifeStyleData(lifeStyle)
   }, [lifeStyle])
