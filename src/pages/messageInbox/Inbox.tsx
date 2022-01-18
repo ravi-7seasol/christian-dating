@@ -115,13 +115,37 @@ const Inbox = () => {
 
   }
 
-  const onHandaleChangeData = () => {
-    
+  const [sendMsg, setSendMsg] = useState('')
+
+  const onHandaleChangeData = (message: string) => {
+    setSendMsg(message)
   }
   
-  const getMessageData = (message: string) => {
-    console.log("Message",message);
+  const sendMsgByOnClick = () => {
     
+    dispatch(setIsLoading(true))
+    if (sendMsg !== "") {
+      setMessageData(sendMsg);
+      const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
+      const sendMessage = {
+        token: tokenID,
+        participant_id: parseInt(selectedID),
+        message: sendMsg
+      }
+      const body = xwwwFormUrlencoded(sendMessage);
+      ApiPost('sendmessage', body)
+        .then((res: any) => {
+          console.log("res",res);
+          setSendMsg('')
+          getChat();
+          dispatch(setIsLoading(false))
+        }).catch((error) => {
+          console.log(error);
+          dispatch(setIsLoading(false))
+        })
+    }
+  }
+  const getMessageData = (message: string) => {
     dispatch(setIsLoading(true))
     if (message !== "") {
       setMessageData(message);
@@ -151,8 +175,6 @@ const Inbox = () => {
   const closeGif = () => {
     setGifTog(false);
   }
-
-
 
   return (
     <>
@@ -284,12 +306,12 @@ const Inbox = () => {
                       </div>
                       <div className="input-chat">
                         <InpEmoji getMData={getMessageData} onHandaleChangeData={onHandaleChangeData}/>
-                        <img src="./assets/img/right-arrow (2).png" alt="" width="15px" height="15px"  />
+                        <img src="./assets/img/right-arrow (2).png" style={{zIndex:'999'}} onClick={()=>sendMsgByOnClick()} width="15px" height="15px" />
                       </div>
                     </div>
                   </div>
                 </div>
-                ))
+                )) 
               </Col>
                 : <></>
             }
