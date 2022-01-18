@@ -16,7 +16,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-
 const GoogleAppId =
   "1043350539750-lldkb9r1i0pc3d3l66lupb9np2olict4.apps.googleusercontent.com";
 const FacbookAppId = "634703847650865";
@@ -79,7 +78,10 @@ const Signup = () => {
       .then((res: any) => {
         console.log("res", res.status);
         if (res.status === "true") {
-          navigate("/profile");
+          navigate({
+            pathname: '/',
+            search: `?from=signup`
+        })
         }
       }).catch((error) => {
         console.log(error);

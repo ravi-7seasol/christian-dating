@@ -15,10 +15,12 @@ import Header from "../../layouts/header/Header";
 import AuthStorage from "../../helper/AuthStorage";
 import STORAGEKEY from "../../config/APP/app.config";
 import { setIsLoading } from "../../redux/actions/loadingAction";
+import { useLocation } from "react-router";
 
 const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
+  const location = useLocation();
   const [loginData, setLoginData] = useState({
     email: "",
     password: ""
@@ -60,8 +62,11 @@ const Login = () => {
         delete newData.token
         delete newData.msg
         AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
-        if (res.status === "true") {
-          navigate("/show-profile");
+        if (res.status === "true" && location.search === "?from=signup") {
+          navigate("/profile");
+        }
+        else if (res.status === "true" ){
+          navigate("/match_or_message")
         }
       }).catch((error) => {
         console.log(error);

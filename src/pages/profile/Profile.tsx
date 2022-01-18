@@ -31,24 +31,9 @@ const Profile = (props: any) => {
     consume_alcohol: '',
     smoke: '',
   })
-  const [getData, setGetData] = useState('')
 
   const [stepDone, setStepDone] = useState(1);
   const nevigate = useNavigate();
-
-  useEffect(() => {
-    const id = {
-      id: '13'
-    }
-    const body = xwwwFormUrlencoded(id);
-      ApiPost(`getsingleuser`, body)
-      .then((res: any) => {
-        setGetData(res.user)
-        // setProfile({...profile, name:res.user.firstname, dob:res.user.dob, address:res.user.address, gender:res.user.gender, denomination:res.user.denomination, your_story:res.user.your_story, short_bio:res.user.short_bio, relationship_status:res.user.relationship_status, intrusted_in_meating:res.user.intrusted_in_meating, relationship_want_to_build:res.user.relationship_want_to_build, your_intenet:res.user.your_intenet, how_often_church:res.user.how_often_church, read_bible:res.user.read_bible, workout:res.user.workout, consume_alcohol:res.user.consume_alcohol, smoke:res.user.smoke})
-      }).catch((error: any) => {
-        console.log(error);
-      })
-  }, [])
 
   const handleNext = () => {
     if (stepDone < 5) {
@@ -100,9 +85,9 @@ const Profile = (props: any) => {
             </div>
           </div>
         </div>
-        {stepDone === 1 && <Personal personalData={personal} editPersonalData={getData} />}
-        {stepDone === 2 && <Prefrences prefrencesData={prefrences} editPrefrencesData={getData} />}
-        {stepDone === 3 && <Lifestyle lifeStyleData={lifeStyle} editLifeStyleData={getData} />}
+        {stepDone === 1 && <Personal personalData={personal} />}
+        {stepDone === 2 && <Prefrences prefrencesData={prefrences} />}
+        {stepDone === 3 && <Lifestyle lifeStyleData={lifeStyle} />}
         {stepDone >= 4 && <SetProfileImage stepDone={stepDone} />}
 
         <div className="login">
