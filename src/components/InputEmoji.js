@@ -8,6 +8,10 @@ const InpEmoji = (props) => {
     props.getMData(text);
   }
 
+  useEffect(() => {
+    props.onHandaleChangeData(text)
+  }, [text])
+
   return (
     <>
       <InputEmoji
