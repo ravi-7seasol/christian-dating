@@ -220,7 +220,8 @@
 .inbox-main .Conversation-starters .first-text {
   border-radius: 11px;
   opacity: 1;
-  background: transparent linear-gradient(258deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(258deg, #f7c35f 0%, #e69702 100%) 0%
+    0% no-repeat padding-box;
   font-size: 10px;
   width: fit-content;
   margin-right: 20%;
@@ -234,7 +235,8 @@
 .inbox-main .Conversation-starters .first-text-replay {
   border-radius: 11px;
   opacity: 1;
-  background: transparent linear-gradient(258deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(258deg, #f7c35f 0%, #e69702 100%) 0%
+    0% no-repeat padding-box;
   font-size: 10px !important;
   width: fit-content;
   margin-left: 20%;
@@ -367,12 +369,12 @@
   left: 42px;
 }
 
-.inbox-main .input-area .input-chat img{
-    display: none;
-  }
+.inbox-main .input-area .input-chat img,
+.input-chat img {
+  display: none;
+}
 
 @media (min-width: 320px) and (max-width: 768px) {
-
   .react-input-emoji--placeholder {
     font-size: 9px !important;
     left: 9px !important;
@@ -569,7 +571,8 @@
   .inbox-main .Conversation-starters .first-text {
     border-radius: 11px;
     opacity: 1;
-    background: transparent linear-gradient(258deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(258deg, #f7c35f 0%, #e69702 100%) 0%
+      0% no-repeat padding-box;
     font-size: 10px;
     width: fit-content;
     margin-right: 20%;
@@ -583,7 +586,8 @@
   .inbox-main .Conversation-starters .first-text-replay {
     border-radius: 11px;
     opacity: 1;
-    background: transparent linear-gradient(258deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(258deg, #f7c35f 0%, #e69702 100%) 0%
+      0% no-repeat padding-box;
     font-size: 10px !important;
     width: fit-content;
     margin-left: 20%;
@@ -672,7 +676,8 @@
     position: relative;
   }
 
-  .inbox-main .input-area .input-chat img{
+  .inbox-main .input-area .input-chat img,
+  .input-chat img {
     position: absolute;
     display: block;
     top: 19px;

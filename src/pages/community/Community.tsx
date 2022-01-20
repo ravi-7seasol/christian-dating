@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
+import InpEmoji from '../../components/InputEmoji'
 import InputField from '../../components/Inputfield'
+import STORAGEKEY from '../../config/APP/app.config'
 import { ApiPost } from '../../helper/API/ApiData'
+import AuthStorage from '../../helper/AuthStorage'
 import { xwwwFormUrlencoded } from '../../helper/utils'
 import { setIsLoading } from '../../redux/actions/loadingAction'
-// import '../messageInbox/inbox.css'
+import '../messageInbox/inbox.css'
 
 const Community = () => {
     // const fakedata = [
@@ -65,12 +68,15 @@ const Community = () => {
     //     }
     // ]
 
-    const [getTopicList, setGetTopicList] = useState([])
+    const [getTopicList, setGetTopicList] = useState([]);
+    const [topic, setTopic] = useState<any>();
+    const [selectedId, setSelectedId] = useState<any>();
+    const [setMsgToCommunity, setSendMsgToCommunity] = useState('');
+    const [clearText, setClearText] = useState<any>(false)
+
+
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        console.log("getTopicList",getTopicList);
-    }, [getTopicList])
 
     useEffect(() => {
         dispatch(setIsLoading(true))
@@ -80,7 +86,8 @@ const Community = () => {
         const body = xwwwFormUrlencoded(data);
         ApiPost('gettopicslist', body)
             .then((res: any) => {
-                // console.log("res gettopiclist => ", res);
+
+                setTopic(res.topics)
                 dispatch(setIsLoading(false))
             }).catch((error: any) => {
                 console.log(error);
@@ -88,24 +95,93 @@ const Community = () => {
             })
     }, [])
 
-    useEffect(() => {
-        dispatch(setIsLoading(true))
-        let data = {
-            topic_id : "5"
+    const getCommunityData = () => {
+        const data = {
+            topic_id: selectedId,
         }
-
         const body = xwwwFormUrlencoded(data);
-
         ApiPost('gettopic', body)
             .then((res: any) => {
-                // console.log("res gettopic", res);
+
                 setGetTopicList(res.topic_comment)
                 dispatch(setIsLoading(false))
             }).catch((error: any) => {
                 console.log(error);
                 dispatch(setIsLoading(false))
             })
-    }, [])
+    }
+
+    const sendCommunityData = (message: string) => {
+        dispatch(setIsLoading(true))
+        if (message !== "") {
+            const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
+            const sendMessageToCommunity = {
+                token: tokenID,
+                topic_id: selectedId,
+                message: message
+            }
+            const body = xwwwFormUrlencoded(sendMessageToCommunity);
+            ApiPost('sendcommunitymessage', body)
+                .then((res: any) => {
+
+                    getCommunityData();
+                    dispatch(setIsLoading(false))
+                }).catch((error) => {
+                    console.log(error);
+                    dispatch(setIsLoading(false))
+                })
+        }
+    }
+
+
+
+    const onHandaleChangeData = (message: string) => {
+        setSendMsgToCommunity(message)
+    }
+    const sendCommunityDataByClick = () => {
+
+
+        dispatch(setIsLoading(true))
+        if (setMsgToCommunity !== "") {
+            const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
+            const sendMessageToCommunity = {
+                token: tokenID,
+                topic_id: selectedId,
+                message: setMsgToCommunity
+            }
+            const body = xwwwFormUrlencoded(sendMessageToCommunity);
+            ApiPost('sendcommunitymessage', body)
+                .then((res: any) => {
+                    getCommunityData();
+                    setClearText(true)
+                    dispatch(setIsLoading(false))
+                }).catch((error) => {
+                    console.log(error);
+                    dispatch(setIsLoading(false))
+                })
+        }
+    }
+    const getTopicData = (e: any) => {
+
+        const data = {
+            topic_id: e.target.value,
+        }
+        setSelectedId(e.target.value);
+        if (e.target.value !== "select") {
+            const body = xwwwFormUrlencoded(data);
+            ApiPost('gettopic', body)
+                .then((res: any) => {
+
+                    setGetTopicList(res.topic_comment)
+                    dispatch(setIsLoading(false))
+                }).catch((error: any) => {
+                    console.log(error);
+                    dispatch(setIsLoading(false))
+                })
+        }
+
+
+    }
 
     return (
         <>
@@ -113,9 +189,21 @@ const Community = () => {
                 <div className='community-popup'>
                     <p>“So now the case is closed. There remains no accusing voice of condemnation against those who are joined in life-union with Jesus, the Anointed One.” <span> Romans‬ ‭8:1‬ ‭TPT‬‬</span></p>
                 </div>
+                <select onChange={(e) => getTopicData(e)}>
+                    <option value="select">Select Category</option>
+                    {
+                        topic?.map((data: any, i: number) => (
+
+                            <option key={i} value={data.t_id}>{data.topic}</option>
+
+                        ))
+                    }
+                </select>
+
+
                 <div className="community" style={{ position: "relative" }}>
                     <div className="">
-                        {getTopicList.map((item:any, i:number) => (
+                        {getTopicList?.map((item: any, i: number) => (
                             <div className='d-flex pt-4 align-items-center' key={i}>
                                 <div className='set-img-position'>
                                     <img src={item.sender_image} />
@@ -147,8 +235,8 @@ const Community = () => {
                             </div>
                         </Col>
                         <Col xs={8} sm={10}>
-                            <div>
-                                <InputField
+                            <div className="input-chat">
+                                {/* <InputField
                                     name=""
                                     maxLength={undefined}
                                     value={""}
@@ -162,7 +250,9 @@ const Community = () => {
                                     placeholder="Enter your message here"
                                     type="text"
                                     fromrowStyleclass=""
-                                />
+                                /> */}
+                                <InpEmoji getMData={sendCommunityData} onHandaleChangeData={onHandaleChangeData} clearText={clearText} afterClear={setClearText} />
+                                <img src="./assets/img/right-arrow (2).png" onClick={() => sendCommunityDataByClick()} style={{ zIndex: '999' }} width="15px" height="15px" />
                             </div>
                         </Col>
                     </Row>
