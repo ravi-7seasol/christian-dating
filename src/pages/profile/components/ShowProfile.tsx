@@ -150,7 +150,7 @@ const ShowProfile = () => {
                 <Container>
                     <div className='set-backbtn-singlebtn'>
                         <div className="back-btn">
-                            <Link to="/">
+                            <Link to="/match_or_message">
                                 <img src="./assets/img/next.png" alt="" width="10px" height="15px" />
                             </Link>
                         </div>

@@ -138,9 +138,6 @@ const MatchOrMessage = () => {
         <>
             <Container>
                 <div className='match-or-message mt-3'>
-                    <Link to="/show-profile">
-                        <img src="./assets/img/left-arrow.png" alt="" width="25px" height="25px" className='ml-3' />
-                    </Link>
                     <p>Profiles based on preference settings</p>
                 </div>
             </Container>
