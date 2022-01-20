@@ -116,12 +116,16 @@
   box-shadow: none !important;
 }
 
+.fade{
+  transition: opacity 0s !important;
+}
+
 .successStories-main .post-btn:active:focus:hover {
   position: fixed;
   background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
   font-weight: 600;
   border: none !important;
-  bottom: 0;
+  bottom: 20px;
   border-radius: 100%;
   font-size: 30px;
   width: 54px;
