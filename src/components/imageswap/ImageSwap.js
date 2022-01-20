@@ -56,16 +56,114 @@ const ImageSwap = () => {
       name: "John doe, 36",
       genderimg: "./assets/img/male.png",
     },
+    {
+      id: 0,
+      img: "https://placeimg.com/600/300/people",
+      name: "Demo",
+      text: "This is a demo for Tinder like swipe cards",
+      address: "USA, San Francisco Bay Area | Religion: ",
+      addressspan: "Catholic",
+      name: "John doe, 36",
+      genderimg: "./assets/img/male.png",
+    },
+    {
+      id: 1,
+      img: "https://placeimg.com/600/300/animals",
+      name: "Demo",
+      text: "This is a demo for Tinder like swipe cards",
+      address: "USA, San Francisco Bay Area | Religion: ",
+      addressspan: "Catholic",
+      name: "John doe, 36",
+      genderimg: "./assets/img/male.png",
+    },
+    {
+      id: 2,
+      img: "https://placeimg.com/600/300/nature",
+      name: "Demo",
+      text: "This is a demo for Tinder like swipe cards",
+      address: "USA, San Francisco Bay Area | Religion: ",
+      addressspan: "Catholic",
+      name: "John doe, 36",
+      genderimg: "./assets/img/male.png",
+    },
+    {
+      id: 3,
+      img: "https://placeimg.com/600/300/tech",
+      name: "Demo",
+      text: "This is a demo for Tinder like swipe cards",
+      address: "USA, San Francisco Bay Area | Religion: ",
+      addressspan: "Catholic",
+      name: "John doe, 36",
+      genderimg: "./assets/img/male.png",
+    },
+    {
+      id: 4,
+      img: "https://placeimg.com/600/300/arch",
+      name: "Demo",
+      text: "This is a demo for Tinder like swipe cards",
+      address: "USA, San Francisco Bay Area | Religion: ",
+      addressspan: "Catholic",
+      name: "John doe, 36",
+      genderimg: "./assets/img/male.png",
+    },
+    {
+      id: 0,
+      img: "https://placeimg.com/600/300/people",
+      name: "Demo",
+      text: "This is a demo for Tinder like swipe cards",
+      address: "USA, San Francisco Bay Area | Religion: ",
+      addressspan: "Catholic",
+      name: "John doe, 36",
+      genderimg: "./assets/img/male.png",
+    },
+    {
+      id: 1,
+      img: "https://placeimg.com/600/300/animals",
+      name: "Demo",
+      text: "This is a demo for Tinder like swipe cards",
+      address: "USA, San Francisco Bay Area | Religion: ",
+      addressspan: "Catholic",
+      name: "John doe, 36",
+      genderimg: "./assets/img/male.png",
+    },
+    {
+      id: 2,
+      img: "https://placeimg.com/600/300/nature",
+      name: "Demo",
+      text: "This is a demo for Tinder like swipe cards",
+      address: "USA, San Francisco Bay Area | Religion: ",
+      addressspan: "Catholic",
+      name: "John doe, 36",
+      genderimg: "./assets/img/male.png",
+    },
+    {
+      id: 3,
+      img: "https://placeimg.com/600/300/tech",
+      name: "Demo",
+      text: "This is a demo for Tinder like swipe cards",
+      address: "USA, San Francisco Bay Area | Religion: ",
+      addressspan: "Catholic",
+      name: "John doe, 36",
+      genderimg: "./assets/img/male.png",
+    },
+    {
+      id: 4,
+      img: "https://placeimg.com/600/300/arch",
+      name: "Demo",
+      text: "This is a demo for Tinder like swipe cards",
+      address: "USA, San Francisco Bay Area | Religion: ",
+      addressspan: "Catholic",
+      name: "John doe, 36",
+      genderimg: "./assets/img/male.png",
+    },
   ]);
 
   const [left, setLeft] = useState([]);
   const [right, setRight] = useState([]);
 
   const onSwipe = (direction, item) => {
-    console.log(item, direction);
      if (direction === "left") {
       setLeft([...left, item]);
-      console.log("left");
     } else if (direction === "right") {
       setRight([...right, item]);
     }
@@ -74,40 +172,30 @@ const ImageSwap = () => {
   useEffect(() => {
     const lefts = data.filter((item) => !left.includes(item));
     setData(lefts);
-    console.log("left", left);
   }, [left]);
 
   useEffect(() => {
     const rights = data.filter((item) => !right.includes(item));
     setData(rights);
-    console.log("right", right);
   }, [right]);
-
-  useEffect(() => {
-    console.log("data", data);
-  }, [data]);
-
-  // const onCardLeftScreen = (myIdentifier) => {
-  //   console.log(myIdentifier);
-  // };
 
   
 
   return (
     <div className="cards-container">
       {data.length>0 && data.map((item, i, row) => {
-        console.log("row", row.length - 1 );
         return(
           <TinderCard
           onSwipe={(dir) => onSwipe(dir, item)}
           // onCardLeftScreen={(item) => onCardLeftScreen(item)}
           preventSwipe={["up", "down"]}
           key={i}
-          className={`swap-card`}
+          className={`${row.length - 1 === i ? "normal-translate" : row.length - 2 ===i ? "normal-translate-1" : row.length - 3 ===i && " normal-translate-2"} swap-card`}
         >
-          <div className="card-inner" style={{transform:i===0 ? "translateY(-20px)": i===1 &&"translateY(-10px)" }}>
+          <div className={`card-inner`} >
             <img src={item.img} />
-            {/* {row.length - 1 &&  ( */}
+
+
               <div className="details">
               <div className="">
                     <p>
@@ -142,3 +230,4 @@ const ImageSwap = () => {
 };
 
 export default ImageSwap;
+
