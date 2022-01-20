@@ -73,7 +73,8 @@ const ShowProfile = () => {
     })
     const [funFacts, setFunFacts] = useState([{
         value: ""
-    }])  
+    }])
+    const [imgName, setImgName] = useState('')
 
     const incrementBtn = () => {
         let val = [...funFacts]
@@ -113,28 +114,6 @@ const ShowProfile = () => {
         setEditProfileData({ ...editProfileData, gender: text })
     }
 
-    const [imgName, setImgName] = useState('')
-
-    useEffect(() => {
-            
-        const img = {
-            token: AuthStorage.getToken(),
-            image: editProfileData.profile_picture,
-            name: imgName
-        }
-        const body = xwwwFormUrlencoded(img);
-
-        ApiPost(`updateprofileimage`, body)
-            .then((res: any) => {
-                console.log("res", res);
-                setEditProfileData({...editProfileData, profile_picture: res.file})
-                dispatch(setIsLoading(false))
-            }).catch((error: any) => {
-                console.log(error);
-                dispatch(setIsLoading(false))
-            })
-    }, [imgName])
-
     useEffect(() => {
         let data = funFacts.map((data: any) => data.value).join()
         setEditProfileData({ ...editProfileData, funfacts: data })
@@ -153,13 +132,57 @@ const ShowProfile = () => {
                     ...editProfileData, firstname: res.user.firstname, dob: res.user.dob, address: res.user.address, gender: res.user.gender, denomination: res.user.denomination, your_story: res.user.your_story, short_bio: res.user.short_bio, relationship_status: res.user.relationship_status, intrusted_in_meating: res.user.intrusted_in_meating, relationship_want_to_build: res.user.relationship_want_to_build, your_intenet: res.user.your_intenet, how_often_church: res.user.how_often_church, read_bible: res.user.read_bible, workout: res.user.workout, consume_alcohol: res.user.consume_alcohol, smoke: res.user.smoke,
                     body_type: res.user.body_type, career: res.user.career, children: res.user.children, city: res.user.city, code: res.user.code, country: res.user.country, education: res.user.education, email: res.user.email, id: res.user.id, image: res.user.image, is_active: res.user.is_active, is_verify: res.user.is_verify, language: res.user.language, lastname: res.user.lastname, mobile_no: res.user.mobile_no, pets: res.user.pets, profile_picture: res.user.profile_picture, state: res.user.state, token: AuthStorage.getToken()
                 })
-                setFunFacts(res.user.funfacts.split(',').map((data:any)=>({value:data})))
+                setFunFacts(res.user.funfacts.split(',').map((data: any) => ({ value: data })))
                 dispatch(setIsLoading(false))
             }).catch((error: any) => {
                 console.log(error);
                 dispatch(setIsLoading(false))
             })
     }, [])
+
+    const handleChnage = (e: any) => {
+        
+        let file = e.target.files[0]
+        new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file)
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+                setEditProfileData({ ...editProfileData, profile_picture: fileReader.result })
+                setImgName(e.target.files[0].name)
+                
+            }
+            fileReader.onerror = (error) => {
+                reject(error);
+            }
+        })
+    }
+
+    useEffect(() => {
+        const img = {
+            token: AuthStorage.getToken(),
+            image: editProfileData.profile_picture,                
+            name: imgName
+        }
+
+        if (imgName.length) {
+            
+            console.log("editProfileData.profile_picture",editProfileData.profile_picture);
+            console.log("img.image",img.image);
+            
+            const body = xwwwFormUrlencoded(img);
+
+            ApiPost(`updateprofileimage`, body)
+                .then((res: any) => {
+                    console.log("res", res);
+                    setEditProfileData({ ...editProfileData, profile_picture: res.file })
+                    dispatch(setIsLoading(false))
+                }).catch((error: any) => {
+                    console.log(error);
+                    dispatch(setIsLoading(false))
+                })
+        }
+    }, [imgName])
 
     const editProfileBtn = () => {
         const body = xwwwFormUrlencoded(editProfileData);
@@ -252,29 +275,13 @@ const ShowProfile = () => {
 
     const textInput: any = useRef(null)
 
-    const handleChnage = (e: any) => {
-        let file = e.target.files[0]
-             new Promise((resolve, reject) => { 
-                const fileReader = new FileReader();
-                fileReader.readAsDataURL(file)
-                fileReader.onload = () => {
-                    resolve(fileReader.result);                    
-                    setEditProfileData({ ...editProfileData, profile_picture: fileReader.result })
-                }
-                fileReader.onerror = (error) => {
-                    reject(error);
-                }
-            })
-        setImgName(e.target.files[0].name)
-    }
-
     return (
         <>
             <div className="profilr-bg">
                 <Container>
                     <div className='set-backbtn-singlebtn '>
                         <div className="back-btn">
-                            <Link to="/">
+                            <Link to="/match_or_message">
                                 <img src="./assets/img/next.png" alt="" width="10px" height="15px" />
                             </Link>
                         </div>
@@ -598,10 +605,10 @@ const ShowProfile = () => {
                                                 />
                                             </div>
                                             {/* <button className='btn btn-default' > */}
-                                            <img src="./assets/img/minus-button.png" alt="" width="20px" height="20px" className=' m-2' onClick={() => decrementBtn(i)} />
+                                            <img src="./assets/img/minus-button.png" style={{cursor: "pointer"}} alt="" width="20px" height="20px" className=' m-2' onClick={() => decrementBtn(i)} />
                                             {/* </button> */}
                                             {funFacts.length - 1 === i && (
-                                                <img src="./assets/img/plus.png" alt="" width="20px" height="20px" className='m-2 ' onClick={incrementBtn} />
+                                                <img src="./assets/img/plus.png" style={{cursor: "pointer"}} alt="" width="20px" height="20px" className='m-2 ' onClick={incrementBtn} />
                                             )
                                             }
                                         </div>
