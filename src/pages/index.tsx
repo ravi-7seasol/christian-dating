@@ -28,6 +28,9 @@ const Index = () => {
     console.log("loction", loction);
 
     if (AuthStorage.isUserAuthenticated()) {
+      if(!forAuthLayout.includes(loction.pathname)){
+        navigate("/match_or_message")
+      }
       // ApiGet("user/validate")
       //   .then((res) => {
       //     dispatch(changeLoginState(true));

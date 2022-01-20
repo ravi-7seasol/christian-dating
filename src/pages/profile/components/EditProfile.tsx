@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Accordion, Col, Container, Row } from 'react-bootstrap';
 import Buttons from '../../../components/Buttons';
 import { useNavigate } from 'react-router';
@@ -10,6 +10,7 @@ import ReactSelect from '../../../components/ReactSelect';
 import AuthStorage from '../../../helper/AuthStorage';
 import { setIsLoading } from '../../../redux/actions/loadingAction';
 import { useDispatch } from 'react-redux';
+import React from 'react';
 
 const ShowProfile = () => {
 
@@ -26,7 +27,7 @@ const ShowProfile = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const [editProfileData, setEditProfileData] = useState({
+    const [editProfileData, setEditProfileData] = useState<any>({
         token: AuthStorage.getToken(),
         firstname: '',
         dob: '',
@@ -67,12 +68,12 @@ const ShowProfile = () => {
         is_verify: "",
         lastname: "",
         mobile_no: "",
-        profile_picture: "",
+        profile_picture: null,
         state: "",
     })
     const [funFacts, setFunFacts] = useState([{
         value: ""
-    }])
+    }])  
 
     const incrementBtn = () => {
         let val = [...funFacts]
@@ -112,6 +113,28 @@ const ShowProfile = () => {
         setEditProfileData({ ...editProfileData, gender: text })
     }
 
+    const [imgName, setImgName] = useState('')
+
+    useEffect(() => {
+            
+        const img = {
+            token: AuthStorage.getToken(),
+            image: editProfileData.profile_picture,
+            name: imgName
+        }
+        const body = xwwwFormUrlencoded(img);
+
+        ApiPost(`updateprofileimage`, body)
+            .then((res: any) => {
+                console.log("res", res);
+                setEditProfileData({...editProfileData, profile_picture: res.file})
+                dispatch(setIsLoading(false))
+            }).catch((error: any) => {
+                console.log(error);
+                dispatch(setIsLoading(false))
+            })
+    }, [imgName])
+
     useEffect(() => {
         let data = funFacts.map((data: any) => data.value).join()
         setEditProfileData({ ...editProfileData, funfacts: data })
@@ -141,17 +164,17 @@ const ShowProfile = () => {
     const editProfileBtn = () => {
         const body = xwwwFormUrlencoded(editProfileData);
         ApiPost('updateprofile', body)
-        .then((res: any) => {
-          console.log("res", res);
-          if (res.status === "true") {
-            navigate("/show-profile");
-          }
-          else {              
-            alert(`${res.msg}`)
-          }
-        }).catch((error: any) => {
-          console.log(error);
-        })
+            .then((res: any) => {
+                console.log("res as profile update", res);
+                if (res.status === "true") {
+                    navigate("/show-profile");
+                }
+                else {
+                    alert(`${res.msg}`)
+                }
+            }).catch((error: any) => {
+                console.log(error);
+            })
     }
 
     const accordion = [
@@ -227,6 +250,24 @@ const ShowProfile = () => {
         { value: "Divorced", label: "Divorced" },
     ]
 
+    const textInput: any = useRef(null)
+
+    const handleChnage = (e: any) => {
+        let file = e.target.files[0]
+             new Promise((resolve, reject) => { 
+                const fileReader = new FileReader();
+                fileReader.readAsDataURL(file)
+                fileReader.onload = () => {
+                    resolve(fileReader.result);                    
+                    setEditProfileData({ ...editProfileData, profile_picture: fileReader.result })
+                }
+                fileReader.onerror = (error) => {
+                    reject(error);
+                }
+            })
+        setImgName(e.target.files[0].name)
+    }
+
     return (
         <>
             <div className="profilr-bg">
@@ -245,7 +286,8 @@ const ShowProfile = () => {
                         <Row>
                             <Col md={3}>
                                 <div className='profile-pic'>
-                                    <img src="./assets/img/taylor-8Vt2haq8NSQ-unsplash.png" alt="" />
+                                    <img src={editProfileData?.profile_picture} alt="" onClick={() => { textInput.current.click() }} />
+                                    <input type="file" style={{ opacity: "0" }} ref={textInput} onChange={(e) => handleChnage(e)} id="img" name="img" accept="image/*" />
                                     <div className="verified-picture">
                                         {editProfileData.is_verify === "1" ? <><img src="./assets/img/poltgon-group.png" alt="" /><p>Verified picture</p></> : ''}
                                     </div>
@@ -538,7 +580,7 @@ const ShowProfile = () => {
                                 {
                                     funFacts.map((data: any, i: number) => (
                                         <div className='d-flex mb-2'>
-                                            <div className='col-6 p-0'> 
+                                            <div className='col-6 p-0'>
                                                 <InputField
                                                     name={`funfacts${i}`}
                                                     maxLength={undefined}
