@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
+import { RootStateOrAny, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { ApiPost } from "../../helper/API/ApiData";
 import AuthStorage from "../../helper/AuthStorage";
+import { xwwwFormUrlencoded } from "../../helper/utils";
 
 const AuthHeader: React.FC = () => {
   const location = useLocation();
@@ -14,6 +17,12 @@ const AuthHeader: React.FC = () => {
   const handleRedirect = () => {
     navigate("/show-profile");
   };
+  const profileImg = useSelector((state:RootStateOrAny) => state.profile_Image.profileImage)
+
+  useEffect(() => {
+    console.log("profileImg",profileImg)
+  }, [profileImg])
+
   const logOut = () => {
     AuthStorage.deauthenticateUser()
   }
@@ -61,6 +70,7 @@ const AuthHeader: React.FC = () => {
               <div className="profile-pic position-relative">
                 <img
                   src="./assets/img/Ellipse.png"
+                  // src={profileImg}
                   alt=""
                   onClick={openMenu}
                 />

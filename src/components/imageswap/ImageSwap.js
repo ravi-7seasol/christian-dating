@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 // import * as Hammer from "hammerjs";
 import TinderCard from "react-tinder-card";
+import { ApiPost } from "../../helper/API/ApiData";
+import AuthStorage from "../../helper/AuthStorage";
+import { xwwwFormUrlencoded } from "../../helper/utils";
 
 
 const ImageSwap = () => {
@@ -58,6 +61,27 @@ const ImageSwap = () => {
     },
   ]);
 
+  const [getProfileMatch, setGetProfileMatch] = useState([])
+
+  useEffect(() => {
+    let token = {
+      token: AuthStorage.getToken()
+    }
+    const body = xwwwFormUrlencoded(token)
+    ApiPost('/getprofilematches', body)
+      .then(res => {
+        console.log("res", res);
+        // setGetProfileMatch(res.matches)
+      })
+      .catch(err => {
+        console.log("err", err);
+      })
+  }, [])
+
+  useEffect(() => {
+    console.log("getProfileMatch",getProfileMatch);
+  }, [getProfileMatch])
+
   const [left, setLeft] = useState([]);
   const [right, setRight] = useState([]);
 
@@ -92,7 +116,7 @@ const ImageSwap = () => {
   //   console.log(myIdentifier);
   // };
 
-  
+
 
   return (
     <div className="cards-container">
@@ -100,41 +124,41 @@ const ImageSwap = () => {
         console.log("row", row.length - 1 );
         return(
           <TinderCard
-          onSwipe={(dir) => onSwipe(dir, item)}
-          // onCardLeftScreen={(item) => onCardLeftScreen(item)}
-          preventSwipe={["up", "down"]}
-          key={i}
-          className={`swap-card`}
-        >
-          <div className="card-inner" style={{transform:i===0 && "translateY(-10px)" }}>
-            <img src={item.img} />
-            {/* {row.length - 1 &&  ( */}
+            onSwipe={(dir) => onSwipe(dir, item)}
+            // onCardLeftScreen={(item) => onCardLeftScreen(item)}
+            preventSwipe={["up", "down"]}
+            key={i}
+            className={`swap-card`}
+          >
+            <div className="card-inner" style={{transform:i===0 && "translateY(-10px)" }}>
+              <img src={item.img} />
+              {/* {row.length - 1 &&  ( */}
               <div className="details">
-              <div className="">
-                    <p>
-                      {item.address}
-                      <span> {item.addressspan} </span>
-                    </p>
-                    <div className="d-flex align-items-center justify-content-between mb-3">
-                      <div className="d-flex align-items-center">
-                        {" "}
-                        <h5 className="name-age">{item.name}</h5>
-                        <img
-                          src={item.genderimg}
-                          alt=""
-                          height="8%"
-                          width="8%"
-                          className="ml-3"
-                        />
+                <div className="">
+                  <p>
+                    {item.address}
+                    <span> {item.addressspan} </span>
+                  </p>
+                  <div className="d-flex align-items-center justify-content-between mb-3">
+                    <div className="d-flex align-items-center">
+                      {" "}
+                      <h5 className="name-age">{item.name}</h5>
+                      <img
+                        src={item.genderimg}
+                        alt=""
+                        height="8%"
+                        width="8%"
+                        className="ml-3"
+                      />
 
-                      </div>
-                      <button>View profile</button>
                     </div>
+                    <button>View profile</button>
                   </div>
+                </div>
               </div>
-            {/* )} */}
-          </div>
-        </TinderCard>
+              {/* )} */}
+            </div>
+          </TinderCard>
         )
       }
       )}
