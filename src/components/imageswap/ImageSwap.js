@@ -87,15 +87,14 @@ const ImageSwap = () => {
 
   const onSwipe = (direction, item) => {
     console.log(item, direction);
-    // res = arr1.filter(item => !arr2.includes(item));
-
-    if (direction === "left") {
+     if (direction === "left") {
       setLeft([...left, item]);
       console.log("left");
     } else if (direction === "right") {
       setRight([...right, item]);
     }
   };
+
   useEffect(() => {
     const lefts = data.filter((item) => !left.includes(item));
     setData(lefts);

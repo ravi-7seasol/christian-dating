@@ -8,7 +8,7 @@ function Routes() {
   const { is_loading } = useSelector((state: RootStateOrAny) => state.loading);
   return (
     <div>
-      {is_loading && <Loader />}
+      {is_loading && <div className="loader-center" > <Loader /> </div>}
       {/* <Switch> */}
       <Pages />
       {/* </Switch> */}

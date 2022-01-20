@@ -11,6 +11,7 @@ const AuthHeader: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [showProfile, setShowProfile] = useState(false);
+  const [navpopup, setNavpopup] = useState(false)
   const openMenu = () => {
     setShowProfile(!showProfile);
   };
@@ -45,20 +46,22 @@ const AuthHeader: React.FC = () => {
       </div> */}
       <Navbar bg="light" className="authnave">
         <Container>
-          <Navbar.Brand onClick={handleRedirect}>
+          <Navbar.Brand >
             <img
               src="./assets/img/Group 28.png"
               className=" align-top uncommon-logo"
+              onClick={handleRedirect}
             />
-            <img src="./assets/img/application-menu.png" className="menu-logo" alt="" height="5%" />
+            <img src="./assets/img/application-menu.png" className="menu-logo" alt="" height="5%" onClick={() => { setNavpopup(!navpopup) }} />
           </Navbar.Brand>
+
           <Navbar.Collapse
             id="basic-navbar-nav"
             onBlur={() => setShowProfile(false)}
           >
             <div className="page-name text-center w-100">
-            <h1 className="" >{location.pathname === "/show-profile" && "Profile" || location.pathname === "/match_or_message" && "Match or Message" || location.pathname === "/inbox" && "Inbox" || location.pathname === "/community" && "Community"}</h1>
-          </div>
+              <h1 className="" >{location.pathname === "/show-profile" && "Profile" || location.pathname === "/match_or_message" && "Match or Message" || location.pathname === "/inbox" && "Inbox" || location.pathname === "/community" && "Community"}</h1>
+            </div>
             <Nav className="ml-auto">
               <div className="navLinks">
                 <Link to="/match_or_message">Match-or-Message</Link>
@@ -94,6 +97,16 @@ const AuthHeader: React.FC = () => {
             </Nav>
           </Navbar.Collapse>
         </Container>
+        {navpopup &&
+          <div className="nav-popup">
+            <div className="nav-links">
+              <Link to="/match_or_message">Match-or-Message</Link>
+              <Link to="/community">Community</Link>
+              <Link to="/inbox">Inbox</Link>
+              <Link to="/success_stories">Success-stories</Link>
+            </div>
+          </div>
+        }
       </Navbar>
     </>
   );
