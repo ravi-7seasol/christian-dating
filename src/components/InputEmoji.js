@@ -9,8 +9,17 @@ const InpEmoji = (props) => {
   }
 
   useEffect(() => {
-    props.onHandaleChangeData(text)
-  }, [text])
+    if (props.clearText === true) {
+      setText("");
+    }
+  }, [props.clearText]);
+
+  useEffect(() => {
+    props.onHandaleChangeData(text);
+    if (text.length > 0) {
+      props.afterClear(false);
+    }
+  }, [text]);
 
   return (
     <>
