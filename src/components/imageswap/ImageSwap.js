@@ -218,16 +218,15 @@ const ImageSwap = () => {
       {data.length>0 && data.map((item, i, row) => {
         return(
           <TinderCard
-          onSwipe={(dir) => onSwipe(dir, item)}
-          // onCardLeftScreen={(item) => onCardLeftScreen(item)}
-          preventSwipe={["up", "down"]}
-          key={i}
-          className={`${row.length - 1 === i ? "normal-translate" : row.length - 2 ===i ? "normal-translate-1" : row.length - 3 ===i && " normal-translate-2"} swap-card`}
-        >
-          <div className={`card-inner`} >
-            <img src={item.img} />
-
-
+            onSwipe={(dir) => onSwipe(dir, item)}
+            // onCardLeftScreen={(item) => onCardLeftScreen(item)}
+            preventSwipe={["up", "down"]}
+            key={i}
+            className={`swap-card`}
+          >
+            <div className="card-inner" style={{transform:i===0 && "translateY(-10px)" }}>
+              <img src={item.img} />
+              {/* {row.length - 1 &&  ( */}
               <div className="details">
                 <div className="">
                   <p>
