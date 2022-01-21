@@ -11,6 +11,7 @@ import AuthStorage from '../../../helper/AuthStorage';
 import { setIsLoading } from '../../../redux/actions/loadingAction';
 import { useDispatch } from 'react-redux';
 import React from 'react';
+import STORAGEKEY from '../../../config/APP/app.config';
 
 const ShowProfile = () => {
 
@@ -75,6 +76,7 @@ const ShowProfile = () => {
         value: ""
     }])
     const [imgName, setImgName] = useState('')
+    const [isVerify, setIsVerify] = useState<any>('')
 
     const incrementBtn = () => {
         let val = [...funFacts]
@@ -122,7 +124,7 @@ const ShowProfile = () => {
     useEffect(() => {
         dispatch(setIsLoading(true))
         const id = {
-            id: '13'
+            id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id
         }
         const body = xwwwFormUrlencoded(id);
 
@@ -138,7 +140,23 @@ const ShowProfile = () => {
                 console.log(error);
                 dispatch(setIsLoading(false))
             })
-    }, [])
+    }, [])    
+
+    useEffect(() => {
+        let id = {
+            id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id
+        }
+        const body = xwwwFormUrlencoded(id)
+        ApiPost('checkimageverificaion', body)
+            .then(res => {
+                console.log("res", res)
+                setIsVerify(res)
+            })
+            .catch(err => {
+                console.log("err", err);
+
+            })
+    }, []);
 
     const handleChnage = (e: any) => {
         
@@ -296,7 +314,7 @@ const ShowProfile = () => {
                                     <img src={editProfileData?.profile_picture} alt="" onClick={() => { textInput.current.click() }} />
                                     <input type="file" style={{ opacity: "0" }} ref={textInput} onChange={(e) => handleChnage(e)} id="img" name="img" accept="image/*" />
                                     <div className="verified-picture">
-                                        {editProfileData.is_verify === "1" ? <><img src="./assets/img/poltgon-group.png" alt="" /><p>Verified picture</p></> : ''}
+                                        {isVerify.is_profile_image_verified === "1" ? <><img src="./assets/img/poltgon-group.png" alt="" /><p>Verified picture</p></> : ''}
                                     </div>
                                 </div>
                             </Col>
@@ -416,7 +434,7 @@ const ShowProfile = () => {
                 <div className='editprofile-over-img-popup'>
                     <div className="over-img-div">
                         <div className="verified-picture">
-                            {editProfileData.is_verify === "1" ? <><p><img src="./assets/img/poltgon-group.png" alt="" />Verified picture</p></> : ''}
+                            {isVerify.is_profile_image_verified === "1" ? <><p><img src="./assets/img/poltgon-group.png" alt="" />Verified picture</p></> : ''}
                         </div>
                         <div className="over-img-popup">
                             <div>
