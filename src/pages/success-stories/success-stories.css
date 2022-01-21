@@ -83,7 +83,6 @@
   z-index: 1;
   width: 450px;
   justify-content: center;
-
 }
 
 .overlay {
@@ -105,7 +104,8 @@
 
 .successStories-main .post-btn {
   position: fixed;
-  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
+    0% no-repeat padding-box;
   font-weight: 600;
   border: none;
   bottom: 20px;
@@ -116,13 +116,20 @@
   box-shadow: none !important;
 }
 
-.fade{
-  transition: opacity 0s !important;
+.fade {
+  transition: none !important;
+}
+
+.post-btn {
+  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
+    0% no-repeat padding-box !important;
+    border: none !important;
 }
 
 .successStories-main .post-btn:active:focus:hover {
   position: fixed;
-  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
+    0% no-repeat padding-box;
   font-weight: 600;
   border: none !important;
   bottom: 20px;
