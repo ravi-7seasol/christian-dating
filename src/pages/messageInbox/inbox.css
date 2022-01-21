@@ -373,8 +373,41 @@
 .input-chat img {
   display: none;
 }
+.community-input-chat {
+  position: relative;
+}
+.community-input-chat .inbox-send-msg-btn {
+  position: absolute;
+  right: 55px;
+  top: calc(50% - 15px);
+  display: none;
+  z-index: 99999;
+}
+.fotterinput .gifts img {
+  width: 40px;
+  height: 40px;
+}
+.fotterinput .gifts {
+  position: absolute;
+  top: -110px;
+  left: 0;
+  width: 200px;
+  height: 100px;
+  box-shadow: 5px 3px 10px rgb(0 0 0 / 30%);
+  z-index: 555 !important;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  grid-column-gap: 5px;
+  column-gap: 5px;
+  background: #ffffff;
+}
 
 @media (min-width: 320px) and (max-width: 768px) {
+  .community-input-chat .inbox-send-msg-btn {
+    display: block;
+  }
   .react-input-emoji--placeholder {
     font-size: 9px !important;
     left: 9px !important;
@@ -677,11 +710,11 @@
   }
 
   .inbox-main .input-area .input-chat img,
-  .input-chat img {
+  .input-chat .inbox-send-msg-btn {
     position: absolute;
     display: block;
-    top: 19px;
-    right: 58px;
+    top: calc(50% - 4px);
+    right: 29px;
   }
 
   .inbox-main .input-area .input-chat .text-input,

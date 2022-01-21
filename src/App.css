@@ -2,7 +2,7 @@
 body {
   font-family: "Poppins", sans-serif;
 }
-.loader-center{
+.loader-center {
   position: absolute;
   height: 100vh;
   width: 100vw;
@@ -444,7 +444,7 @@ figure {
   outline: none !important;
   border-radius: unset !important;
 }
-.textarea textarea:focus{
+.textarea textarea:focus {
   border-bottom: 1px solid #e69904;
 }
 .textarea textarea::-webkit-scrollbar {
@@ -816,4 +816,9 @@ input[type="date"]:before {
   .setProfileImage .note span {
     font: italic normal normal 9px/16px Poppins;
   }
+}
+
+.select {
+  width: 237px !important;
+  margin-left: auto !important;
 }
