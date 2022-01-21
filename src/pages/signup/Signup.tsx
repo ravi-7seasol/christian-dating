@@ -11,7 +11,7 @@ import { Container } from "react-bootstrap";
 import Header from "../../layouts/header/Header";
 import { useEffect, useState } from "react";
 import { xwwwFormUrlencoded } from "../../helper/utils";
-import { ApiPost } from "../../helper/API/ApiData";
+import { ApiGet, ApiPost } from "../../helper/API/ApiData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
@@ -32,6 +32,7 @@ const Signup = () => {
     confirm_password: ""
   })
   const [formErrors, setFormErrors] = useState<any>()
+  const [signUpErrors, setSignUpErrors] = useState();
   const onInputValueChange = (e: any) => {
     setSignupData({
       ...signupData,
@@ -39,7 +40,6 @@ const Signup = () => {
     })
   }
 
-  console.log("FORMERRORS", formErrors);
   const validation = () => {
     let flag = false
     const error: any = {};
@@ -79,7 +79,7 @@ const Signup = () => {
     const body = xwwwFormUrlencoded(signupData);
     ApiPost('signupuser', body)
       .then((res: any) => {
-        console.log("res", res.status);
+        setSignUpErrors(res.msg)
         dispatch(setIsLoading(false))
 
         if (res.status === "true") {
@@ -110,13 +110,23 @@ const Signup = () => {
   };
 
   const responseGoogle = (response: any) => {
-    console.log("google response", response);
+    const code = {
+      code:response.googleId
+    }
+    const body = xwwwFormUrlencoded(code)
+    ApiPost("signupusersocial",body)
+    .then((res)=>{
+      console.log("res",res)
+    })
+    .catch((err)=>{
+      console.log("err",err)
+    })
   };
   const responseGoogle1 = (response: any) => {
     console.log("google response failer", response);
   };
 
-  const Google = () => {
+  const Google = () => {    
     document
       .getElementById("google")!
       .getElementsByTagName("button")[0]
@@ -194,7 +204,9 @@ const Signup = () => {
                   <p><Link to="/terms-of-use?from=signup" className="forgot-password">Terms of use</Link></p>
                   <p><Link to="/privacy-policy?from=signup" className="forgot-password">Privacy Policy</Link></p>
                 </div>
-
+                {
+                  signUpErrors && < label className="ErrMsg" htmlFor="error"> <FontAwesomeIcon icon={faTimesCircle} />{signUpErrors}</label>
+                }
                 <div style={{ marginTop: "3rem" }}>
                   <Buttons
                     children="Sign up"

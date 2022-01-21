@@ -13,6 +13,7 @@ import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { setIsLoading } from '../../../redux/actions/loadingAction';
 import { getProfileImage } from '../../../redux/actions/getProfileImage';
+import STORAGEKEY from '../../../config/APP/app.config';
 
 const ShowProfile = () => {
 
@@ -54,36 +55,37 @@ const ShowProfile = () => {
         profile_picture: "",
         state: "",
         token: "",
-        personality:'',
-        aboutme:'',
-        lifestyle:'',
+        personality: '',
+        aboutme: '',
+        lifestyle: '',
     })
 
     const dispatch = useDispatch()
 
     const [id, setId] = useState<any>(0)
+    const [isVerify, setIsVerify] = useState<any>({});
 
-    const handleid =(i:any)=>{
-        if(id===i){
+    const handleid = (i: any) => {
+        if (id === i) {
             setId(undefined)
-        }else{
+        } else {
 
-            setId(i) 
+            setId(i)
         }
     }
 
     useEffect(() => {
         dispatch(setIsLoading(true))
         const id = {
-            id: '13'
+            id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id
         }
         const body = xwwwFormUrlencoded(id);
 
         ApiPost(`getsingleuser`, body)
             .then((res: any) => {
                 setGetProfileData({
-                    ...getProfileData, firstname: res.user.firstname, dob: res.user.dob, address: res.user.address, gender: res.user.gender, denomination: res.user.denomination, your_story: res.user.your_story, short_bio: res.user.short_bio, relationship_status: res.user.relationship_status, intrusted_in_meating: res.user.intrusted_in_meating, relationship_want_to_build: res.user.relationship_want_to_build, your_intenet: res.user.your_intenet, how_often_church: res.user.how_often_church, read_bible: res.user.read_bible, workout: res.user.workout, consume_alcohol: res.user.consume_alcohol, smoke: res.user.smoke, religion:res.user.religion,
-                    body_type: res.user.body_type, career: res.user.career, children: res.user.children, city: res.user.city, code: res.user.code, country: res.user.country, education: res.user.education, email: res.user.email, funfacts: res.user.funfacts, id: res.user.id, image: res.user.image, is_active: res.user.is_active, is_verify: res.user.is_verify, language: res.user.language, lastname: res.user.lastname, mobile_no: res.user.mobile_no, pets: res.user.pets, profile_picture: res.user.profile_picture, state: res.user.state, token: res.user.token, aboutme:res.user.aboutme, lifestyle:res.user.lifestyle, personality:res.user.personality,
+                    ...getProfileData, firstname: res.user.firstname, dob: res.user.dob, address: res.user.address, gender: res.user.gender, denomination: res.user.denomination, your_story: res.user.your_story, short_bio: res.user.short_bio, relationship_status: res.user.relationship_status, intrusted_in_meating: res.user.intrusted_in_meating, relationship_want_to_build: res.user.relationship_want_to_build, your_intenet: res.user.your_intenet, how_often_church: res.user.how_often_church, read_bible: res.user.read_bible, workout: res.user.workout, consume_alcohol: res.user.consume_alcohol, smoke: res.user.smoke, religion: res.user.religion,
+                    body_type: res.user.body_type, career: res.user.career, children: res.user.children, city: res.user.city, code: res.user.code, country: res.user.country, education: res.user.education, email: res.user.email, funfacts: res.user.funfacts, id: res.user.id, image: res.user.image, is_active: res.user.is_active, is_verify: res.user.is_verify, language: res.user.language, lastname: res.user.lastname, mobile_no: res.user.mobile_no, pets: res.user.pets, profile_picture: res.user.profile_picture, state: res.user.state, token: res.user.token, aboutme: res.user.aboutme, lifestyle: res.user.lifestyle, personality: res.user.personality,
                 })
                 dispatch(getProfileImage(res.user.profile_picture))
                 dispatch(setIsLoading(false))
@@ -94,6 +96,23 @@ const ShowProfile = () => {
 
             })
     }, [])
+
+    useEffect(() => {
+        let id = {
+            id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id
+        }
+        const body = xwwwFormUrlencoded(id)
+        ApiPost('checkimageverificaion', body)
+            .then(res => {
+                console.log("res", res)
+                setIsVerify(res)
+            })
+            .catch(err => {
+                console.log("err", err);
+
+            })
+    }, []);
+
 
     const accordion = [
         {
@@ -154,16 +173,16 @@ const ShowProfile = () => {
                                 <img src="./assets/img/next.png" alt="" width="10px" height="15px" />
                             </Link>
                         </div>
-                        <Buttons ButtonStyle='single-btn' onClick={()=>{}} children={getProfileData.relationship_status} />
+                        <Buttons ButtonStyle='single-btn' onClick={() => { }} children={getProfileData.relationship_status} />
                     </div>
                     <div className='over-img-div-991'>
                         <Row>
                             <Col md={3}>
                                 <div className='profile-pic'>
                                     {/* <img src="./assets/img/taylor-8Vt2haq8NSQ-unsplash.png" alt="" /> */}
-                                    <img src={getProfileData?.profile_picture} alt="" />
+                                    <img src={getProfileData?.image} alt="" />
                                     <div className="verified-picture">
-                                        {getProfileData.is_verify === "1" ? <><img src="./assets/img/poltgon-group.png" alt="" /><p>Verified picture</p></> : ''}
+                                        {isVerify.is_profile_image_verified === "1" ? <><img src="./assets/img/poltgon-group.png" alt="" /><p>Verified picture</p></> : ''}
                                     </div>
                                 </div>
                             </Col>
@@ -184,7 +203,7 @@ const ShowProfile = () => {
             <Container>
                 <div className="over-img-div">
                     <div className="verified-picture">
-                        {getProfileData.is_verify === "1" ? <><img src="./assets/img/poltgon-group.png" alt="" /><p>Verified picture</p></> : ''}
+                        {isVerify.is_profile_image_verified === "1" ? <><img src="./assets/img/poltgon-group.png" alt="" /><p>Verified picture</p></> : ''}
                     </div>
                     <div className="over-img-popup">
                         <p>{getProfileData.address} | Religion: {getProfileData.religion}</p>
@@ -199,14 +218,14 @@ const ShowProfile = () => {
             <Container>
                 <div className="profile-accordion">
                     <Accordion defaultActiveKey="0">
-                        {accordion.map((item, i) =>(
+                        {accordion.map((item, i) => (
                             <Accordion.Item eventKey={i.toString()}>
-                            <Accordion.Header onClick={()=>handleid(i)}>{item.Header}
-                            <img src="./assets/img/down-arrow.png" alt="" width="20px" className={`${id === i && 'rotate-img'}`}/></Accordion.Header>
-                            <Accordion.Body>
-                                {item.Body}
-                            </Accordion.Body>
-                        </Accordion.Item>
+                                <Accordion.Header onClick={() => handleid(i)}>{item.Header}
+                                    <img src="./assets/img/down-arrow.png" alt="" width="20px" className={`${id === i && 'rotate-img'}`} /></Accordion.Header>
+                                <Accordion.Body>
+                                    {item.Body}
+                                </Accordion.Body>
+                            </Accordion.Item>
                         ))}
                     </Accordion>
                     <div className="personal-details">

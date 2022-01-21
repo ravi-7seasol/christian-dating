@@ -19,7 +19,7 @@ const ImageSwap = () => {
       genderimg: "./assets/img/male.png",
     },
     {
-      id: 1,
+      id: 1,  
       img: "https://placeimg.com/600/300/animals",
       name: "Demo",
       text: "This is a demo for Tinder like swipe cards",
@@ -59,7 +59,7 @@ const ImageSwap = () => {
       genderimg: "./assets/img/male.png",
     },
   ];
-  const [data, setData] = useState(allData);
+  // const [data, setData] = useState(allData);
 
   const [getProfileMatch, setGetProfileMatch] = useState([])
 
@@ -71,16 +71,12 @@ const ImageSwap = () => {
     ApiPost('/getprofilematches', body)
       .then(res => {
         console.log("res", res);
-        // setGetProfileMatch(res.matches)
+        setGetProfileMatch(res.matches)
       })
       .catch(err => {
         console.log("err", err);
       })
   }, [])
-
-  useEffect(() => {
-    console.log("getProfileMatch",getProfileMatch);
-  }, [getProfileMatch])
 
   const [left, setLeft] = useState([]);
   const [right, setRight] = useState([]);
@@ -89,34 +85,30 @@ const ImageSwap = () => {
     if (dir === "left") {
       left.push(item);
       const a = [...left, ...right];
-      const filterd = allData.filter((x) => !a.includes(x));
-      setData(filterd);
+      const filterd = getProfileMatch.filter((x) => !a.includes(x));
+      setGetProfileMatch(filterd);
     } else if (dir === "right") {
       right.push(item);
       const a = [...left, ...right];
-      const filterd = allData.filter((x) => !a.includes(x));
-      setData(filterd);
+      const filterd = getProfileMatch.filter((x) => !a.includes(x));
+      setGetProfileMatch(filterd);
     }
   };
 
-  useEffect(()=>{
-    console.log("data",data);
-  },[data])
-
   useEffect(() => {
-    const lefts = data.filter((item) => !left.includes(item));
-    setData(lefts);
+    const lefts = getProfileMatch.filter((item) => !left.includes(item));
+    setGetProfileMatch(lefts);
   }, [left]);
 
   useEffect(() => {
-    const rights = data.filter((item) => !right.includes(item));
-    setData(rights);
+    const rights = getProfileMatch.filter((item) => !right.includes(item));
+    setGetProfileMatch(rights);
   }, [right]);
 
   return (
     <div className="cards-container">
-      {data.length > 0 &&
-        data.map((item, i, row) => {
+      {getProfileMatch.length > 0 &&
+        getProfileMatch.map((item, i, row) => {
           return (
             <TinderCard
               onSwipe={(dir) => onSwipe(dir, item)}
@@ -132,25 +124,25 @@ const ImageSwap = () => {
               } swap-card`}
             >
               <div className={`card-inner`}>
-                <img src={item.img} />
+                <img src={item.profile_picture} />
 
                 <div className="details">
                   <div className="">
                     <p>
-                      {item.address}
-                      <span> {item.addressspan} </span>
+                      {/* {item.address} */}
+                      {/* <span> {item.addressspan} </span> */}
                     </p>
                     <div className="d-flex align-items-center justify-content-between mb-3">
                       <div className="d-flex align-items-center">
                         {" "}
-                        <h5 className="name-age">{item.name}</h5>
-                        <img
+                        <h5 className="name-age">{item.firstname}</h5>
+                        {/* <img
                           src={item.genderimg}
                           alt=""
                           height="8%"
                           width="8%"
                           className="ml-3"
-                        />
+                        /> */}
                       </div>
                       <button>View profile</button>
                     </div>
