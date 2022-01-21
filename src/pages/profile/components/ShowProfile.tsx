@@ -180,7 +180,7 @@ const ShowProfile = () => {
                             <Col md={3}>
                                 <div className='profile-pic'>
                                     {/* <img src="./assets/img/taylor-8Vt2haq8NSQ-unsplash.png" alt="" /> */}
-                                    <img src={getProfileData?.profile_picture} alt="" />
+                                    <img src={getProfileData?.image} alt="" />
                                     <div className="verified-picture">
                                         {isVerify.is_profile_image_verified === "1" ? <><img src="./assets/img/poltgon-group.png" alt="" /><p>Verified picture</p></> : ''}
                                     </div>

@@ -311,7 +311,7 @@ const ShowProfile = () => {
                         <Row>
                             <Col md={3}>
                                 <div className='profile-pic'>
-                                    <img src={editProfileData?.profile_picture} alt="" onClick={() => { textInput.current.click() }} />
+                                    <img src={editProfileData?.image} alt="" onClick={() => { textInput.current.click() }} />
                                     <input type="file" style={{ opacity: "0" }} ref={textInput} onChange={(e) => handleChnage(e)} id="img" name="img" accept="image/*" />
                                     <div className="verified-picture">
                                         {isVerify.is_profile_image_verified === "1" ? <><img src="./assets/img/poltgon-group.png" alt="" /><p>Verified picture</p></> : ''}
