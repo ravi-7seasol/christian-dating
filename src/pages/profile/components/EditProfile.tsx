@@ -185,15 +185,11 @@ const ShowProfile = () => {
 
         if (imgName.length) {
             
-            console.log("editProfileData.profile_picture",editProfileData.profile_picture);
-            console.log("img.image",img.image);
-            
             const body = xwwwFormUrlencoded(img);
 
             ApiPost(`updateprofileimage`, body)
                 .then((res: any) => {
-                    console.log("res", res);
-                    setEditProfileData({ ...editProfileData, profile_picture: res.file })
+                    setEditProfileData({ ...editProfileData, profile_picture: res.file, image:res.image })
                     dispatch(setIsLoading(false))
                 }).catch((error: any) => {
                     console.log(error);
@@ -206,7 +202,7 @@ const ShowProfile = () => {
         const body = xwwwFormUrlencoded(editProfileData);
         ApiPost('updateprofile', body)
             .then((res: any) => {
-                console.log("res as profile update", res);
+                console.log("res", res);
                 if (res.status === "true") {
                     navigate("/show-profile");
                 }

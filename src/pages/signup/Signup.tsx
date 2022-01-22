@@ -109,9 +109,10 @@ const Signup = () => {
     );
   };
 
-  const responseGoogle = (response: any) => {
+  const responseGoogle = (response: any) => {    
     const code = {
-      code:response.googleId
+      code:response.googleId,
+      email:response.profileObj.email
     }
     const body = xwwwFormUrlencoded(code)
     ApiPost("signupusersocial",body)

@@ -20,10 +20,6 @@ const AuthHeader: React.FC = () => {
   };
   const profileImg = useSelector((state:RootStateOrAny) => state.profile_Image.profileImage)
 
-  useEffect(() => {
-    console.log("profileImg",profileImg)
-  }, [profileImg])
-
   const logOut = () => {
     AuthStorage.deauthenticateUser()
   }
@@ -72,8 +68,7 @@ const AuthHeader: React.FC = () => {
 
               <div className="profile-pic position-relative">
                 <img
-                  src="./assets/img/Ellipse.png"
-                  // src={profileImg}
+                  src={profileImg}
                   alt=""
                   onClick={openMenu}
                 />

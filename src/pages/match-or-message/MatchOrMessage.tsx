@@ -1,12 +1,38 @@
 import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import ImageSwap from '../../components/imageswap/ImageSwap';
+import STORAGEKEY from '../../config/APP/app.config';
 import { ApiPost } from '../../helper/API/ApiData';
 import AuthStorage from '../../helper/AuthStorage';
 import { xwwwFormUrlencoded } from '../../helper/utils';
+import { getProfileImage } from '../../redux/actions/getProfileImage';
+import { setIsLoading } from '../../redux/actions/loadingAction';
 const MatchOrMessage = () => {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(setIsLoading(true))
+        const id = {
+            id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id
+        }
+        const body = xwwwFormUrlencoded(id);
+
+        ApiPost(`getsingleuser`, body)
+            .then((res: any) => {
+                dispatch(getProfileImage(res.user.image))
+                dispatch(setIsLoading(false))
+
+            }).catch((error: any) => {
+                console.log(error);
+                dispatch(setIsLoading(false))
+
+            })
+    }, [])
+
     // const settings = {
     //     className: "center",
     //     centerMode: true,
