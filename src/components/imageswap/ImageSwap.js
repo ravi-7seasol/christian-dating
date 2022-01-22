@@ -19,7 +19,7 @@ const ImageSwap = () => {
       genderimg: "./assets/img/male.png",
     },
     {
-      id: 1,  
+      id: 1,
       img: "https://placeimg.com/600/300/animals",
       name: "Demo",
       text: "This is a demo for Tinder like swipe cards",
@@ -59,51 +59,64 @@ const ImageSwap = () => {
       genderimg: "./assets/img/male.png",
     },
   ];
-  // const [data, setData] = useState(allData);
+  const [data, setData] = useState(allData);
 
-  const [getProfileMatch, setGetProfileMatch] = useState([])
+  const [getProfileMatch, setGetProfileMatch] = useState([]);
 
   useEffect(() => {
     let token = {
-      token: AuthStorage.getToken()
-    }
-    const body = xwwwFormUrlencoded(token)
-    ApiPost('/getprofilematches', body)
-      .then(res => {
-        console.log("res", res);
-        setGetProfileMatch(res.matches)
+      token: AuthStorage.getToken(),
+    };
+    const body = xwwwFormUrlencoded(token);
+    ApiPost("getprofilematches", body)
+      .then((res) => {
+        console.log("RESPONSE", res);
+        setGetProfileMatch(data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("err", err);
-      })
-  }, [])
+      });
+  }, []);
 
-  const [left, setLeft] = useState([]);
-  const [right, setRight] = useState([]);
+  const [ids, setIds] = useState([]);
+  // const [right, setRight] = useState([]);
 
   const onSwipe = (dir, item) => {
     if (dir === "left") {
-      left.push(item);
-      const a = [...left, ...right];
+      ids.push(item.id);
+      const a = [...ids];
       const filterd = getProfileMatch.filter((x) => !a.includes(x));
       setGetProfileMatch(filterd);
     } else if (dir === "right") {
-      right.push(item);
-      const a = [...left, ...right];
+      ids.push(item.id);
+      const a = [...ids];
       const filterd = getProfileMatch.filter((x) => !a.includes(x));
       setGetProfileMatch(filterd);
     }
   };
 
   useEffect(() => {
-    const lefts = getProfileMatch.filter((item) => !left.includes(item));
-    setGetProfileMatch(lefts);
-  }, [left]);
+    const idData = getProfileMatch.filter((item) => !ids.includes(item));
+    setGetProfileMatch(idData);
+  }, [ids]);
 
   useEffect(() => {
-    const rights = getProfileMatch.filter((item) => !right.includes(item));
-    setGetProfileMatch(rights);
-  }, [right]);
+    return () => {
+      let id = ids.map((data) => data).join(",");
+      let token = {
+        token: AuthStorage.getToken(),
+        user_ids: id,
+      };
+      const body = xwwwFormUrlencoded(token);
+      ApiPost("postswapids", body)
+        .then((res) => {
+          console.log("RESPONSE", res);
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
+    };
+  }, []);
 
   return (
     <div className="cards-container">
@@ -124,7 +137,7 @@ const ImageSwap = () => {
               } swap-card`}
             >
               <div className={`card-inner`}>
-                <img src={item.profile_picture} />
+                <img src={item.img} />
 
                 <div className="details">
                   <div className="">
