@@ -68,7 +68,7 @@ const ImageSwap = () => {
       token: AuthStorage.getToken()
     }
     const body = xwwwFormUrlencoded(token)
-    ApiPost('/getprofilematches', body)
+    ApiPost('getprofilematches', body)
       .then(res => {
         console.log("res", res);
         setGetProfileMatch(res.matches)
