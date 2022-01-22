@@ -12,27 +12,6 @@ import { getProfileImage } from '../../redux/actions/getProfileImage';
 import { setIsLoading } from '../../redux/actions/loadingAction';
 const MatchOrMessage = () => {
 
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(setIsLoading(true))
-        const id = {
-            id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id
-        }
-        const body = xwwwFormUrlencoded(id);
-
-        ApiPost(`getsingleuser`, body)
-            .then((res: any) => {
-                dispatch(getProfileImage(res.user.image))
-                dispatch(setIsLoading(false))
-
-            }).catch((error: any) => {
-                console.log(error);
-                dispatch(setIsLoading(false))
-
-            })
-    }, [])
-
     // const settings = {
     //     className: "center",
     //     centerMode: true,
