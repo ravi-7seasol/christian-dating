@@ -10,7 +10,7 @@ import { ApiPost } from "../../helper/API/ApiData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { setIsLoading } from "../../redux/actions/loadingAction";
-import { useDispatch } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 
 const Inbox = () => {
   const { innerWidth: width, innerHeight: height } = window;
@@ -27,6 +27,7 @@ const Inbox = () => {
   const [clearText, setClearText] = useState<any>(false)
 
   const dispatch = useDispatch()
+  const message_ID = useSelector((state:RootStateOrAny)=>state.message_Id.message_Id)
 
   useEffect(() => {
     dispatch(setIsLoading(true))
@@ -47,6 +48,34 @@ const Inbox = () => {
         dispatch(setIsLoading(false))
       })
   }, [])
+
+  useEffect(() => {
+    console.log("message_ID",message_ID);
+    if(message_ID){
+      setTog(true)
+      setSelectedID(message_ID);
+    // setSelectedData(item);
+
+    const getChatData = {
+      token: AuthStorage.getStorageData(STORAGEKEY.token),
+      participant_id: message_ID,
+    }
+
+    const body = xwwwFormUrlencoded(getChatData);
+
+    ApiPost('getchat', body)
+      .then((res: any) => {
+        setChatData(res)
+        setCurrentUser(res?.current_user);
+        dispatch(setIsLoading(false))
+      }).catch((error) => {
+        console.log(error);
+        dispatch(setIsLoading(false))
+      })
+    }
+
+  }, []);
+  
 
   const gifList = {
     gif: [{
@@ -255,7 +284,7 @@ const Inbox = () => {
                             <div className="online"></div>
                           </div>
                           <div className="chat-messages">
-                            <h4>{selectedData.receiver_name}</h4>
+                            <h4>{selectedData?.receiver_name}</h4>
                             <h6 className="messages-time">12:15</h6>
                           </div>
                         </div>

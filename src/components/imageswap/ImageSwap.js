@@ -6,7 +6,7 @@ import { ApiPost } from "../../helper/API/ApiData";
 import AuthStorage from "../../helper/AuthStorage";
 import { xwwwFormUrlencoded } from "../../helper/utils";
 
-const ImageSwap = () => {
+const ImageSwap = (props) => {
   const allData = [
     {
       id: 0,
@@ -64,6 +64,13 @@ const ImageSwap = () => {
   const [getProfileMatch, setGetProfileMatch] = useState([]);
 
   useEffect(() => {
+    // let userId = getProfileMatch.map((data)=>data.id)
+    let userId = data[0].id
+    props.Id("15")
+  }, [getProfileMatch]);
+  
+
+  useEffect(() => {
     let token = {
       token: AuthStorage.getToken(),
     };
@@ -71,7 +78,7 @@ const ImageSwap = () => {
     ApiPost("getprofilematches", body)
       .then((res) => {
         console.log("RESPONSE", res);
-        setGetProfileMatch(data);
+        setGetProfileMatch(res.matches);
       })
       .catch((err) => {
         console.log("err", err);
@@ -79,7 +86,6 @@ const ImageSwap = () => {
   }, []);
 
   const [ids, setIds] = useState([]);
-  // const [right, setRight] = useState([]);
 
   const onSwipe = (dir, item) => {
     if (dir === "left") {
@@ -138,7 +144,7 @@ const ImageSwap = () => {
             >
               <div className={`card-inner`}>
                 <img src={item.img} />
-
+ 
                 <div className="details">
                   <div className="">
                     <p>

@@ -10,6 +10,7 @@ import AuthStorage from '../../helper/AuthStorage';
 import { xwwwFormUrlencoded } from '../../helper/utils';
 import { getProfileImage } from '../../redux/actions/getProfileImage';
 import { setIsLoading } from '../../redux/actions/loadingAction';
+import { messageId } from '../../redux/actions/messageIdAction';
 const MatchOrMessage = () => {
 
     // const settings = {
@@ -140,6 +141,9 @@ const MatchOrMessage = () => {
     // ]
 
     const [like, setLike] = useState(false);
+    const [id, setId] = useState("");
+
+    const dispatch = useDispatch()
 
     const likehandleChange = (rate: boolean) => {
         let data = {
@@ -156,6 +160,10 @@ const MatchOrMessage = () => {
                 console.log("err", err);
             })
         setLike(!like)
+    }    
+
+    const msgChange = () => {
+        dispatch(messageId(id))
     }
 
     return (
@@ -185,7 +193,7 @@ const MatchOrMessage = () => {
                     ))}
                 </Slider> */}
             {/* </div> */}
-            <ImageSwap />
+            <ImageSwap Id={setId}/>
             <Container>
                 <div className='activity-main'>
                     <div className=''>
@@ -213,7 +221,7 @@ const MatchOrMessage = () => {
                     <div>
                         <div className='message-content'>
                             <Link to="/inbox">
-                                <img src='./assets/img/Group 20.png' />
+                                <img src='./assets/img/Group 20.png' onClick={()=>msgChange()}/>
                             </Link>
                         </div>
                         <p className='text'>message</p>

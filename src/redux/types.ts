@@ -16,3 +16,5 @@ export const CHAT_ID = "CHAT_ID";
 export const GET_NOTIFICATION = "GET_NOTIFICATION";
 
 export const GETPROFILEIMAGE = "GETPROFILEIMAGE";
+
+export const MESSAGEID = "MESSAGEID";
