@@ -119,7 +119,7 @@ const Community = () => {
                         label: item.topic
                     }
                 })
-                console.log("topicslist", topicslist)
+
                 setTopic(topicslist)
                 dispatch(setIsLoading(false))
             }).catch((error: any) => {
