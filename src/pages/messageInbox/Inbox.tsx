@@ -23,7 +23,8 @@ const Inbox = () => {
   const [chatData, setChatData] = useState<any>();
   const [currentUser, setCurrentUser] = useState<any>();
   const [gif, setGif] = useState<any>();
-  const [gifTog, setGifTog] = useState(false)
+  const [gifTog, setGifTog] = useState(false);
+  const [clearText, setClearText] = useState<any>(false)
 
   const dispatch = useDispatch()
 
@@ -120,11 +121,12 @@ const Inbox = () => {
   const onHandaleChangeData = (message: string) => {
     setSendMsg(message)
   }
-  
+
   const sendMsgByOnClick = () => {
-    
-    dispatch(setIsLoading(true))
-    if (sendMsg !== "") {
+
+
+    if (sendMsg !== "" && selectedID) {
+      dispatch(setIsLoading(true))
       setMessageData(sendMsg);
       const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
       const sendMessage = {
@@ -135,7 +137,7 @@ const Inbox = () => {
       const body = xwwwFormUrlencoded(sendMessage);
       ApiPost('sendmessage', body)
         .then((res: any) => {
-          console.log("res",res);
+          console.log("res", res);
           setSendMsg('')
           getChat();
           dispatch(setIsLoading(false))
@@ -146,8 +148,9 @@ const Inbox = () => {
     }
   }
   const getMessageData = (message: string) => {
-    dispatch(setIsLoading(true))
-    if (message !== "") {
+
+    if (message !== "" && selectedID) {
+      dispatch(setIsLoading(true))
       setMessageData(message);
       const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
       const sendMessage = {
@@ -272,7 +275,7 @@ const Inbox = () => {
 
                           ))}
 
-                       
+
                         {
                           gifTog && <div className="gif-container">
                             <div className="icon">
@@ -305,13 +308,16 @@ const Inbox = () => {
                         </div>
                       </div>
                       <div className="input-chat">
-                        <InpEmoji getMData={getMessageData} onHandaleChangeData={onHandaleChangeData}/>
-                        <img src="./assets/img/right-arrow (2).png" style={{zIndex:'999'}} onClick={()=>sendMsgByOnClick()} width="15px" height="15px" />
+                        <InpEmoji getMData={getMessageData} onHandaleChangeData={onHandaleChangeData} clearText={clearText} afterClear={setClearText} />
+                        <div className="inbox-send-msg-btn">
+
+                          <img src="./assets/img/right-arrow (2).png" style={{ zIndex: '999' }} onClick={() => sendMsgByOnClick()} width="15px" height="15px" />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                )) 
+                ))
               </Col>
                 : <></>
             }

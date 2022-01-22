@@ -25,7 +25,7 @@ const PostSuccessStories = ({show,onhide}:Props) => {
           <Button variant="secondary" onClick={onhide}>
             Close
           </Button>
-          <Button variant="primary"  onClick={onhide}>
+          <Button variant="primary" className="post-btn" onClick={onhide}>
             Post
           </Button>
         </Modal.Footer>
