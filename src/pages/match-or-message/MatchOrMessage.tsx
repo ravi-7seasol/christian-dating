@@ -1,12 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import ImageSwap from '../../components/imageswap/ImageSwap';
+import STORAGEKEY from '../../config/APP/app.config';
 import { ApiPost } from '../../helper/API/ApiData';
 import AuthStorage from '../../helper/AuthStorage';
 import { xwwwFormUrlencoded } from '../../helper/utils';
+import { getProfileImage } from '../../redux/actions/getProfileImage';
+import { setIsLoading } from '../../redux/actions/loadingAction';
 const MatchOrMessage = () => {
+
     // const settings = {
     //     className: "center",
     //     centerMode: true,
@@ -134,6 +139,25 @@ const MatchOrMessage = () => {
     //     },
     // ]
 
+    const [like, setLike] = useState(false);
+
+    const likehandleChange = (rate: boolean) => {
+        let data = {
+            id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id,
+            rate: rate ? "Like" : "dislike",
+            token: AuthStorage.getToken()
+        }
+        const body = xwwwFormUrlencoded(data)
+        ApiPost("rateprofile", body)
+            .then((res) => {
+                console.log("res", res);
+            })
+            .catch((err) => {
+                console.log("err", err);
+            })
+        setLike(!like)
+    }
+
     return (
         <>
             <Container>
@@ -142,7 +166,7 @@ const MatchOrMessage = () => {
                 </div>
             </Container>
             {/* <div className="slider pt-5"> */}
-                {/* <Slider {...settings}>
+            {/* <Slider {...settings}>
                     {slider.map((item) => (
                         <div className='slider-card'>
                             <img src={item.img} width="100%" />
@@ -161,7 +185,7 @@ const MatchOrMessage = () => {
                     ))}
                 </Slider> */}
             {/* </div> */}
-                <ImageSwap/>
+            <ImageSwap />
             <Container>
                 <div className='activity-main'>
                     <div className=''>
@@ -182,7 +206,7 @@ const MatchOrMessage = () => {
                     </div>
                     <div>
                         <div className='like-content'>
-                            <img src='./assets/img/Group 19.png' />
+                            <img src='./assets/img/Group 19.png' onClick={() => likehandleChange(!like)} />
                         </div>
                         <p className='text'>like</p>
                     </div>

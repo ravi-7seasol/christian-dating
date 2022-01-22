@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { RootStateOrAny, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import STORAGEKEY from "../../config/APP/app.config";
 import { ApiPost } from "../../helper/API/ApiData";
 import AuthStorage from "../../helper/AuthStorage";
 import { xwwwFormUrlencoded } from "../../helper/utils";
+import { getProfileImage } from "../../redux/actions/getProfileImage";
+import { setIsLoading } from "../../redux/actions/loadingAction";
 
 const AuthHeader: React.FC = () => {
   const location = useLocation();
@@ -19,10 +22,26 @@ const AuthHeader: React.FC = () => {
     navigate("/show-profile");
   };
   const profileImg = useSelector((state:RootStateOrAny) => state.profile_Image.profileImage)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log("profileImg",profileImg)
-  }, [profileImg])
+    dispatch(setIsLoading(true))
+    const id = {
+        id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id
+    }
+    const body = xwwwFormUrlencoded(id);
+
+    ApiPost(`getsingleuser`, body)
+        .then((res: any) => {
+            dispatch(getProfileImage(res.user.image))
+            dispatch(setIsLoading(false))
+
+        }).catch((error: any) => {
+            console.log(error);
+            dispatch(setIsLoading(false))
+
+        })
+}, [])
 
   const logOut = () => {
     AuthStorage.deauthenticateUser()
@@ -72,8 +91,7 @@ const AuthHeader: React.FC = () => {
 
               <div className="profile-pic position-relative">
                 <img
-                  src="./assets/img/Ellipse.png"
-                  // src={profileImg}
+                  src={profileImg}
                   alt=""
                   onClick={openMenu}
                 />
