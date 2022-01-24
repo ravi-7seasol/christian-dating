@@ -98,10 +98,11 @@ const Community = () => {
     const [openGift, setOpenGift] = useState(false);
     const [gif, setGif] = useState<any>();
     const [gifTog, setGifTog] = useState(false);
+    const [imgTog, setImgTog] = useState(false);
+    const [selectedImage, setSelectedImage] = useState<any>();
 
 
     const dispatch = useDispatch()
-
 
     useEffect(() => {
         dispatch(setIsLoading(true))
@@ -219,9 +220,22 @@ const Community = () => {
         setGif(item);
         setOpenGift(false);
         setGifTog(true);
+        setImgTog(false)
     }
     const closeGif = () => {
         setGifTog(false);
+    }
+    const selectImg = (e: any) => {
+        console.log("e.target.files[0]", e);
+        if (e.target.files && e.target.files.length > 0) {
+            setSelectedImage(e.target.files[0]);
+            setImgTog(true);
+            setGifTog(false);
+        }
+    }
+    const closeImg = () => {
+        setImgTog(false)
+        setSelectedImage(undefined)
     }
 
     return (
@@ -274,6 +288,16 @@ const Community = () => {
 
                 </div>
             }
+            {
+                imgTog &&
+                <div className="gif-container">
+                    <div className="icon">
+                        <FontAwesomeIcon icon={faTimesCircle} onClick={() => closeImg()} />
+                    </div>
+                    <img src={URL.createObjectURL(selectedImage)} />
+                    <button className="submit"><FontAwesomeIcon icon={faPaperPlane} /></button>
+                </div>
+            }
             <div className="Remember">
                 <p>Remember, public chat is only meant for encouragement.</p>
             </div>
@@ -282,9 +306,20 @@ const Community = () => {
             <div className="fotterinput d-flex align-items-center">
 
                 <div className="d-flex">
-                    <div className="choose-picture">
+
+                    <label htmlFor="imgSelect" className="choose-picture">
+
                         <img src="./assets/img/picture-one (1).png" />
-                    </div>
+                        <input
+                            type="file"
+                            onChange={(e) => { selectImg(e) }}
+                            onClick={(e: any) => { e.target.value = '' }}
+                            accept="image/*"
+                            className="d-none"
+                            id="imgSelect"
+                        />
+                    </label>
+
                     <div className="send-gift position-relative">
                         <img src="./assets/img/gift (1).png" onClick={() => setOpenGift(!openGift)} />
                         {openGift && <div className="gifts">

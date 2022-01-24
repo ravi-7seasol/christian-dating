@@ -24,7 +24,9 @@ const Inbox = () => {
   const [currentUser, setCurrentUser] = useState<any>();
   const [gif, setGif] = useState<any>();
   const [gifTog, setGifTog] = useState(false);
-  const [clearText, setClearText] = useState<any>(false)
+  const [clearText, setClearText] = useState<any>(false);
+  const [selectedImage, setSelectedImage] = useState<any>();
+  const [imgTog, setImgTog] = useState(false);
 
   const dispatch = useDispatch()
   const message_ID = useSelector((state: RootStateOrAny) => state.message_Id.message_Id)
@@ -52,7 +54,7 @@ const Inbox = () => {
 
 
   useEffect(() => {
-    console.log("message_ID", message_ID);
+    // console.log("message_ID", message_ID);
     if (message_ID) {
       setTog(true)
       setSelectedID(message_ID);
@@ -209,9 +211,24 @@ const Inbox = () => {
     setGif(item);
     setOpenGift(false);
     setGifTog(true);
+    setImgTog(false)
   }
   const closeGif = () => {
     setGifTog(false);
+
+  }
+
+  const selectImg = (e: any) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedImage(e.target.files[0]);
+      setImgTog(true);
+      setGifTog(false);
+    }
+  }
+  const closeImg = () => {
+    setImgTog(false)
+    setSelectedImage(undefined)
+
   }
 
   return (
@@ -254,7 +271,7 @@ const Inbox = () => {
                     <div className="messages" key={i} onClick={() => { messageOpen(data) }}>
                       <div className="chat-profile-img-main">
                         <img
-                          src="./assets/img/profile-picture.png"
+                          src={data.sender_participant_image}
                           className="chat-profile"
                         />
                         <div className="online"></div>
@@ -322,13 +339,34 @@ const Inbox = () => {
 
                           </div>
                         }
+                        {
+                          imgTog &&
+                          <div className="gif-container">
+                            <div className="icon">
+                              <FontAwesomeIcon icon={faTimesCircle} onClick={() => closeImg()} />
+                            </div>
+                            <img src={URL.createObjectURL(selectedImage)} />
+                            <button className="submit"><FontAwesomeIcon icon={faPaperPlane} /></button>
+                          </div>
+                        }
 
                       </div>
                     </div>
                     <div className="input-area">
                       <div>
                         <div className="choose-picture">
-                          <img src="./assets/img/picture-one (1).png" />
+                          <label htmlFor="imgSelect">
+
+                            <img src="./assets/img/picture-one (1).png" />
+                            <input
+                              type="file"
+                              onChange={(e) => selectImg(e)}
+                              onClick={(e: any) => { e.target.value = '' }}
+                              accept="image/*"
+                              className="d-none"
+                              id="imgSelect"
+                            />
+                          </label>
                         </div>
                       </div>
                       <div>
