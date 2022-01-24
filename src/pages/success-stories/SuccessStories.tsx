@@ -93,7 +93,7 @@ const SuccessStories = () => {
 
             {/* <div className="d-flex flex-wrap justify-content-center"> */}
             {
-              dt?.map((data: any, i) => (
+              storiesData?.map((data: any, i) => (
                   <div key={i}
                     className={selectedID === data.id ? "pop-over" : "card-main"}
                     onClick={() => openCard(data)}

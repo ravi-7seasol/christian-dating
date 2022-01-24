@@ -27,7 +27,7 @@ const Inbox = () => {
   const [clearText, setClearText] = useState<any>(false)
 
   const dispatch = useDispatch()
-  const message_ID = useSelector((state:RootStateOrAny)=>state.message_Id.message_Id)
+  const message_ID = useSelector((state: RootStateOrAny) => state.message_Id.message_Id)
 
   useEffect(() => {
     dispatch(setIsLoading(true))
@@ -47,35 +47,41 @@ const Inbox = () => {
         console.log(error);
         dispatch(setIsLoading(false))
       })
-  }, [])
+  }, [chatData])
+
+
 
   useEffect(() => {
-    console.log("message_ID",message_ID);
-    if(message_ID){
+    console.log("message_ID", message_ID);
+    if (message_ID) {
       setTog(true)
       setSelectedID(message_ID);
-    // setSelectedData(item);
+      // setSelectedData(item);
 
-    const getChatData = {
-      token: AuthStorage.getStorageData(STORAGEKEY.token),
-      participant_id: message_ID,
-    }
+      const getChatData = {
+        token: AuthStorage.getStorageData(STORAGEKEY.token),
+        participant_id: message_ID,
+      }
 
-    const body = xwwwFormUrlencoded(getChatData);
+      const body = xwwwFormUrlencoded(getChatData);
 
-    ApiPost('getchat', body)
-      .then((res: any) => {
-        setChatData(res)
-        setCurrentUser(res?.current_user);
-        dispatch(setIsLoading(false))
-      }).catch((error) => {
-        console.log(error);
-        dispatch(setIsLoading(false))
-      })
+      ApiPost('getchat', body)
+        .then((res: any) => {
+          if (res.status === "false") {
+            return
+          } else {
+            setChatData(res)
+            setCurrentUser(res?.current_user);
+            dispatch(setIsLoading(false))
+          }
+        }).catch((error) => {
+          console.log(error);
+          dispatch(setIsLoading(false))
+        })
     }
 
   }, []);
-  
+
 
   const gifList = {
     gif: [{

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Accordion, Button, Col, Container, Row } from 'react-bootstrap';
 import Buttons from '../../../components/Buttons';
 import { useNavigate } from 'react-router';
+import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import AuthStorage from '../../../helper/AuthStorage';
 import { xwwwFormUrlencoded } from '../../../helper/utils';
@@ -14,6 +15,7 @@ import { useDispatch } from 'react-redux';
 import { setIsLoading } from '../../../redux/actions/loadingAction';
 import { getProfileImage } from '../../../redux/actions/getProfileImage';
 import STORAGEKEY from '../../../config/APP/app.config';
+import { useLocation } from 'react-router';
 
 const ShowProfile = () => {
 
@@ -59,8 +61,11 @@ const ShowProfile = () => {
         aboutme: '',
         lifestyle: '',
     })
+    const params = new URLSearchParams(window.location.search)
+    const profileid = params.get('profileid')
 
     const dispatch = useDispatch()
+
 
     const [id, setId] = useState<any>(0)
     const [isVerify, setIsVerify] = useState<any>({});
@@ -76,9 +81,19 @@ const ShowProfile = () => {
 
     useEffect(() => {
         dispatch(setIsLoading(true))
-        const id = {
-            id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id
+        console.log('profileid', profileid);
+
+        let pid: String;
+        if (profileid) {
+            pid = profileid
+        } else {
+            pid = AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id
         }
+        const id = {
+            id: pid
+        }
+        console.log("id", id);
+
         const body = xwwwFormUrlencoded(id);
 
         ApiPost(`getsingleuser`, body)
@@ -98,7 +113,7 @@ const ShowProfile = () => {
     }, [])
 
     useEffect(() => {
-        let id = {
+        const id = {
             id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id
         }
         const body = xwwwFormUrlencoded(id)

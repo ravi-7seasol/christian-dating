@@ -5,6 +5,7 @@ import TinderCard from "react-tinder-card";
 import { ApiPost } from "../../helper/API/ApiData";
 import AuthStorage from "../../helper/AuthStorage";
 import { xwwwFormUrlencoded } from "../../helper/utils";
+import { useNavigate } from "react-router";
 
 const ImageSwap = (props) => {
   const allData = [
@@ -15,7 +16,7 @@ const ImageSwap = (props) => {
       text: "This is a demo for Tinder like swipe cards",
       address: "USA, San Francisco Bay Area | Religion: ",
       addressspan: "Catholic",
-      name: "John doe, 36",
+      firstname: "John doe 1, 36",
       genderimg: "./assets/img/male.png",
     },
     {
@@ -25,7 +26,7 @@ const ImageSwap = (props) => {
       text: "This is a demo for Tinder like swipe cards",
       address: "USA, San Francisco Bay Area | Religion: ",
       addressspan: "Catholic",
-      name: "John doe, 36",
+      firstname: "John doe 2, 36",
       genderimg: "./assets/img/male.png",
     },
     {
@@ -35,7 +36,7 @@ const ImageSwap = (props) => {
       text: "This is a demo for Tinder like swipe cards",
       address: "USA, San Francisco Bay Area | Religion: ",
       addressspan: "Catholic",
-      name: "John doe, 36",
+      firstname: "John doe 3, 36",
       genderimg: "./assets/img/male.png",
     },
     {
@@ -45,7 +46,7 @@ const ImageSwap = (props) => {
       text: "This is a demo for Tinder like swipe cards",
       address: "USA, San Francisco Bay Area | Religion: ",
       addressspan: "Catholic",
-      name: "John doe, 36",
+      firstname: "John doe 4, 36",
       genderimg: "./assets/img/male.png",
     },
     {
@@ -55,20 +56,21 @@ const ImageSwap = (props) => {
       text: "This is a demo for Tinder like swipe cards",
       address: "USA, San Francisco Bay Area | Religion: ",
       addressspan: "Catholic",
-      name: "John doe, 36",
+      firstname: "John doe 5, 36",
       genderimg: "./assets/img/male.png",
     },
   ];
   const [data, setData] = useState(allData);
 
+  const navigate = useNavigate();
   const [getProfileMatch, setGetProfileMatch] = useState([]);
 
   useEffect(() => {
-    // let userId = getProfileMatch.map((data)=>data.id)
-    let userId = data[0].id
-    props.Id("15")
+    if(getProfileMatch.length > 0) {
+      let userId = getProfileMatch[getProfileMatch.length - 1].id
+      props.Id(userId)
+    }
   }, [getProfileMatch]);
-  
 
   useEffect(() => {
     let token = {
@@ -77,7 +79,6 @@ const ImageSwap = (props) => {
     const body = xwwwFormUrlencoded(token);
     ApiPost("getprofilematches", body)
       .then((res) => {
-        console.log("RESPONSE", res);
         setGetProfileMatch(res.matches);
       })
       .catch((err) => {
@@ -124,6 +125,10 @@ const ImageSwap = (props) => {
     };
   }, []);
 
+  const ViewProfile = (id) => {
+    navigate(`/show-profile?profileid=${id}`);
+  }
+
   return (
     <div className="cards-container">
       {getProfileMatch.length > 0 &&
@@ -163,9 +168,8 @@ const ImageSwap = (props) => {
                           className="ml-3"
                         /> */}
                       </div>
-                      <button>View profile</button>
+                      <button onClick={() => ViewProfile(item.id)}>View profile</button>
                     </div>
-                    <button>View profile</button>
                   </div>
                 </div>
                 {/* )} */}

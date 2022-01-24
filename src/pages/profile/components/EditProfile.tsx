@@ -14,9 +14,8 @@ import React from 'react';
 import STORAGEKEY from '../../../config/APP/app.config';
 
 const ShowProfile = () => {
-
     const [id, setId] = useState<any>(0)
-
+    
     const handleid = (i: any) => {
         if (id === i) {
             setId(undefined)
@@ -140,7 +139,7 @@ const ShowProfile = () => {
                 console.log(error);
                 dispatch(setIsLoading(false))
             })
-    }, [])    
+    }, [])
 
     useEffect(() => {
         let id = {
@@ -159,7 +158,7 @@ const ShowProfile = () => {
     }, []);
 
     const handleChnage = (e: any) => {
-        
+
         let file = e.target.files[0]
         new Promise((resolve, reject) => {
             const fileReader = new FileReader();
@@ -168,7 +167,7 @@ const ShowProfile = () => {
                 resolve(fileReader.result);
                 setEditProfileData({ ...editProfileData, profile_picture: fileReader.result })
                 setImgName(e.target.files[0].name)
-                
+
             }
             fileReader.onerror = (error) => {
                 reject(error);
@@ -179,17 +178,17 @@ const ShowProfile = () => {
     useEffect(() => {
         const img = {
             token: AuthStorage.getToken(),
-            image: editProfileData.profile_picture,                
+            image: editProfileData.profile_picture,
             name: imgName
         }
 
         if (imgName.length) {
-            
+
             const body = xwwwFormUrlencoded(img);
 
             ApiPost(`updateprofileimage`, body)
                 .then((res: any) => {
-                    setEditProfileData({ ...editProfileData, profile_picture: res.file, image:res.image })
+                    setEditProfileData({ ...editProfileData, profile_picture: res.file, image: res.image })
                     dispatch(setIsLoading(false))
                 }).catch((error: any) => {
                     console.log(error);
@@ -619,10 +618,10 @@ const ShowProfile = () => {
                                                 />
                                             </div>
                                             {/* <button className='btn btn-default' > */}
-                                            <img src="./assets/img/minus-button.png" style={{cursor: "pointer"}} alt="" width="20px" height="20px" className=' m-2' onClick={() => decrementBtn(i)} />
+                                            <img src="./assets/img/minus-button.png" style={{ cursor: "pointer" }} alt="" width="20px" height="20px" className=' m-2' onClick={() => decrementBtn(i)} />
                                             {/* </button> */}
                                             {funFacts.length - 1 === i && (
-                                                <img src="./assets/img/plus.png" style={{cursor: "pointer"}} alt="" width="20px" height="20px" className='m-2 ' onClick={incrementBtn} />
+                                                <img src="./assets/img/plus.png" style={{ cursor: "pointer" }} alt="" width="20px" height="20px" className='m-2 ' onClick={incrementBtn} />
                                             )
                                             }
                                         </div>
