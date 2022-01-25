@@ -15,7 +15,7 @@ import STORAGEKEY from '../../../config/APP/app.config';
 
 const ShowProfile = () => {
     const [id, setId] = useState<any>(0)
-    
+
     const handleid = (i: any) => {
         if (id === i) {
             setId(undefined)
@@ -201,7 +201,7 @@ const ShowProfile = () => {
         const body = xwwwFormUrlencoded(editProfileData);
         ApiPost('updateprofile', body)
             .then((res: any) => {
-                console.log("res", res);
+                console.log("res Edit Profile", res);
                 if (res.status === "true") {
                     navigate("/show-profile");
                 }
@@ -215,24 +215,89 @@ const ShowProfile = () => {
 
     const accordion = [
         {
-            Name: 'your_story',
-            Header: "My story (How you came to Christ)",
-            Body: editProfileData.your_story
-        },
-        {
             Name: 'aboutme',
             Header: "About me",
-            Body: editProfileData.aboutme
+            Body: [
+                //     {
+                //     Name: "firstname",
+                //     label: "First Name:",
+                //     value: editProfileData.firstname
+                // }, {
+                //     Name: "lastname",
+                //     label: "Last Name:",
+                //     value: editProfileData.lastname
+                // }, {
+                //     Name: "dob",
+                //     label: "Date Of Birth:",
+                //     value: editProfileData.dob
+                // }, {
+                //     Name: "address",
+                //     label: "Address:",
+                //     value: editProfileData.address
+                // }, {
+                //     Name: "gender",
+                //     label: "Gender:",
+                //     value: editProfileData.gender
+                //     },
+                {
+                    Name: "denomination",
+                    label: "Denomination:",
+                    value: editProfileData.denomination
+                }]
         },
         {
             Name: 'lifestyle',
             Header: "Lifestyle",
-            Body: editProfileData.lifestyle
+            Body: [{
+                Name: "how_often_church",
+                label: "How Often Church:",
+                value: editProfileData.how_often_church
+            }, {
+                Name: "read_bible",
+                label: "Read Bible:",
+                value: editProfileData.read_bible
+            }, {
+                Name: "workout",
+                label: "Workout:",
+                value: editProfileData.workout
+            }, {
+                Name: "consume_alcohol",
+                label: "Consume Alcohol:",
+                value: editProfileData.consume_alcohol
+            }, {
+                Name: "smoke",
+                label: "Smoke:",
+                value: editProfileData.smoke
+            }]
         },
         {
             Name: 'personality',
             Header: "Personality",
-            Body: editProfileData.personality
+            Body: [{
+                Name: "your_story",
+                label: "Your Story:",
+                value: editProfileData.your_story
+            }, {
+                Name: "short_bio",
+                label: "Short Bio:",
+                value: editProfileData.short_bio
+            }, {
+                Name: "relationship_status",
+                label: "Relationship Status:",
+                value: editProfileData.relationship_status
+            }, {
+                Name: "intrusted_in_meating",
+                label: "Intrusted in Meating:",
+                value: editProfileData.intrusted_in_meating
+            }, {
+                Name: "relationship_want_to_build",
+                label: "Relationship want to Build:",
+                value: editProfileData.relationship_want_to_build
+            }, {
+                Name: "your_intenet",
+                label: "Your Intenet:",
+                value: editProfileData.your_intenet
+            }]
         },
     ]
 
@@ -391,7 +456,7 @@ const ShowProfile = () => {
                                             fromrowStyleclass=""
                                         />
 
-                                        <div className="editprofile-slector">
+                                        {/* <div className="editprofile-slector">
                                             <label htmlFor="" className='login-label'>Religion</label>
                                             <div className="reactSelector mt-3">
                                                 <ReactSelect
@@ -401,7 +466,7 @@ const ShowProfile = () => {
                                                     value={selectValue(editProfileData.religion, "religion")}
                                                 />
                                             </div>
-                                        </div>
+                                        </div> */}
 
                                         <InputField
                                             name="short_bio"
@@ -549,21 +614,32 @@ const ShowProfile = () => {
                                     <img src="./assets/img/down-arrow.png" alt="" width="20px" className={`${id === i && 'rotate-img'}`} /></Accordion.Header>
 
                                 <Accordion.Body>
-                                    <InputField
-                                        name={item.Name}
-                                        maxLength={undefined}
-                                        value={item.Body}
-                                        lablestyleClass="login-label"
-                                        InputstyleClass="login-input"
-                                        onChange={(e: any) => {
-                                            handleChange(e);
-                                        }}
-                                        disabled={false}
-                                        label=""
-                                        placeholder=""
-                                        type="textarea"
-                                        fromrowStyleclass=""
-                                    />
+                                    <div className="personal-details">
+                                        {item.Body.map((data: any, i: number) => (
+                                            <div className='d-flex mt-2 align-items-center'>
+                                                <p className='mb-0 col-3 col-md-3 col-sm-2'>{data.label}</p>
+                                                <span className='ml-2 col-9 col-md-6 col-sm-10'>
+                                                    <InputField
+                                                        name={data.Name}
+                                                        maxLength={undefined}
+                                                        value={data.detail}
+                                                        lablestyleClass="login-label"
+                                                        InputstyleClass="login-input"
+                                                        onChange={(e: any) => {
+                                                            handleChange(e);
+                                                        }}
+                                                        disabled={false}
+                                                        label=""
+                                                        placeholder=""
+                                                        type="text"
+                                                        fromrowStyleclass=""
+                                                    />
+                                                </span>
+                                            </div>
+
+                                        ))}
+                                    </div>
+
                                 </Accordion.Body>
                             </Accordion.Item>
                         ))}
