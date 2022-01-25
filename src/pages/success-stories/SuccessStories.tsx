@@ -26,7 +26,10 @@ const SuccessStories = () => {
     const body = xwwwFormUrlencoded(storySort);
     ApiPost('stories', body)
       .then((res: any) => {
+
+        console.log("res", res)
         setStoriesData(res.story);
+        refreshData();
         dispatch(setIsLoading(false))
       }).catch((error) => {
         console.log(error);
@@ -42,44 +45,60 @@ const SuccessStories = () => {
     }
   }
 
-  const dt= 
-   [{
-      id: 1,
-      name: "bhargav",
-      story_desc: "Sab ka malik ak",
-      city: "surat",
-      country: "india"
+  const refreshData = () => {
+    dispatch(setIsLoading(true))
+    const body = xwwwFormUrlencoded(storySort);
+    ApiPost('stories', body)
+      .then((res: any) => {
+        setStoriesData(res.story);
+        dispatch(setIsLoading(false))
+      }).catch((error) => {
+        console.log(error);
+        dispatch(setIsLoading(false))
+      })
+  }
 
-    }, {
-      id: 2,
-      name: "kemil",
-      story_desc: "ab ki bar modi srakar",
-      city: "surat",
-      country: "india"
-    }, {
-      id: 3,
-      name: "piyush",
-      story_desc: "modi he to munkin he",
-      city: "surat",
-      country: "india"
-    }, {
-      id: 4,
-      name: "jenis",
-      story_desc: "Sab ka malik atm to bade hevy driver ho, bhai",
-      city: "surat",
-      country: "india"
-    }, {
-      id: 5,
-      name: "mitesh",
-      story_desc: "moj kar di mabete vah",
-      city: "surat",
-      country: "india"
-    }]
-  
+
+
+
+  // const dt= 
+  //  [{
+  //     id: 1,
+  //     name: "bhargav",
+  //     story_desc: "Sab ka malik ak",
+  //     city: "surat",
+  //     country: "india"
+
+  //   }, {
+  //     id: 2,
+  //     name: "kemil",
+  //     story_desc: "ab ki bar modi srakar",
+  //     city: "surat",
+  //     country: "india"
+  //   }, {
+  //     id: 3,
+  //     name: "piyush",
+  //     story_desc: "modi he to munkin he",
+  //     city: "surat",
+  //     country: "india"
+  //   }, {
+  //     id: 4,
+  //     name: "jenis",
+  //     story_desc: "Sab ka malik atm to bade hevy driver ho, bhai",
+  //     city: "surat",
+  //     country: "india"
+  //   }, {
+  //     id: 5,
+  //     name: "mitesh",
+  //     story_desc: "moj kar di mabete vah",
+  //     city: "surat",
+  //     country: "india"
+  //   }]
+
 
   return (
     <>
-    <div className={selectedID ? "overlay" : ""}></div>
+      <div className={selectedID ? "overlay" : ""}></div>
       <div className="successStories-main">
         <div className="top-img">
           <img src="./assets/img/Group28.png" className="bg-img" />
@@ -88,36 +107,36 @@ const SuccessStories = () => {
           </Link>
         </div>
         {/* <Container className="position-relative">  */}
-          <div className={selectedID ? "after-over " : "card-position"}>
-            
+        <div className={selectedID ? "after-over " : "card-position"}>
 
-            {/* <div className="d-flex flex-wrap justify-content-center"> */}
-            {
-              storiesData?.map((data: any, i) => (
-                  <div key={i}
-                    className={selectedID === data.id ? "pop-over" : "card-main"}
-                    onClick={() => openCard(data)}
-                  >
-                    <div className="d-flex">
-                      <div>
-                        <img src="./assets/img/Ellipse 22.png" />
-                      </div>
-                      <div className="person-name">
-                        <h5>{data.name}</h5>
-                        <p>{data?.city}, {data?.country}</p>
-                      </div>
-                    </div>
-                    <div className="card-content">
-                      <p>
-                        {data.story_desc}
-                      </p>
-                    </div>
+
+          {/* <div className="d-flex flex-wrap justify-content-center"> */}
+          {
+            storiesData?.map((data: any, i) => (
+              <div key={i}
+                className={selectedID === data.id ? "pop-over" : "card-main"}
+                onClick={() => openCard(data)}
+              >
+                <div className="d-flex">
+                  <div>
+                    <img src={data?.profile_picture} />
+                  </div>
+                  <div className="person-name">
+                    <h5>{data.name}</h5>
+                    <p>{data.city}, {data.state}</p>
+                  </div>
                 </div>
-              ))
-            }
-            {/* </div> */}
+                <div className="card-content">
+                  <p>
+                    {data.story_desc}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+          {/* </div> */}
 
-            {/* <div
+          {/* <div
             className={pop ? "pop-over " : "card-main"}
             onClick={() => setPop(!pop)}
           >
@@ -275,14 +294,14 @@ const SuccessStories = () => {
               </p>
             </div>
            </div> */}
-            <Buttons onClick={() => { setPostData(true) }} ButtonStyle="post-btn">
-              +
-            </Buttons>
-          </div>
+          <Buttons onClick={() => { setPostData(true) }} ButtonStyle="post-btn">
+            +
+          </Buttons>
+        </div>
         {/* </Container> */}
       </div>
 
-      <PostSuccessStories show={postData} onhide={() => setPostData(false)} />
+      <PostSuccessStories show={postData} onhide={() => setPostData(false)} refresh={refreshData} />
     </>
   );
 };
