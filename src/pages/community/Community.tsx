@@ -334,7 +334,7 @@ const Community = () => {
                 <div className="community-input-chat w-100">
                     <InpEmoji getMData={sendCommunityData} onHandaleChangeData={onHandaleChangeData} clearText={clearText} afterClear={setClearText} />
                     <div className="inbox-send-msg-btn  position-absolute right-1">
-                        <img src="./assets/img/right-arrow (2).png" style={{ zIndex: '999', width: "15px", height: "15px" }} onClick={() => sendCommunityDataByClick()} />
+                        <img src="./assets/img/right-arrow (2).png" style={{ zIndex: 999, width: "15px", height: "15px" }} onClick={() => sendCommunityDataByClick()} />
                     </div>
                 </div>
 

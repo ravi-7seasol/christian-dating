@@ -388,7 +388,7 @@ const Inbox = () => {
                         <InpEmoji getMData={getMessageData} onHandaleChangeData={onHandaleChangeData} clearText={clearText} afterClear={setClearText} />
                         <div className="inbox-send-msg-btn">
 
-                          <img src="./assets/img/right-arrow (2).png" style={{ zIndex: '999' }} onClick={() => sendMsgByOnClick()} width="15px" height="15px" />
+                          <img src="./assets/img/right-arrow (2).png" style={{ zIndex: 999 }} onClick={() => sendMsgByOnClick()} width="15px" height="15px" />
                         </div>
                       </div>
                     </div>

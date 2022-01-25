@@ -118,8 +118,8 @@ const SuccessStories = () => {
                 onClick={() => openCard(data)}
               >
                 <div className="d-flex">
-                  <div>
-                    <img src={data?.profile_picture} />
+                  <div style={{width:"46px", height:"46px"}}>
+                    <img style={{width:"100%", height:"100%",borderRadius:"50%", objectFit:"cover"}} src={data?.profile_picture} />
                   </div>
                   <div className="person-name">
                     <h5>{data.name}</h5>

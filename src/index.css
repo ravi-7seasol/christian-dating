@@ -677,7 +677,7 @@
 }
 
 .community {
-    height: calc(100vh - 250px);
+    height: calc(100vh - 274px) ;
     overflow: auto;
 }
 
@@ -1030,14 +1030,14 @@
 
 @media (max-width:350px) {
     .community {
-        height: calc(100vh - 290px);
+        height: calc(100vh - 323px);
         overflow: auto;
     }
 }
 
 @media (min-width:350px) and (max-width: 574px) {
     .community {
-        height: calc(100vh - 275px);
+        /* height: calc(100vh - 275px); */
         overflow: auto;
     }
 }
@@ -1089,7 +1089,7 @@
     }
 
     .community {
-        height: calc(100vh - 250px);
+        /* height: calc(100vh - 250px); */
         overflow: auto;
     }
 
@@ -1245,7 +1245,7 @@
     }
 
     .community {
-        height: calc(100vh - 235px);
+        height: calc(100vh - 300px);
         overflow: auto;
     }
 }
@@ -1407,10 +1407,10 @@
         font-size: 14px;
     }
 
-    .community {
-        height: calc(100vh - 219px);
+    /* .community {
+        height: calc(100vh - 300px);
         overflow: auto;
-    }
+    } */
 
 }
 
@@ -1595,7 +1595,7 @@
     }
 
     .community {
-        height: calc(100vh - 219px);
+        /* height: calc(100vh - 219px); */
         overflow: auto;
     }
 
@@ -1609,12 +1609,15 @@
     }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
     .navLinks, .uncommon-logo {
         display: none !important;
     }
 
     .menu-logo, .page-name {
         display: block;
+    }
+    .community{
+        height: calc(100vh - 300px);
     }
 }
