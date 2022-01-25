@@ -19,7 +19,7 @@ const AuthHeader: React.FC = () => {
     setShowProfile(!showProfile);
   };
   const handleRedirect = () => {
-    navigate("/show-profile");
+    navigate("/match_or_message");
   };
   const profileImg = useSelector((state:RootStateOrAny) => state.profile_Image.profileImage)
   const dispatch = useDispatch()

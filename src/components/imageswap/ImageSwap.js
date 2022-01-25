@@ -6,6 +6,8 @@ import { ApiPost } from "../../helper/API/ApiData";
 import AuthStorage from "../../helper/AuthStorage";
 import { xwwwFormUrlencoded } from "../../helper/utils";
 import { useNavigate } from "react-router";
+import { setIsLoading } from "../../redux/actions/loadingAction";
+import { useDispatch } from "react-redux";
 
 const ImageSwap = (props) => {
   const allData = [
@@ -63,7 +65,9 @@ const ImageSwap = (props) => {
   const [data, setData] = useState(allData);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [getProfileMatch, setGetProfileMatch] = useState([]);
+  const [profileMatches, setProfileMatches] = useState([]);
 
   useEffect(() => {
     if(getProfileMatch.length > 0) {
@@ -77,11 +81,15 @@ const ImageSwap = (props) => {
       token: AuthStorage.getToken(),
     };
     const body = xwwwFormUrlencoded(token);
+    dispatch(setIsLoading(true));
     ApiPost("getprofilematches", body)
       .then((res) => {
         setGetProfileMatch(res.matches);
+        setProfileMatches(res.matches);
+        dispatch(setIsLoading(false));
       })
       .catch((err) => {
+        dispatch(setIsLoading(false));
         console.log("err", err);
       });
   }, []);
@@ -92,15 +100,45 @@ const ImageSwap = (props) => {
     if (dir === "left") {
       ids.push(item.id);
       const a = [...ids];
-      const filterd = getProfileMatch.filter((x) => !a.includes(x));
+      const filterd = getProfileMatch.filter((x) => !a.includes(x.id));
       setGetProfileMatch(filterd);
     } else if (dir === "right") {
       ids.push(item.id);
       const a = [...ids];
-      const filterd = getProfileMatch.filter((x) => !a.includes(x));
+      const filterd = getProfileMatch.filter((x) => !a.includes(x.id));
       setGetProfileMatch(filterd);
     }
   };
+
+  useEffect(() => {
+    if(props.isRewind === true) {
+      onRewind()
+    }
+    if(props.isSkip === true) {
+      onSkip()
+    }
+    
+  }, [props]);
+  
+
+  const onRewind = () => {
+    setIds([])
+    setGetProfileMatch(profileMatches)
+    props.changeRewind()
+    props.changeSkip()
+  }
+
+  const onSkip = () => {
+    if(getProfileMatch.length > 0) {
+      let userId = getProfileMatch[getProfileMatch.length - 1].id
+      ids.push(userId);
+      const a = [...ids];
+      const filterd = getProfileMatch.filter((x) => !a.includes(x.id));
+      setGetProfileMatch(filterd);
+      props.changeSkip()
+      props.changeRewind()
+    }
+  }
 
   useEffect(() => {
     const idData = getProfileMatch.filter((item) => !ids.includes(item));
@@ -148,7 +186,7 @@ const ImageSwap = (props) => {
               } swap-card`}
             >
               <div className={`card-inner`}>
-                <img src={item.img} />
+                <img src={item.profile_picture} />
  
                 <div className="details">
                   <div className="">

@@ -142,6 +142,8 @@ const MatchOrMessage = () => {
 
     const [like, setLike] = useState(false);
     const [id, setId] = useState("");
+    const [isRewind, setIsRewind] = useState(false);
+    const [isSkip, setIsSkip] = useState(false);
 
     const dispatch = useDispatch()
 
@@ -164,6 +166,14 @@ const MatchOrMessage = () => {
 
     const msgChange = () => {
         dispatch(messageId(id))
+    }
+
+    const rewind = () => {
+        setIsRewind(true)
+    }
+
+    const skip= () => {
+        setIsSkip(true)
     }
 
     return (
@@ -193,22 +203,22 @@ const MatchOrMessage = () => {
                     ))}
                 </Slider> */}
             {/* </div> */}
-            <ImageSwap Id={setId}/>
+            <ImageSwap Id={setId} isSkip={isSkip} isRewind={isRewind} changeRewind={() => setIsRewind(false)} changeSkip={() => setIsSkip(false)} />
             <Container>
                 <div className='activity-main'>
-                    <div className=''>
+                    <div className='' onClick={rewind}>
                         <div className='rewind'>
-                            <Link to="/community">
+                            {/* <Link to="/community"> */}
                                 <img src='./assets/img/Group 17.png' />
-                            </Link>
+                            {/* </Link> */}
                         </div>
                         <p className='text'>rewind</p>
                     </div>
-                    <div>
+                    <div onClick={skip}>
                         <div className='skip-content'>
-                            <Link to="/success_stories">
+                            {/* <Link to="/success_stories"> */}
                                 <img src='./assets/img/Group 18.png' />
-                            </Link>
+                            {/* </Link> */}
                         </div>
                         <p className='text'>skip</p>
                     </div>
