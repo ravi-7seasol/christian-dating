@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { setIsLoading } from "../../redux/actions/loadingAction";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import moment from 'moment'
 
 const Inbox = () => {
   const { innerWidth: width, innerHeight: height } = window;
@@ -43,6 +44,8 @@ const Inbox = () => {
 
     ApiPost('getchatlist', body)
       .then((res: any) => {
+        console.log("res", res);
+
         setChatList(res);
         dispatch(setIsLoading(false))
       }).catch((error) => {
@@ -54,7 +57,7 @@ const Inbox = () => {
 
 
   useEffect(() => {
-    // console.log("message_ID", message_ID);
+    console.log("message_ID", message_ID);
     if (message_ID) {
       setTog(true)
       setSelectedID(message_ID);
@@ -260,7 +263,8 @@ const Inbox = () => {
                 <div className="messages">
                   <div className="messages-content">
                     <img src="./assets/img/messenger.png" />
-                    <div className="messages-notification">{chatList?.total_unread_message}</div>
+
+                    <div className={chatList?.total_unseen_messages.length ? "messages-notification" : ""}>{chatList?.total_unseen_messages}</div>
                   </div>
                   <div>
                     <h3 className="Messages-text">Messages</h3>
@@ -279,12 +283,12 @@ const Inbox = () => {
                       <div className="chat-messages">
                         <h4>{data.receiver_name}</h4>
                         <p>
-                          Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                          {data.last_message}
                         </p>
                       </div>
                       <div className="messages-time">
-                        <h6>12:15</h6>
-                        <div className="messages-counts">2</div>
+                        <h6>{moment(data.last_message_time).format('LT')}</h6>
+                        <div className={data.total_unread_messages.length ? "messages-counts" : ""}>{data.total_unread_messages}</div>
                       </div>
                     </div>
                   ))
@@ -301,14 +305,14 @@ const Inbox = () => {
                         <div className="messages">
                           <div className="chat-profile-img-main">
                             <img
-                              src="./assets/img/profile-picture.png"
+                              src={selectedData?.sender_participant_image}
                               className="chat-profile"
                             />
                             <div className="online"></div>
                           </div>
                           <div className="chat-messages">
                             <h4>{selectedData?.receiver_name}</h4>
-                            <h6 className="messages-time">12:15</h6>
+                            <h6 className="messages-time">{moment(selectedData?.last_message_time).format('LT')}</h6>
                           </div>
                         </div>
                       )}
