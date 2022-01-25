@@ -102,6 +102,7 @@ const ShowProfile = () => {
                     ...getProfileData, firstname: res.user.firstname, dob: res.user.dob, address: res.user.address, gender: res.user.gender, denomination: res.user.denomination, your_story: res.user.your_story, short_bio: res.user.short_bio, relationship_status: res.user.relationship_status, intrusted_in_meating: res.user.intrusted_in_meating, relationship_want_to_build: res.user.relationship_want_to_build, your_intenet: res.user.your_intenet, how_often_church: res.user.how_often_church, read_bible: res.user.read_bible, workout: res.user.workout, consume_alcohol: res.user.consume_alcohol, smoke: res.user.smoke, religion: res.user.religion,
                     body_type: res.user.body_type, career: res.user.career, children: res.user.children, city: res.user.city, code: res.user.code, country: res.user.country, education: res.user.education, email: res.user.email, funfacts: res.user.funfacts, id: res.user.id, image: res.user.image, is_active: res.user.is_active, is_verify: res.user.is_verify, language: res.user.language, lastname: res.user.lastname, mobile_no: res.user.mobile_no, pets: res.user.pets, profile_picture: res.user.profile_picture, state: res.user.state, token: res.user.token, aboutme: res.user.aboutme, lifestyle: res.user.lifestyle, personality: res.user.personality,
                 })
+                console.log("SingleUser", res)
                 dispatch(getProfileImage(res.user.image))
                 dispatch(setIsLoading(false))
 
@@ -131,20 +132,67 @@ const ShowProfile = () => {
 
     const accordion = [
         {
-            Header: "My story (How you came to Christ)",
-            Body: getProfileData.your_story
-        },
-        {
             Header: "About me",
-            Body: getProfileData.aboutme
+            Body: [{
+                label: "First Name:",
+                value: getProfileData.firstname
+            }, {
+                label: "Last Name:",
+                value: getProfileData.lastname
+            }, {
+                label: "Date Of Birth:",
+                value: getProfileData.dob
+            }, {
+                label: "Address:",
+                value: getProfileData.address
+            }, {
+                label: "Gender:",
+                value: getProfileData.gender
+            }, {
+                label: "Denomination:",
+                value: getProfileData.denomination
+            }]
         },
         {
             Header: "Lifestyle",
-            Body: getProfileData.lifestyle
+            Body: [{
+                label: "How Often Church:",
+                value: getProfileData.how_often_church
+            }, {
+                label: "Read Bible:",
+                value: getProfileData.read_bible
+            }, {
+                label: "Workout:",
+                value: getProfileData.workout
+            }, {
+                label: "Consume Alcohol:",
+                value: getProfileData.consume_alcohol
+            }, {
+                label: "Smoke:",
+                value: getProfileData.smoke
+            }]
         },
         {
             Header: "Personality",
-            Body: getProfileData.personality
+            Body: [{
+                label: "Your Story:",
+                value: getProfileData.your_story
+            }, {
+                label: "Short Bio:",
+                value: getProfileData.short_bio
+            }, {
+                label: "Relationship Status:",
+                value: getProfileData.relationship_status
+            }, {
+                label: "Intrusted in Meating:",
+                value: getProfileData.intrusted_in_meating
+            }, {
+                label: "Relationship want to Build:",
+                value: getProfileData.relationship_want_to_build
+            }, {
+                label: "Your Intenet:",
+                value: getProfileData.your_intenet
+            }]
         },
     ]
 
@@ -207,7 +255,9 @@ const ShowProfile = () => {
                                         <h5 className='name-age'>{getProfileData.firstname} {getProfileData.lastname} , {moment().diff(moment(getProfileData.dob, 'YYYY-MM-DD'), 'years')}</h5>
                                         {getProfileData.gender === "male" ? <img src="./assets/img/male.png" alt="" className='ml-3' /> : <img src="./assets/img/female.png" alt="" className='ml-3' />}
                                     </div>
-                                    <p>{getProfileData.address} | Religion: {getProfileData.religion}</p>
+                                    <p>{getProfileData.address}
+                                        | Denomination: {getProfileData.denomination}
+                                    </p>
                                     <p className='about-mi'>{getProfileData.short_bio}</p>
                                 </div>
                             </Col>
@@ -233,20 +283,27 @@ const ShowProfile = () => {
             <Container>
                 <div className="profile-accordion">
                     <Accordion defaultActiveKey="0">
-                        {accordion.map((item, i) => (
-                            <Accordion.Item eventKey={i.toString()}>
-                                <Accordion.Header onClick={() => handleid(i)}>{item.Header}
-                                    <img src="./assets/img/down-arrow.png" alt="" width="20px" className={`${id === i && 'rotate-img'}`} /></Accordion.Header>
-                                <Accordion.Body>
-                                    {item.Body}
-                                </Accordion.Body>
-                            </Accordion.Item>
-                        ))}
+                        <div className="personal-details">
+                            {accordion.map((item, i) => (
+                                <Accordion.Item eventKey={i.toString()}>
+                                    <Accordion.Header onClick={() => handleid(i)}>{item.Header}
+                                        <img src="./assets/img/down-arrow.png" alt="" width="20px" className={`${id === i && 'rotate-img'}`} /></Accordion.Header>
+                                    <Accordion.Body>
+                                        {item.Body.map((data: any, i: number) => (
+                                            <div className='d-flex mt-2'>
+                                                <p>{data.label}</p>
+                                                <span className='ml-2'>{data.value}</span>
+                                            </div>
+                                        ))}
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            ))}
+                        </div>
                     </Accordion>
                     <div className="personal-details">
                         <h2>Personal</h2>
                         {personal.map((item) => {
-                            if (item.detail !== "") {
+                            if (item) {
                                 return <div className='d-flex mt-2'>
                                     <p>{item.label}</p>
                                     <span className='ml-2'>{item.detail}</span>
