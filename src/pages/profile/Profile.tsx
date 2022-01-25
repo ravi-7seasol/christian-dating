@@ -43,6 +43,8 @@ const Profile = (props: any) => {
 
     if (stepDone < 5) {
       setStepDone(stepDone + 1);
+      dispatch(setIsLoading(false))
+
     } else {
       const body = xwwwFormUrlencoded(profile);
 

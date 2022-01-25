@@ -47,9 +47,9 @@ const PostSuccessStories = ({ show, onhide, refresh }: Props) => {
         </Modal.Header>
         <Modal.Body>
           {/* Woohoo, you're reading this text in a modal! */}
-          <input style={{ width: "100%", }} className="add-post-model-body" placeholder="Enter Your Title" name="title" onChange={(e) => handleOnChange(e)} />
+          <input className="add-post-model-body mb-3" placeholder="Enter Your Title" name="title" onChange={(e) => handleOnChange(e)} />
 
-          <textarea style={{ width: "100%", }} className="add-post-model-body" rows={7} placeholder="Enter Your Success Stories" name="story" onChange={(e) => handleOnChange(e)}></textarea>
+          <textarea className="add-post-model-body" rows={7} placeholder="Enter Your Success Stories" name="story" onChange={(e) => handleOnChange(e)}></textarea>
 
         </Modal.Body>
         <Modal.Footer className="add-post-model-footer">

@@ -308,7 +308,7 @@ const ShowProfile = () => {
             detail: editProfileData.your_intenet
         },
         {
-            Name: 'body_type',
+            Name: 'body_type',  
             label: "Body type:",
             detail: editProfileData.body_type
         },

@@ -119,7 +119,7 @@ const SuccessStories = () => {
               >
                 <div className="d-flex">
                   <div style={{width:"46px", height:"46px"}}>
-                    <img style={{width:"100%", height:"100%",borderRadius:"50%", objectFit:"cover"}} src={data?.profile_picture} />
+                    <img style={{width:"100%", height:"100%",borderRadius:"50%", objectFit:"cover"}} src={data?.thumb_image} />
                   </div>
                   <div className="person-name">
                     <h5>{data.name}</h5>
