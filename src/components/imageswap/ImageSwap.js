@@ -64,9 +64,10 @@ const ImageSwap = (props) => {
   const [getProfileMatch, setGetProfileMatch] = useState([]);
 
   useEffect(() => {
-    // let userId = getProfileMatch.map((data)=>data.id)
-    let userId = data[0].id
-    props.Id("15")
+    if (getProfileMatch.length > 0) {
+      let userId = getProfileMatch[getProfileMatch.length - 1].id;
+      props.Id(userId);
+    }
   }, [getProfileMatch]);
   
 
@@ -77,7 +78,7 @@ const ImageSwap = (props) => {
     const body = xwwwFormUrlencoded(token);
     ApiPost("getprofilematches", body)
       .then((res) => {
-        console.log("RESPONSE", res);
+        console.log("res.matches", res.matches);
         setGetProfileMatch(res.matches);
       })
       .catch((err) => {
@@ -98,6 +99,34 @@ const ImageSwap = (props) => {
       const a = [...ids];
       const filterd = getProfileMatch.filter((x) => !a.includes(x));
       setGetProfileMatch(filterd);
+    }
+  };
+
+  useEffect(() => {
+    if (props.isRewind === true) {
+      onRewind();
+    }
+    if (props.isSkip === true) {
+      onSkip();
+    }
+  }, [props]);
+
+  const onRewind = () => {
+    setIds([]);
+    setGetProfileMatch(profileMatches);
+    props.changeRewind();
+    props.changeSkip();
+  };
+
+  const onSkip = () => {
+    if (getProfileMatch.length > 0) {
+      let userId = getProfileMatch[getProfileMatch.length - 1].id;
+      ids.push(userId);
+      const a = [...ids];
+      const filterd = getProfileMatch.filter((x) => !a.includes(x.id));
+      setGetProfileMatch(filterd);
+      props.changeSkip();
+      props.changeRewind();
     }
   };
 
@@ -124,6 +153,10 @@ const ImageSwap = (props) => {
     };
   }, []);
 
+  const ViewProfile = (id) => {
+    navigate(`/show-profile?profileid=${id}`);
+  };
+
   return (
     <div className="cards-container">
       {getProfileMatch.length > 0 &&
@@ -143,8 +176,14 @@ const ImageSwap = (props) => {
               } swap-card`}
             >
               <div className={`card-inner`}>
-                <img src={item.img} />
- 
+                <img
+                  src={
+                    item.profile_picture
+                      ? item.profile_picture
+                      : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                  }
+                />
+
                 <div className="details">
                   <div className="">
                     <p>
@@ -154,7 +193,7 @@ const ImageSwap = (props) => {
                     <div className="d-flex align-items-center justify-content-between mb-3">
                       <div className="d-flex align-items-center">
                         {" "}
-                        <h5 className="name-age">{item.firstname}</h5>
+                        <h5 className="name-age">{item.name}</h5>
                         {/* <img
                           src={item.genderimg}
                           alt=""
@@ -163,7 +202,9 @@ const ImageSwap = (props) => {
                           className="ml-3"
                         /> */}
                       </div>
-                      <button>View profile</button>
+                      <button onClick={() => ViewProfile(item.id)}>
+                        View profile
+                      </button>
                     </div>
                     <button>View profile</button>
                   </div>

@@ -21,27 +21,27 @@ const AuthHeader: React.FC = () => {
   const handleRedirect = () => {
     navigate("/match_or_message");
   };
-  const profileImg = useSelector((state:RootStateOrAny) => state.profile_Image.profileImage)
+  const profileImg = useSelector((state: RootStateOrAny) => state.profile_Image.profileImage)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(setIsLoading(true))
     const id = {
-        id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id
+      id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id
     }
     const body = xwwwFormUrlencoded(id);
 
     ApiPost(`getsingleuser`, body)
-        .then((res: any) => {
-            dispatch(getProfileImage(res.user.image))
-            dispatch(setIsLoading(false))
+      .then((res: any) => {
+        dispatch(getProfileImage(res.user.image))
+        dispatch(setIsLoading(false))
 
-        }).catch((error: any) => {
-            console.log(error);
-            dispatch(setIsLoading(false))
+      }).catch((error: any) => {
+        console.log(error);
+        dispatch(setIsLoading(false))
 
-        })
-}, [])
+      })
+  }, [])
 
   const logOut = () => {
     AuthStorage.deauthenticateUser()
@@ -91,10 +91,11 @@ const AuthHeader: React.FC = () => {
 
               <div className="profile-pic position-relative">
                 <img
-                  src={profileImg}
+                  src={profileImg ? profileImg : "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
                   alt=""
                   onClick={openMenu}
                 />
+
                 <div className="notification"></div>
                 {showProfile && (
                   <div className="auth-show-profile">

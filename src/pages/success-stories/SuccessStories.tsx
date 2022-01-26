@@ -26,8 +26,6 @@ const SuccessStories = () => {
     const body = xwwwFormUrlencoded(storySort);
     ApiPost('stories', body)
       .then((res: any) => {
-
-        console.log("res", res)
         setStoriesData(res.story);
         refreshData();
         dispatch(setIsLoading(false))

@@ -243,7 +243,7 @@ const ShowProfile = () => {
                             <Col md={3}>
                                 <div className='profile-pic'>
                                     {/* <img src="./assets/img/taylor-8Vt2haq8NSQ-unsplash.png" alt="" /> */}
-                                    <img src={getProfileData?.image} alt="" />
+                                    <img src={getProfileData?.image ? getProfileData?.image : "https://cdn-icons-png.flaticon.com/512/149/149071.png"} alt="" />
                                     <div className="verified-picture">
                                         {isVerify.is_profile_image_verified === "1" ? <><img src="./assets/img/poltgon-group.png" alt="" /><p>Verified picture</p></> : ''}
                                     </div>
@@ -290,7 +290,7 @@ const ShowProfile = () => {
                                         <img src="./assets/img/down-arrow.png" alt="" width="20px" className={`${id === i && 'rotate-img'}`} /></Accordion.Header>
                                     <Accordion.Body>
                                         {item.Body.map((data: any, i: number) => (
-                                            <div className='d-flex mt-2'>
+                                            <div className='d-flex mt-2' key={i}>
                                                 <p>{data.label}</p>
                                                 <span className='ml-2'>{data.value}</span>
                                             </div>
@@ -302,9 +302,9 @@ const ShowProfile = () => {
                     </Accordion>
                     <div className="personal-details">
                         <h2>Personal</h2>
-                        {personal.map((item) => {
+                        {personal.map((item, i) => {
                             if (item) {
-                                return <div className='d-flex mt-2'>
+                                return <div className='d-flex mt-2' key={i}>
                                     <p>{item.label}</p>
                                     <span className='ml-2'>{item.detail}</span>
                                 </div>
