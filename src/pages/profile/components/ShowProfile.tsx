@@ -20,7 +20,7 @@ import { useLocation } from 'react-router';
 const ShowProfile = () => {
 
     const [getProfileData, setGetProfileData] = useState<any>({
-        firstname: '',
+        name: '',
         dob: '',
         address: '',
         gender: '',
@@ -51,7 +51,6 @@ const ShowProfile = () => {
         is_active: "",
         is_verify: "",
         language: "",
-        lastname: "",
         mobile_no: "",
         pets: "",
         profile_picture: "",
@@ -99,8 +98,8 @@ const ShowProfile = () => {
         ApiPost(`getsingleuser`, body)
             .then((res: any) => {
                 setGetProfileData({
-                    ...getProfileData, firstname: res.user.firstname, dob: res.user.dob, address: res.user.address, gender: res.user.gender, denomination: res.user.denomination, your_story: res.user.your_story, short_bio: res.user.short_bio, relationship_status: res.user.relationship_status, intrusted_in_meating: res.user.intrusted_in_meating, relationship_want_to_build: res.user.relationship_want_to_build, your_intenet: res.user.your_intenet, how_often_church: res.user.how_often_church, read_bible: res.user.read_bible, workout: res.user.workout, consume_alcohol: res.user.consume_alcohol, smoke: res.user.smoke, religion: res.user.religion,
-                    body_type: res.user.body_type, career: res.user.career, children: res.user.children, city: res.user.city, code: res.user.code, country: res.user.country, education: res.user.education, email: res.user.email, funfacts: res.user.funfacts, id: res.user.id, image: res.user.image, is_active: res.user.is_active, is_verify: res.user.is_verify, language: res.user.language, lastname: res.user.lastname, mobile_no: res.user.mobile_no, pets: res.user.pets, profile_picture: res.user.profile_picture, state: res.user.state, token: res.user.token, aboutme: res.user.aboutme, lifestyle: res.user.lifestyle, personality: res.user.personality,
+                    ...getProfileData, name: res.user.name, dob: res.user.dob, address: res.user.address, gender: res.user.gender, denomination: res.user.denomination, your_story: res.user.your_story, short_bio: res.user.short_bio, relationship_status: res.user.relationship_status, intrusted_in_meating: res.user.intrusted_in_meating, relationship_want_to_build: res.user.relationship_want_to_build, your_intenet: res.user.your_intenet, how_often_church: res.user.how_often_church, read_bible: res.user.read_bible, workout: res.user.workout, consume_alcohol: res.user.consume_alcohol, smoke: res.user.smoke, religion: res.user.religion,
+                    body_type: res.user.body_type, career: res.user.career, children: res.user.children, city: res.user.city, code: res.user.code, country: res.user.country, education: res.user.education, email: res.user.email, funfacts: res.user.funfacts, id: res.user.id, image: res.user.image, is_active: res.user.is_active, is_verify: res.user.is_verify, language: res.user.language, mobile_no: res.user.mobile_no, pets: res.user.pets, profile_picture: res.user.profile_picture, state: res.user.state, token: res.user.token, aboutme: res.user.aboutme, lifestyle: res.user.lifestyle, personality: res.user.personality,
                 })
                 console.log("SingleUser", res)
                 dispatch(getProfileImage(res.user.image))
@@ -134,12 +133,14 @@ const ShowProfile = () => {
         {
             Header: "About me",
             Body: [{
-                label: "First Name:",
-                value: getProfileData.firstname
-            }, {
-                label: "Last Name:",
-                value: getProfileData.lastname
-            }, {
+                label: "Name:",
+                value: getProfileData.name
+            },
+            // {
+            // label: "Last Name:",
+            // value: getProfileData.lastname
+            // },
+            {
                 label: "Date Of Birth:",
                 value: getProfileData.dob
             }, {
@@ -252,7 +253,7 @@ const ShowProfile = () => {
                             <Col md={9}>
                                 <div className="over-img-popup">
                                     <div className="d-flex align-items-center mb-3">
-                                        <h5 className='name-age'>{getProfileData.firstname} {getProfileData.lastname} , {moment().diff(moment(getProfileData.dob, 'YYYY-MM-DD'), 'years')}</h5>
+                                        <h5 className='name-age'>{getProfileData.name} , {moment().diff(moment(getProfileData.dob, 'YYYY-MM-DD'), 'years')}</h5>
                                         {getProfileData.gender === "male" ? <img src="./assets/img/male.png" alt="" className='ml-3' /> : <img src="./assets/img/female.png" alt="" className='ml-3' />}
                                     </div>
                                     <p>{getProfileData.address}
@@ -271,9 +272,9 @@ const ShowProfile = () => {
                         {isVerify.is_profile_image_verified === "1" ? <><img src="./assets/img/poltgon-group.png" alt="" /><p>Verified picture</p></> : ''}
                     </div>
                     <div className="over-img-popup">
-                        <p>{getProfileData.address} | Religion: {getProfileData.religion}</p>
+                        <p>{getProfileData.address} | Religion: {getProfileData.denomination}</p>
                         <div className="d-flex align-items-center mb-3">
-                            <h5 className='name-age'>{getProfileData.firstname} {getProfileData.lastname}, {moment().diff(moment(getProfileData.dob, 'YYYY-MM-DD'), 'years')}</h5>
+                            <h5 className='name-age'>{getProfileData.name}, {moment().diff(moment(getProfileData.dob, 'YYYY-MM-DD'), 'years')}</h5>
                             <img src="./assets/img/male.png" alt="" className='ml-3' />
                         </div>
                         <p className='about-mi'>{getProfileData.short_bio}</p>

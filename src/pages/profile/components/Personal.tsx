@@ -3,14 +3,22 @@ import InputField from "../../../components/Inputfield";
 import ReactSelect from "../../../components/ReactSelect";
 
 
-const Personal = (props:any) => {
+const Personal = (props: any) => {
 
   const personalData = {
-    name:'',
-    dob:'',
-    address:'',
-    gender:'',
-    denomination:'',
+    name: '',
+    dob: '',
+    address: '',
+    gender: '',
+    denomination: '',
+    body_type: '',
+    children: '',
+    pets: '',
+    language: '',
+    education: '',
+    career: ''
+
+
   }
   const [personal, setPersonal] = useState(personalData)
 
@@ -19,28 +27,28 @@ const Personal = (props:any) => {
   }, [personal])
 
   const options = [
-    { value: "1", label: "1" },
-    { value: "2", label: "2" },
-    { value: "3", label: "3" },
-    { value: "4", label: "4" },
-    { value: "5", label: "5" },
-    { value: "6", label: "6" },
+    { value: "Assebmly of God", label: "Assebmly of God" },
+    { value: "Church of Christ", label: "Church of Christ" },
+    { value: "Baptist", label: "Baptist" },
+    { value: "Catholic", label: "Catholic" },
+    { value: "Evangelical", label: "Evangelical" },
+    { value: "Jewish", label: "Jewish" },
   ];
 
   const selectValue = (value: string, type: string) => {
-    if(type === "denomination") {
+    if (type === "denomination") {
       return options.find((data: any) => data.value === value)
     }
-  } 
-
-  const handleGenderActive =(e:any, text :any)=>{
-    e.preventDefault()
-    setPersonal({...personal, gender:text})
   }
 
-  const handleChange =(e:any)=>{
-    e.preventDefault()       
-    setPersonal({...personal, [e.target.name] : e.target.value})
+  const handleGenderActive = (e: any, text: any) => {
+    e.preventDefault()
+    setPersonal({ ...personal, gender: text })
+  }
+
+  const handleChange = (e: any) => {
+    e.preventDefault()
+    setPersonal({ ...personal, [e.target.name]: e.target.value })
   }
 
   return (
@@ -68,7 +76,7 @@ const Personal = (props:any) => {
               value={personal.dob}
               className="login-input w-100"
               name="dob"
-              onChange={(e)=>handleChange(e)}
+              onChange={(e) => handleChange(e)}
             />
           </div>
           <InputField
@@ -87,10 +95,10 @@ const Personal = (props:any) => {
           <div className="gender">
             <label className="login-label">Gender</label>
             <br />
-            <button className={`gender-btn male ${ personal.gender ==="male"&& "gender-active"}`} onClick={(e)=>handleGenderActive(e, "male")}>
+            <button className={`gender-btn male ${personal.gender === "male" && "gender-active"}`} onClick={(e) => handleGenderActive(e, "male")}>
               <img src="./assets/img/male.png" alt="male" />
             </button>
-            <button className={`gender-btn female ${ personal.gender ==="female"&& "gender-active"}`} onClick={(e)=>handleGenderActive(e, "female")}>
+            <button className={`gender-btn female ${personal.gender === "female" && "gender-active"}`} onClick={(e) => handleGenderActive(e, "female")}>
               <img src="./assets/img/female.png" alt="female" />
             </button>
           </div>
@@ -98,9 +106,88 @@ const Personal = (props:any) => {
             <label className="login-label">Denomination</label>
 
             <div className="reactSelector mt-3">
-              <ReactSelect placeholder="Choose denomination" options={options} onChange={(e:any) => setPersonal({...personal, denomination:e.value})} value={selectValue(personal.denomination, "denomination")} />
+              <ReactSelect placeholder="Choose denomination" options={options} onChange={(e: any) => setPersonal({ ...personal, denomination: e.value })} value={selectValue(personal.denomination, "denomination")} />
             </div>
           </div>
+          <InputField
+            name="body_type"
+            maxLength={undefined}
+            value={personal.body_type}
+            lablestyleClass="login-label"
+            InputstyleClass="login-input"
+            onChange={(e) => handleChange(e)}
+            disabled={false}
+            label="Your Body Type"
+            placeholder="Body Type"
+            type="text"
+            fromrowStyleclass=""
+          />
+          <InputField
+            name="children"
+            maxLength={undefined}
+            value={personal.children}
+            lablestyleClass="login-label"
+            InputstyleClass="login-input"
+            onChange={(e) => handleChange(e)}
+            disabled={false}
+            label="How many children do you have"
+            placeholder="Children"
+            type="text"
+            fromrowStyleclass=""
+          />
+          <InputField
+            name="pets"
+            maxLength={undefined}
+            value={personal.pets}
+            lablestyleClass="login-label"
+            InputstyleClass="login-input"
+            onChange={(e) => handleChange(e)}
+            disabled={false}
+            label="how many pets do you have"
+            placeholder="Pets"
+            type="text"
+            fromrowStyleclass=""
+          />
+          <InputField
+            name="language"
+            maxLength={undefined}
+            value={personal.language}
+            lablestyleClass="login-label"
+            InputstyleClass="login-input"
+            onChange={(e) => handleChange(e)}
+            disabled={false}
+            label="Your language"
+            placeholder="language"
+            type="text"
+            fromrowStyleclass=""
+          />
+          <InputField
+            name="education"
+            maxLength={undefined}
+            value={personal.education}
+            lablestyleClass="login-label"
+            InputstyleClass="login-input"
+            onChange={(e) => handleChange(e)}
+            disabled={false}
+            label="Your Education"
+            placeholder="Education"
+            type="text"
+            fromrowStyleclass=""
+          />
+          <InputField
+            name="career"
+            maxLength={undefined}
+            value={personal.career}
+            lablestyleClass="login-label"
+            InputstyleClass="login-input"
+            onChange={(e) => handleChange(e)}
+            disabled={false}
+            label="Your Career"
+            placeholder="Career"
+            type="text"
+            fromrowStyleclass=""
+          />
+
         </form>
       </div>
     </>

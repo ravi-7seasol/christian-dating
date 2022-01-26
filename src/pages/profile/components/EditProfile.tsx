@@ -29,7 +29,7 @@ const ShowProfile = () => {
 
     const [editProfileData, setEditProfileData] = useState<any>({
         token: AuthStorage.getToken(),
-        firstname: '',
+        name: '',
         dob: '',
         gender: '',
         address: '',
@@ -66,7 +66,6 @@ const ShowProfile = () => {
         image: null,
         is_active: "",
         is_verify: "",
-        lastname: "",
         mobile_no: "",
         profile_picture: null,
         state: "",
@@ -130,8 +129,8 @@ const ShowProfile = () => {
         ApiPost(`getsingleuser`, body)
             .then((res: any) => {
                 setEditProfileData({
-                    ...editProfileData, firstname: res.user.firstname, dob: res.user.dob, address: res.user.address, gender: res.user.gender, denomination: res.user.denomination, your_story: res.user.your_story, short_bio: res.user.short_bio, relationship_status: res.user.relationship_status, intrusted_in_meating: res.user.intrusted_in_meating, relationship_want_to_build: res.user.relationship_want_to_build, your_intenet: res.user.your_intenet, how_often_church: res.user.how_often_church, read_bible: res.user.read_bible, workout: res.user.workout, consume_alcohol: res.user.consume_alcohol, smoke: res.user.smoke,
-                    body_type: res.user.body_type, career: res.user.career, children: res.user.children, city: res.user.city, code: res.user.code, country: res.user.country, education: res.user.education, email: res.user.email, id: res.user.id, image: res.user.image, is_active: res.user.is_active, is_verify: res.user.is_verify, language: res.user.language, lastname: res.user.lastname, mobile_no: res.user.mobile_no, pets: res.user.pets, profile_picture: res.user.profile_picture, state: res.user.state, token: AuthStorage.getToken()
+                    ...editProfileData, name: res.user.name, dob: res.user.dob, address: res.user.address, gender: res.user.gender, denomination: res.user.denomination, your_story: res.user.your_story, short_bio: res.user.short_bio, relationship_status: res.user.relationship_status, intrusted_in_meating: res.user.intrusted_in_meating, relationship_want_to_build: res.user.relationship_want_to_build, your_intenet: res.user.your_intenet, how_often_church: res.user.how_often_church, read_bible: res.user.read_bible, workout: res.user.workout, consume_alcohol: res.user.consume_alcohol, smoke: res.user.smoke,
+                    body_type: res.user.body_type, career: res.user.career, children: res.user.children, city: res.user.city, code: res.user.code, country: res.user.country, education: res.user.education, email: res.user.email, id: res.user.id, image: res.user.image, is_active: res.user.is_active, is_verify: res.user.is_verify, language: res.user.language, mobile_no: res.user.mobile_no, pets: res.user.pets, profile_picture: res.user.profile_picture, state: res.user.state, token: AuthStorage.getToken()
                 })
                 setFunFacts(res.user.funfacts.split(',').map((data: any) => ({ value: data })))
                 dispatch(setIsLoading(false))
@@ -148,7 +147,7 @@ const ShowProfile = () => {
         const body = xwwwFormUrlencoded(id)
         ApiPost('checkimageverificaion', body)
             .then(res => {
-                
+
                 setIsVerify(res)
             })
             .catch(err => {
@@ -383,21 +382,21 @@ const ShowProfile = () => {
                                     <div className="d-flex justify-content-between mb-3 ">
                                         <div className='name-age '>
                                             <InputField
-                                                name="firstname"
+                                                name="name"
                                                 maxLength={undefined}
-                                                value={editProfileData.firstname}
+                                                value={editProfileData.name}
                                                 lablestyleClass="login-label"
                                                 InputstyleClass="login-input"
                                                 onChange={(e: any) => {
                                                     handleChange(e);
                                                 }}
                                                 disabled={false}
-                                                label="First Name :"
-                                                placeholder="Enter first name"
+                                                label="Name :"
+                                                placeholder="Enter the name"
                                                 type="text"
                                                 fromrowStyleclass=""
                                             />
-                                            <InputField
+                                            {/* <InputField
                                                 name="lastname"
                                                 maxLength={undefined}
                                                 value={editProfileData.lastname}
@@ -411,7 +410,7 @@ const ShowProfile = () => {
                                                 placeholder="Enter last name"
                                                 type="text"
                                                 fromrowStyleclass=""
-                                            />
+                                            /> */}
                                             <InputField
                                                 name="dob"
                                                 maxLength={undefined}
@@ -481,7 +480,7 @@ const ShowProfile = () => {
                                             label="Short Bio :"
                                             placeholder="short_bio"
                                             type="text"
-                                            fromrowStyleclass=""
+                                            fromrowStyleclass="Enter the name"
                                         />
                                     </div>
                                 </div>
@@ -528,21 +527,21 @@ const ShowProfile = () => {
                             <div className="align-items-center mb-3">
                                 <div className='name-age'>
                                     <InputField
-                                        name="firstname"
+                                        name="name"
                                         maxLength={undefined}
-                                        value={editProfileData.firstname}
+                                        value={editProfileData.name}
                                         lablestyleClass="login-label"
                                         InputstyleClass="login-input"
                                         onChange={(e: any) => {
                                             handleChange(e);
                                         }}
                                         disabled={false}
-                                        label="First Name :"
-                                        placeholder="John"
+                                        label="Name :"
+                                        placeholder=""
                                         type="text"
                                         fromrowStyleclass=""
                                     />
-                                    <InputField
+                                    {/* <InputField
                                         name="lastname"
                                         maxLength={undefined}
                                         value={editProfileData.lastname}
@@ -556,7 +555,7 @@ const ShowProfile = () => {
                                         placeholder="deo"
                                         type="text"
                                         fromrowStyleclass=""
-                                    />
+                                    /> */}
                                     <InputField
                                         name="dob"
                                         maxLength={undefined}
