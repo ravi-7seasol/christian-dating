@@ -44,7 +44,7 @@ const Inbox = () => {
 
     ApiPost('getchatlist', body)
       .then((res: any) => {
-      
+
 
         setChatList(res);
         dispatch(setIsLoading(false))
@@ -319,41 +319,46 @@ const Inbox = () => {
                     </div>
                     <div className="scrool px-3">
                       <div className="text-grid">
-                        {
-                          chatData?.chat.map((data: any, i: number) => (data.receiver_id === selectedID &&
+                        {chatData?.chat?.length ? (<>
+                          {
+                            chatData?.chat.map((data: any, i: number) => (data.receiver_id === selectedID &&
 
-                            <div key={i}>
+                              <div key={i}>
 
-                              <h3 className={data.sender_id !== currentUser ? "first-text" : "first-text-replay"} key={i}>
-                                {data.message}
-                              </h3>
+                                <h3 className={data.sender_id !== currentUser ? "first-text" : "first-text-replay"} key={i}>
+                                  {data.message}
+                                </h3>
+                              </div>
+
+                            ))}
+
+
+                          {
+                            gifTog && <div className="gif-container">
+                              <div className="icon">
+                                <FontAwesomeIcon icon={faTimesCircle} onClick={() => closeGif()} />
+                              </div>
+                              <img src={gif} className="gifbig" ></img>
+
+                              <button className="submit"><FontAwesomeIcon icon={faPaperPlane} /></button>
+
                             </div>
-
-                          ))}
-
-
-                        {
-                          gifTog && <div className="gif-container">
-                            <div className="icon">
-                              <FontAwesomeIcon icon={faTimesCircle} onClick={() => closeGif()} />
+                          }
+                          {
+                            imgTog &&
+                            <div className="gif-container">
+                              <div className="icon">
+                                <FontAwesomeIcon icon={faTimesCircle} onClick={() => closeImg()} />
+                              </div>
+                              <img src={URL.createObjectURL(selectedImage)} />
+                              <button className="submit"><FontAwesomeIcon icon={faPaperPlane} /></button>
                             </div>
-                            <img src={gif} className="gifbig" ></img>
-
-                            <button className="submit"><FontAwesomeIcon icon={faPaperPlane} /></button>
-
+                          }
+                        </>) : (
+                          <div style={{textAlign:"center"}}>
+                            <h5>No chat data</h5>
                           </div>
-                        }
-                        {
-                          imgTog &&
-                          <div className="gif-container">
-                            <div className="icon">
-                              <FontAwesomeIcon icon={faTimesCircle} onClick={() => closeImg()} />
-                            </div>
-                            <img src={URL.createObjectURL(selectedImage)} />
-                            <button className="submit"><FontAwesomeIcon icon={faPaperPlane} /></button>
-                          </div>
-                        }
-
+                        )}
                       </div>
                     </div>
                     <div className="input-area">
