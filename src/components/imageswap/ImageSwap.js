@@ -70,9 +70,9 @@ const ImageSwap = (props) => {
   const [profileMatches, setProfileMatches] = useState([]);
 
   useEffect(() => {
-    if(getProfileMatch.length > 0) {
-      let userId = getProfileMatch[getProfileMatch.length - 1].id
-      props.Id(userId)
+    if (getProfileMatch.length > 0) {
+      let userId = getProfileMatch[getProfileMatch.length - 1].id;
+      props.Id(userId);
     }
   }, [getProfileMatch]);
 
@@ -84,6 +84,7 @@ const ImageSwap = (props) => {
     dispatch(setIsLoading(true));
     ApiPost("getprofilematches", body)
       .then((res) => {
+        console.log("res.matches", res.matches);
         setGetProfileMatch(res.matches);
         setProfileMatches(res.matches);
         dispatch(setIsLoading(false));
@@ -111,34 +112,32 @@ const ImageSwap = (props) => {
   };
 
   useEffect(() => {
-    if(props.isRewind === true) {
-      onRewind()
+    if (props.isRewind === true) {
+      onRewind();
     }
-    if(props.isSkip === true) {
-      onSkip()
+    if (props.isSkip === true) {
+      onSkip();
     }
-    
   }, [props]);
-  
 
   const onRewind = () => {
-    setIds([])
-    setGetProfileMatch(profileMatches)
-    props.changeRewind()
-    props.changeSkip()
-  }
+    setIds([]);
+    setGetProfileMatch(profileMatches);
+    props.changeRewind();
+    props.changeSkip();
+  };
 
   const onSkip = () => {
-    if(getProfileMatch.length > 0) {
-      let userId = getProfileMatch[getProfileMatch.length - 1].id
+    if (getProfileMatch.length > 0) {
+      let userId = getProfileMatch[getProfileMatch.length - 1].id;
       ids.push(userId);
       const a = [...ids];
       const filterd = getProfileMatch.filter((x) => !a.includes(x.id));
       setGetProfileMatch(filterd);
-      props.changeSkip()
-      props.changeRewind()
+      props.changeSkip();
+      props.changeRewind();
     }
-  }
+  };
 
   useEffect(() => {
     const idData = getProfileMatch.filter((item) => !ids.includes(item));
@@ -150,7 +149,7 @@ const ImageSwap = (props) => {
       let id = ids.map((data) => data).join(",");
       let token = {
         token: AuthStorage.getToken(),
-        user_ids: id,
+        // user_ids: id,
       };
       const body = xwwwFormUrlencoded(token);
       ApiPost("postswapids", body)
@@ -165,7 +164,7 @@ const ImageSwap = (props) => {
 
   const ViewProfile = (id) => {
     navigate(`/show-profile?profileid=${id}`);
-  }
+  };
 
   return (
     <div className="cards-container">
@@ -186,8 +185,14 @@ const ImageSwap = (props) => {
               } swap-card`}
             >
               <div className={`card-inner`}>
-                <img src={item.profile_picture} />
- 
+                <img
+                  src={
+                    item.profile_picture
+                      ? item.profile_picture
+                      : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                  }
+                />
+
                 <div className="details">
                   <div className="">
                     <p>
@@ -197,7 +202,7 @@ const ImageSwap = (props) => {
                     <div className="d-flex align-items-center justify-content-between mb-3">
                       <div className="d-flex align-items-center">
                         {" "}
-                        <h5 className="name-age">{item.firstname}</h5>
+                        <h5 className="name-age">{item.name}</h5>
                         {/* <img
                           src={item.genderimg}
                           alt=""
@@ -206,7 +211,9 @@ const ImageSwap = (props) => {
                           className="ml-3"
                         /> */}
                       </div>
-                      <button onClick={() => ViewProfile(item.id)}>View profile</button>
+                      <button onClick={() => ViewProfile(item.id)}>
+                        View profile
+                      </button>
                     </div>
                   </div>
                 </div>

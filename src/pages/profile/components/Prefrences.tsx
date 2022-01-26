@@ -40,8 +40,8 @@ const Prefrences = (props:any) => {
     { value: "married", label: "Married" },
   ];
   const meetingIntrest = [
-    { value: "Men", label: "Men" },
-    { value: "Women", label: "Women" },
+    { value: "Male", label: "Male" },
+    { value: "Female", label: "Female" },
   ];
   const relationbuild = [
     { value: "Dating", label: "Dating" },

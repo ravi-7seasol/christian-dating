@@ -148,7 +148,7 @@ const ShowProfile = () => {
         const body = xwwwFormUrlencoded(id)
         ApiPost('checkimageverificaion', body)
             .then(res => {
-                console.log("res", res)
+                
                 setIsVerify(res)
             })
             .catch(err => {
@@ -371,7 +371,7 @@ const ShowProfile = () => {
                         <Row>
                             <Col md={3}>
                                 <div className='profile-pic'>
-                                    <img src={editProfileData?.image} alt="" onClick={() => { textInput.current.click() }} />
+                                    <img src={editProfileData?.image ? editProfileData?.image : "https://cdn-icons-png.flaticon.com/512/149/149071.png"} alt="" onClick={() => { textInput.current.click() }} />
                                     <input type="file" style={{ opacity: "0" }} ref={textInput} onChange={(e) => handleChnage(e)} id="img" name="img" accept="image/*" />
                                     <div className="verified-picture">
                                         {isVerify.is_profile_image_verified === "1" ? <><img src="./assets/img/poltgon-group.png" alt="" /><p>Verified picture</p></> : ''}
@@ -513,7 +513,7 @@ const ShowProfile = () => {
                                     type="text"
                                     fromrowStyleclass=""
                                 />
-                                <div className="editprofile-slector">
+                                {/* <div className="editprofile-slector">
                                     <label htmlFor="" className='login-label'>Religion</label>
                                     <div className="reactSelector mt-3">
                                         <ReactSelect
@@ -523,7 +523,7 @@ const ShowProfile = () => {
                                             value={selectValue(editProfileData.religion, "religion")}
                                         />
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="align-items-center mb-3">
                                 <div className='name-age'>
@@ -616,7 +616,7 @@ const ShowProfile = () => {
                                 <Accordion.Body>
                                     <div className="personal-details">
                                         {item.Body.map((data: any, i: number) => (
-                                            <div className='d-flex mt-2 align-items-center'>
+                                            <div className='d-flex mt-2 align-items-center' key={i}>
                                                 <p className='mb-0 col-3 col-md-3 col-sm-2'>{data.label}</p>
                                                 <span className='ml-2 col-9 col-md-6 col-sm-10'>
                                                     <InputField
@@ -646,8 +646,8 @@ const ShowProfile = () => {
                     </Accordion>
                     <div className="personal-details">
                         <h2>Personal</h2>
-                        {personal.map((item) => (
-                            <div className='d-flex mt-2 align-items-center'>
+                        {personal.map((item, i) => (
+                            <div className='d-flex mt-2 align-items-center' key={i}>
                                 <p className='mb-0 col-3 col-md-3 col-sm-2'>{item.label}</p>
                                 <span className='ml-2 col-9 col-md-6 col-sm-10'>
                                     <InputField

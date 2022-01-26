@@ -44,7 +44,7 @@ const Inbox = () => {
 
     ApiPost('getchatlist', body)
       .then((res: any) => {
-        console.log("res", res);
+      
 
         setChatList(res);
         dispatch(setIsLoading(false))
@@ -57,7 +57,7 @@ const Inbox = () => {
 
 
   useEffect(() => {
-    console.log("message_ID", message_ID);
+    // console.log("message_ID", message_ID);
     if (message_ID) {
       setTog(true)
       setSelectedID(message_ID);
