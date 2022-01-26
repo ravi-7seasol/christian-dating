@@ -21,6 +21,12 @@ const Profile = (props: any) => {
     address: '',
     gender: '',
     denomination: 0,
+    body_type: '',
+    children: '',
+    pets: '',
+    language: '',
+    education: '',
+    career: '',
     your_story: '',
     short_bio: '',
     relationship_status: '',
@@ -31,7 +37,8 @@ const Profile = (props: any) => {
     read_bible: '',
     workout: '',
     consume_alcohol: '',
-    smoke: '',
+    smoke: ''
+
   })
 
   const [stepDone, setStepDone] = useState(1);
@@ -67,7 +74,14 @@ const Profile = (props: any) => {
   };
 
   const personal = (data: any) => {
-    setProfile({ ...profile, name: data.name, dob: data.dob, address: data.address, gender: data.gender, denomination: parseInt(data.denomination) })
+    setProfile({
+      ...profile, name: data.name, dob: data.dob, address: data.address, gender: data.gender, denomination: data.denomination, body_type: data.body_type,
+      children: data.children,
+      pets: data.pets,
+      language: data.language,
+      education: data.education,
+      career: data.career
+    })
   }
 
   const prefrences = (data: any) => {
