@@ -335,8 +335,8 @@ const Inbox = () => {
                           </div>
                         </div>
                       )}
-                      <div className="border-content"></div>
                     </div>
+                    <div className="border-content"></div>
                     <div className="scrool px-3">
                       <div className="text-grid">
                         {chatData?.chat?.length ? (
@@ -455,7 +455,7 @@ const Inbox = () => {
                     </div>
                   </div>
                 </div>
-                
+
               </Col>
             ) : (
               <></>

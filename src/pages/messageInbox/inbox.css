@@ -85,6 +85,12 @@
   display: flex;
 }
 
+.inbox-main .messages {
+  display: flex;
+  padding: 5px;
+  border-radius: 10px;
+}
+
  .messages-focus{
   background-color: hsl(39, 71%, 63%);
 }
@@ -131,6 +137,7 @@
 .inbox-main .messages .chat-profile {
   width: 55px;
   height: 55px;
+  border-radius: 50%;
 }
 
 .inbox-main .messages .chat-profile-img-main {
@@ -478,7 +485,6 @@
 
   .inbox-main .Conversation-starters .scrool {
     height: calc(100vh - 405px);
-    border-top: 2px solid #e69702;
     padding: 0px;
   }
 
@@ -514,8 +520,9 @@
     width: auto;
     height: 2px;
     background-color: #e69702;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 10px;
+    border-top: 2px solid #e69702;
   }
 
   .inbox-main .messages {
@@ -559,6 +566,7 @@
   .inbox-main .messages .chat-profile {
     width: 55px;
     height: 55px;
+    border-radius: 50%;
   }
 
   .inbox-main .messages .chat-profile-img-main {
