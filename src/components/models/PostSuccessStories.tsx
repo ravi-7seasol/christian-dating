@@ -17,7 +17,7 @@ const PostSuccessStories = ({ show, onhide, refresh }: Props) => {
   const [postStoryData, setPostStoryData] = useState<any>({ title: "", story: "" })
 
   const handleOnChange = (e: any) => {
-    setPostStoryData({ [e.target.name]: e.target.value })
+    setPostStoryData({...postStoryData, [e.target.name]: e.target.value })
   }
   const postData = () => {
     if (postStoryData.title !== "" && postStoryData.story !== "") {
@@ -28,7 +28,7 @@ const PostSuccessStories = ({ show, onhide, refresh }: Props) => {
       }
       const body = xwwwFormUrlencoded(data);
       ApiPost('poststories', body)
-        .then((res: any) => {
+        .then((res: any) => {          
           refresh()
         }).catch((error) => {
           console.log(error);

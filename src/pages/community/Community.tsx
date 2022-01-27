@@ -264,7 +264,7 @@ const Community = () => {
                     {getTopicList?.map((item: any, i: number) => (
                         <div className='d-flex pt-4 align-items-center' key={i}>
                             <div className='set-img-position'>
-                                <img src={item.sender_image ? item.sender_image : "https://cdn-icons-png.flaticon.com/512/149/149071.png"} />
+                              <img src={item.sender_image?item.sender_image:"https://cdn-icons-png.flaticon.com/512/149/149071.png"} style={{width:"55px",height:"55px",borderRadius:"100%"}} />
                                 <div className='active'></div>
                             </div>
                             <div>
