@@ -631,28 +631,51 @@ const ShowProfile = () => {
                                 <Accordion.Body>
                                     <div className="personal-details">
                                         {item.Body.map((data: any, i: number) => (
-                                            <div className='d-flex mt-2 align-items-center' key={i}>
-                                                <p className='mb-0 col-3 col-md-3 col-sm-2'>{data.label}</p>
-                                                <span className='ml-2 col-9 col-md-6 col-sm-10'>
-                                                    <InputField
-                                                        name={data.Name}
-                                                        maxLength={undefined}
-                                                        value={data.detail}
-                                                        lablestyleClass="login-label"
-                                                        InputstyleClass="login-input"
-                                                        onChange={(e: any) => {
-                                                            handleChange(e);
-                                                        }}
-                                                        disabled={false}
-                                                        label=""
-                                                        placeholder=""
-                                                        type="text"
-                                                        fromrowStyleclass=""
-                                                    />
-                                                </span>
+                                            // <div className='d-flex mt-2 align-items-center' key={i}>
+                                            //     <p className='mb-0 col-3 col-md-3 col-sm-2'>{data.label}</p>
+                                            //     <span className='ml-2 col-9 col-md-6 col-sm-10'>
+                                            //         <InputField
+                                            //             name={data.Name}
+                                            //             maxLength={undefined}
+                                            //             value={data.detail}
+                                            //             lablestyleClass="login-label"
+                                            //             InputstyleClass="login-input"
+                                            //             onChange={(e: any) => {
+                                            //                 handleChange(e);
+                                            //             }}
+                                            //             disabled={false}
+                                            //             label=""
+                                            //             placeholder=""
+                                            //             type="text"
+                                            //             fromrowStyleclass=""
+                                            //         />
+                                            //     </span>
+                                            // </div>
+                                            <div className="row mt-3 align-items-center">
+                                                <div className="col-lg-3 col-md-3 col-sm-12">
+                                                <p className='mb-sm-1 mb-0'>{data.label}</p>
+                                                </div>
+                                                <div className="col-lg-9 col-md-9 col-sm-12">
+                                                <InputField
+                                                         name={data.Name}
+                                                         maxLength={undefined}
+                                                         value={data.detail}
+                                                         lablestyleClass="login-label"
+                                                         InputstyleClass="login-input"
+                                                         onChange={(e: any) => {
+                                                             handleChange(e);
+                                                         }}
+                                                         disabled={false}
+                                                         label=""
+                                                         placeholder=""
+                                                         type="text"
+                                                         fromrowStyleclass=""
+                                                     />
+                                                </div>
                                             </div>
 
                                         ))}
+                                        
                                     </div>
 
                                 </Accordion.Body>
@@ -662,25 +685,46 @@ const ShowProfile = () => {
                     <div className="personal-details">
                         <h2>Personal</h2>
                         {personal.map((item, i) => (
-                            <div className='d-flex mt-2 align-items-center' key={i}>
-                                <p className='mb-0 col-3 col-md-3 col-sm-2'>{item.label}</p>
-                                <span className='ml-2 col-9 col-md-6 col-sm-10'>
-                                    <InputField
-                                        name={item.Name}
-                                        maxLength={undefined}
-                                        value={item.detail}
-                                        lablestyleClass="login-label"
-                                        InputstyleClass="login-input"
-                                        onChange={(e: any) => {
-                                            handleChange(e);
-                                        }}
-                                        disabled={false}
-                                        label=""
-                                        placeholder=""
-                                        type="text"
-                                        fromrowStyleclass=""
-                                    />
-                                </span>
+                            // <div className='d-flex mt-2 align-items-center' key={i}>
+                            //     <p className='mb-0 col-3 col-md-3 col-sm-2'>{item.label}</p>
+                            //     <span className='ml-2 col-9 col-md-6 col-sm-10'>
+                            //         <InputField
+                            //             name={item.Name}
+                            //             maxLength={undefined}
+                            //             value={item.detail}
+                            //             lablestyleClass="login-label"
+                            //             InputstyleClass="login-input"
+                            //             onChange={(e: any) => {
+                            //                 handleChange(e);
+                            //             }}
+                            //             disabled={false}
+                            //             label=""
+                            //             placeholder=""
+                            //             type="text"
+                            //             fromrowStyleclass=""
+                            //         />
+                            //     </span>
+                            // </div>
+                            <div className="row mt-3 align-items-center" key={i}>
+                                <div className="col-lg-3 col-md-3 col-sm-12">
+                                    <p className='mb-sm-1'>{item.label}</p></div>
+                                <div className="col-lg-9 col-md-9 col-sm-12">
+                                <InputField
+                                         name={item.Name}
+                                         maxLength={undefined}
+                                         value={item.detail}
+                                         lablestyleClass="login-label"
+                                         InputstyleClass="login-input"
+                                         onChange={(e: any) => {
+                                             handleChange(e);
+                                         }}
+                                         disabled={false}
+                                         label=""
+                                         placeholder=""
+                                         type="text"
+                                         fromrowStyleclass=""
+                                     />
+                                </div>
                             </div>
                         ))}
                     </div>

@@ -295,7 +295,7 @@ const ShowProfile = () => {
                                     <Accordion.Body>
                                         {item.Body.map((data: any, i: number) => (
                                             <div className='d-flex mt-2' key={i}>
-                                                <p>{data.label}</p>
+                                                <p className='personal-details-text' >{data.label}</p>
                                                 <span className='ml-2'>{data.value}</span>
                                             </div>
                                         ))}
@@ -309,7 +309,7 @@ const ShowProfile = () => {
                         {personal.map((item, i) => {
                             if (item) {
                                 return <div className='d-flex mt-2' key={i}>
-                                    <p>{item.label}</p>
+                                    <p className='personal-details-text' >{item.label}</p>
                                     <span className='ml-2'>{item.detail}</span>
                                 </div>
                             }
