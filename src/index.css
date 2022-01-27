@@ -945,7 +945,7 @@
   /* ======================================>Profile<====================================== */
 
   .profilr-bg {
-    background-image: url(./assets/img/taylor-8Vt2haq8NSQ-unsplash.png);
+    /* background-image: url(./assets/img/taylor-8Vt2haq8NSQ-unsplash.png); */
     min-height: 328px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1041,7 +1041,7 @@
   /* ======================================>Profile<====================================== */
 
   .profilr-bg {
-    background-image: url(./assets/img/taylor-8Vt2haq8NSQ-unsplash.png);
+    /* background-image: url(./assets/img/taylor-8Vt2haq8NSQ-unsplash.png); */
     min-height: 328px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1091,6 +1091,25 @@
 
 /* ====================================>min-width:768px to max-width:991px<====================================== */
 
+@media (min-width: 768px) {
+  .profilr-bg {
+    background: transparent linear-gradient(180deg, #e69702 0%, #f7c35f 100%) 0%
+      0% no-repeat padding-box !important;
+    background-repeat: no-repeat !important;
+    background-size: cover;
+    position: relative;
+    padding: 100px 0;
+  }
+}
+@media (max-width: 768px) {
+  .profilr-bg {
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    position: relative;
+    /* padding: 100px 0; */
+    width: 100vw !important;
+  }
+}
 @media (min-width: 768px) and (max-width: 991px) {
   /* ======================================>Auth Header<====================================== */
 
@@ -1106,8 +1125,8 @@
 
   .profilr-bg {
     background: transparent linear-gradient(180deg, #e69702 0%, #f7c35f 100%) 0%
-      0% no-repeat padding-box;
-    background-repeat: no-repeat;
+      0% no-repeat padding-box !important;
+    background-repeat: no-repeat !important;
     background-size: cover;
     position: relative;
     padding: 100px 0;
@@ -1258,7 +1277,7 @@
 
   .profilr-bg {
     background: transparent linear-gradient(180deg, #e69702 0%, #f7c35f 100%) 0%
-      0% no-repeat padding-box;
+      0% no-repeat padding-box !important;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;

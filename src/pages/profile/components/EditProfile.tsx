@@ -74,7 +74,7 @@ const ShowProfile = () => {
         value: ""
     }])
     const [imgName, setImgName] = useState('')
-    const [isVerify, setIsVerify] = useState<any>('')
+    const [isVerify, setIsVerify] = useState<any>('');
 
     const incrementBtn = () => {
         let val = [...funFacts]
@@ -307,7 +307,7 @@ const ShowProfile = () => {
             detail: editProfileData.your_intenet
         },
         {
-            Name: 'body_type',  
+            Name: 'body_type',
             label: "Body type:",
             detail: editProfileData.body_type
         },
@@ -352,9 +352,14 @@ const ShowProfile = () => {
 
     const textInput: any = useRef(null)
 
+
     return (
         <>
-            <div className="profilr-bg">
+            <div className="profilr-bg"
+                style={{
+                    background: `url(${editProfileData?.image ? editProfileData?.image : "https://cdn-icons-png.flaticon.com/512/149/149071.png"})`
+                }}
+            >
                 <Container>
                     <div className='set-backbtn-singlebtn '>
                         <div className="back-btn">
@@ -497,6 +502,17 @@ const ShowProfile = () => {
                         </div>
                         <div className="over-img-popup">
                             <div>
+                                <div>
+                                    <label htmlFor="imgSelect" className='btn btn-primary'>Change Profile</label>
+                                    <input
+                                        type="file"
+                                        onChange={(e) => handleChnage(e)}
+                                        accept="image/*"
+                                        className="d-none"
+                                        id="imgSelect"
+                                    />
+                                </div>
+
                                 <InputField
                                     name="address"
                                     maxLength={undefined}

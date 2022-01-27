@@ -229,7 +229,9 @@ const ShowProfile = () => {
     ]
     return (
         <>
-            <div className="profilr-bg">
+            <div className="profilr-bg" style={{
+                background: `url(${getProfileData?.image ? getProfileData?.image : "https://cdn-icons-png.flaticon.com/512/149/149071.png"})`
+            }}>
                 <Container>
                     <div className='set-backbtn-singlebtn'>
                         <div className="back-btn">
