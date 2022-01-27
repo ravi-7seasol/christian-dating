@@ -92,7 +92,7 @@ const Community = () => {
 
     const [getTopicList, setGetTopicList] = useState([]);
     const [topic, setTopic] = useState<any>();
-    const [selectedId, setSelectedId] = useState<any>();
+    const [selectedId, setSelectedId] = useState<any>(); 
     const [setMsgToCommunity, setSendMsgToCommunity] = useState('');
     const [clearText, setClearText] = useState<any>(false);
     const [openGift, setOpenGift] = useState(false);
@@ -207,7 +207,6 @@ const Community = () => {
         const body = xwwwFormUrlencoded(data);
         ApiPost('gettopic', body)
             .then((res: any) => {
-
                 setGetTopicList(res.topic_comment)
                 dispatch(setIsLoading(false))
             }).catch((error: any) => {
@@ -265,7 +264,7 @@ const Community = () => {
                     {getTopicList?.map((item: any, i: number) => (
                         <div className='d-flex pt-4 align-items-center' key={i}>
                             <div className='set-img-position'>
-                                <img src={item.sender_image} />
+                                <img src={item.sender_image ? item.sender_image : "https://cdn-icons-png.flaticon.com/512/149/149071.png"} />
                                 <div className='active'></div>
                             </div>
                             <div>
