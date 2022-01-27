@@ -309,7 +309,7 @@ const ShowProfile = () => {
                             if (item) {
                                 return <div className='d-flex mt-2' key={i}>
                                     <p>{item.label}</p>
-                                    <span className='ml-2'>{item.detail}</span>
+                                    <span className=''>{item.detail}</span>
                                 </div>
                             }
                         }

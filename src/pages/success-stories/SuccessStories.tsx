@@ -15,51 +15,50 @@ const SuccessStories = () => {
   const [second, setSecond] = useState(false);
   const [postData, setPostData] = useState(false);
   const [storySort, setStorysort] = useState({
-    sort: "asc"
+    sort: "asc",
   });
   const [storiesData, setStoriesData] = useState([]);
   const [selectedID, setSelectedID] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setIsLoading(true))
+    dispatch(setIsLoading(true));
     const body = xwwwFormUrlencoded(storySort);
-    ApiPost('stories', body)
+    ApiPost("stories", body)
       .then((res: any) => {
         setStoriesData(res.story);
         refreshData();
-        dispatch(setIsLoading(false))
-      }).catch((error) => {
-        console.log(error);
-        dispatch(setIsLoading(false))
+        dispatch(setIsLoading(false));
       })
-  }, [])
+      .catch((error) => {
+        console.log(error);
+        dispatch(setIsLoading(false));
+      });
+  }, []);
 
   const openCard = (item: any) => {
     if (selectedID === item.id) {
-      setSelectedID("")
+      setSelectedID("");
     } else {
-      setSelectedID(item.id)
+      setSelectedID(item.id);
     }
-  }
+  };
 
   const refreshData = () => {
-    dispatch(setIsLoading(true))
+    dispatch(setIsLoading(true));
     const body = xwwwFormUrlencoded(storySort);
-    ApiPost('stories', body)
+    ApiPost("stories", body)
       .then((res: any) => {
         setStoriesData(res.story);
-        dispatch(setIsLoading(false))
-      }).catch((error) => {
-        console.log(error);
-        dispatch(setIsLoading(false))
+        dispatch(setIsLoading(false));
       })
-  }
+      .catch((error) => {
+        console.log(error);
+        dispatch(setIsLoading(false));
+      });
+  };
 
-
-
-
-  // const dt= 
+  // const dt=
   //  [{
   //     id: 1,
   //     name: "bhargav",
@@ -93,7 +92,6 @@ const SuccessStories = () => {
   //     country: "india"
   //   }]
 
-
   return (
     <>
       <div className={selectedID ? "overlay" : ""}></div>
@@ -106,32 +104,40 @@ const SuccessStories = () => {
         </div>
         {/* <Container className="position-relative">  */}
         <div className={selectedID ? "after-over " : "card-position"}>
-
-
           {/* <div className="d-flex flex-wrap justify-content-center"> */}
-          {
-            storiesData?.map((data: any, i) => (
-              <div key={i}
-                className={selectedID === data.id ? "pop-over" : "card-main"}
-                onClick={() => openCard(data)}
-              >
-                <div className="d-flex">
-                  <div style={{width:"46px", height:"46px"}}>
-                    <img style={{width:"100%", height:"100%",borderRadius:"50%", objectFit:"cover"}} src={data?.thumb_image} />
-                  </div>
-                  <div className="person-name">
-                    <h5>{data.name}</h5>
-                    <p>{data.city}, {data.state}</p>
-                  </div>
+          {storiesData?.map((data: any, i) => (
+            <div
+              key={i}
+              className={selectedID === data.id ? "pop-over" : "card-main"}
+              onClick={() => openCard(data)}
+            >
+              <div className="d-flex">
+                <div style={{ width: "70px", height: "70px" }}>
+                  <img
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                    }}
+                    src={data?.thumb_image}
+                  />
                 </div>
-                <div className="card-content">
+                <div className="person-name">
+                  <h5>{data.name}</h5>
                   <p>
-                    {data.story_desc}
+                    {data.city}, {data.state}
                   </p>
                 </div>
+                {selectedID === data.id && (
+                  <img src="./assets/img/wrong.png" className="calcel-btn" />
+                )}
               </div>
-            ))
-          }
+              <div className="card-content">
+                <p>{data.story_desc}</p>
+              </div>
+            </div>
+          ))}
           {/* </div> */}
 
           {/* <div
@@ -292,14 +298,23 @@ const SuccessStories = () => {
               </p>
             </div>
            </div> */}
-          <Buttons onClick={() => { setPostData(true) }} ButtonStyle="post-btn">
+          <Buttons
+            onClick={() => {
+              setPostData(true);
+            }}
+            ButtonStyle="post-btn"
+          >
             +
           </Buttons>
         </div>
         {/* </Container> */}
       </div>
 
-      <PostSuccessStories show={postData} onhide={() => setPostData(false)} refresh={refreshData} />
+      <PostSuccessStories
+        show={postData}
+        onhide={() => setPostData(false)}
+        refresh={refreshData}
+      />
     </>
   );
 };

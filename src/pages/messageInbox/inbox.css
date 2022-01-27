@@ -39,9 +39,10 @@
 
 .handle-chat-scroll {
   overflow-y: auto !important;
-  height: calc(100vh - 193px);
+  height: calc(100vh - 63px);
   /* background: #000; */
   padding-right: 10px;
+  border-right: 2px solid #e69702;
 }
 
 .inbox-main .inbox-profile-img .like-counter {
@@ -76,13 +77,22 @@
   width: auto;
   height: 2px;
   background-color: #e69702;
-  margin-top: 50px;
+  margin-top: 20px;
   margin-left: 10px;
 }
 
 .inbox-main .messages {
   display: flex;
 }
+
+ .messages-focus{
+  background-color: hsl(39, 71%, 63%);
+}
+
+/* .messages-time-click{
+  color: #fff !important;
+
+} */
 
 .inbox-main .messages .messages-content {
   width: 55px;
@@ -136,6 +146,15 @@
   height: 18px;
 }
 
+.chat-messages-click h4{
+  color: #fff !important;
+}
+
+.chat-messages-click p{
+  color: #fff !important;
+}
+
+
 .messages .chat-messages h6 {
   font: normal normal bold 10px/16px Poppins;
   color: #e69702;
@@ -154,6 +173,10 @@
 
 .inbox-main .messages-time {
   margin-left: auto;
+}
+
+.messages-time-click h6{
+  color: #fff !important;
 }
 
 .inbox-main .messages-time h6 {
@@ -257,7 +280,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 0;
+  /* padding: 10px 0; */
   position: absolute;
   left: 0;
   background: #fff;
@@ -438,6 +461,7 @@
 
   .handle-chat-scroll {
     height: 188px;
+    border-right: none;
   }
 
   .chat-top-header {
@@ -454,6 +478,8 @@
 
   .inbox-main .Conversation-starters .scrool {
     height: calc(100vh - 405px);
+    border-top: 2px solid #e69702;
+    padding: 0px;
   }
 
   .inbox-main .inbox-profile-img .like-counter {
@@ -625,6 +651,8 @@
       0% no-repeat padding-box;
     font-size: 10px !important;
     width: fit-content;
+    max-width: 250px;
+    word-break: break-all;
     margin-left: 20%;
     text-align: left;
     float: right;

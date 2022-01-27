@@ -502,8 +502,8 @@ const ShowProfile = () => {
                         </div>
                         <div className="over-img-popup">
                             <div>
-                                <div>
-                                    <label htmlFor="imgSelect" className='btn btn-primary'>Change Profile</label>
+                                <div className='Change-Profile-mb'>
+                                    <label htmlFor="imgSelect" className='Change-Profile-btn'>Change Profile</label>
                                     <input
                                         type="file"
                                         onChange={(e) => handleChnage(e)}
