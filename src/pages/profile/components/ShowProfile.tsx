@@ -229,7 +229,10 @@ const ShowProfile = () => {
     ]
     return (
         <>
-            <div className="profilr-bg">
+            <div className="profilr-bg"
+             style={{
+                background: `url(${getProfileData?.image ? getProfileData?.image : "https://cdn-icons-png.flaticon.com/512/149/149071.png"})`
+            }}>
                 <Container>
                     <div className='set-backbtn-singlebtn'>
                         <div className="back-btn">
@@ -320,9 +323,11 @@ const ShowProfile = () => {
                     </div>
                     <div className="fun-facts">
                         <h2>Fun facts</h2>
-                        {getProfileData.funfacts !== "" && getProfileData.funfacts}
+                        {getProfileData.funfacts !== "" && getProfileData.funfacts.split(",").map((item:any) => (
+                            <p>{item}</p>
+                        ))}
                     </div>
-                </div>
+                </div>  
             </Container>
         </>
     )

@@ -49,7 +49,7 @@ const ShowProfile = () => {
 
         denomination: 0,
         your_story: '',
-        relationship_status: '',
+        relationship_status: 'Single',
         intrusted_in_meating: '',
         relationship_want_to_build: '',
         how_often_church: '',
@@ -103,6 +103,9 @@ const ShowProfile = () => {
         else if (type === "relationship_status") {
             return relationOption.find((data: any) => data.value === value)
         }
+
+
+
     }
 
     const handleChange = (e: any) => {
@@ -349,6 +352,32 @@ const ShowProfile = () => {
         { value: "In a relationship", label: "In a relationship" },
         { value: "Divorced", label: "Divorced" },
     ]
+
+    const denominationOptions = [
+        { value: "Assebmly of God", label: "Assebmly of God" },
+        { value: "Church of Christ", label: "Church of Christ" },
+        { value: "Baptist", label: "Baptist" },
+        { value: "Catholic", label: "Catholic" },
+        { value: "Evangelical", label: "Evangelical" },
+        { value: "Jewish", label: "Jewish" },
+      ];
+
+      const selectOption = (value: string, name:string) => {
+        let option: any[] = []
+        if(name === "relationOption") {
+            option =relationOption
+        }
+
+        let objValue = option.find((data) => data.value === value)
+        if(!objValue) {
+            return objValue
+        }
+        let newVal = {
+            label: objValue.label,
+            value: objValue.value
+        }
+        return newVal
+      } 
 
     const textInput: any = useRef(null)
 
@@ -634,7 +663,10 @@ const ShowProfile = () => {
                                             <div className='d-flex mt-2 align-items-center' key={i}>
                                                 <p className='mb-0 col-3 col-md-3 col-sm-2'>{data.label}</p>
                                                 <span className='ml-2 col-9 col-md-6 col-sm-10'>
-                                                    <InputField
+                                                {data.Name === "denomination" ? 
+                                                <ReactSelect options={denominationOptions} placeholder={"select Denomination"} onChange={() => {}} value={undefined} />
+                                                :
+                                                <InputField
                                                         name={data.Name}
                                                         maxLength={undefined}
                                                         value={data.detail}
@@ -648,7 +680,8 @@ const ShowProfile = () => {
                                                         placeholder=""
                                                         type="text"
                                                         fromrowStyleclass=""
-                                                    />
+                                                    /> 
+                                                }
                                                 </span>
                                             </div>
 

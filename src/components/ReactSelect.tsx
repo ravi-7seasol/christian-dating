@@ -11,7 +11,6 @@ const ReactSelect: React.FC<Props> = ({ options, placeholder,  onChange, value }
   const [addClass, setAddCalss] = useState<any>(false);
   const handleClass = () => {
     setAddCalss(!addClass);
-    
   };
 
   const onSelect = (selections: any) => {
@@ -26,7 +25,7 @@ const ReactSelect: React.FC<Props> = ({ options, placeholder,  onChange, value }
       <div className={`${addClass? "toggleIcone":''} react-select-scroll`}>
         <Select placeholder={placeholder} options={options} onChange={onSelect} value={value} onMenuOpen={handleClass} onMenuClose={handleClass}/>
       </div>
-    </>
+    </> 
   );
 };
 

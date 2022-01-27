@@ -374,12 +374,12 @@
 }
 
 .fun-facts p {
-  text-align: left;
+  /* text-align: left;
   font: normal normal bold 12px/18px Poppins;
   letter-spacing: 0px;
   color: #e69702;
   opacity: 1;
-  font-size: 16px;
+  font-size: 16px; */
 }
 
 .fun-facts span {
@@ -633,6 +633,27 @@
   width: 20px;
 }
 
+.no-matches-error {
+  text-align: center;
+}
+.no-matches-error .no-matches-button {
+  background :transparent linear-gradient(
+180deg
+, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
+    border-radius: 13px;
+    opacity: 1;
+    border: none;
+    box-shadow: none !important;
+    font: normal normal bold 18px/27px Poppins;
+    letter-spacing: 0px;
+    padding: 5px 15px !important;
+    color: #000000 !important;
+}
+.no-matches-error .no-matches-text {
+  border: solid #00000080 1px;
+  border-radius: 5px;
+  padding: 5px 15px;
+}
 /* ====================================>Community<==================================== */
 .community-popup {
   padding: 15px;
@@ -1295,6 +1316,7 @@
 
   .profile-accordion {
     padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   .profilr-bg .back-btn {
