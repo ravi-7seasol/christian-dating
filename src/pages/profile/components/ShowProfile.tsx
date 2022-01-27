@@ -185,13 +185,13 @@ const ShowProfile = () => {
                 label: "Relationship Status:",
                 value: getProfileData.relationship_status
             }, {
-                label: "Intrusted in Meating:",
+                label: "Interested in Meeting:",
                 value: getProfileData.intrusted_in_meating
             }, {
                 label: "Relationship want to Build:",
                 value: getProfileData.relationship_want_to_build
             }, {
-                label: "Your Intenet:",
+                label: "Your Interest:",
                 value: getProfileData.your_intenet
             }]
         },
@@ -229,9 +229,7 @@ const ShowProfile = () => {
     ]
     return (
         <>
-            <div className="profilr-bg" style={{
-                background: `url(${getProfileData?.image ? getProfileData?.image : "https://cdn-icons-png.flaticon.com/512/149/149071.png"})`
-            }}>
+            <div className="profilr-bg">
                 <Container>
                     <div className='set-backbtn-singlebtn'>
                         <div className="back-btn">
@@ -262,6 +260,8 @@ const ShowProfile = () => {
                                         | Denomination: {getProfileData.denomination}
                                     </p>
                                     <p className='about-mi'>{getProfileData.short_bio}</p>
+                                    <p className='mb-0'><b>My story (How you came to Christ)</b></p>
+                                    <p className='about-mi'>{getProfileData.your_story}</p>
                                 </div>
                             </Col>
                         </Row>
@@ -280,6 +280,9 @@ const ShowProfile = () => {
                             <img src="./assets/img/male.png" alt="" className='ml-3' />
                         </div>
                         <p className='about-mi'>{getProfileData.short_bio}</p>
+                        <p className='mb-0'><b>My story (How you came to Christ)</b></p>
+                        <p className='about-mi'>{getProfileData.your_story}</p>
+
                     </div>
                 </div>
             </Container>
