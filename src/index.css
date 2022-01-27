@@ -342,13 +342,17 @@
 }
 
 .personal-details p {
-  width: 140px;
+  /* width: 140px; */
   text-align: left;
   font: normal normal bold 12px/18px Poppins;
   letter-spacing: 0px;
   color: #e69702;
   opacity: 1;
   font-size: 16px;
+}
+.personal-details .personal-details-text {
+  width: 240px;
+
 }
 
 .personal-details span {
@@ -798,6 +802,7 @@
   width: 100%;
   color: #000;
   /* font-weight: bold; */
+  padding: 0 10px !important;
 }
 
 .over-img-popup .login-input {
@@ -981,7 +986,12 @@
 
   .personal-details p {
     font-size: 14px;
-    width: 95px;
+    /* width: 95px; */
+    margin: 0;
+  }
+  .personal-details  .personal-details-text {
+    width: 110px;
+
   }
 
   .personal-details span {
