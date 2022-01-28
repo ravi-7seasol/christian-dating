@@ -405,9 +405,7 @@ const ShowProfile = () => {
           <div className="fun-facts">
             <h2>Fun facts</h2>
             {getProfileData.funfacts !== "" &&
-              getProfileData.funfacts
-                .split(",")
-                .map((item: any) => <p>{item}</p>)}
+              getProfileData?.funfacts?.split(",").map((item: any) => <p>{item}</p>)}
           </div>
         </div>
       </Container>

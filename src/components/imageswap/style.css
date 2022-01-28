@@ -9,7 +9,7 @@
   position: absolute;
   max-width: 389px;
   height: 464px !important;
-  transition: .1s;
+  
 }
 
 .swap-card .card-inner {
@@ -79,6 +79,7 @@
   border: none;
   outline: none;
   /* box-shadow: none; */
+  z-index: 1;
   background: transparent;
 }
 .normal-translate{
@@ -93,5 +94,6 @@
 @media only screen and (max-width: 400px) {
   .swap-card {
     padding: 0 10px;
+    z-index: 1;
   }
 }
