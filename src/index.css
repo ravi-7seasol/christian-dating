@@ -234,6 +234,10 @@
   padding: 5px 15px !important;
 }
 
+.profilr-bg .single-btn:focus{
+  box-shadow: none !important;
+}
+
 .over-img-div {
   position: relative;
   display: block;
@@ -1527,9 +1531,7 @@
     padding: 5px 15px !important;
   }
 
-  .profilr-bg .single-btn:focus{
-    box-shadow: none !important;
-  }
+
 
   /* ===========================================>991-profile<=========================================== */
 

@@ -360,10 +360,14 @@ const Inbox = () => {
                             {chatData?.chat.map(
                               (data: any, i: number) =>
                                 data.receiver_id === selectedID && (
-                                  <div key={i}>
-                                    <h6>
-                                      {moment(data.date_time).format("HH:mm")}
-                                    </h6>
+                                  <div
+                                    key={i}
+                                    className={
+                                      data.sender_id !== currentUser
+                                        ? "incoming-massage-and-time"
+                                        : "massage-and-time"
+                                    }
+                                  >
                                     <h3
                                       className={
                                         data.sender_id !== currentUser
@@ -374,6 +378,9 @@ const Inbox = () => {
                                     >
                                       {data.message}
                                     </h3>
+                                    <p>
+                                      {moment(data.date_time).format("HH:mm")}
+                                    </p>
                                   </div>
                                 )
                             )}
