@@ -243,80 +243,131 @@ const ShowProfile = () => {
     },
   ];
 
-    const personal = [
-        {
-            label: "I’m looking for:",
-            detail: getProfileData.your_intenet
-        },
-        {
-            label: "Body type:",
-            detail: getProfileData.body_type
-        },
-        {
-            label: "Children: ",
-            detail: getProfileData.children
-        },
-        {
-            label: "Pets:",
-            detail: getProfileData.pets
-        },
-        {
-            label: "Language:",
-            detail: getProfileData.language
-        },
-        {
-            label: "Education: ",
-            detail: getProfileData.education
-        },
-        {
-            label: "Career:",
-            detail: getProfileData.career
-        },
-    ]
-    return (
-        <>
-            <div className="profilr-bg"
-             style={{
-                background: `url(${getProfileData?.image ? getProfileData?.image : "https://cdn-icons-png.flaticon.com/512/149/149071.png"})`
-            }}>
-                <Container>
-                    <div className='set-backbtn-singlebtn'>
-                        <div className="back-btn">
-                            <Link to="/match_or_message">
-                                <img src="./assets/img/next.png" alt="" width="10px" height="15px" />
-                            </Link>
-                        </div>
-                        <Buttons ButtonStyle='single-btn' onClick={() => { }} children={getProfileData.relationship_status} />
-                    </div>
-                    <div className='over-img-div-991'>
-                        <Row>
-                            <Col md={3}>
-                                <div className='profile-pic'>
-                                    {/* <img src="./assets/img/taylor-8Vt2haq8NSQ-unsplash.png" alt="" /> */}
-                                    <img src={getProfileData?.image ? getProfileData?.image : "https://cdn-icons-png.flaticon.com/512/149/149071.png"} alt="" />
-                                    <div className="verified-picture">
-                                        {isVerify.is_profile_image_verified === "1" ? <><img src="./assets/img/poltgon-group.png" alt="" /><p>Verified picture</p></> : ''}
-                                    </div>
-                                </div>
-                            </Col>
-                            <Col md={9}>
-                                <div className="over-img-popup">
-                                    <div className="d-flex align-items-center mb-3">
-                                        <h5 className='name-age'>{getProfileData.name} , {moment().diff(moment(getProfileData.dob, 'YYYY-MM-DD'), 'years')}</h5>
-                                        {getProfileData.gender === "male" ? <img src="./assets/img/male.png" alt="" className='ml-3' /> : <img src="./assets/img/female.png" alt="" className='ml-3' />}
-                                    </div>
-                                    <p>{getProfileData.address}
-                                        | Denomination: {getProfileData.denomination}
-                                    </p>
-                                    <p className='about-mi'>{getProfileData.short_bio}</p>
-                                    <p className='mb-0'><b>My story (How you came to Christ)</b></p>
-                                    <p className='about-mi'>{getProfileData.your_story}</p>
-                                </div>
-                            </Col>
-                        </Row>
-                    </div>
-                </Container>
- 
+  const personal = [
+    {
+      label: "I’m looking for:",
+      detail: getProfileData.your_intenet,
+    },
+    {
+      label: "Body type:",
+      detail: getProfileData.body_type,
+    },
+    {
+      label: "Children: ",
+      detail: getProfileData.children,
+    },
+    {
+      label: "Pets:",
+      detail: getProfileData.pets,
+    },
+    {
+      label: "Language:",
+      detail: getProfileData.language,
+    },
+    {
+      label: "Education: ",
+      detail: getProfileData.education,
+    },
+    {
+      label: "Career:",
+      detail: getProfileData.career,
+    },
+  ];
+  return (
+    <>
+      <div
+        className="profilr-bg"
+        style={{
+          background: `url(${
+            getProfileData?.image
+              ? getProfileData?.image
+              : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+          })`,
+        }}
+      >
+        <Container>
+          <div className="set-backbtn-singlebtn">
+            <div className="back-btn">
+              <Link to="/match_or_message">
+                <img
+                  src="./assets/img/next.png"
+                  alt=""
+                  width="10px"
+                  height="15px"
+                />
+              </Link>
+            </div>
+            {/* single-btn */}
+            {/* social-button */}
+            <Buttons
+              ButtonStyle=" single-btn"
+              onClick={() => {}}
+              children={getProfileData.relationship_status}
+            />
+          </div>
+          <div className="over-img-div-991">
+            <Row>
+              <Col md={3}>
+                <div className="profile-pic">
+                  {/* <img src="./assets/img/taylor-8Vt2haq8NSQ-unsplash.png" alt="" /> */}
+                  <img
+                    src={
+                      getProfileData?.image
+                        ? getProfileData?.image
+                        : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                    }
+                    alt=""
+                  />
+                  <div className="verified-picture">
+                    {isVerify.is_profile_image_verified === "1" ? (
+                      <>
+                        <img src="./assets/img/poltgon-group.png" alt="" />
+                        <p>Verified picture</p>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </div>
+              </Col>
+              <Col md={9}>
+                <div className="over-img-popup">
+                  <div className="d-flex align-items-center mb-3">
+                    <h5 className="name-age">
+                      {getProfileData.name} ,{" "}
+                      {moment().diff(
+                        moment(getProfileData.dob, "YYYY-MM-DD"),
+                        "years"
+                      )}
+                    </h5>
+                    {getProfileData.gender === "male" ? (
+                      <img
+                        src="./assets/img/male.png"
+                        alt=""
+                        className="ml-3"
+                      />
+                    ) : (
+                      <img
+                        src="./assets/img/female.png"
+                        alt=""
+                        className="ml-3"
+                      />
+                    )}
+                  </div>
+                  <p>
+                    {getProfileData.address}| Denomination:{" "}
+                    {getProfileData.denomination}
+                  </p>
+                  <p className="about-mi">{getProfileData.short_bio}</p>
+                  <p className="mb-0">
+                    <b>My story (How you came to Christ)</b>
+                  </p>
+                  <p className="about-mi">{getProfileData.your_story}</p>
+                </div>
+              </Col>
+            </Row>
+          </div>
+        </Container>
       </div>
       <Container>
         <div className="over-img-div">
@@ -345,6 +396,7 @@ const ShowProfile = () => {
               <img src="./assets/img/male.png" alt="" className="ml-3" />
             </div>
             <p className="about-mi">{getProfileData.short_bio}</p>
+            {/* <p className="about-mi"></p> */}
             <p className="mb-0">
               <b>My story (How you came to Christ)</b>
             </p>
@@ -369,15 +421,16 @@ const ShowProfile = () => {
                   </Accordion.Header>
                   <Accordion.Body>
                     {item.Body.map((data: any, i: number) => (
-                      <div className="row mt-2 text-left flex-nowrap align-items-center" key={i}>
-                          <div className="col-lg-4 col-md-4 col-sm-5">
-
-                        <p>{data.label}</p>
-                          </div>
-                          <div className="col-lg-8 col-md-8 col-sm-7">
-
-                        <span>{data.value}</span>
-                          </div>
+                      <div
+                        className="row mt-2 text-left flex-nowrap align-items-center"
+                        key={i}
+                      >
+                        <div className="col-lg-4 col-md-4 col-sm-5">
+                          <p>{data.label}</p>
+                        </div>
+                        <div className="col-lg-8 col-md-8 col-sm-7">
+                          <span>{data.value}</span>
+                        </div>
                       </div>
                     ))}
                   </Accordion.Body>
@@ -405,7 +458,9 @@ const ShowProfile = () => {
           <div className="fun-facts">
             <h2>Fun facts</h2>
             {getProfileData.funfacts !== "" &&
-              getProfileData?.funfacts?.split(",").map((item: any) => <p>{item}</p>)}
+              getProfileData.funfacts
+                .split(",")
+                .map((item: any) => <p className="fun-facts-items">{item}</p>)}
           </div>
         </div>
       </Container>
