@@ -36,11 +36,11 @@ const SuccessStories = () => {
       });
   }, []);
 
-  const openCard = (item: any) => {
-    if (selectedID === item.id) {
+  const openCard = (id: any) => {
+    if (selectedID === id) {
       setSelectedID("");
     } else {
-      setSelectedID(item.id);
+      setSelectedID(id);
     }
   };
 
@@ -108,8 +108,8 @@ const SuccessStories = () => {
           {storiesData?.map((data: any, i) => (
             <div
               key={i}
-              className={selectedID === data.id ? "pop-over" : "card-main"}
-              onClick={() => openCard(data)}
+              className={selectedID === i.toString() ? "pop-over" : "card-main"}
+              onClick={() => openCard(i.toString())}
             >
               <div className="d-flex">
                 <div style={{ width: "70px", height: "70px" }}>
