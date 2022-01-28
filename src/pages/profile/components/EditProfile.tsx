@@ -96,13 +96,24 @@ const ShowProfile = () => {
         setFunFacts(val)
     }
 
-    const selectValue = (value: string, type: string) => {
-        if (type === "religion") {
-            return options.find((data: any) => data.value === value)
-        }
-        else if (type === "relationship_status") {
+    const selectValue = (value: any, type: string) => {
+        if (type === "relationship_status") {
             return relationOption.find((data: any) => data.value === value)
         }
+        else if (type === "denomination") {
+            return denominationOptions.find((data: any) => data.value === value)
+        } else if (type === "how_often_church") {
+            return attendChurch.find((data: any) => data.value === value)
+        } else if (type === "read_bible") {
+            return readbibal.find((data: any) => data.value === value)
+        } else if (type === "workout") {
+            return workout.find((data: any) => data.value === value)
+        } else if (type === "consume_alcohol") {
+            return alcohol.find((data: any) => data.value === value)
+        } else if (type === "smoke") {
+            return smoke.find((data: any) => data.value === value)
+        }
+
 
 
 
@@ -215,6 +226,70 @@ const ShowProfile = () => {
             })
     }
 
+
+    const setlectOption = (value: any) => {
+        if (value === "denomination") {
+            return denominationOptions
+        }
+        else if (value === "how_often_church") {
+            return attendChurch
+        }
+        else if (value === "read_bible") {
+            return readbibal
+        }
+        else if (value === "workout") {
+            return workout
+        }
+        else if (value === "consume_alcohol") {
+            return alcohol
+        }
+        else if (value === "smoke") {
+            return smoke
+        }
+    }
+    const placeholderOption = (value: string) => {
+        let placeHolder = ""
+        if (value === "denomination") {
+            placeHolder = "Select Denomination"
+        }
+        else if (value === "how_often_church") {
+            placeHolder = "How Often Church"
+        }
+        else if (value === "read_bible") {
+            placeHolder = "Read Bible"
+        }
+        else if (value === "workout") {
+            placeHolder = "Workout"
+        }
+        else if (value === "consume_alcohol") {
+            placeHolder = "Consume Alcohol"
+        }
+        else if (value === "smoke") {
+            placeHolder = "Smoke"
+        }
+        return placeHolder
+    }
+    const handleChangeOptionSelect = (e: any, value: any) => {
+        if (value === "denomination") {
+            setEditProfileData({ ...editProfileData, denomination: e.value })
+        }
+        else if (value === "how_often_church") {
+            setEditProfileData({ ...editProfileData, how_often_church: e.value })
+        }
+        else if (value === "read_bible") {
+            setEditProfileData({ ...editProfileData, read_bible: e.value })
+        }
+        else if (value === "workout") {
+            setEditProfileData({ ...editProfileData, workout: e.value })
+        }
+        else if (value === "consume_alcohol") {
+            setEditProfileData({ ...editProfileData, consume_alcohol: e.value })
+        }
+        else if (value === "smoke") {
+            setEditProfileData({ ...editProfileData, smoke: e.value })
+        }
+    }
+
     const accordion = [
         {
             Name: 'aboutme',
@@ -279,11 +354,13 @@ const ShowProfile = () => {
                 Name: "your_story",
                 label: "Your Story:",
                 value: editProfileData.your_story
-            }, {
-                Name: "short_bio",
-                label: "Short Bio:",
-                value: editProfileData.short_bio
-            }, {
+            },
+            // {
+            // Name: "short_bio",
+            // label: "Short Bio:",
+            // value: editProfileData.short_bio
+            // },
+            {
                 Name: "relationship_status",
                 label: "Relationship Status:",
                 value: editProfileData.relationship_status
@@ -341,10 +418,10 @@ const ShowProfile = () => {
         },
     ]
 
-    const options = [
-        { value: "Hindu", label: "Hindu" },
-        { value: "Cristian", label: "Cristian" },
-    ];
+    // const options = [
+    //     { value: "Hindu", label: "Hindu" },
+    //     { value: "Cristian", label: "Cristian" },
+    // ];
 
     const relationOption = [
         { value: "Single", label: "Single" },
@@ -359,17 +436,52 @@ const ShowProfile = () => {
         { value: "Baptist", label: "Baptist" },
         { value: "Catholic", label: "Catholic" },
         { value: "Evangelical", label: "Evangelical" },
-        { value: "Jewish", label: "Jewish" },
-      ];
+        { value: "Lutheran", label: "Lutheran" },
+        { value: "Methodist", label: "Methodist" },
+        { value: "Non Denominational", label: "Non Denominational" },
+        { value: "Pentecostal", label: "Pentecostal" },
+        { value: "Presbyterian", label: "Presbyterian" },
+        { value: "Orthodox", label: "Orthodox" },
+        { value: "Nazarene", label: "Nazarene" },
+        { value: "Not sure yet", label: "Not sure yet" },
 
-      const selectOption = (value: string, name:string) => {
+
+    ];
+    const attendChurch = [
+        { value: "Habitually", label: "Habitually" },
+        { value: "Yes", label: "Yes" },
+        { value: "No", label: "No" },
+    ];
+    const readbibal = [
+        { value: "Sometimes", label: "Sometimes" },
+        { value: "Yes", label: "Yes" },
+        { value: "No", label: "No" },
+    ];
+    const workout = [
+        { value: "Sometimes", label: "Sometimes" },
+        { value: "Yes", label: "Yes" },
+        { value: "No", label: "No" },
+
+    ];
+    const alcohol = [
+        { value: "Yes", label: "Yes" },
+        { value: "No", label: "No" },
+
+    ];
+    const smoke = [
+        { value: "Yes", label: "Yes" },
+        { value: "No", label: "No" },
+
+    ];
+
+    const selectOption = (value: string, name: string) => {
         let option: any[] = []
-        if(name === "relationOption") {
-            option =relationOption
+        if (name === "relationOption") {
+            option = relationOption
         }
 
         let objValue = option.find((data) => data.value === value)
-        if(!objValue) {
+        if (!objValue) {
             return objValue
         }
         let newVal = {
@@ -377,9 +489,10 @@ const ShowProfile = () => {
             value: objValue.value
         }
         return newVal
-      } 
+    }
 
     const textInput: any = useRef(null)
+
 
 
     return (
@@ -613,7 +726,7 @@ const ShowProfile = () => {
                                         disabled={false}
                                         label="DOB :"
                                         placeholder=""
-                                        type="text"
+                                        type="date"
                                         fromrowStyleclass=""
                                     />
                                 </div>
@@ -663,30 +776,30 @@ const ShowProfile = () => {
                                             <div className='d-flex mt-2 align-items-center' key={i}>
                                                 <p className='mb-0 col-3 col-md-3 col-sm-2'>{data.label}</p>
                                                 <span className='ml-2 col-9 col-md-6 col-sm-10'>
-                                                {data.Name === "denomination" ? 
-                                                <ReactSelect options={denominationOptions} placeholder={"select Denomination"} onChange={() => {}} value={undefined} />
-                                                :
-                                                <InputField
-                                                        name={data.Name}
-                                                        maxLength={undefined}
-                                                        value={data.detail}
-                                                        lablestyleClass="login-label"
-                                                        InputstyleClass="login-input"
-                                                        onChange={(e: any) => {
-                                                            handleChange(e);
-                                                        }}
-                                                        disabled={false}
-                                                        label=""
-                                                        placeholder=""
-                                                        type="text"
-                                                        fromrowStyleclass=""
-                                                    /> 
-                                                }
+                                                    {data.Name === "denomination" || data.Name === "how_often_church" || data.Name === "read_bible" || data.Name === "workout" || data.Name === "consume_alcohol" || data.Name === "smoke" ?
+                                                        <ReactSelect options={setlectOption(data.Name)} placeholder={placeholderOption(data.Name)} onChange={(e: any) => handleChangeOptionSelect(e, data.Name)} value={selectValue(data.value, data.Name)} />
+                                                        :
+                                                        <InputField
+                                                            name={data.Name}
+                                                            maxLength={undefined}
+                                                            value={data.value}
+                                                            lablestyleClass="login-label"
+                                                            InputstyleClass="login-input"
+                                                            onChange={(e: any) => {
+                                                                handleChange(e);
+                                                            }}
+                                                            disabled={false}
+                                                            label=""
+                                                            placeholder=""
+                                                            type="text"
+                                                            fromrowStyleclass=""
+                                                        />
+                                                    }
                                                 </span>
                                             </div>
 
                                         ))}
-                                        
+
                                     </div>
 
                                 </Accordion.Body>
@@ -720,21 +833,21 @@ const ShowProfile = () => {
                                 <div className="col-lg-3 col-md-3 col-sm-12">
                                     <p className='mb-sm-1'>{item.label}</p></div>
                                 <div className="col-lg-9 col-md-9 col-sm-12">
-                                <InputField
-                                         name={item.Name}
-                                         maxLength={undefined}
-                                         value={item.detail}
-                                         lablestyleClass="login-label"
-                                         InputstyleClass="login-input"
-                                         onChange={(e: any) => {
-                                             handleChange(e);
-                                         }}
-                                         disabled={false}
-                                         label=""
-                                         placeholder=""
-                                         type="text"
-                                         fromrowStyleclass=""
-                                     />
+                                    <InputField
+                                        name={item.Name}
+                                        maxLength={undefined}
+                                        value={item.detail}
+                                        lablestyleClass="login-label"
+                                        InputstyleClass="login-input"
+                                        onChange={(e: any) => {
+                                            handleChange(e);
+                                        }}
+                                        disabled={false}
+                                        label=""
+                                        placeholder=""
+                                        type="text"
+                                        fromrowStyleclass=""
+                                    />
                                 </div>
                             </div>
                         ))}

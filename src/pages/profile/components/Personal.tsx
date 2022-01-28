@@ -32,7 +32,14 @@ const Personal = (props: any) => {
     { value: "Baptist", label: "Baptist" },
     { value: "Catholic", label: "Catholic" },
     { value: "Evangelical", label: "Evangelical" },
-    { value: "Jewish", label: "Jewish" },
+    { value: "Lutheran", label: "Lutheran" },
+    { value: "Methodist", label: "Methodist" },
+    { value: "Non Denominational", label: "Non Denominational" },
+    { value: "Pentecostal", label: "Pentecostal" },
+    { value: "Presbyterian", label: "Presbyterian" },
+    { value: "Orthodox", label: "Orthodox" },
+    { value: "Nazarene", label: "Nazarene" },
+    { value: "Not sure yet", label: "Not sure yet" },
   ];
 
   const selectValue = (value: string, type: string) => {
