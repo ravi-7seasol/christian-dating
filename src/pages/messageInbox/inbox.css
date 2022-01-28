@@ -91,7 +91,7 @@
   border-radius: 10px;
 }
 
- .messages-focus{
+.messages-focus {
   background-color: hsl(39, 71%, 63%);
 }
 
@@ -153,14 +153,13 @@
   height: 18px;
 }
 
-.chat-messages-click h4{
+.chat-messages-click h4 {
   color: #fff !important;
 }
 
-.chat-messages-click p{
+.chat-messages-click p {
   color: #fff !important;
 }
-
 
 .messages .chat-messages h6 {
   font: normal normal bold 10px/16px Poppins;
@@ -176,13 +175,14 @@
   margin: 6px 0 0 12px;
   color: #1d1d1d;
   opacity: 0.64;
+  margin-top: 15px;
 }
 
 .inbox-main .messages-time {
   margin-left: auto;
 }
 
-.messages-time-click h6{
+.messages-time-click h6 {
   color: #fff !important;
 }
 
@@ -230,13 +230,41 @@
 }
 
 .inbox-main .Conversation-starters .scrool {
-  height: calc(100vh - 174px);
+  height: calc(100vh - 111px);
   overflow-y: scroll;
-  padding: 20px 0;
+  padding: 20px 0 34px 0;
 }
 
 .inbox-main .Conversation-starters .text-grid {
   display: grid;
+}
+
+.inbox-main .Conversation-starters .massage-and-time {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.inbox-main .Conversation-starters .incoming-massage-and-time {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.inbox-main .Conversation-starters .massage-and-time  h3{
+  margin-bottom: 0px !important;
+}
+
+.inbox-main .Conversation-starters .incoming-massage-and-time  h3{
+  margin-bottom: 0px !important;
+}
+
+.inbox-main .Conversation-starters .massage-and-time p{
+  font-size: 10px;
+  margin-right: 3px;
+}
+.inbox-main .Conversation-starters .incoming-massage-and-time p{
+  font-size: 10px;
+  margin-left: 3px;
 }
 
 .inbox-main .Conversation-starters h2 {
@@ -485,8 +513,7 @@
 
   .inbox-main .Conversation-starters .scrool {
     height: calc(100vh - 318px);
-    padding: 0px;
-    padding-bottom: 20px;
+    padding:10px 0 20px 0;
   }
 
   .inbox-main .inbox-profile-img .like-counter {
@@ -585,7 +612,7 @@
   .messages .chat-messages p {
     font: normal normal bold 10px/16px Poppins;
     letter-spacing: 0px;
-    margin: 6px 0 0 12px;
+    margin: 13px 0 0 12px;
     color: #1d1d1d;
     opacity: 0.64;
   }
