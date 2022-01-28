@@ -763,7 +763,7 @@ const ShowProfile = () => {
                 </div>
             </Container>
             <Container>
-                <div className="">
+                <div className="pb-4">
                     <Accordion defaultActiveKey="0">
                         {accordion.map((item, i) => (
                             <Accordion.Item eventKey={i.toString()}>
