@@ -245,26 +245,15 @@ const Community = () => {
                 <p>“So now the case is closed. There remains no accusing voice of condemnation against those who are joined in life-union with Jesus, the Anointed One.” <span> Romans‬ ‭8:1‬ ‭TPT‬‬</span></p>
             </div>
             <div className="select">
-                <ReactSelect placeholder="Select Category" options={topic} onChange={(e: any) => getTopicData(e)} value={topic?.value} />
+                <ReactSelect placeholder="Select Category" options={topic} onChange={(e: any) => getTopicData(e)} value={topic?.value}/>
             </div>
-            {/* <select onChange={(e) => getTopicData(e)} style={{ float: "right" }}>
-                <option value="select">Select Category</option>
-                {
-                    topic?.map((data: any, i: number) => (
-
-                        <option key={i} value={data.t_id}>{data.topic}</option>
-
-                    ))
-                }
-            </select> */}
-
 
             <div className="community" style={{ position: "relative" }}>
                 <div className="">
                     {getTopicList?.map((item: any, i: number) => (
                         <div className='d-flex pt-4 align-items-center' key={i}>
                             <div className='set-img-position'>
-                              <img src={item.sender_image?item.sender_image:"https://cdn-icons-png.flaticon.com/512/149/149071.png"} style={{width:"55px",height:"55px",borderRadius:"100%"}} />
+                                <img src={item.sender_image ? item.sender_image : "https://cdn-icons-png.flaticon.com/512/149/149071.png"} style={{ width: "55px", height: "55px", borderRadius: "100%" }} />
                                 <div className='active'></div>
                             </div>
                             <div>
