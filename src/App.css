@@ -772,6 +772,28 @@ input[type="date"]:before {
   }
 }
 
+.isAlert {
+  position: fixed !important;
+  right: 30px;
+  width: 20%;
+  z-index: 999999999 !important;
+}
+
+/* ============================================================================================================== */
+
+.cardContainer {
+  width: 90vw;
+  max-width: 260px;
+  height: 300px;
+}
+
+.swipe {
+  position: absolute;
+}
+
+
+
+/* ============================================================================================================== */
 @media only screen and (max-width: 491px) {
   .signup-with-social::after,
   .signup-with-social::before {
@@ -802,6 +824,9 @@ input[type="date"]:before {
   .header-text {
     font: normal normal 600 18px/23px Poppins;
   }
+  .isAlert {
+    width: auto;
+  }
 }
 
 @media only screen and (max-width: 320px) {
@@ -822,3 +847,8 @@ input[type="date"]:before {
   width: 237px !important;
   margin-left: auto !important;
 }
+
+
+/* .swap-card{
+  transition: 1.5s !important;
+} */

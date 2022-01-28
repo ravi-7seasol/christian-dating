@@ -168,8 +168,8 @@ const Inbox = () => {
 
   const sendMsgByOnClick = () => {
     if (sendMsg !== "" && selectedID) {
-      dispatch(setIsLoading(true));
-      setMessageData(sendMsg);
+      // dispatch(setIsLoading(true));
+      // setMessageData(sendMsg);
       const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
       const sendMessage = {
         token: tokenID,
@@ -181,6 +181,7 @@ const Inbox = () => {
         .then((res: any) => {
           console.log("res", res);
           setSendMsg("");
+          setClearText(true)
           getChat();
           dispatch(setIsLoading(false));
         })
@@ -192,8 +193,8 @@ const Inbox = () => {
   };
   const getMessageData = (message: string) => {
     if (message !== "" && selectedID) {
-      dispatch(setIsLoading(true));
-      setMessageData(message);
+      // dispatch(setIsLoading(true));
+      // setMessageData(message);
       const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
       const sendMessage = {
         token: tokenID,
@@ -204,6 +205,7 @@ const Inbox = () => {
       ApiPost("sendmessage", body)
         .then((res: any) => {
           getChat();
+          setSendMsg("");
           dispatch(setIsLoading(false));
         })
         .catch((error) => {
@@ -352,7 +354,7 @@ const Inbox = () => {
                         </div>
                       )}
                     </div>
-                    <div className="border-content"></div>
+                    {/* <div className="border-content"></div> */}
                     <div className="scrool px-3">
                       <div className="text-grid">
                         {chatData?.chat?.length ? (

@@ -497,6 +497,7 @@
   .handle-chat-scroll {
     height: 188px;
     border-right: none;
+    border-bottom: 2px solid #e69702;
   }
 
   .chat-top-header {

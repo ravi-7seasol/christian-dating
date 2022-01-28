@@ -366,7 +366,7 @@ const ShowProfile = () => {
                 value: editProfileData.relationship_status
             }, {
                 Name: "intrusted_in_meating",
-                label: "Intrusted in Meating:",
+                label: "Interested in Meeting:",
                 value: editProfileData.intrusted_in_meating
             }, {
                 Name: "relationship_want_to_build",
@@ -374,7 +374,7 @@ const ShowProfile = () => {
                 value: editProfileData.relationship_want_to_build
             }, {
                 Name: "your_intenet",
-                label: "Your Intenet:",
+                label: "Your Intrest:",
                 value: editProfileData.your_intenet
             }]
         },

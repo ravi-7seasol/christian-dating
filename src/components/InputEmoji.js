@@ -9,7 +9,7 @@ const InpEmoji = (props) => {
   }
 
   useEffect(() => {
-    if (props.clearText === true) {
+    if (props.clearText) {
       setText("");
     }
   }, [props.clearText]);

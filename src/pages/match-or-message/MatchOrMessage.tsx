@@ -144,6 +144,7 @@ const MatchOrMessage = () => {
     const [id, setId] = useState("");
     const [isRewind, setIsRewind] = useState(false);
     const [isSkip, setIsSkip] = useState(false);
+    const [isAlert, setIsAlert] = useState("");
 
     const dispatch = useDispatch()
 
@@ -157,12 +158,13 @@ const MatchOrMessage = () => {
         ApiPost("rateprofile", body)
             .then((res) => {
                 console.log("res", res);
+                setIsAlert("like")
             })
             .catch((err) => {
                 console.log("err", err);
             })
         setLike(!like)
-    }    
+    }
 
     const msgChange = () => {
         dispatch(messageId(id))
@@ -170,16 +172,33 @@ const MatchOrMessage = () => {
 
     const rewind = () => {
         setIsRewind(true)
+        setIsAlert("rewind")
     }
 
-    const skip= () => {
+    const skip = () => {
         setIsSkip(true)
+        setIsAlert("skip")
     }
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsAlert("")
+        }, 2000);
+    },[isAlert])
 
     return (
         <>
+            {isAlert !== "" &&
+                <div className='isAlert'>
+                    <div className={`alert alert-success fade show`} role="alert">
+                        <strong>{isAlert === "like" ? "liked" : isAlert === "skip" ? "skiped": "rewind"}</strong>
+                        {/* <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> */}
+                    </div>
+                </div>}
             <Container>
-                <div className='match-or-message mt-3'>
+                <div className='match-or-message mt-5'>
                     <p>Profiles based on preference settings</p>
                 </div>
             </Container>
@@ -209,7 +228,7 @@ const MatchOrMessage = () => {
                     <div className='' onClick={rewind}>
                         <div className='rewind'>
                             {/* <Link to="/community"> */}
-                                <img src='./assets/img/Group 17.png' />
+                            <img src='./assets/img/Group 17.png' />
                             {/* </Link> */}
                         </div>
                         <p className='text'>rewind</p>
@@ -217,7 +236,7 @@ const MatchOrMessage = () => {
                     <div onClick={skip}>
                         <div className='skip-content'>
                             {/* <Link to="/success_stories"> */}
-                                <img src='./assets/img/Group 18.png' />
+                            <img src='./assets/img/Group 18.png' />
                             {/* </Link> */}
                         </div>
                         <p className='text'>skip</p>
@@ -231,13 +250,13 @@ const MatchOrMessage = () => {
                     <div>
                         <div className='message-content'>
                             <Link to="/inbox">
-                                <img src='./assets/img/Group 20.png' onClick={()=>msgChange()}/>
+                                <img src='./assets/img/Group 20.png' onClick={() => msgChange()} />
                             </Link>
                         </div>
                         <p className='text'>message</p>
                     </div>
                 </div>
-                <div className='message-bottom-popup'>
+                <div className='message-bottom-popup mb-5'>
                     <div className='message-bottom-popup-header'>
                         <img src="./assets/img/notification-ball.png" alt="" />
                         <img src="./assets/img/wrong.png" alt="" />
