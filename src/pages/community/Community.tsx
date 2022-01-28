@@ -116,12 +116,16 @@ const Community = () => {
                 const topicslist = res.topics?.map((item: any) => {
                     return {
                         // ...item,
-                        value: item.t_id,
+                        value: item.t_id.toString(),
                         label: item.topic
                     }
                 })
 
                 setTopic(topicslist)
+                if(topicslist.length) {
+                    getTopicData(topicslist[0].value)
+                    setSelectedId(topicslist[0].value)
+                }
                 dispatch(setIsLoading(false))
             }).catch((error: any) => {
                 console.log(error);
@@ -129,6 +133,24 @@ const Community = () => {
             })
     }, [])
 
+    useEffect(() => {
+        console.log("topic", topic && topic);  
+        console.log("topic[0].value", topic && topic[0].value);  
+
+        // const data = {
+        //     topic_id: e.value,
+        // }
+        // setSelectedId(e.value);
+        // const body = xwwwFormUrlencoded(data);
+        // ApiPost('gettopic', body)
+        //     .then((res: any) => {
+        //         setGetTopicList(res.topic_comment)
+        //         dispatch(setIsLoading(false))
+        //     }).catch((error: any) => {
+        //         console.log(error);
+        //         dispatch(setIsLoading(false))
+        //     })
+    }, [topic]);
 
     const getCommunityData = () => {
         const data = {
@@ -201,9 +223,9 @@ const Community = () => {
     }
     const getTopicData = (e: any) => {
         const data = {
-            topic_id: e.value,
+            topic_id: e,
         }
-        setSelectedId(e.value);
+        setSelectedId(e);
         const body = xwwwFormUrlencoded(data);
         ApiPost('gettopic', body)
             .then((res: any) => {
@@ -237,6 +259,12 @@ const Community = () => {
         setSelectedImage(undefined)
     }
 
+    const selectValue = (value: string, type: string) => {
+        if (type === "category") {
+            return topic && topic.find((data: any) => data.value === value)
+        }
+    }
+
     return (
 
 
@@ -245,7 +273,9 @@ const Community = () => {
                 <p>“So now the case is closed. There remains no accusing voice of condemnation against those who are joined in life-union with Jesus, the Anointed One.” <span> Romans‬ ‭8:1‬ ‭TPT‬‬</span></p>
             </div>
             <div className="select">
-                <ReactSelect placeholder="Select Category" options={topic} onChange={(e: any) => getTopicData(e)} value={topic?.value}/>
+                <ReactSelect placeholder="Select Category" options={topic} onChange={(e: any) => getTopicData(e.value)}
+                    value={selectValue(selectedId,"category")}
+                />
             </div>
 
             <div className="community" style={{ position: "relative" }}>

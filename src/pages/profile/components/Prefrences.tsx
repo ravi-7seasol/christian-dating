@@ -6,7 +6,7 @@ const Prefrences = (props:any) => {
   const [prefrences, setPrefrences] = useState({
     your_story:'',
     short_bio:'',
-    relationship_status:'',
+    relationship_status:'single',
     intrusted_in_meating:'',
     relationship_want_to_build:'',
     your_intenet:''
