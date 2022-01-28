@@ -85,8 +85,8 @@ const ImageSwap = (props) => {
     ApiPost("getprofilematches", body)
       .then((res) => {
         console.log("res.matches", res.matches);
-        setGetProfileMatch(res.matches);
-        setProfileMatches(res.matches);
+        setGetProfileMatch(Object.values(res.matches).map(item => item));
+        setProfileMatches(Object.values(res.matches).map(item => item));
         dispatch(setIsLoading(false));
       })
       .catch((err) => {
@@ -166,13 +166,18 @@ const ImageSwap = (props) => {
     navigate(`/show-profile?profileid=${id}`);
   };
 
+  useEffect(() => {
+    console.log('getProfileMatch', getProfileMatch);
+  }, [getProfileMatch]);
+
+
   return (
     <div className="cards-container">
       {getProfileMatch.length ? (<>
         {
           getProfileMatch.map((item, i, row) => {
             return (
-              <TinderCard 
+              <TinderCard
                 onSwipe={(dir) => onSwipe(dir, item)}
                 // onCardLeftScreen={(item) => onCardLeftScreen(item)}
                 preventSwipe={["up", "down"]}
@@ -230,7 +235,7 @@ const ImageSwap = (props) => {
             <p className="mb-0"><b>We couldn't find the matches for you.</b></p>
             <p className="mb-0"><b>Please try later or upadte your profile.</b></p>
           </div>
-          <button className="no-matches-button btn btn-primary" onClick={() => {navigate("/edit-profile")}}> update Profile </button>
+          <button className="no-matches-button btn btn-primary" onClick={() => { navigate("/edit-profile") }}> update Profile </button>
         </div>
       )}
     </div>

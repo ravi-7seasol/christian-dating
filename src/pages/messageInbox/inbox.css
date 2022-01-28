@@ -230,7 +230,7 @@
 }
 
 .inbox-main .Conversation-starters .scrool {
-  height: calc(100vh - 111px);
+  height: calc(100vh - 190px);
   overflow-y: scroll;
   padding: 20px 0 34px 0;
 }
