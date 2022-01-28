@@ -350,10 +350,7 @@
   opacity: 1;
   font-size: 16px;
 }
-.personal-details .personal-details-text {
-  width: 240px;
 
-}
 
 .personal-details span {
   text-align: left;
@@ -1011,10 +1008,6 @@
     margin: 0;
   }
   
-  .personal-details  .personal-details-text {
-    width: 95px;
-    word-break: break-all;
-  }
 
   .personal-details span {
     font-size: 14px;
