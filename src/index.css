@@ -352,7 +352,6 @@
 }
 .personal-details .personal-details-text {
   width: 240px;
-
 }
 
 .personal-details span {
@@ -641,17 +640,16 @@
   text-align: center;
 }
 .no-matches-error .no-matches-button {
-  background :transparent linear-gradient(
-180deg
-, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
-    border-radius: 13px;
-    opacity: 1;
-    border: none;
-    box-shadow: none !important;
-    font: normal normal bold 18px/27px Poppins;
-    letter-spacing: 0px;
-    padding: 5px 15px !important;
-    color: #000000 !important;
+  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
+    0% no-repeat padding-box;
+  border-radius: 13px;
+  opacity: 1;
+  border: none;
+  box-shadow: none !important;
+  font: normal normal bold 18px/27px Poppins;
+  letter-spacing: 0px;
+  padding: 5px 15px !important;
+  color: #000000 !important;
 }
 .no-matches-error .no-matches-text {
   border: solid #00000080 1px;
@@ -969,6 +967,10 @@
   }
 
   /* ======================================>Profile<====================================== */
+  .no-matches-error .no-matches-text {
+    padding: 5px 7px;
+    margin: 0 10px;
+  }
 
   .profilr-bg {
     /* background-image: url(./assets/img/taylor-8Vt2haq8NSQ-unsplash.png); */
@@ -1010,8 +1012,8 @@
     /* width: 95px; */
     margin: 0;
   }
-  
-  .personal-details  .personal-details-text {
+
+  .personal-details .personal-details-text {
     width: 95px;
     word-break: break-all;
   }
@@ -1043,8 +1045,8 @@
     right: auto;
   }
 
-  .Change-Profile-mb{
-    margin-bottom:50px ;
+  .Change-Profile-mb {
+    margin-bottom: 50px;
   }
 
   .editprofile-over-img-popup .over-img-popup {
@@ -1148,12 +1150,16 @@
     width: 100vw !important;
   }
 
-  .over-img-popup .Change-Profile-btn{
-    background-color: #e69702 ;
+  .over-img-popup .Change-Profile-btn {
+    background-color: #e69702;
     padding: 10px;
     border-radius: 10px;
     color: #fff;
     font-weight: 700;
+  }
+
+  .match-or-message p {
+    margin-top: 10px;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -1210,6 +1216,8 @@
     top: -70px;
     padding: 5px 15px !important;
   }
+
+
 
   /* ===========================================>991-profile<=========================================== */
 
@@ -1525,6 +1533,10 @@
     right: 12px;
     top: -70px;
     padding: 5px 15px !important;
+  }
+
+  .profilr-bg .single-btn:focus{
+    box-shadow: none !important;
   }
 
   /* ===========================================>991-profile<=========================================== */

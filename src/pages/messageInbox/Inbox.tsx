@@ -274,7 +274,9 @@ const Inbox = () => {
                   <>
                     {chatList?.chat.map((data: any, i: number) => (
                       <div
-                        className={`${selectedID === data.receiver_id && "messages-focus"} messages`}
+                        className={`${
+                          selectedID === data.receiver_id && "messages-focus"
+                        } messages`}
                         key={i}
                         onClick={() => {
                           messageOpen(data);
@@ -282,16 +284,30 @@ const Inbox = () => {
                       >
                         <div className="chat-profile-img-main">
                           <img
-                            src={data.sender_participant_image}
+                            src={
+                              data.sender_participant_image
+                                ? data.sender_participant_image
+                                : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                            }
                             className="chat-profile"
                           />
                           <div className="online"></div>
                         </div>
-                        <div className={`${selectedID === data.receiver_id && "chat-messages-click"} chat-messages`}>
+                        <div
+                          className={`${
+                            selectedID === data.receiver_id &&
+                            "chat-messages-click"
+                          } chat-messages`}
+                        >
                           <h4>{data.receiver_name}</h4>
                           <p>{data.last_message}</p>
                         </div>
-                        <div className={`${selectedID === data.receiver_id && "messages-time-click"} messages-time`}>
+                        <div
+                          className={`${
+                            selectedID === data.receiver_id &&
+                            "messages-time-click"
+                          } messages-time`}
+                        >
                           <h6>{moment(data.last_message_time).format("LT")}</h6>
                           <div
                             className={
@@ -345,6 +361,9 @@ const Inbox = () => {
                               (data: any, i: number) =>
                                 data.receiver_id === selectedID && (
                                   <div key={i}>
+                                    <h6>
+                                      {moment(data.date_time).format("HH:mm")}
+                                    </h6>
                                     <h3
                                       className={
                                         data.sender_id !== currentUser
@@ -455,7 +474,6 @@ const Inbox = () => {
                     </div>
                   </div>
                 </div>
-
               </Col>
             ) : (
               <></>

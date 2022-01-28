@@ -120,11 +120,11 @@ const SuccessStories = () => {
                       borderRadius: "50%",
                       objectFit: "cover",
                     }}
-                    src={data?.thumb_image}
+                    src={data?.thumb_image ? data?.thumb_image : "https://cdn-icons-png.flaticon.com/512/149/149071.png" }
                   />
                 </div>
                 <div className="person-name">
-                  <h5>{data.name}</h5>
+                  <h6>{data.name}</h6>
                   <p>
                     {data.city}, {data.state}
                   </p>

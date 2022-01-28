@@ -240,7 +240,7 @@ const ShowProfile = () => {
                                 <img src="./assets/img/next.png" alt="" width="10px" height="15px" />
                             </Link>
                         </div>
-                        <Buttons ButtonStyle='single-btn' onClick={() => { }} children={getProfileData.relationship_status ?? "select relationship status"} />
+                        <Buttons ButtonStyle='single-btn' onClick={() => { }} children={getProfileData.relationship_status} />
                     </div>
                     <div className='over-img-div-991'>
                         <Row>
