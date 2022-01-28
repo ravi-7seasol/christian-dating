@@ -224,10 +224,6 @@ const ShowProfile = () => {
           value: getProfileData.your_story,
         },
         {
-          label: "Short Bio:",
-          value: getProfileData.short_bio,
-        },
-        {
           label: "Relationship Status:",
           value: getProfileData.relationship_status,
         },
