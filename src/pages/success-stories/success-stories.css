@@ -119,6 +119,7 @@
   background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
     0% no-repeat padding-box;
   font-weight: 600;
+  background-color: (#e69702, .75) !important;
   border: none;
   bottom: 20px;
   border-radius: 100%;
@@ -128,14 +129,67 @@
   box-shadow: none !important;
 }
 
-.fade {
-  transition: none !important;
+.successStories-main .post-btn:focus{
+  background-color: #e69702 !important;
+  color: #000 ;
 }
 
-.post-btn {
-  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
-    0% no-repeat padding-box !important;
-    border: none !important;
+@keyframes social-button-beat {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  70% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.successStories-main .post-btn:focus::before {
+  animation: social-button-beat 1.5s ease-out infinite;
+}
+
+.successStories-main .post-btn:focus:after {
+  animation: social-button-beat 1.5s ease-out 0.4s infinite;
+}
+
+.successStories-main .post-btn:before{
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background-color: #e69702;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
+}
+
+.successStories-main .post-btn:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background-color: #e69702;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
+}
+
+.fade {
+  transition: none !important;
 }
 
 .successStories-main .post-btn:active:focus:hover {
