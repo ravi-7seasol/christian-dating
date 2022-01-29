@@ -1905,3 +1905,56 @@ social-button-radius = 50% */
 }
 
 
+@media only screen and (max-width: 400px) {
+  .activity-main .rewind {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .activity-main .skip-content {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .activity-main .like-content {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .activity-main .message-content {
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 0px !important;
+  }
+  .activity-main .message-content {
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 0px !important;
+  }
+  .activity-main .rewind img {
+    width: 30px !important;
+    height: 30px !important;
+    margin: 5px !important;
+  }
+  .activity-main .skip-content img {
+    width: 30px !important;
+    height: 30px !important;
+    margin: 5px !important;
+  }
+  .activity-main .like-content img {
+    width: 30px !important;
+    height: 30px !important;
+    margin: 5px !important;
+  }
+  .activity-main .message-content img {
+    width: 30px !important;
+    height: 30px !important;
+    margin: 5px !important;
+  }
+  .activity-main .message-content img {
+    width: 30px !important;
+    height: 30px !important;
+    margin: 5px !important;
+  }
+
+  .activity-main .text{
+    display: none;
+  }
+}
