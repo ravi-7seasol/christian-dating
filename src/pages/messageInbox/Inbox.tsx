@@ -155,8 +155,12 @@ const Inbox = () => {
   };
 
   const messageOpen = (item: any) => {
-
-    let activeChat = chatList.chat.findIndex((data: any) => data.receiver_id === item.receiver_id)
+    let activeChat 
+    if(chatList.current_user !== item.receiver_id) {
+      activeChat = chatList.chat.findIndex((data: any) => data.receiver_id === item.receiver_id)
+    } else {
+      activeChat = chatList.chat.findIndex((data: any) => data.sender_id === item.sender_id)
+    }
     const selectedChatId = chatList.current_user !== item.receiver_id ? item.receiver_id : item.sender_id
 
     chatList.chat[activeChat].total_unread_messages = "0"
