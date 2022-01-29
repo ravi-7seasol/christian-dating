@@ -543,7 +543,7 @@ const Inbox = () => {
                                     onClick={() => closeGif()}
                                   />
                                 </div>
-                                <img src={gif} className="gifbig"></img>
+                                <img src={gif} className="gifbig img-fluid"></img>
 
                                 <button className="submit">
                                   <FontAwesomeIcon icon={faPaperPlane} />
@@ -558,7 +558,7 @@ const Inbox = () => {
                                     onClick={() => closeImg()}
                                   />
                                 </div>
-                                <img src={URL.createObjectURL(selectedImage)} />
+                                <img src={URL.createObjectURL(selectedImage)} className="img-fluid"/>
                                 <button className="submit">
                                   <FontAwesomeIcon icon={faPaperPlane} />
                                 </button>
@@ -611,14 +611,14 @@ const Inbox = () => {
                           )}
                         </div>
                       </div>
-                      <div className="input-chat">
+                      <div className="community-input-chat w-100">
                         <InpEmoji
                           getMData={getMessageData}
                           onHandaleChangeData={onHandaleChangeData}
                           clearText={clearText}
                           afterClear={setClearText}
                         />
-                        <div className="inbox-send-msg-btn">
+                        <div className="inbox-send-msg-btn position-absolute right-1">
                           <img
                             src="./assets/img/right-arrow (2).png"
                             style={{ zIndex: 999 }}

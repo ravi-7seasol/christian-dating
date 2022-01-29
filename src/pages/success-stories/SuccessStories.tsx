@@ -94,13 +94,18 @@ const SuccessStories = () => {
 
   return (
     <>
-      <div className={selectedID ? "overlay" : ""} onClick={() => {setSelectedID("")}}></div>
+      <div
+        className={selectedID ? "overlay" : ""}
+        onClick={() => {
+          setSelectedID("");
+        }}
+      ></div>
       <div className="successStories-main">
         <div className="top-img">
           <img src="./assets/img/Group28.png" className="bg-img" />
           <Link to="/match_or_message">
             <img src="./assets/img/Group 16.png" className="back-img" />
-          </Link>   
+          </Link>
         </div>
         {/* <Container className="position-relative">  */}
         <div className={selectedID ? "after-over " : "card-position"}>
@@ -120,7 +125,11 @@ const SuccessStories = () => {
                       borderRadius: "50%",
                       objectFit: "cover",
                     }}
-                    src={data?.thumb_image ? data?.thumb_image : "https://cdn-icons-png.flaticon.com/512/149/149071.png" }
+                    src={
+                      data?.thumb_image
+                        ? data?.thumb_image
+                        : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                    }
                   />
                 </div>
                 <div className="person-name">
