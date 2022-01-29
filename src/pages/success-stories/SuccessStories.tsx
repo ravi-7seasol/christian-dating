@@ -129,7 +129,7 @@ const SuccessStories = () => {
                     {data.city}, {data.state}
                   </p>
                 </div>
-                {selectedID === data.id && (
+                {selectedID === i.toString() && (
                   <img src="./assets/img/wrong.png" className="calcel-btn" />
                 )}
               </div>

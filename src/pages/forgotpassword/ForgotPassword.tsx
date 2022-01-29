@@ -109,7 +109,7 @@ const ForgotPassword = () => {
 
                 <div style={{ marginTop: "9rem" }}>
                   <Buttons
-                    children="Log in"
+                    children="Send Email"
                     onClick={() => { forgotPassword() }}
                     ButtonStyle="login-btn"
                     disabled={false}
