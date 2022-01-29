@@ -13,6 +13,7 @@ import { setIsLoading } from '../../redux/actions/loadingAction';
 import { messageId } from '../../redux/actions/messageIdAction';
 import { Store } from 'react-notifications-component';
 import { cssTransition, toast, ToastContainer } from 'react-toastify';
+import { messageData } from '../../redux/actions/messageDataAction';
 const MatchOrMessage = () => {
 
     // const settings = {
@@ -167,8 +168,13 @@ const MatchOrMessage = () => {
         setLike(!like)
     }
 
-    const msgChange = () => {
+    const msgChange = () => {        
         dispatch(messageId(id))
+    }
+
+    const inboxData = (msgData:any) => {
+        console.log('msgData', msgData);
+        dispatch(messageData(msgData))
     }
 
     const rewind = () => {
@@ -218,7 +224,7 @@ const MatchOrMessage = () => {
                     ))}
                 </Slider> */}
             {/* </div> */}
-            <ImageSwap Id={setId} isSkip={isSkip} isRewind={isRewind} changeRewind={() => setIsRewind(false)} changeSkip={() => setIsSkip(false)} />
+            <ImageSwap Id={setId} Data={inboxData} isSkip={isSkip} isRewind={isRewind} changeRewind={() => setIsRewind(false)} changeSkip={() => setIsSkip(false)} />
             <Container>
                 <div className='activity-main'>
                     <div className='' onClick={rewind}>

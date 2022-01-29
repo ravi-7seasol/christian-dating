@@ -8,6 +8,7 @@ import { chatDataReducer } from './reducers/chatDataReducer';
 import { notificationDataReducer } from './reducers/notificationReducer';
 import { getProfileImageReducer } from './reducers/getProfileImageReducer';
 import { messageIdReducer } from './reducers/messageIdReducer';
+import { messageDataReducer } from './reducers/messageDataReducer';
 const middleware = [thunk];
 
 const rootReducer = combineReducers({
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   chatData: chatDataReducer,
   notification: notificationDataReducer,
   profile_Image:getProfileImageReducer,
-  message_Id:messageIdReducer
+  message_Id:messageIdReducer,
+  message_Data:messageDataReducer,
 });
 
 

@@ -870,3 +870,16 @@
   text-align: center;
   margin-top: 20%;
 }
+
+.nav-links .messages-counts,
+.navLinks .messages-counts{
+  width: 12px;
+  height: 12px;
+  background-color: red;
+  font: normal normal 600 8px/12px Poppins;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 8px;
+  margin-left: 10px;
+  text-align: center;
+}
