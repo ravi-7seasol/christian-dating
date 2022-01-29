@@ -165,7 +165,7 @@ const ImageSwap = (props) => {
       let id = ids.map((data) => data).join(",");
       let token = {
         token: AuthStorage.getToken(),
-        // user_ids: id,
+        user_ids: id,
       };
       const body = xwwwFormUrlencoded(token);
       ApiPost("postswapids", body)
