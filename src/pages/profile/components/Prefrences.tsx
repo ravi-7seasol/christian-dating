@@ -76,8 +76,10 @@ const Prefrences = (props:any) => {
               rows={5}
               value={prefrences.short_bio}
               onChange={(e) => handleChange(e)}
+              maxLength={100}
               name='short_bio'
             ></textarea>
+            <span style={{ color: "black" }}>{prefrences.short_bio.length}/100</span>
           </div>
           <div className="slector">
             <label className="login-label">Relationship status</label>
