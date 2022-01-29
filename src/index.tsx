@@ -10,7 +10,8 @@ import '../node_modules/react-datepicker/dist/react-datepicker.css';
 import '../node_modules/react-chat-widget/lib/styles.css';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-
+import "react-toastify/dist/ReactToastify.css";
+import 'animate.css/animate.min.css'
 ReactDOM.render(
   <React.StrictMode>
     <App />

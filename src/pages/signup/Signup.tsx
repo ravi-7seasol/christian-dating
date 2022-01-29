@@ -17,6 +17,7 @@ import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setIsLoading } from "../../redux/actions/loadingAction";
+import { cssTransition, toast } from "react-toastify";
 
 const GoogleAppId =
   "1043350539750-lldkb9r1i0pc3d3l66lupb9np2olict4.apps.googleusercontent.com";
@@ -83,6 +84,13 @@ const Signup = () => {
         dispatch(setIsLoading(false))
 
         if (res.status === "true") {
+          toast.success("Successfully Registered, Please Login to continue" , {
+            // position: toast.POSITION.TOP_CENTER,
+            transition:cssTransition({
+                enter: "animate__animated animate__bounceIn",
+                exit: "animate__animated animate__bounceOut"
+              })
+          });
           navigate({
             pathname: '/',
             search: `?from=signup`

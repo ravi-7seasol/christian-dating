@@ -457,7 +457,7 @@ const ShowProfile = () => {
           </div>
           <div className="fun-facts">
             <h2>Fun facts</h2>
-            {getProfileData.funfacts !== "" &&
+            {getProfileData.funfacts &&
               getProfileData.funfacts
                 .split(",")
                 .map((item: any) => <p className="fun-facts-items">{item}</p>)}

@@ -11,6 +11,8 @@ import { xwwwFormUrlencoded } from '../../helper/utils';
 import { getProfileImage } from '../../redux/actions/getProfileImage';
 import { setIsLoading } from '../../redux/actions/loadingAction';
 import { messageId } from '../../redux/actions/messageIdAction';
+import { Store } from 'react-notifications-component';
+import { cssTransition, toast, ToastContainer } from 'react-toastify';
 const MatchOrMessage = () => {
 
     // const settings = {
@@ -144,7 +146,6 @@ const MatchOrMessage = () => {
     const [id, setId] = useState("");
     const [isRewind, setIsRewind] = useState(false);
     const [isSkip, setIsSkip] = useState(false);
-    const [isAlert, setIsAlert] = useState("");
 
     const dispatch = useDispatch()
 
@@ -158,7 +159,7 @@ const MatchOrMessage = () => {
         ApiPost("rateprofile", body)
             .then((res) => {
                 console.log("res", res);
-                setIsAlert("like")
+                showAlert("like")
             })
             .catch((err) => {
                 console.log("err", err);
@@ -172,31 +173,26 @@ const MatchOrMessage = () => {
 
     const rewind = () => {
         setIsRewind(true)
-        setIsAlert("rewind")
+        showAlert("rewind")
     }
 
     const skip = () => {
         setIsSkip(true)
-        setIsAlert("skip")
+        showAlert("skip")
     }
 
-    useEffect(() => {
-        setTimeout(() => {
-            setIsAlert("")
-        }, 2000);
-    },[isAlert])
+    const showAlert = (value:any) => {
+        toast.success(value, {
+            transition:cssTransition({
+                enter: "animate__animated animate__bounceIn",
+                exit: "animate__animated animate__bounceOut"
+              })
+          });
+    }
 
     return (
         <>
-            {isAlert !== "" &&
-                <div className='isAlert'>
-                    <div className={`alert alert-success fade show`} role="alert">
-                        <strong>{isAlert === "like" ? "liked" : isAlert === "skip" ? "skiped": "rewind"}</strong>
-                        {/* <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button> */}
-                    </div>
-                </div>}
+
             <Container>
                 <div className='match-or-message mt-5'>
                     <p>Profiles based on preference settings</p>

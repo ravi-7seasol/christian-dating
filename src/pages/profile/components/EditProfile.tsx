@@ -616,7 +616,7 @@ const ShowProfile = () => {
 
                                         <InputField
                                             name="short_bio"
-                                            maxLength={undefined}
+                                            maxLength={100}
                                             value={editProfileData.short_bio}
                                             lablestyleClass="login-label"
                                             InputstyleClass="login-input"
@@ -629,6 +629,7 @@ const ShowProfile = () => {
                                             type="text"
                                             fromrowStyleclass="Enter the name"
                                         />
+                                        <span style={{ color: "black" }}>{editProfileData.short_bio.length}/100</span>
                                     </div>
                                 </div>
                             </Col>
@@ -744,7 +745,7 @@ const ShowProfile = () => {
                             <div className='about-mi'>
                                 <InputField
                                     name="short_bio"
-                                    maxLength={undefined}
+                                    maxLength={100}
                                     value={editProfileData.short_bio}
                                     lablestyleClass="login-label"
                                     InputstyleClass="login-input"
@@ -757,6 +758,7 @@ const ShowProfile = () => {
                                     type="text"
                                     fromrowStyleclass=""
                                 />
+                                <span style={{ color: "black" }}>{editProfileData.short_bio.length}/100</span>
                             </div>
                         </div>
                     </div>
