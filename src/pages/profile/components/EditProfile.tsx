@@ -886,7 +886,7 @@ const ShowProfile = () => {
                 <Accordion.Body>
                   <div className="personal-details">
                     {item.Body.map((data: any, i: number) => (
-                      <div className="d-flex mt-2 align-items-center" key={i}>
+                      <div className=" mt-2 align-items-center accordion-responsive" key={i}>
                         <p className="mb-0 col-3 col-md-3 col-sm-2">
                           {data.label}
                         </p>

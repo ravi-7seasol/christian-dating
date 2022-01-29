@@ -811,6 +811,10 @@
 
 /* ======================================>Edit Profile<====================================== */
 
+.accordion-responsive{
+  display: flex !important;
+}
+
 .edit-profile-footer-btn .login-btn {
   background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
     0% no-repeat padding-box;
@@ -982,6 +986,10 @@
     font-size: 30px;
   }
 
+  .accordion-responsive{
+    display: block !important;
+  }
+
   /* ======================================>Profile<====================================== */
   .no-matches-error .no-matches-text {
     padding: 5px 7px;
@@ -1026,11 +1034,14 @@
   .personal-details p {
     font-size: 14px;
     /* width: 95px; */
+    margin-bottom: 5px !important;
     margin: 0;
+    padding: 0px !important;
   }
 
   .personal-details span {
     font-size: 14px;
+    display: contents;
   }
 
   .fun-facts h2 {
