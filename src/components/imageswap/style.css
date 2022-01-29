@@ -7,9 +7,10 @@
 }
 .swap-card {
   position: absolute;
-  max-width: 389px;
+  width: 389px;
   height: 464px !important;
-  
+  background: #fff;
+  border-radius: 10px;
 }
 
 .swap-card .card-inner {
@@ -82,18 +83,23 @@
   z-index: 1;
   background: transparent;
 }
-.normal-translate{
-  transform:  translateY(30px);
+.normal-translate {
+  transform: translateY(30px);
 }
-.normal-translate-1{
-  transform:  translateY(20px);
+.normal-translate-1 {
+  transform: translateY(20px);
 }
-.normal-translate-2{
+.normal-translate-2 {
   transform: translateY(10px);
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 425px) {
   .swap-card {
+  width: 320px;}
+}
+@media only screen and (max-width: 400px) {
+.swap-card {
     padding: 0 10px;
     z-index: 1;
+    width: 300px;
   }
 }

@@ -68,6 +68,7 @@ const ImageSwap = (props) => {
   const dispatch = useDispatch();
   const [getProfileMatch, setGetProfileMatch] = useState([]);
   const [profileMatches, setProfileMatches] = useState([]);
+  const [swapedProfile, setSwapedProfile] = useState([]);
 
   useEffect(() => {
     if (getProfileMatch.length > 0) {
@@ -102,12 +103,14 @@ const ImageSwap = (props) => {
       ids.push(item.id);
       const a = [...ids];
       const filterd = getProfileMatch.filter((x) => !a.includes(x.id));
-      setGetProfileMatch(filterd);
+      setSwapedProfile(filterd)
     } else if (dir === "right") {
       ids.push(item.id);
       const a = [...ids];
       const filterd = getProfileMatch.filter((x) => !a.includes(x.id));
-      setGetProfileMatch(filterd);
+      setSwapedProfile(filterd)
+    
+      // setGetProfileMatch(filterd);
     }
   };
 
@@ -119,6 +122,12 @@ const ImageSwap = (props) => {
       onSkip();
     }
   }, [props]);
+
+  useEffect(()=>{
+    console.log("swapedProfile",swapedProfile);
+  },[swapedProfile])
+
+
 
   const onRewind = () => {
     setIds([]);
@@ -163,6 +172,7 @@ const ImageSwap = (props) => {
   }, []);
 
   const ViewProfile = (id) => {
+    console.log("clicked");
     navigate(`/show-profile?profileid=${id}`);
   };
 
@@ -182,12 +192,13 @@ const ImageSwap = (props) => {
                 // onCardLeftScreen={(item) => onCardLeftScreen(item)}
                 preventSwipe={["up", "down"]}
                 key={i}
-                className={`${row.length - 1 === i
-                  ? "normal-translate"
-                  : row.length - 2 === i
-                    ? "normal-translate-1"
-                    : row.length - 3 === i && " normal-translate-2"
-                  } swap-card`}
+                className={`swap-card`}
+                // ${row.length - 1 === i
+                //   ? "normal-translate"
+                //   : row.length - 2 === i
+                //     ? "normal-translate-1"
+                //     : row.length - 3 === i && " normal-translate-2"
+                //   }
               >
                 <div className={`card-inner`}>
                   <img
@@ -200,12 +211,12 @@ const ImageSwap = (props) => {
 
                   <div className="details">
                     <div className="">
-                      <p>
+                      {/* <p> */}
                         {/* {item.address} */}
                         {/* <span> {item.addressspan} </span> */}
-                      </p>
+                      {/* </p> */}
                       <div className="d-flex align-items-center justify-content-between mb-3">
-                        <div className="d-flex align-items-center">
+                        {/* <div className="d-flex align-items-center"> */}
                           {" "}
                           <h5 className="name-age">{item.name}</h5>
                           {/* <img
@@ -215,7 +226,7 @@ const ImageSwap = (props) => {
                           width="8%"
                           className="ml-3"
                         /> */}
-                        </div>
+                        {/* </div> */}
                         <button onClick={() => ViewProfile(item.id)}>
                           View profile
                         </button>
