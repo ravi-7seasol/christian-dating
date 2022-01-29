@@ -19,6 +19,8 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
   const navigate = useNavigate();
   const [showProfile, setShowProfile] = useState(false);
   const [navpopup, setNavpopup] = useState(false)
+  const [chatList, setChatList] = useState<any>();
+
   const openMenu = () => {
     setShowProfile(!showProfile);
   };
@@ -47,7 +49,43 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
       })
   }, [])
 
+  const MINUTE_MS = 5000;
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getChatList()
+    }, MINUTE_MS);
+
+    return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+  })
+
+  const getChatList = () => {
+    const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
+
+    const token = {
+      token: tokenID,
+    };
+
+    const body = xwwwFormUrlencoded(token);
+
+    ApiPost("getchatlist", body)
+      .then((res: any) => {
+        if (res.status === "false") {
+          setChatList(null)
+        } else {
+          setChatList(res.total_unseen_messages);
+        }
+
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  useEffect(() => {
+    console.log('chatList',chatList);
+  }, [chatList]);
+  
   useEffect(() => {
     if(showProfile ){
       setShowProfile(false)
@@ -77,7 +115,7 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
           </div>
         </div>
       </div> */}
-      <Navbar bg="light" className="authnave">
+      <Navbar bg="light" className="authnave " >
         <Container>
           <Navbar.Brand >
             <img
@@ -98,7 +136,8 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
               <div className="navLinks" >
                 <Link to="/match_or_message">Match or Message</Link>
                 <Link to="/community">Community</Link>
-                <Link to="/inbox">Inbox</Link>
+                <Link to="/inbox">Inbox {chatList && <span className={ chatList ? "messages-counts" : "" } > {chatList} </span> }</Link>
+                {/* .inbox-main .messages-counts */}
                 <Link to="/success_stories">Success stories</Link>
               </div>
 
@@ -134,7 +173,7 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
             <div className="nav-links">
               <Link to="/match_or_message" onClick={() =>setNavpopup(false)} >Match or Message</Link>
               <Link to="/community" onClick={() =>setNavpopup(false)}>Community</Link>
-              <Link to="/inbox" onClick={() =>setNavpopup(false)}>Inbox</Link>
+              <Link to="/inbox" onClick={() =>setNavpopup(false)}>Inbox {chatList && <span className={ chatList ? "messages-counts" : "" } > {chatList} </span> }</Link>
               <Link to="/success_stories" onClick={() =>setNavpopup(false)}>Success stories</Link>
             </div>
           </div>

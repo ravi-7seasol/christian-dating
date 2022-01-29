@@ -71,8 +71,14 @@ const ImageSwap = (props) => {
 
   useEffect(() => {
     if (getProfileMatch.length > 0) {
+      console.log("getProfileMatch",getProfileMatch);
       let userId = getProfileMatch[getProfileMatch.length - 1].id;
       props.Id(userId);
+      let data ={
+        name:getProfileMatch[getProfileMatch.length - 1].name,
+        profile_picture:getProfileMatch[getProfileMatch.length - 1].profile_picture,
+      }
+      props.Data(data)
     }
   }, [getProfileMatch]);
 
