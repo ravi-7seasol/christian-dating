@@ -1,5 +1,5 @@
 .cards-container {
-  height: 320px;
+  height: 520px;
   position: relative;
   display: grid;
   place-items: center;
@@ -7,8 +7,8 @@
 }
 .swap-card {
   position: absolute;
-  max-width: 260px;
-  height: 300px !important;
+  width: 300px;
+  height: 426px !important;
   background: #fff;
   border-radius: 10px;
 }
@@ -19,6 +19,23 @@
   position: relative;
   border-radius: 10px;
   box-shadow: 5px 6px 10px rgba(0, 0, 0, 0.3);
+}
+.tinder-verified{
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tinder-verified img{
+  width: 50px !important;
+
+}
+.tinder-verified p{
+  margin: 0 0 5px 0;
+  color:#ffff;
+  font-weight: bold;
 }
 .swap-card .card-inner img {
   width: 100%;
@@ -49,6 +66,21 @@
   border-radius: 10px;
   padding: 0 20px ;
 } */
+.name-age{
+  position: relative;
+
+}
+.name-age::after{
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: #3AD800;
+  border-radius: 50%;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .swap-card .card-inner .details p {
   text-align: left;
   font: normal normal normal 9px/13px Poppins;
@@ -94,11 +126,14 @@
 }
 @media only screen and (max-width: 425px) {
   .swap-card {
-  width: 320px;}
+    max-width: 260px;
+    height: 300px !important;}
+    .cards-container{
+      height: 320px;
+    }
 }
 @media only screen and (max-width: 400px) {
 .swap-card {
-    padding: 0 10px;
     z-index: 1;
     width: 300px;
   }
