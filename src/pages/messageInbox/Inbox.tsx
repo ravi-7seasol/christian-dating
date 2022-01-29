@@ -19,7 +19,6 @@ const Inbox = () => {
   const [selectedID, setSelectedID] = useState("");
   const [tog, setTog] = useState(false);
   const [selectedData, setSelectedData] = useState<any>();
-  const [messageData, setMessageData] = useState<any>("");
   const [chatList, setChatList] = useState<any>();
   const [chatData, setChatData] = useState<any>();
   const [currentUser, setCurrentUser] = useState<any>();
@@ -34,8 +33,27 @@ const Inbox = () => {
     (state: RootStateOrAny) => state.message_Id.message_Id
   );
 
+  const gotoBottom = (id: any) => {
+    var element: any = document.getElementById(id);
+    element.scrollTop = element.scrollHeight - element.clientHeight;
+  }
+
+
+  const MINUTE_MS = 5000;
+
   useEffect(() => {
-    dispatch(setIsLoading(true));
+    const interval = setInterval(() => {
+      getChatList()
+      // messageOpen(selectedData)
+      if (selectedData) {
+        messageOpen(selectedData)
+      }
+    }, MINUTE_MS);
+
+    return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+  })
+
+  const getChatList = () => {
     const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
 
     const token = {
@@ -46,21 +64,27 @@ const Inbox = () => {
 
     ApiPost("getchatlist", body)
       .then((res: any) => {
-        setChatList(res);
-        dispatch(setIsLoading(false));
+        if (res.status === "false") {
+          setChatList(null)
+        } else {
+          setChatList(res);
+        }
+
       })
       .catch((error) => {
         console.log(error);
-        dispatch(setIsLoading(false));
       });
-  }, [chatData]);
+  }
+
+  // useEffect(() => {
+  //   getChatList()
+  // }, [chatData]);
 
   useEffect(() => {
-    // console.log("message_ID", message_ID);
+    getChatList()
     if (message_ID) {
       setTog(true);
       setSelectedID(message_ID);
-      // setSelectedData(item);
 
       const getChatData = {
         token: AuthStorage.getStorageData(STORAGEKEY.token),
@@ -76,12 +100,10 @@ const Inbox = () => {
           } else {
             setChatData(res);
             setCurrentUser(res?.current_user);
-            dispatch(setIsLoading(false));
           }
         })
         .catch((error) => {
           console.log(error);
-          dispatch(setIsLoading(false));
         });
     }
   }, []);
@@ -112,7 +134,6 @@ const Inbox = () => {
   };
 
   const getChat = () => {
-    dispatch(setIsLoading(true));
     const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
 
     const getChatData = {
@@ -126,24 +147,28 @@ const Inbox = () => {
       .then((res: any) => {
         setChatData(res);
         setCurrentUser(res.current_user);
-        dispatch(setIsLoading(false));
+        gotoBottom("chatBox")
       })
       .catch((error) => {
         console.log(error);
-        dispatch(setIsLoading(false));
       });
   };
 
   const messageOpen = (item: any) => {
-    dispatch(setIsLoading(true));
-    setSelectedID(item.receiver_id);
+
+    let activeChat = chatList.chat.findIndex((data: any) => data.receiver_id === item.receiver_id)
+    const selectedChatId = chatList.current_user !== item.receiver_id ? item.receiver_id : item.sender_id
+
+    chatList.chat[activeChat].total_unread_messages = "0"
+
+    setSelectedID(selectedChatId);
     setTog(true);
     setSelectedData(item);
     const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
 
     const getChatData = {
       token: tokenID,
-      participant_id: item.receiver_id,
+      participant_id: selectedChatId,
     };
 
     const body = xwwwFormUrlencoded(getChatData);
@@ -152,11 +177,11 @@ const Inbox = () => {
       .then((res: any) => {
         setChatData(res);
         setCurrentUser(res.current_user);
-        dispatch(setIsLoading(false));
+        gotoBottom("chatBox")
       })
       .catch((error) => {
         console.log(error);
-        dispatch(setIsLoading(false));
+        gotoBottom("chatBox")
       });
   };
 
@@ -168,8 +193,6 @@ const Inbox = () => {
 
   const sendMsgByOnClick = () => {
     if (sendMsg !== "" && selectedID) {
-      // dispatch(setIsLoading(true));
-      // setMessageData(sendMsg);
       const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
       const sendMessage = {
         token: tokenID,
@@ -179,22 +202,17 @@ const Inbox = () => {
       const body = xwwwFormUrlencoded(sendMessage);
       ApiPost("sendmessage", body)
         .then((res: any) => {
-          console.log("res", res);
           setSendMsg("");
           setClearText(true)
           getChat();
-          dispatch(setIsLoading(false));
         })
         .catch((error) => {
           console.log(error);
-          dispatch(setIsLoading(false));
         });
     }
   };
   const getMessageData = (message: string) => {
     if (message !== "" && selectedID) {
-      // dispatch(setIsLoading(true));
-      // setMessageData(message);
       const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
       const sendMessage = {
         token: tokenID,
@@ -206,11 +224,9 @@ const Inbox = () => {
         .then((res: any) => {
           getChat();
           setSendMsg("");
-          dispatch(setIsLoading(false));
         })
         .catch((error) => {
           console.log(error);
-          dispatch(setIsLoading(false));
         });
     }
   };
@@ -261,6 +277,9 @@ const Inbox = () => {
                 </div>
               </div> */}
               {/* <div className="border-content"></div> */}
+              <div>
+                <h3 className="Messages-text">Messages</h3>
+              </div>
               <div className="handle-chat-scroll">
                 <div className="messages">
                   {/* <div className="messages-content">
@@ -268,17 +287,63 @@ const Inbox = () => {
 
                     <div className={chatList?.total_unseen_messages.length ? "messages-notification" : ""}>{chatList?.total_unseen_messages}</div>
                   </div> */}
-                  <div>
-                    <h3 className="Messages-text">Messages</h3>
-                  </div>
+
                 </div>
-                {chatList?.chat.length ? (
+                {chatList && chatList?.chat.length ? (
                   <>
-                    {chatList?.chat.map((data: any, i: number) => (
+                    {chatList?.chat.map((data: any, i: number) => 
+                      chatList.current_user !== data.receiver_id  ? 
                       <div
-                        className={`${
-                          selectedID === data.receiver_id && "messages-focus"
-                        } messages`}
+                        className={`${selectedID === data.receiver_id && "messages-focus"
+                          } messages`}
+                        key={i}
+                        onClick={() => {
+                          messageOpen(data);
+                        }}
+                      >
+                        <div className="chat-profile-img-main">
+                          <img
+                            src={
+                              data.receiver_participant_image
+                                ? data.receiver_participant_image
+                                : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                            }
+                            className="chat-profile"
+                          />
+                          <div className="online"></div>
+                        </div>
+                        <div
+                          className={`${selectedID === data.receiver_id &&
+                            "chat-messages-click"
+                            } chat-messages`}
+                        >
+                          <h4>{data.receiver_name}</h4>
+                          <p>{data.last_message}</p>
+                        </div>
+                        <div
+                          className={`${selectedID === data.receiver_id &&
+                            "messages-time-click"
+                            } messages-time`}
+                        >
+                          <h6>{moment(data.last_message_time).format("LT")}</h6>
+
+                          {data.total_unread_messages !== "0" &&
+                            <div
+                              className={
+                                data.total_unread_messages
+                                  ? "messages-counts"
+                                  : ""
+                              }
+                            >
+                              {data.total_unread_messages}
+                            </div>
+                          }
+                        </div>
+                      </div>
+                      :
+                      <div
+                        className={`${selectedID === data.sender_id && "messages-focus"
+                          } messages`}
                         key={i}
                         onClick={() => {
                           messageOpen(data);
@@ -296,49 +361,60 @@ const Inbox = () => {
                           <div className="online"></div>
                         </div>
                         <div
-                          className={`${
-                            selectedID === data.receiver_id &&
+                          className={`${selectedID === data.sender_id &&
                             "chat-messages-click"
-                          } chat-messages`}
+                            } chat-messages`}
                         >
-                          <h4>{data.receiver_name}</h4>
+                          <h4>{data.sender_name}</h4>
                           <p>{data.last_message}</p>
                         </div>
                         <div
-                          className={`${
-                            selectedID === data.receiver_id &&
+                          className={`${selectedID === data.sender_id &&
                             "messages-time-click"
-                          } messages-time`}
+                            } messages-time`}
                         >
                           <h6>{moment(data.last_message_time).format("LT")}</h6>
-                          <div
-                            className={
-                              data.total_unread_messages.length
-                                ? "messages-counts"
-                                : ""
-                            }
-                          >
-                            {data.total_unread_messages}
-                          </div>
+
+                          {data.total_unread_messages !== "0" &&
+                            <div
+                              className={
+                                data.total_unread_messages
+                                  ? "messages-counts"
+                                  : ""
+                              }
+                            >
+                              {data.total_unread_messages}
+                            </div>
+                          }
                         </div>
                       </div>
-                    ))}
+                      
+                    )}
                   </>
                 ) : (
-                  <h3 style={{ textAlign: "center" }}> No Massege Found </h3>
+                  // <h3 style={{ textAlign: "center" }}> No Massege Found </h3>
+                  <></>
                 )}
+                {!chatList &&
+                  <div>
+                    <h3 className="no-chat-found"> No Chat Found </h3>
+                    {/* <h3 className="Messages-text">No Chat Found</h3> */}
+                  </div>
+                }
               </div>
             </Col>
+            {chatList && <div className="divider-div"></div>}
             {tog ? (
               <Col md={7} className="px-0 ">
                 <div className="ps-0 Conversation-starters-scroll">
                   <div className="Conversation-starters">
                     <div className="bg-white chat-top-header">
-                      {width > 767 && (
+                      {width > 767 ? (
+                         chatList.current_user !== selectedData.receiver_id  ? 
                         <div className="messages">
                           <div className="chat-profile-img-main">
                             <img
-                              src={selectedData?.sender_participant_image}
+                              src={selectedData?.receiver_participant_image ? selectedData?.receiver_participant_image : "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
                               className="chat-profile"
                             />
                             <div className="online"></div>
@@ -352,16 +428,43 @@ const Inbox = () => {
                             </h6>
                           </div>
                         </div>
-                      )}
+
+                        :
+                        <div className="messages">
+                          <div className="chat-profile-img-main">
+                            <img
+                              src={selectedData?.sender_participant_image ? selectedData?.sender_participant_image:"https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                              className="chat-profile"
+                            />
+                            <div className="online"></div>
+                          </div>
+                          <div className="chat-messages">
+                            <h4>{selectedData?.sender_name}</h4>
+                            <h6 className="messages-time">
+                              {moment(selectedData?.last_message_time).format(
+                                "LT"
+                              )}
+                            </h6>
+                          </div>
+                        </div>
+                      )
+                        :
+                        <>
+                        </>
+                      }
                     </div>
                     {/* <div className="border-content"></div> */}
-                    <div className="scrool px-3">
+                    <h5 style={{ textAlign: "center" }}>Now Chatting with {selectedData?.receiver_name}</h5>
+                    <div className="scrool px-3" id="chatBox">
                       <div className="text-grid">
                         {chatData?.chat?.length ? (
                           <>
-                            {chatData?.chat.map(
+                            {chatData?.chat?.map(
                               (data: any, i: number) =>
-                                data.receiver_id === selectedID && (
+                              
+                              chatList.current_user !== data.receiver_id  ? 
+                                data.receiver_id === selectedID  && (
+
                                   <div
                                     key={i}
                                     className={
@@ -370,6 +473,7 @@ const Inbox = () => {
                                         : "massage-and-time"
                                     }
                                   >
+
                                     <h3
                                       className={
                                         data.sender_id !== currentUser
@@ -385,6 +489,36 @@ const Inbox = () => {
                                     </p>
                                   </div>
                                 )
+
+                                : 
+
+                                data.sender_id === selectedID  && (
+
+                                  <div
+                                    key={i}
+                                    className={
+                                      data.sender_id !== currentUser
+                                        ? "incoming-massage-and-time"
+                                        : "massage-and-time"
+                                    }
+                                  >
+
+                                    <h3
+                                      className={
+                                        data.sender_id !== currentUser
+                                          ? "first-text"
+                                          : "first-text-replay"
+                                      }
+                                      key={i}
+                                    >
+                                      {data.message}
+                                    </h3>
+                                    <p>
+                                      {moment(data.date_time).format("HH:mm")}
+                                    </p>
+                                  </div>
+                                )
+                              
                             )}
 
                             {gifTog && (

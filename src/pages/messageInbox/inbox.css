@@ -465,6 +465,12 @@
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
+  .divider-div {
+  border: 1px solid #e69702;
+  margin: 9px 18px;
+  width: 100%;
+}
+
   .community-input-chat .inbox-send-msg-btn {
     display: block;
   }
@@ -495,9 +501,9 @@
   }
 
   .handle-chat-scroll {
-    height: 188px;
+    height: 238px;
     border-right: none;
-    border-bottom: 2px solid #e69702;
+    /* border-bottom: 2px solid #e69702; */
   }
 
   .chat-top-header {
@@ -505,15 +511,18 @@
   }
 
   .Conversation-starters-scroll {
-    height: calc(100vh - 249px);
+    /* height: calc(100vh - 249px); */
+    height: calc(100vh - 366px);
+  
   }
 
   .inbox-main .Conversation-starters {
-    height: calc(100vh - 350px);
+    /* height: calc(100vh - 350px); */
+    height: calc(100vh - 466px);
   }
 
   .inbox-main .Conversation-starters .scrool {
-    height: calc(100vh - 318px);
+    height: calc(100vh - 450px);
     padding:10px 0 20px 0;
   }
 
@@ -589,7 +598,7 @@
   }
 
   .inbox-main .messages .Messages-text {
-    margin: 20px;
+    margin: 0px;
   }
 
   .inbox-main .messages .chat-profile {
@@ -855,4 +864,9 @@
   border-radius: 5px;
   border: 0px;
   background-color: #007bff;
+}
+
+.no-chat-found {
+  text-align: center;
+  margin-top: 20%;
 }
