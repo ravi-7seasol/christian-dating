@@ -10,7 +10,11 @@ import { xwwwFormUrlencoded } from "../../helper/utils";
 import { getProfileImage } from "../../redux/actions/getProfileImage";
 import { setIsLoading } from "../../redux/actions/loadingAction";
 
-const AuthHeader: React.FC = () => {
+
+interface Props {
+  showMenu: any;
+}
+const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [showProfile, setShowProfile] = useState(false);
@@ -43,6 +47,16 @@ const AuthHeader: React.FC = () => {
       })
   }, [])
 
+
+  useEffect(() => {
+    if(showProfile ){
+      setShowProfile(false)
+    }
+    else if(navpopup){
+      setNavpopup(false)
+    }
+  }, [showMenu]);
+  
   const logOut = () => {
     AuthStorage.deauthenticateUser()
   }
@@ -71,42 +85,41 @@ const AuthHeader: React.FC = () => {
               className=" align-top uncommon-logo"
               onClick={handleRedirect}
             />
-            <img src="./assets/img/application-menu.png" className="menu-logo" alt="" height="5%" onClick={() => { setNavpopup(!navpopup) }} />
+            <button onClick={() => { setNavpopup(!navpopup) }} style={{border:"none", background:"transparent"}}><img src="./assets/img/application-menu.png" className="menu-logo" alt="" height="5%"/></button>
           </Navbar.Brand>
 
           <Navbar.Collapse
             id="basic-navbar-nav"
-            onBlur={() => setShowProfile(false)}
           >
             <div className="page-name text-center w-100">
               <h1 className="" >{location.pathname === "/show-profile" && "Profile" || location.pathname === "/match_or_message" && "Match or Message" || location.pathname === "/inbox" && "Inbox" || location.pathname === "/community" && "Community"}</h1>
             </div>
             <Nav className="ml-auto">
-              <div className="navLinks">
-                <Link to="/match_or_message">Match-or-Message</Link>
+              <div className="navLinks" >
+                <Link to="/match_or_message">Match or Message</Link>
                 <Link to="/community">Community</Link>
                 <Link to="/inbox">Inbox</Link>
-                <Link to="/success_stories">Success-stories</Link>
+                <Link to="/success_stories">Success stories</Link>
               </div>
 
               <div className="profile-pic position-relative">
+                <button onClick={openMenu} style={{border:"none", background:"transparent"}}>
                 <img
                   src={profileImg ? profileImg : "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
                   alt=""
-                  onClick={openMenu}
                 />
-
+                </button>
                 <div className="notification"></div>
                 {showProfile && (
                   <div className="auth-show-profile">
                     <ul>
-                      <li>
+                      <li onClick={() =>setShowProfile(false)}>
                         <Link to="/edit-profile">Edit Profile</Link>
                       </li>
-                      <li>
+                      <li onClick={() =>setShowProfile(false)}>
                         <Link to="/show-profile">My Profile</Link>
                       </li>
-                      <li>
+                      <li onClick={() =>setShowProfile(false)}>
                         <Link onClick={logOut} to={""}>logout</Link>
                       </li>
                     </ul>
@@ -119,10 +132,10 @@ const AuthHeader: React.FC = () => {
         {navpopup &&
           <div className="nav-popup">
             <div className="nav-links">
-              <Link to="/match_or_message">Match-or-Message</Link>
-              <Link to="/community">Community</Link>
-              <Link to="/inbox">Inbox</Link>
-              <Link to="/success_stories">Success-stories</Link>
+              <Link to="/match_or_message" onClick={() =>setNavpopup(false)} >Match or Message</Link>
+              <Link to="/community" onClick={() =>setNavpopup(false)}>Community</Link>
+              <Link to="/inbox" onClick={() =>setNavpopup(false)}>Inbox</Link>
+              <Link to="/success_stories" onClick={() =>setNavpopup(false)}>Success stories</Link>
             </div>
           </div>
         }
