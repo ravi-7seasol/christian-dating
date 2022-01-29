@@ -395,7 +395,7 @@
 
 .fun-facts-items::before {
   counter-increment: section;
-  content: "# " counter(section) ": ";
+  content: "#" counter(section) ": ";
   color: #e69702;
   font-size: 15px !important;
   font-weight: 700;
@@ -518,7 +518,7 @@
 }
 
 .activity-main {
-  margin: 65px 15px 0;
+  margin: 25px 15px 0;
   display: flex;
   justify-content: space-evenly;
 }
@@ -630,7 +630,7 @@
 }
 
 .message-bottom-popup-body {
-  padding: 25px;
+  padding: 8px;
   padding-bottom: 0px;
 }
 
@@ -639,6 +639,7 @@
   font: normal normal normal 11px/17px Poppins;
   letter-spacing: 0px;
   color: #000000;
+  margin-bottom: 1px;
 }
 
 .message-bottom-popup-body-text span {
@@ -1170,7 +1171,7 @@
   }
 
   .match-or-message p {
-    margin-top: 10px;
+    margin-top: 14px;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {

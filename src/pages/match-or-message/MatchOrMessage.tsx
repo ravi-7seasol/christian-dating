@@ -159,7 +159,7 @@ const MatchOrMessage = () => {
         ApiPost("rateprofile", body)
             .then((res) => {
                 console.log("res", res);
-                showAlert("like")
+                showAlert("Liked")
             })
             .catch((err) => {
                 console.log("err", err);
@@ -173,12 +173,12 @@ const MatchOrMessage = () => {
 
     const rewind = () => {
         setIsRewind(true)
-        showAlert("rewind")
+        showAlert("Rewind")
     }
 
     const skip = () => {
         setIsSkip(true)
-        showAlert("skip")
+        showAlert("Skiped")
     }
 
     const showAlert = (value:any) => {
@@ -194,7 +194,7 @@ const MatchOrMessage = () => {
         <>
 
             <Container>
-                <div className='match-or-message mt-5'>
+                <div className='match-or-message mt-2'>
                     <p>Profiles based on preference settings</p>
                 </div>
             </Container>
@@ -252,7 +252,7 @@ const MatchOrMessage = () => {
                         <p className='text'>message</p>
                     </div>
                 </div>
-                <div className='message-bottom-popup mb-5'>
+                <div className='message-bottom-popup mb-2'>
                     <div className='message-bottom-popup-header'>
                         <img src="./assets/img/notification-ball.png" alt="" />
                         <img src="./assets/img/wrong.png" alt="" />

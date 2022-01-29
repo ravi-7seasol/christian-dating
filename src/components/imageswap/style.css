@@ -1,14 +1,14 @@
 .cards-container {
-  height: 500px;
+  height: 320px;
   position: relative;
   display: grid;
   place-items: center;
-  margin-top: 30px;
+  margin-top: 0px;
 }
 .swap-card {
   position: absolute;
-  max-width: 389px;
-  height: 464px !important;
+  max-width: 260px;
+  height: 300px !important;
   
 }
 
