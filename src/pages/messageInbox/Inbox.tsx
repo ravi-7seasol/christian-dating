@@ -454,7 +454,7 @@ const Inbox = () => {
                       }
                     </div>
                     {/* <div className="border-content"></div> */}
-                    <h5 style={{ textAlign: "center" }}>Now Chatting with {selectedData?.receiver_name}</h5>
+                    {width < 767  && <h5 style={{ textAlign: "center" }}>Now Chatting with {chatList.current_user !== selectedData.receiver_id  ? selectedData?.receiver_name : selectedData?.sender_name}</h5>}
                     <div className="scrool px-3" id="chatBox">
                       <div className="text-grid">
                         {chatData?.chat?.length ? (
