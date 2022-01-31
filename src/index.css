@@ -177,7 +177,7 @@
   position: absolute;
   border-radius: 50%;
   bottom: 1px;
-  right: 0px;
+  right: 10px;
 }
 
 .navbar-nav {
@@ -732,8 +732,8 @@
   height: 10px;
   border-radius: 50%;
   position: absolute;
-  top: 49px;
-  left: 49px;
+  top: 45px;
+  left: 40px;
 }
 
 /* ==================================>Fotter input<================================== */
