@@ -133,6 +133,7 @@
   position: relative;
   margin-left: 20px;
 }
+
 .profile-pic img {
   width: 46px;
   height: 46px;
@@ -218,6 +219,7 @@
   font-weight: 700;
   margin: 10px 10px;
 }
+
 /* ============================================>Profile<============================================ */
 
 .set-backbtn-singlebtn {
@@ -235,7 +237,7 @@
 }
 
 .profilr-bg .single-btn:active {
-  background-color: #fff !important ;
+  background-color: #fff !important;
   color: #000 !important;
 }
 
@@ -394,7 +396,7 @@
 
 .fun-facts-items::before {
   counter-increment: section;
-  content: "#" counter(section) ": ";
+  content: "#"counter(section) ": ";
   color: #e69702;
   font-size: 15px !important;
   font-weight: 700;
@@ -451,8 +453,7 @@
   overflow-x: hidden;
 }
 
-.slick-active {
-}
+.slick-active {}
 
 .slider-card {
   position: relative;
@@ -655,9 +656,9 @@
 .no-matches-error {
   text-align: center;
 }
+
 .no-matches-error .no-matches-button {
-  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
-    0% no-repeat padding-box;
+  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
   border-radius: 13px;
   opacity: 1;
   border: none;
@@ -667,11 +668,13 @@
   padding: 5px 15px !important;
   color: #000000 !important;
 }
+
 .no-matches-error .no-matches-text {
   border: solid #00000080 1px;
   border-radius: 5px;
   padding: 5px 15px;
 }
+
 /* ====================================>Community<==================================== */
 .community-popup {
   padding: 15px;
@@ -811,13 +814,12 @@
 
 /* ======================================>Edit Profile<====================================== */
 
-.accordion-responsive{
+.accordion-responsive {
   display: flex !important;
 }
 
 .edit-profile-footer-btn .login-btn {
-  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
-    0% no-repeat padding-box;
+  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
   border-radius: 13px;
   opacity: 1;
   border: none;
@@ -986,7 +988,7 @@
     font-size: 30px;
   }
 
-  .accordion-responsive{
+  .accordion-responsive {
     display: block !important;
   }
 
@@ -1151,7 +1153,7 @@
     top: 10px;
   }
 
-  .profilr-bg .back-btn{
+  .profilr-bg .back-btn {
     top: 14px;
   }
 }
@@ -1160,14 +1162,14 @@
 
 @media (min-width: 768px) {
   .profilr-bg {
-    background: transparent linear-gradient(180deg, #e69702 0%, #f7c35f 100%) 0%
-      0% no-repeat padding-box !important;
+    background: transparent linear-gradient(180deg, #e69702 0%, #f7c35f 100%) 0% 0% no-repeat padding-box !important;
     background-repeat: no-repeat !important;
     background-size: cover;
     position: relative;
     padding: 100px 0;
   }
 }
+
 @media (max-width: 768px) {
   .profilr-bg {
     background-repeat: no-repeat !important;
@@ -1208,11 +1210,11 @@
     font: normal normal bold 18px/27px Poppins;
     position: relative;
     /* transition: all .25s ease-in-out; */
-  } 
-  
-  .Change-Profile-mb .Change-Profile-btn:focus{
+  }
+
+  .Change-Profile-mb .Change-Profile-btn:focus {
     background-color: #e69702 !important;
-    color: #000 ;
+    color: #000;
   }
 
   @keyframes social-button-beat {
@@ -1220,12 +1222,12 @@
       opacity: 0.8;
       transform: scale(1);
     }
-  
+
     70% {
       opacity: 0;
       transform: scale(1.5);
     }
-  
+
     100% {
       opacity: 0;
     }
@@ -1239,7 +1241,7 @@
     animation: social-button-beat 1.5s ease-out 0.4s infinite;
   }
 
-  .Change-Profile-mb .Change-Profile-btn:before{
+  .Change-Profile-mb .Change-Profile-btn:before {
     content: "";
     display: block;
     position: absolute;
@@ -1270,6 +1272,7 @@
   }
 
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
   /* ======================================>Auth Header<====================================== */
 
@@ -1284,8 +1287,7 @@
   /* ======================================>Profile<====================================== */
 
   .profilr-bg {
-    background: transparent linear-gradient(180deg, #e69702 0%, #f7c35f 100%) 0%
-      0% no-repeat padding-box !important;
+    background: transparent linear-gradient(180deg, #e69702 0%, #f7c35f 100%) 0% 0% no-repeat padding-box !important;
     background-repeat: no-repeat !important;
     background-size: cover;
     position: relative;
@@ -1436,8 +1438,7 @@
   /* ======================================>Profile<====================================== */
 
   .profilr-bg {
-    background: transparent linear-gradient(180deg, #e69702 0%, #f7c35f 100%) 0%
-      0% no-repeat padding-box !important;
+    background: transparent linear-gradient(180deg, #e69702 0%, #f7c35f 100%) 0% 0% no-repeat padding-box !important;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -1600,8 +1601,7 @@
   /* ======================================>Profile<====================================== */
 
   .profilr-bg {
-    background: transparent linear-gradient(180deg, #e69702 0%, #f7c35f 100%) 0%
-      0% no-repeat padding-box;
+    background: transparent linear-gradient(180deg, #e69702 0%, #f7c35f 100%) 0% 0% no-repeat padding-box;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -1779,6 +1779,7 @@
 }
 
 @media only screen and (max-width: 768px) {
+
   .navLinks,
   .uncommon-logo {
     display: none !important;
@@ -1788,6 +1789,7 @@
   .page-name {
     display: block;
   }
+
   .community {
     height: calc(100vh - 300px);
   }
@@ -1827,28 +1829,29 @@ social-button-radius = 50% */
 
 /* // Social Button Styles */
 
-.edit-profile-footer-btn .social-button{
+.edit-profile-footer-btn .social-button {
   display: inline-block;
   border-radius: 13px;
-	background-color: #e69702 !important;
-	background-color: (#e69702, .75) !important;
-	color: #000 !important;
-	border: 0 none;
-	padding: 0;
-	text-align: center;
-	width: 5em;
-	height:3em;
-	line-height: 3em;
+  background-color: #e69702 !important;
+  background-color: (#e69702, .75) !important;
+  color: #000 !important;
+  border: 0 none;
+  padding: 0;
+  text-align: center;
+  width: 5em;
+  height: 3em;
+  line-height: 3em;
   margin-top: 15px;
   letter-spacing: 0px;
   box-shadow: none !important;
   font: normal normal bold 18px/27px Poppins;
-	position: relative;
-	/* transition: all .25s ease-in-out; */
-} 
-.edit-profile-footer-btn .social-button:focus{
-  background-color:#e69702 !important;
-		color: #000;
+  position: relative;
+  /* transition: all .25s ease-in-out; */
+}
+
+.edit-profile-footer-btn .social-button:focus {
+  background-color: #e69702 !important;
+  color: #000;
 }
 
 
@@ -1868,14 +1871,15 @@ social-button-radius = 50% */
   }
 }
 
-.edit-profile-footer-btn .social-button:focus::before{
+.edit-profile-footer-btn .social-button:focus::before {
   animation: social-button-beat 1.5s ease-out infinite;
 }
+
 .edit-profile-footer-btn .social-button:focus:after {
   animation: social-button-beat 1.5s ease-out 0.4s infinite;
 }
 
-.edit-profile-footer-btn .social-button:before{
+.edit-profile-footer-btn .social-button:before {
   content: "";
   display: block;
   position: absolute;
@@ -1889,6 +1893,7 @@ social-button-radius = 50% */
   opacity: 0;
   transition: all 0.25s ease-in-out;
 }
+
 .edit-profile-footer-btn .social-button:after {
   content: "";
   display: block;
@@ -1910,51 +1915,117 @@ social-button-radius = 50% */
     width: 40px !important;
     height: 40px !important;
   }
+
   .activity-main .skip-content {
     width: 40px !important;
     height: 40px !important;
   }
+
   .activity-main .like-content {
     width: 40px !important;
     height: 40px !important;
   }
+
   .activity-main .message-content {
     width: 40px !important;
     height: 40px !important;
     margin-right: 0px !important;
   }
+
   .activity-main .message-content {
     width: 40px !important;
     height: 40px !important;
     margin-right: 0px !important;
   }
+
   .activity-main .rewind img {
     width: 30px !important;
     height: 30px !important;
     margin: 5px !important;
   }
+
   .activity-main .skip-content img {
     width: 30px !important;
     height: 30px !important;
     margin: 5px !important;
   }
+
   .activity-main .like-content img {
     width: 30px !important;
     height: 30px !important;
     margin: 5px !important;
   }
-  .activity-main .message-content img {
-    width: 30px !important;
-    height: 30px !important;
-    margin: 5px !important;
-  }
+
   .activity-main .message-content img {
     width: 30px !important;
     height: 30px !important;
     margin: 5px !important;
   }
 
-  .activity-main .text{
+  .activity-main .message-content img {
+    width: 30px !important;
+    height: 30px !important;
+    margin: 5px !important;
+  }
+
+  .activity-main .text {
     display: none;
   }
+}
+
+
+/* ==><== */
+
+.splash-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.splash-logo{
+  margin: 0% auto;
+  justify-content: center;
+  margin-bottom: 180px;
+}
+
+.splash-logo .header-logo img{
+  margin-right: 10px;
+}
+
+.splash-card button {
+  display: inline-block;
+  border-radius: 13px;
+  background-color: #e69702 !important;
+  background-color: (#e69702, .75) !important;
+  color: #000 !important;
+  border: 0 none;
+  padding: 0;
+  text-align: center;
+  width: 5em;
+  height: 3em;
+  line-height: 3em;
+  margin-top: 15px;
+  letter-spacing: 0px;
+  box-shadow: none !important;
+  font: normal normal bold 18px/27px Poppins;
+  position: relative;
+}
+
+.splash-card button:focus {
+  background-color: #e69702 !important;
+  color: #000;
+}
+
+.splash-card .text p {
+  font: italic normal normal 12px/14px Poppins;
+  opacity: 0.42;
+}
+
+.splash-card .text h5 {
+  font: normal normal 600 19px/25px Poppins;
+}
+
+.splash-card .header-logo img{
+  width: 65px;
+  height: 65px;
 }

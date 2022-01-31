@@ -18,7 +18,7 @@
   width: 100%;
   position: relative;
   border-radius: 10px;
-  box-shadow: 5px 6px 10px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 5px 6px 10px rgba(0, 0, 0, 0.3); */
 }
 .tinder-verified{
   position: absolute;
@@ -124,12 +124,17 @@
 .normal-translate-2 {
   transform: translateY(10px);
 }
+
+.card-box-shadow{
+  box-shadow: 5px 6px 10px rgba(0, 0, 0, 0.5);
+}
 @media only screen and (max-width: 425px) {
   .swap-card {
     max-width: 260px;
     height: 300px !important;}
     .cards-container{
-      height: 320px;
+      height: 350px;
+      background: #e6970226;
     }
 }
 @media only screen and (max-width: 400px) {
@@ -138,3 +143,5 @@
     width: 300px;
   }
 }
+
+
