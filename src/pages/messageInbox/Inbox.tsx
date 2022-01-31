@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { setIsLoading } from "../../redux/actions/loadingAction";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import ReactHtmlParser from "react-html-parser";
 import moment from "moment";
 
 const Inbox = () => {
@@ -205,38 +206,42 @@ const Inbox = () => {
   };
 
   const sendMsgByOnClick = () => {
-    if (sendMsg !== "" && selectedID) {
-      const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
-      const sendMessage = {
-        token: tokenID,
-        participant_id: parseInt(selectedID),
-        message: sendMsg,
-      };
-      const body = xwwwFormUrlencoded(sendMessage);
-      ApiPost("sendmessage", body)
-        .then((res: any) => {
-          setSendMsg("");
-          setClearText(true)
-          getChat();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  };
+    getMessageData(sendMsg)
+  //   if (sendMsg !== "" && selectedID) {
+  //     const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
+  //     const sendMessage = {
+  //       token: tokenID,
+  //       participant_id: parseInt(selectedID),
+  //       message: sendMsg,
+  //     };
+  //     const body = xwwwFormUrlencoded(sendMessage);
+  //     ApiPost("sendmessage", body)
+  //       .then((res: any) => {
+  //         setSendMsg("");
+  //         setClearText(true)
+  //         getChat();
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   }
+  }
   const getMessageData = (message: string) => {
     if (message !== "" && selectedID) {
       const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
       const sendMessage = {
         token: tokenID,
         participant_id: parseInt(selectedID),
-        message: message,
+        message: message.replace(/\p{Emoji}/ug, (m:any, idx) =>
+        `&#${m.codePointAt().toString()};`
+       )
       };
       const body = xwwwFormUrlencoded(sendMessage);
       ApiPost("sendmessage", body)
         .then((res: any) => {
           getChat();
           setSendMsg("");
+          setClearText(true)
         })
         .catch((error) => {
           console.log(error);
@@ -292,6 +297,7 @@ const Inbox = () => {
               {/* <div className="border-content"></div> */}
               <div>
                 <h3 className="Messages-text">Messages</h3>
+                
               </div>
               <div className="handle-chat-scroll">
                 <div className="messages">
@@ -496,7 +502,7 @@ const Inbox = () => {
                                       }
                                       key={i}
                                     >
-                                      {data.message}
+                                      { ReactHtmlParser(data.message)}
                                     </h3>
                                     <p>
                                       {moment(data.date_time).format("HH:mm")}
@@ -525,7 +531,7 @@ const Inbox = () => {
                                       }
                                       key={i}
                                     >
-                                      {data.message}
+                                      { ReactHtmlParser(data.message)}
                                     </h3>
                                     <p>
                                       {moment(data.date_time).format("HH:mm")}

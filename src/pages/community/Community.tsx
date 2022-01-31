@@ -11,6 +11,7 @@ import { ApiPost } from '../../helper/API/ApiData'
 import AuthStorage from '../../helper/AuthStorage'
 import { xwwwFormUrlencoded } from '../../helper/utils'
 import { setIsLoading } from '../../redux/actions/loadingAction'
+import ReactHtmlParser from "react-html-parser";
 import '../messageInbox/inbox.css'
 
 const Community = () => {
@@ -177,7 +178,9 @@ const Community = () => {
             const sendMessageToCommunity = {
                 token: tokenID,
                 topic_id: selectedId,
-                message: message
+                message: message.replace(/\p{Emoji}/ug, (m:any, idx) =>
+                `&#${m.codePointAt().toString()};`
+               )
             }
             const body = xwwwFormUrlencoded(sendMessageToCommunity);
             ApiPost('sendcommunitymessage', body)
@@ -198,28 +201,28 @@ const Community = () => {
         setSendMsgToCommunity(message)
     }
     const sendCommunityDataByClick = () => {
+        sendCommunityData(setMsgToCommunity)
 
 
-
-        if (setMsgToCommunity !== "" && selectedId) {
-            dispatch(setIsLoading(true))
-            const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
-            const sendMessageToCommunity = {
-                token: tokenID,
-                topic_id: selectedId,
-                message: setMsgToCommunity
-            }
-            const body = xwwwFormUrlencoded(sendMessageToCommunity);
-            ApiPost('sendcommunitymessage', body)
-                .then((res: any) => {
-                    getCommunityData();
-                    setClearText(true)
-                    dispatch(setIsLoading(false))
-                }).catch((error) => {
-                    console.log(error);
-                    dispatch(setIsLoading(false))
-                })
-        }
+        // if (setMsgToCommunity !== "" && selectedId) {
+        //     dispatch(setIsLoading(true))
+        //     const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
+        //     const sendMessageToCommunity = {
+        //         token: tokenID,
+        //         topic_id: selectedId,
+        //         message: setMsgToCommunity
+        //     }
+        //     const body = xwwwFormUrlencoded(sendMessageToCommunity);
+        //     ApiPost('sendcommunitymessage', body)
+        //         .then((res: any) => {
+        //             getCommunityData();
+        //             setClearText(true)
+        //             dispatch(setIsLoading(false))
+        //         }).catch((error) => {
+        //             console.log(error);
+        //             dispatch(setIsLoading(false))
+        //         })
+        // }
     }
     const getTopicData = (e: any) => {
         const data = {
@@ -288,7 +291,7 @@ const Community = () => {
                             </div>
                             <div>
                                 <h6 className='Name ml-3' style={{ color: item.namecolor }} >{item.sender_name}</h6>
-                                <p className='last-sms ml-3'>{item.message}</p>
+                                <p className='last-sms ml-3'>{ReactHtmlParser(item.message)}</p>
                             </div>
                         </div>
                     ))}

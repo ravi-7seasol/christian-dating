@@ -20,6 +20,7 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
   const [showProfile, setShowProfile] = useState(false);
   const [navpopup, setNavpopup] = useState(false)
   const [chatList, setChatList] = useState<any>();
+  const [profile, setProfile] = useState<any>();
 
   const openMenu = () => {
     setShowProfile(!showProfile);
@@ -28,6 +29,7 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
     navigate("/match_or_message");
   };
   const profileImg = useSelector((state: RootStateOrAny) => state.profile_Image.profileImage)
+  const userProfileImg = useSelector((state: RootStateOrAny) => state.user_profile_Image.profileImage)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -48,6 +50,13 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
 
       })
   }, [])
+
+
+  useEffect(() => {
+    setProfile(userProfileImg)
+  },[userProfileImg])
+
+
 
   const MINUTE_MS = 5000;
 
@@ -144,7 +153,7 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
               <div className="profile-pic position-relative">
                 <button onClick={openMenu} style={{border:"none", background:"transparent"}}>
                 <img
-                  src={profileImg ? profileImg : "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                  src={profile ? profile : profileImg ? profileImg : "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
                   alt=""
                 />
                 </button>

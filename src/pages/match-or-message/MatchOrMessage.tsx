@@ -19,6 +19,7 @@ const MatchOrMessage = () => {
   const navigate = useNavigate();
   const [like, setLike] = useState(false);
   const [id, setId] = useState("");
+  const [viewProfileImg, setViewProfileImg] = useState("");
   const [isRewind, setIsRewind] = useState(false);
   const [isSkip, setIsSkip] = useState(false);
 
@@ -52,6 +53,7 @@ const MatchOrMessage = () => {
 
   const inboxData = (msgData:any) => {
     console.log('msgData', msgData);
+    setViewProfileImg(msgData.profile_picture)
     dispatch(messageData(msgData))
 }
 
@@ -148,10 +150,9 @@ const MatchOrMessage = () => {
             <p className="text">Message</p>
           </div>
           <div>
-            <div className="message-content d-flex justify-content-center align-items-center">
+            <div className="profile-pic">
                 <img
-                  src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                  className="img-fluid m-0"
+                  src={viewProfileImg ?? "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
                   onClick={() => ViewProfile(id)}
                 />
             </div>
