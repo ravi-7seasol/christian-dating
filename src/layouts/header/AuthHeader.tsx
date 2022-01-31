@@ -145,7 +145,7 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
               <div className="navLinks" >
                 <Link to="/match_or_message">Match or Message</Link>
                 <Link to="/community">Community</Link>
-                <Link to="/inbox">Inbox {chatList && <span className={ chatList ? "messages-counts" : "" } > {chatList} </span> }</Link>
+                <Link to="/inbox">Inbox {chatList && <span className={ chatList ? "messages-counts-header" : "" } > {chatList} </span> }</Link>
                 {/* .inbox-main .messages-counts */}
                 <Link to="/success_stories">Success stories</Link>
               </div>

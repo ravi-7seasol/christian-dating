@@ -190,6 +190,7 @@
   text-decoration: none;
   font-weight: 700;
   margin: 0 10px;
+  position: relative;
 }
 
 .navbar-nav a:hover {
@@ -2027,4 +2028,19 @@ social-button-radius = 50% */
 .splash-card .header-logo img {
   width: 65px;
   height: 65px;
+}
+
+
+.messages-counts-header{
+  background-color: red;
+  font: normal normal 600 8px/12px Poppins;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 10px;
+  padding: 2px;
+  top: -1px;
+  right: -13px;
+  /* margin-left: 10px; */
+  position: absolute;
+  text-align: center;
 }
