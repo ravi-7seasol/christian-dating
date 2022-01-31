@@ -331,7 +331,7 @@ const ShowProfile = () => {
                     className=""
                   />
                   <div className="verified-picture">
-                    {isVerify.is_profile_image_verified === "1" ? (
+                    {isVerify?.user?.is_profile_image_verified === "0" ? (
                       <>
                         <img src="./assets/img/poltgon-group.png" alt="" />
                         <p>Verified picture</p>
@@ -384,7 +384,7 @@ const ShowProfile = () => {
       <Container>
         <div className="over-img-div">
           <div className="verified-picture">
-            {isVerify.is_profile_image_verified === "1" ? (
+            {isVerify?.user?.is_profile_image_verified === "0" ? (
               <>
                 <img src="./assets/img/poltgon-group.png" alt="" />
                 <p>Verified picture</p>

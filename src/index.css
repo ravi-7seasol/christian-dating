@@ -1014,7 +1014,7 @@
   .over-img-popup {
     /* position: absolute; */
     width: 100%;
-    margin-top: -150px;
+    margin-top: -60px;
     background: #ffffff 0% 0% no-repeat padding-box;
     border: 3px solid #fcfcfc;
     border-radius: 8px;
@@ -1794,6 +1794,13 @@
   .community {
     height: calc(100vh - 300px);
   }
+  .verified-picture {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: -150px;
+    z-index: 1;
+}
 }
 
 /* =========================================>     <============================================= */
