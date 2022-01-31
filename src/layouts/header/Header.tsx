@@ -14,7 +14,6 @@ const Header: React.FC = () => {
         </div>
       </div>
         <div className="top-baloon"></div>
-      
     </>
   );
 };

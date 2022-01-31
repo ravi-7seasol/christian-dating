@@ -79,7 +79,7 @@ const MatchOrMessage = () => {
   return (
     <>
       <Container>
-        <div className="match-or-message mt-2">
+        <div className="match-or-message mt-3 mb-3">
           <p>Profiles based on preference settings</p>
         </div>
       </Container>

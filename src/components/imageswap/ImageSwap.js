@@ -209,7 +209,7 @@ const ImageSwap = (props) => {
                 // onCardLeftScreen={(item) => onCardLeftScreen(item)}
                 preventSwipe={["up", "down"]}
                 key={i}
-                className={`swap-card`}
+                className={`swap-card ${row.length - 1 === i && 'card-box-shadow'}`}
                 // ${row.length - 1 === i
                 //   ? "normal-translate"
                 //   : row.length - 2 === i
