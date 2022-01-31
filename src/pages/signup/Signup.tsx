@@ -2,7 +2,7 @@ import ReactFacebookLogin, {
   ReactFacebookFailureResponse,
   ReactFacebookLoginInfo,
 } from "react-facebook-login";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import Buttons from "../../components/Buttons";
 import InputField from "../../components/Inputfield";
 import GoogleLogin from "react-google-login";
@@ -18,6 +18,8 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setIsLoading } from "../../redux/actions/loadingAction";
 import { cssTransition, toast } from "react-toastify";
+import AuthStorage from "../../helper/AuthStorage";
+import STORAGEKEY from "../../config/APP/app.config";
 
 const GoogleAppId =
   "1043350539750-lldkb9r1i0pc3d3l66lupb9np2olict4.apps.googleusercontent.com";
@@ -26,6 +28,7 @@ const FacbookAppId = "634703847650865";
 const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
+  const location = useLocation();
 
   const [signupData, setSignupData] = useState({
     email: "",
@@ -34,6 +37,7 @@ const Signup = () => {
   })
   const [formErrors, setFormErrors] = useState<any>()
   const [signUpErrors, setSignUpErrors] = useState();
+  const [errorMsg, setErrorMsg] = useState();
   const onInputValueChange = (e: any) => {
     setSignupData({
       ...signupData,
@@ -84,17 +88,17 @@ const Signup = () => {
         dispatch(setIsLoading(false))
 
         if (res.status === "true") {
-          toast.success("Successfully Registered, Please Login to continue" , {
+          toast.success("Successfully Registered, Please Login to continue", {
             // position: toast.POSITION.TOP_CENTER,
-            transition:cssTransition({
-                enter: "animate__animated animate__bounceIn",
-                exit: "animate__animated animate__bounceOut"
-              })
+            transition: cssTransition({
+              enter: "animate__animated animate__bounceIn",
+              exit: "animate__animated animate__bounceOut"
+            })
           });
           navigate({
             pathname: '/',
             search: `?from=signup`
-        })
+          })
         }
       }).catch((error) => {
         console.log(error);
@@ -108,6 +112,37 @@ const Signup = () => {
 
   const responseFacebook = (response: ReactFacebookLoginInfo) => {
     console.log("facbook response ======= response", response);
+    const code = {
+      code: response.id,
+      email: response.email,
+    }
+    const body = xwwwFormUrlencoded(code)
+    ApiPost("signupusersocial", body)
+      .then((res: any) => {
+        console.log("res", res)
+        if (res.msg === "User Successfully logged in") {
+          AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
+          setErrorMsg(res.msg);
+          let newData = res
+          delete newData.token
+          delete newData.msg
+          AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
+          // if (res.msg === "User Successfully logged in") {
+          navigate("/profile");
+          // }
+        } else {
+          toast.error("User Not Registered", {
+            // position: toast.POSITION.TOP_CENTER,
+            transition: cssTransition({
+              enter: "animate__animated animate__bounceIn",
+              exit: "animate__animated animate__bounceOut"
+            })
+          })
+        }
+      })
+      .catch((err) => {
+        console.log("err", err)
+      })
   };
 
   const failureResponseFacebook = (response: ReactFacebookFailureResponse) => {
@@ -117,25 +152,46 @@ const Signup = () => {
     );
   };
 
-  const responseGoogle = (response: any) => {    
+  const responseGoogle = (response: any) => {
+    console.log("google response", response);
+
     const code = {
-      code:response.googleId,
-      email:response.profileObj.email
+      code: response.googleId,
+      email: response.profileObj.email
     }
     const body = xwwwFormUrlencoded(code)
-    ApiPost("signupusersocial",body)
-    .then((res)=>{
-      console.log("res",res)
-    })
-    .catch((err)=>{
-      console.log("err",err)
-    })
+    ApiPost("signupusersocial", body)
+      .then((res: any) => {
+        console.log("res", res)
+        if (res.msg === "User Successfully logged in") {
+          AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
+          setErrorMsg(res.msg);
+          let newData = res
+          delete newData.token
+          delete newData.msg
+          AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
+          // if (res.msg === "User Successfully logged in") {
+          navigate("/profile");
+          // }
+        } else {
+          toast.error("User Not Registered", {
+            // position: toast.POSITION.TOP_CENTER,
+            transition: cssTransition({
+              enter: "animate__animated animate__bounceIn",
+              exit: "animate__animated animate__bounceOut"
+            })
+          })
+        }
+      })
+      .catch((err) => {
+        console.log("err", err)
+      })
   };
   const responseGoogle1 = (response: any) => {
     console.log("google response failer", response);
   };
 
-  const Google = () => {    
+  const Google = () => {
     document
       .getElementById("google")!
       .getElementsByTagName("button")[0]
