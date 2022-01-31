@@ -480,7 +480,7 @@ const ShowProfile = () => {
         },
         {
             Name: "intrusted_in_meating",
-            label: "Intrusted in Meating:",
+            label: "Interested in Meating:",
             detail: editProfileData.intrusted_in_meating,
         },
         {
@@ -823,17 +823,17 @@ const ShowProfile = () => {
                                     type="text"
                                     fromrowStyleclass=""
                                 />
-                                {/* <div className="editprofile-slector">
+                                <div className="editprofile-slector">
                                     <label htmlFor="" className='login-label'>Religion</label>
                                     <div className="reactSelector mt-3">
                                         <ReactSelect
-                                            placeholder="Choose Religion"
-                                            options={options}
-                                            onChange={(e: any) => setEditProfileData({ ...editProfileData, religion: e.value })}
-                                            value={selectValue(editProfileData.religion, "religion")}
+                                            placeholder="Choose Denomination"
+                                            options={denominationOptions}
+                                            onChange={(e: any) => setEditProfileData({ ...editProfileData, denomination: e.value })}
+                                            value={selectValue(editProfileData.denomination, "denomination")}
                                         />
                                     </div>
-                                </div> */}
+                                </div>
                             </div>
                             <div className="align-items-center mb-3">
                                 <div className="name-age">
@@ -964,7 +964,7 @@ const ShowProfile = () => {
                                                     ) : (
                                                         <InputField
                                                             name={data.Name}
-                                                            maxLength={undefined}
+                                                            maxLength={"short_bio" ? 100 : undefined}
                                                             value={data.value}
                                                             lablestyleClass="login-label"
                                                             InputstyleClass="login-input"
