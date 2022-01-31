@@ -129,7 +129,7 @@
   box-shadow: none !important;
 }
 
-.successStories-main .post-btn:focus{
+.successStories-main .post-btn:active{
   background-color: #e69702 !important;
   color: #000 ;
 }
@@ -150,11 +150,11 @@
   }
 }
 
-.successStories-main .post-btn:focus::before {
+.successStories-main .post-btn:active::before {
   animation: social-button-beat 1.5s ease-out infinite;
 }
 
-.successStories-main .post-btn:focus:after {
+.successStories-main .post-btn:active:after {
   animation: social-button-beat 1.5s ease-out 0.4s infinite;
 }
 
