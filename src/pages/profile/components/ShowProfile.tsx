@@ -166,29 +166,25 @@ const ShowProfile = () => {
       Header: "About me",
       Body: [
         {
-          label: "Name:",
-          value: getProfileData.name,
+          label: "Short Bio:",
+          value: getProfileData.short_bio,
         },
-        // {
-        // label: "Last Name:",
-        // value: getProfileData.lastname
-        // },
-        {
-          label: "Date Of Birth:",
-          value: getProfileData.dob,
-        },
-        {
-          label: "Address:",
-          value: getProfileData.address,
-        },
-        {
-          label: "Gender:",
-          value: getProfileData.gender,
-        },
-        {
-          label: "Denomination:",
-          value: getProfileData.denomination,
-        },
+        //   {
+        //     label: "Date Of Birth:",
+        //     value: getProfileData.dob,
+        //   },
+        //   {
+        //     label: "Address:",
+        //     value: getProfileData.address,
+        //   },
+        //   {
+        //     label: "Gender:",
+        //     value: getProfileData.gender,
+        //   },
+        //   {
+        //     label: "Denomination:",
+        //     value: getProfileData.denomination,
+        //   },
       ],
     },
     {
@@ -219,35 +215,39 @@ const ShowProfile = () => {
     {
       Header: "Personality",
       Body: [
+        // {
+        //   label: "Your Story:",
+        //   value: getProfileData.your_story,
+        // },
+        // {
+        //   label: "Relationship Status:",
+        //   value: getProfileData.relationship_status,
+        // },
+        // {
+        //   label: "Interested in Meeting:",
+        //   value: getProfileData.intrusted_in_meating,
+        // },
+        // {
+        //   label: "Relationship want to Build:",
+        //   value: getProfileData.relationship_want_to_build,
+        // },
+        // {
+        //   label: "Your Interest:",
+        //   value: getProfileData.your_intenet,
+        // },
         {
-          label: "Your Story:",
-          value: getProfileData.your_story,
-        },
-        {
-          label: "Relationship Status:",
-          value: getProfileData.relationship_status,
-        },
-        {
-          label: "Interested in Meeting:",
-          value: getProfileData.intrusted_in_meating,
-        },
-        {
-          label: "Relationship want to Build:",
-          value: getProfileData.relationship_want_to_build,
-        },
-        {
-          label: "Your Interest:",
-          value: getProfileData.your_intenet,
+          label: "Your Personality:",
+          value: getProfileData.personality,
         },
       ],
     },
   ];
 
   const personal = [
-    {
-      label: "I’m looking for:",
-      detail: getProfileData.your_intenet,
-    },
+    // {
+    //   label: "I’m looking for:",
+    //   detail: getProfileData.your_intenet,
+    // },
     {
       label: "Body type:",
       detail: getProfileData.body_type,
@@ -272,17 +272,28 @@ const ShowProfile = () => {
       label: "Career:",
       detail: getProfileData.career,
     },
+    {
+      label: "Interested in Meeting:",
+      detail: getProfileData.intrusted_in_meating,
+    },
+    {
+      label: "Relationship want to Build:",
+      detail: getProfileData.relationship_want_to_build,
+    },
+    {
+      label: "Your Interest:",
+      detail: getProfileData.your_intenet,
+    },
   ];
   return (
     <>
       <div
         className="profilr-bg"
         style={{
-          background: `url(${
-            getProfileData?.image
-              ? getProfileData?.image
-              : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-          })`,
+          background: `url(${getProfileData?.image
+            ? getProfileData?.image
+            : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+            })`,
         }}
       >
         <Container>
@@ -301,7 +312,7 @@ const ShowProfile = () => {
             {/* social-button */}
             <Buttons
               ButtonStyle=" single-btn"
-              onClick={() => {}}
+              onClick={() => { }}
               children={getProfileData.relationship_status}
             />
           </div>
@@ -358,7 +369,7 @@ const ShowProfile = () => {
                     {getProfileData.address}| Denomination:{" "}
                     {getProfileData.denomination}
                   </p>
-                  <p className="about-mi">{getProfileData.short_bio}</p>
+                  {/* <p className="about-mi">{getProfileData.short_bio}</p> */}
                   <p className="mb-0">
                     <b>My story (How you came to Christ)</b>
                   </p>
@@ -395,7 +406,7 @@ const ShowProfile = () => {
               </h5>
               <img src="./assets/img/male.png" alt="" className="ml-3" />
             </div>
-            <p className="about-mi">{getProfileData.short_bio}</p>
+            {/* <p className="about-mi">{getProfileData.short_bio}</p> */}
             {/* <p className="about-mi"></p> */}
             <p className="mb-0">
               <b>My story (How you came to Christ)</b>
