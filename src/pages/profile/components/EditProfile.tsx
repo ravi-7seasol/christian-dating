@@ -12,6 +12,7 @@ import { setIsLoading } from "../../../redux/actions/loadingAction";
 import { useDispatch } from "react-redux";
 import React from "react";
 import STORAGEKEY from "../../../config/APP/app.config";
+import { userProfileImage } from "../../../redux/actions/userProfileImage";
 
 const ShowProfile = () => {
   const [id, setId] = useState<any>(0);
@@ -231,6 +232,7 @@ const ShowProfile = () => {
 
       ApiPost(`updateprofileimage`, body)
         .then((res: any) => {
+          dispatch(userProfileImage(res.file));
           setEditProfileData({
             ...editProfileData,
             profile_picture: res.file,
