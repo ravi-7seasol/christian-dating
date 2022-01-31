@@ -1,9 +1,49 @@
 import InstagramLogin from 'react-instagram-login'
+import { useNavigate } from 'react-router';
+import { cssTransition, toast } from 'react-toastify';
+import STORAGEKEY from '../../config/APP/app.config';
+import { ApiPost } from '../../helper/API/ApiData';
+import AuthStorage from '../../helper/AuthStorage';
+import { xwwwFormUrlencoded } from '../../helper/utils';
 const FacbookAppId = "634703847650865"
 
 const LogiWithInstagram = () => {
+
+    const navigate = useNavigate()
+
     const responseInstagram = (response) => {
         console.log("instagram response ======= response", response);
+        const code = {
+            code: response.googleId,
+            email: response.profileObj.email
+        }
+        const body = xwwwFormUrlencoded(code)
+        ApiPost("signupusersocial", body)
+            .then((res) => {
+                console.log("res", res)
+                if (res.msg === "User Successfully logged in") {
+                    AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
+                    // setErrorMsg(res.msg);
+                    let newData = res
+                    delete newData.token
+                    delete newData.msg
+                    AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
+                    // if (res.msg === "User Successfully logged in") {
+                    navigate("/profile");
+                    // }
+                } else {
+                    toast.error("User Not Registered", {
+                        // position: toast.POSITION.TOP_CENTER,
+                        transition: cssTransition({
+                            enter: "animate__animated animate__bounceIn",
+                            exit: "animate__animated animate__bounceOut"
+                        })
+                    })
+                }
+            })
+            .catch((err) => {
+                console.log("err", err)
+            })
     };
 
     const failureResponseInstagram = (response) => {

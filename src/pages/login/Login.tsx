@@ -16,9 +16,20 @@ import AuthStorage from "../../helper/AuthStorage";
 import STORAGEKEY from "../../config/APP/app.config";
 import { setIsLoading } from "../../redux/actions/loadingAction";
 import { useLocation } from "react-router";
+import { cssTransition, toast } from "react-toastify";
+import ReactFacebookLogin, {
+  ReactFacebookFailureResponse,
+  ReactFacebookLoginInfo,
+} from "react-facebook-login";
+import LogiWithInstagram from "../signup/LogiWithInstagram";
+import GoogleLogin from "react-google-login";
+
+const GoogleAppId =
+  "1043350539750-lldkb9r1i0pc3d3l66lupb9np2olict4.apps.googleusercontent.com";
+const FacbookAppId = "634703847650865";
 
 const Login = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const location = useLocation();
   const [splash, setSplash] = useState(true)
@@ -76,6 +87,100 @@ const Login = () => {
       })
   }
 
+  const componentClicked = () => {
+    console.log("facbook component clicked");
+  };
+
+  const responseFacebook = (response: ReactFacebookLoginInfo) => {
+    console.log("facbook response ======= response", response);
+    const code = {
+      code: response.id,
+      email: response.email,
+    }
+    const body = xwwwFormUrlencoded(code)
+    ApiPost("signupusersocial", body)
+      .then((res: any) => {
+        console.log("res", res)
+        if (res.msg === "User Successfully logged in") {
+          AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
+          setErrorMsg(res.msg);
+          let newData = res
+          delete newData.token
+          delete newData.msg
+          AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
+          // if (res.msg === "User Successfully logged in") {
+          navigate("/profile");
+          // }
+        } else {
+          toast.error("User Not Loggin", {
+            // position: toast.POSITION.TOP_CENTER,
+            transition: cssTransition({
+              enter: "animate__animated animate__bounceIn",
+              exit: "animate__animated animate__bounceOut"
+            })
+          })
+        }
+      })
+      .catch((err) => {
+        console.log("err", err)
+      })
+  };
+
+  const failureResponseFacebook = (response: ReactFacebookFailureResponse) => {
+    console.log(
+      "facbook failureResponseFacebook ===== failureResponseFacebook",
+      response
+    );
+  };
+
+  const Google = () => {
+    document
+      .getElementById("google")!
+      .getElementsByTagName("button")[0]
+      .click();
+  };
+
+  const responseGoogle = (response: any) => {
+    console.log("google response", response);
+
+    const code = {
+      code: response.googleId,
+      email: response.profileObj.email
+    }
+    const body = xwwwFormUrlencoded(code)
+    ApiPost("signupusersocial", body)
+      .then((res: any) => {
+        console.log("res", res)
+        if (res.msg === "User Successfully logged in") {
+          AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
+          setErrorMsg(res.msg);
+          let newData = res
+          delete newData.token
+          delete newData.msg
+          AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
+          // if (res.msg === "User Successfully logged in") {
+          navigate("/profile");
+          // }
+        }
+        else {
+          toast.error("User Not Loggin", {
+            // position: toast.POSITION.TOP_CENTER,
+            transition: cssTransition({
+              enter: "animate__animated animate__bounceIn",
+              exit: "animate__animated animate__bounceOut"
+            })
+          })
+        }
+      })
+      .catch((err) => {
+        console.log("err", err)
+      })
+  };
+
+  const responseGoogle1 = (response: any) => {
+    console.log("google response failer", response);
+  };
+
   return (
     <>
       {
@@ -90,6 +195,47 @@ const Login = () => {
                     <div className="text">
                       <h5>Christian Dating</h5>
                       <p>Build Divine Connections</p>
+                    </div>
+                  </div>
+                  <div className="signup-with-social text-center mt-4">
+                    <span>Or sign in with socials</span>
+                  </div>
+                  <div className="signup-with-social-icons">
+                    <figure>
+                      {/* <img src="./assets/img/facebook-icon.png" alt="icon" /> */}
+                      <ReactFacebookLogin
+                        appId={FacbookAppId}
+                        autoLoad={false}
+                        fields="name,email,picture"
+                        onClick={componentClicked}
+                        callback={responseFacebook}
+                        onFailure={failureResponseFacebook}
+                        icon={
+                          <img
+                            src="./assets/img/facebook-icon.png"
+                            alt="icon"
+                          />
+                        }
+                        textButton=""
+                      />
+                    </figure>
+                    <figure>
+                      {/* <img src="./assets/img/instagram-icon.png" alt="icon" /> */}
+                      <LogiWithInstagram />
+                    </figure>
+                    <figure onClick={() => Google()}>
+                      <img src="./assets/img/gmail-icon.png" alt="icon" />
+                    </figure>
+                    <div id="google">
+                      <GoogleLogin
+                        clientId={GoogleAppId}
+                        autoLoad={false}
+                        buttonText=""
+                        onSuccess={responseGoogle}
+                        onFailure={responseGoogle1}
+                      // cookiePolicy={'single_host_origin'}
+                      // icon={<img src="./assets/img/gmail-icon.png" alt="icon" />}
+                      />
                     </div>
                   </div>
                 </div>
