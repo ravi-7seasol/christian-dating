@@ -152,7 +152,7 @@ const MatchOrMessage = () => {
           <div>
             <div className="profile-pic">
                 <img
-                  src={viewProfileImg ?? "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                  src={viewProfileImg ? viewProfileImg : "./assets/img/nonprofileImg.png"}
                   onClick={() => ViewProfile(id)}
                 />
             </div>

@@ -128,7 +128,7 @@ const SuccessStories = () => {
                     src={
                       data?.thumb_image
                         ? data?.thumb_image
-                        : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                        : "./assets/img/nonprofileImg.png"
                     }
                   />
                 </div>

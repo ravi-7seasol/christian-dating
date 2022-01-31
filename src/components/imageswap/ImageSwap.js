@@ -165,7 +165,7 @@ const ImageSwap = (props) => {
       let id = ids.map((data) => data).join(",");
       let token = {
         token: AuthStorage.getToken(),
-        user_ids: id,
+        // user_ids: id,
       };
       const body = xwwwFormUrlencoded(token);
       ApiPost("postswapids", body)
@@ -222,7 +222,7 @@ const ImageSwap = (props) => {
                     src={
                       item.profile_picture
                         ? item.profile_picture
-                        : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                        : "./assets/img/nonprofileImg.png"
                     }
                   />
                   <div className="tinder-verified">
@@ -232,12 +232,8 @@ const ImageSwap = (props) => {
 
                   <div className="details">
                     <div className="">
-                      <p>
-                        {!item.address &&
-                          "USA, San Francisco Bay Area | Religion"}
-
-                        <span> {!item.addressspan && " : Catholic"} </span>
-                      </p>
+                    {item.address && <p>{item.address} Bay Area | Religion<span> {item.addressspan} </span>
+                      </p>}
                       <div className="d-flex align-items-center justify-content-between mt-3">
                         <div className="d-flex align-items-center">
                           <h5 className="name-age">{item.name}</h5>

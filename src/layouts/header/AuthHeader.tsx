@@ -153,7 +153,7 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
               <div className="profile-pic position-relative">
                 <button onClick={openMenu} style={{border:"none", background:"transparent"}}>
                 <img
-                  src={profile ? profile : profileImg ? profileImg : "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                  src={profile ? profile : profileImg ? profileImg : "./assets/img/nonprofileImg.png"}
                   alt=""
                 />
                 </button>

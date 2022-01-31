@@ -292,7 +292,7 @@ const ShowProfile = () => {
         style={{
           background: `url(${getProfileData?.image
             ? getProfileData?.image
-            : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+            : "./assets/img/nonprofileImg.png"
             })`,
         }}
       >
@@ -319,15 +319,16 @@ const ShowProfile = () => {
           <div className="over-img-div-991">
             <Row>
               <Col md={3}>
-                <div className="profile-pic">
+                <div className="profile-pic set-profile-img">
                   {/* <img src="./assets/img/taylor-8Vt2haq8NSQ-unsplash.png" alt="" /> */}
                   <img
                     src={
                       getProfileData?.image
                         ? getProfileData?.image
-                        : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                        : "./assets/img/nonprofileImg.png"
                     }
                     alt=""
+                    className=""
                   />
                   <div className="verified-picture">
                     {isVerify.is_profile_image_verified === "1" ? (
@@ -454,7 +455,7 @@ const ShowProfile = () => {
             {personal.map((item, i) => {
               if (item) {
                 return (
-                  <div className="row mt-2 align-items-center" key={i}>
+                  <div className="row mt-3 align-items-center" key={i}>
                     <div className="col-4 ">
                       <p className="personal-details-text">{item.label}</p>
                     </div>

@@ -326,7 +326,7 @@ const Inbox = () => {
                             src={
                               data.receiver_participant_image
                                 ? data.receiver_participant_image
-                                : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                : "./assets/img/nonprofileImg.png"
                             }
                             className="chat-profile"
                           />
@@ -374,7 +374,7 @@ const Inbox = () => {
                             src={
                               data.sender_participant_image
                                 ? data.sender_participant_image
-                                : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                : "./assets/img/nonprofileImg.png"
                             }
                             className="chat-profile"
                           />
@@ -434,7 +434,7 @@ const Inbox = () => {
                         <div className="messages">
                           <div className="chat-profile-img-main">
                             <img
-                              src={displayData ? message_Data.profile_picture : selectedData?.receiver_participant_image ? selectedData?.receiver_participant_image : "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                              src={displayData ? message_Data.profile_picture : selectedData?.receiver_participant_image ? selectedData?.receiver_participant_image : "./assets/img/nonprofileImg.png"}
                               className="chat-profile"
                             />
                             <div className="online"></div>
@@ -453,7 +453,7 @@ const Inbox = () => {
                         <div className="messages">
                           <div className="chat-profile-img-main">
                             <img
-                              src={selectedData?.sender_participant_image ? selectedData?.sender_participant_image:"https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                              src={selectedData?.sender_participant_image ? selectedData?.sender_participant_image:"./assets/img/nonprofileImg.png"}
                               className="chat-profile"
                             />
                             <div className="online"></div>

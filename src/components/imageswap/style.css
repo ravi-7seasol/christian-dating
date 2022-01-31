@@ -70,7 +70,7 @@
   position: relative;
 
 }
-.name-age::after{
+/* .name-age::after{
   position: absolute;
   content: "";
   width: 10px;
@@ -80,7 +80,7 @@
   left: -12px;
   top: 50%;
   transform: translateY(-50%);
-}
+} */
 .swap-card .card-inner .details p {
   text-align: left;
   font: normal normal normal 9px/13px Poppins;
