@@ -191,55 +191,14 @@ const Login = () => {
                 <div className="top-baloon"></div>
                 <div className="login-header splash-logo">
                   <div className="header-logo d-flex     align-items-center">
-                    <img src="./assets/img/header-logo.png" alt="header-logo" className="me-3"/>
+                    <img src="./assets/img/header-logo.png" alt="header-logo" className="me-3" />
                     <div className="text">
                       <h5>Christian Dating</h5>
                       <p>Build Divine Connections</p>
                     </div>
                   </div>
-                  <div className="signup-with-social text-center mt-4">
-                    <span>Or sign in with socials</span>
-                  </div>
-                  <div className="signup-with-social-icons">
-                    <figure>
-                      {/* <img src="./assets/img/facebook-icon.png" alt="icon" /> */}
-                      <ReactFacebookLogin
-                        appId={FacbookAppId}
-                        autoLoad={false}
-                        fields="name,email,picture"
-                        onClick={componentClicked}
-                        callback={responseFacebook}
-                        onFailure={failureResponseFacebook}
-                        icon={
-                          <img
-                            src="./assets/img/facebook-icon.png"
-                            alt="icon"
-                          />
-                        }
-                        textButton=""
-                      />
-                    </figure>
-                    <figure>
-                      {/* <img src="./assets/img/instagram-icon.png" alt="icon" /> */}
-                      <LogiWithInstagram />
-                    </figure>
-                    <figure onClick={() => Google()}>
-                      <img src="./assets/img/gmail-icon.png" alt="icon" />
-                    </figure>
-                    <div id="google">
-                      <GoogleLogin
-                        clientId={GoogleAppId}
-                        autoLoad={false}
-                        buttonText=""
-                        onSuccess={responseGoogle}
-                        onFailure={responseGoogle1}
-                      // cookiePolicy={'single_host_origin'}
-                      // icon={<img src="./assets/img/gmail-icon.png" alt="icon" />}
-                      />
-                    </div>
-                  </div>
                 </div>
-                <Button style={{ width: "100%", padding: "15px", marginTop: "" }} onClick={()=>{setSplash(false)}}>Get started</Button>
+                <Button style={{ width: "100%", padding: "15px", marginTop: "" }} onClick={() => { setSplash(false) }}>Get started</Button>
               </div>
             </Container>
           </div>
@@ -323,6 +282,47 @@ const Login = () => {
                         <Link to="/signup" className="dont-have-account-link">
                           Sign up here
                         </Link>
+                      </div>
+                      <div className="signup-with-social text-center mt-4">
+                        <span>Or sign in with socials</span>
+                      </div>
+                      <div className="signup-with-social-icons">
+                        <figure>
+                          {/* <img src="./assets/img/facebook-icon.png" alt="icon" /> */}
+                          <ReactFacebookLogin
+                            appId={FacbookAppId}
+                            autoLoad={false}
+                            fields="name,email,picture"
+                            onClick={componentClicked}
+                            callback={responseFacebook}
+                            onFailure={failureResponseFacebook}
+                            icon={
+                              <img
+                                src="./assets/img/facebook-icon.png"
+                                alt="icon"
+                              />
+                            }
+                            textButton=""
+                          />
+                        </figure>
+                        <figure>
+                          {/* <img src="./assets/img/instagram-icon.png" alt="icon" /> */}
+                          <LogiWithInstagram />
+                        </figure>
+                        <figure onClick={() => Google()}>
+                          <img src="./assets/img/gmail-icon.png" alt="icon" />
+                        </figure>
+                        <div id="google">
+                          <GoogleLogin
+                            clientId={GoogleAppId}
+                            autoLoad={false}
+                            buttonText=""
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle1}
+                          // cookiePolicy={'single_host_origin'}
+                          // icon={<img src="./assets/img/gmail-icon.png" alt="icon" />}
+                          />
+                        </div>
                       </div>
                     </div>
                   </form>

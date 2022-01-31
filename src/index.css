@@ -1982,21 +1982,20 @@ social-button-radius = 50% */
   justify-content: end;
 }
 
-.splash-logo{
+.splash-logo {
   margin: 0% auto;
   justify-content: center;
   margin-bottom: 180px;
 }
 
-.splash-logo .header-logo img{
+.splash-logo .header-logo img {
   margin-right: 10px;
 }
 
 .splash-card button {
   display: inline-block;
   border-radius: 13px;
-  background-color: #e69702 !important;
-  background-color: (#e69702, .75) !important;
+  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
   color: #000 !important;
   border: 0 none;
   padding: 0;
@@ -2012,7 +2011,7 @@ social-button-radius = 50% */
 }
 
 .splash-card button:focus {
-  background-color: #e69702 !important;
+  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
   color: #000;
 }
 
@@ -2025,7 +2024,7 @@ social-button-radius = 50% */
   font: normal normal 600 19px/25px Poppins;
 }
 
-.splash-card .header-logo img{
+.splash-card .header-logo img {
   width: 65px;
   height: 65px;
 }
