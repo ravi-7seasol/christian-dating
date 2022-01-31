@@ -586,7 +586,7 @@ const ShowProfile = () => {
                 style={{
                     background: `url(${editProfileData?.image
                         ? editProfileData?.image
-                        : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                        : "./assets/img/nonprofileImg.png"
                         })`,
                     backgroundPosition: 'left top',
                     backgroundRepeat: 'no-repeat',
@@ -630,7 +630,7 @@ const ShowProfile = () => {
                                         src={
                                             editProfileData?.image
                                                 ? editProfileData?.image
-                                                : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                                : "./assets/img/nonprofileImg.png"
                                         }
                                         alt=""
                                         onClick={() => {
