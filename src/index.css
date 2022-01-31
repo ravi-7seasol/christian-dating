@@ -32,7 +32,7 @@
 
 .auth-show-profile ul li a {
   /* opacity: 0.3; */
-  color: #acacac;
+  color: #000;
 }
 
 .menu-logo,
@@ -224,7 +224,6 @@
   position: relative;
 }
 
-
 .profilr-bg .single-btn {
   background: #000000 0% 0% no-repeat padding-box !important;
   border: 2px solid #3ad800 !important;
@@ -235,8 +234,8 @@
   padding: 5px 15px !important;
 }
 
-.profilr-bg .single-btn:active{
-  background-color:#fff !important ;
+.profilr-bg .single-btn:active {
+  background-color: #fff !important ;
   color: #000 !important;
 }
 
@@ -395,7 +394,7 @@
 
 .fun-facts-items::before {
   counter-increment: section;
-  content: "# " counter(section) ": ";
+  content: "#" counter(section) ": ";
   color: #e69702;
   font-size: 15px !important;
   font-weight: 700;
@@ -518,7 +517,7 @@
 }
 
 .activity-main {
-  margin: 65px 15px 0;
+  margin: 25px 15px 0;
   display: flex;
   justify-content: space-evenly;
 }
@@ -630,7 +629,7 @@
 }
 
 .message-bottom-popup-body {
-  padding: 25px;
+  padding: 8px;
   padding-bottom: 0px;
 }
 
@@ -639,6 +638,7 @@
   font: normal normal normal 11px/17px Poppins;
   letter-spacing: 0px;
   color: #000000;
+  margin-bottom: 1px;
 }
 
 .message-bottom-popup-body-text span {
@@ -811,6 +811,10 @@
 
 /* ======================================>Edit Profile<====================================== */
 
+.accordion-responsive{
+  display: flex !important;
+}
+
 .edit-profile-footer-btn .login-btn {
   background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
     0% no-repeat padding-box;
@@ -982,6 +986,10 @@
     font-size: 30px;
   }
 
+  .accordion-responsive{
+    display: block !important;
+  }
+
   /* ======================================>Profile<====================================== */
   .no-matches-error .no-matches-text {
     padding: 5px 7px;
@@ -1026,11 +1034,14 @@
   .personal-details p {
     font-size: 14px;
     /* width: 95px; */
+    margin-bottom: 5px !important;
     margin: 0;
+    padding: 0px !important;
   }
 
   .personal-details span {
     font-size: 14px;
+    display: contents;
   }
 
   .fun-facts h2 {
@@ -1051,8 +1062,9 @@
   }
 
   .profilr-bg .select {
-    top: 315px;
+    top: 355px;
     z-index: 1;
+    left: -4px;
     right: auto;
   }
 
@@ -1136,7 +1148,11 @@
   }
 
   .profilr-bg .select {
-    top: 2px;
+    top: 10px;
+  }
+
+  .profilr-bg .back-btn{
+    top: 14px;
   }
 }
 
@@ -1161,17 +1177,98 @@
     width: 100vw !important;
   }
 
-  .over-img-popup .Change-Profile-btn {
+  /* .over-img-popup .Change-Profile-btn {
     background-color: #e69702;
     padding: 10px;
     border-radius: 10px;
     color: #fff;
     font-weight: 700;
-  }
+  } */
 
   .match-or-message p {
-    margin-top: 10px;
+    margin-top: 14px;
   }
+
+  .Change-Profile-mb .Change-Profile-btn {
+    display: inline-block;
+    border-radius: 13px;
+    background-color: #e69702 !important;
+    background-color: (#e69702, .75) !important;
+    color: #000 !important;
+    border: 0 none;
+    /* padding: 0; */
+    text-align: center;
+    /* width: 5em;
+    height:3em; */
+    line-height: 3em;
+    padding: 10px 15px;
+    /* margin-top: 15px; */
+    letter-spacing: 0px;
+    box-shadow: none !important;
+    font: normal normal bold 18px/27px Poppins;
+    position: relative;
+    /* transition: all .25s ease-in-out; */
+  } 
+  
+  .Change-Profile-mb .Change-Profile-btn:focus{
+    background-color: #e69702 !important;
+    color: #000 ;
+  }
+
+  @keyframes social-button-beat {
+    0% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+  
+    70% {
+      opacity: 0;
+      transform: scale(1.5);
+    }
+  
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .Change-Profile-mb .Change-Profile-btn:focus::before {
+    animation: social-button-beat 1.5s ease-out infinite;
+  }
+
+  .Change-Profile-mb .Change-Profile-btn:focus:after {
+    animation: social-button-beat 1.5s ease-out 0.4s infinite;
+  }
+
+  .Change-Profile-mb .Change-Profile-btn:before{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background-color: #e69702;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    opacity: 0;
+    transition: all 0.25s ease-in-out;
+  }
+
+  .Change-Profile-mb .Change-Profile-btn:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background-color: #e69702;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    opacity: 0;
+    transition: all 0.25s ease-in-out;
+  }
+
 }
 @media (min-width: 768px) and (max-width: 991px) {
   /* ======================================>Auth Header<====================================== */
@@ -1693,5 +1790,171 @@
   }
   .community {
     height: calc(100vh - 300px);
+  }
+}
+
+/* =========================================>     <============================================= */
+
+/* color-primary = #e44848
+color-white = #fff */
+
+/* social-button-color = color-white
+social-button-bg-color = #8C8C8C
+social-button-hover-color = color-white
+social-button-hover-bg-color = color-primary
+social-button-size = 3em
+social-button-radius = 50% */
+
+/* // Body styles */
+/* html{
+	font-size: 16px;
+	line-height: 1.5;
+} */
+
+/* body
+	margin: 0
+	padding: 2em */
+
+/* .text-center{
+	text-align: center
+}
+
+.text-large{
+	font-size: 2em
+} */
+
+/* // Animation */
+
+/* // Social Button Styles */
+
+.edit-profile-footer-btn .social-button{
+  display: inline-block;
+  border-radius: 13px;
+	background-color: #e69702 !important;
+	background-color: (#e69702, .75) !important;
+	color: #000 !important;
+	border: 0 none;
+	padding: 0;
+	text-align: center;
+	width: 5em;
+	height:3em;
+	line-height: 3em;
+  margin-top: 15px;
+  letter-spacing: 0px;
+  box-shadow: none !important;
+  font: normal normal bold 18px/27px Poppins;
+	position: relative;
+	/* transition: all .25s ease-in-out; */
+} 
+.edit-profile-footer-btn .social-button:focus{
+  background-color:#e69702 !important;
+		color: #000;
+}
+
+
+@keyframes social-button-beat {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  70% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.edit-profile-footer-btn .social-button:focus::before{
+  animation: social-button-beat 1.5s ease-out infinite;
+}
+.edit-profile-footer-btn .social-button:focus:after {
+  animation: social-button-beat 1.5s ease-out 0.4s infinite;
+}
+
+.edit-profile-footer-btn .social-button:before{
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-color: #e69702;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
+}
+.edit-profile-footer-btn .social-button:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-color: #e69702;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
+}
+
+
+@media only screen and (max-width: 400px) {
+  .activity-main .rewind {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .activity-main .skip-content {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .activity-main .like-content {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .activity-main .message-content {
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 0px !important;
+  }
+  .activity-main .message-content {
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 0px !important;
+  }
+  .activity-main .rewind img {
+    width: 30px !important;
+    height: 30px !important;
+    margin: 5px !important;
+  }
+  .activity-main .skip-content img {
+    width: 30px !important;
+    height: 30px !important;
+    margin: 5px !important;
+  }
+  .activity-main .like-content img {
+    width: 30px !important;
+    height: 30px !important;
+    margin: 5px !important;
+  }
+  .activity-main .message-content img {
+    width: 30px !important;
+    height: 30px !important;
+    margin: 5px !important;
+  }
+  .activity-main .message-content img {
+    width: 30px !important;
+    height: 30px !important;
+    margin: 5px !important;
+  }
+
+  .activity-main .text{
+    display: none;
   }
 }

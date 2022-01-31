@@ -27,11 +27,19 @@ const Inbox = () => {
   const [clearText, setClearText] = useState<any>(false);
   const [selectedImage, setSelectedImage] = useState<any>();
   const [imgTog, setImgTog] = useState(false);
+  const [displayData,setDisplayData]=useState(false);
 
   const dispatch = useDispatch();
   const message_ID = useSelector(
     (state: RootStateOrAny) => state.message_Id.message_Id
   );
+
+  const message_Data = useSelector((state:RootStateOrAny)=>state.message_Data)
+
+  useEffect(() => {
+    console.log('message_Data', message_Data);
+  }, [message_Data])
+  
 
   const gotoBottom = (id: any) => {
     var element: any = document.getElementById(id);
@@ -85,6 +93,7 @@ const Inbox = () => {
     if (message_ID) {
       setTog(true);
       setSelectedID(message_ID);
+      setDisplayData(true);
 
       const getChatData = {
         token: AuthStorage.getStorageData(STORAGEKEY.token),
@@ -303,6 +312,7 @@ const Inbox = () => {
                         key={i}
                         onClick={() => {
                           messageOpen(data);
+                          setDisplayData(false)
                         }}
                       >
                         <div className="chat-profile-img-main">
@@ -414,17 +424,17 @@ const Inbox = () => {
                   <div className="Conversation-starters">
                     <div className="bg-white chat-top-header">
                       {width > 767 ? (
-                         chatList.current_user !== selectedData.receiver_id  ? 
+                         chatList?.current_user !== selectedData?.receiver_id  ? 
                         <div className="messages">
                           <div className="chat-profile-img-main">
                             <img
-                              src={selectedData?.receiver_participant_image ? selectedData?.receiver_participant_image : "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                              src={displayData ? message_Data.profile_picture : selectedData?.receiver_participant_image ? selectedData?.receiver_participant_image : "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
                               className="chat-profile"
                             />
                             <div className="online"></div>
                           </div>
                           <div className="chat-messages">
-                            <h4>{selectedData?.receiver_name}</h4>
+                            <h4>{displayData ? message_Data.name :selectedData?.receiver_name}</h4>
                             <h6 className="messages-time">
                               {moment(selectedData?.last_message_time).format(
                                 "LT"
@@ -458,7 +468,7 @@ const Inbox = () => {
                       }
                     </div>
                     {/* <div className="border-content"></div> */}
-                    {width < 767  && <h5 style={{ textAlign: "center" }}>Now Chatting with {chatList.current_user !== selectedData.receiver_id  ? selectedData?.receiver_name : selectedData?.sender_name}</h5>}
+                    {width < 767  && <h5 style={{ textAlign: "center" }}>Now Chatting with {displayData ? message_Data.name : chatList?.current_user !== selectedData?.receiver_id  ? selectedData?.receiver_name : selectedData?.sender_name}</h5>}
                     <div className="scrool px-3" id="chatBox">
                       <div className="text-grid">
                         {chatData?.chat?.length ? (
@@ -466,7 +476,7 @@ const Inbox = () => {
                             {chatData?.chat?.map(
                               (data: any, i: number) =>
                               
-                              chatList.current_user !== data.receiver_id  ? 
+                              chatList?.current_user !== data?.receiver_id  ? 
                                 data.receiver_id === selectedID  && (
 
                                   <div
@@ -533,7 +543,7 @@ const Inbox = () => {
                                     onClick={() => closeGif()}
                                   />
                                 </div>
-                                <img src={gif} className="gifbig"></img>
+                                <img src={gif} className="gifbig img-fluid"></img>
 
                                 <button className="submit">
                                   <FontAwesomeIcon icon={faPaperPlane} />
@@ -548,7 +558,7 @@ const Inbox = () => {
                                     onClick={() => closeImg()}
                                   />
                                 </div>
-                                <img src={URL.createObjectURL(selectedImage)} />
+                                <img src={URL.createObjectURL(selectedImage)} className="img-fluid"/>
                                 <button className="submit">
                                   <FontAwesomeIcon icon={faPaperPlane} />
                                 </button>
@@ -601,14 +611,14 @@ const Inbox = () => {
                           )}
                         </div>
                       </div>
-                      <div className="input-chat">
+                      <div className="community-input-chat w-100">
                         <InpEmoji
                           getMData={getMessageData}
                           onHandaleChangeData={onHandaleChangeData}
                           clearText={clearText}
                           afterClear={setClearText}
                         />
-                        <div className="inbox-send-msg-btn">
+                        <div className="inbox-send-msg-btn position-absolute right-1">
                           <img
                             src="./assets/img/right-arrow (2).png"
                             style={{ zIndex: 999 }}

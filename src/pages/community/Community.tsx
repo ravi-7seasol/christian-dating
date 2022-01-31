@@ -300,7 +300,7 @@ const Community = () => {
                     <div className="icon">
                         <FontAwesomeIcon icon={faTimesCircle} onClick={() => closeGif()} />
                     </div>
-                    <img src={gif} className="gifbig" ></img>
+                    <img src={gif} className="gifbig img-fluid" ></img>
 
                     <button className="submit"><FontAwesomeIcon icon={faPaperPlane} /></button>
 
@@ -312,7 +312,7 @@ const Community = () => {
                     <div className="icon">
                         <FontAwesomeIcon icon={faTimesCircle} onClick={() => closeImg()} />
                     </div>
-                    <img src={URL.createObjectURL(selectedImage)} />
+                    <img src={URL.createObjectURL(selectedImage)} className='img-fluid'/>
                     <button className="submit"><FontAwesomeIcon icon={faPaperPlane} /></button>
                 </div>
             }
@@ -348,15 +348,12 @@ const Community = () => {
                         </div>}
                     </div>
                 </div>
-
                 <div className="community-input-chat w-100">
                     <InpEmoji getMData={sendCommunityData} onHandaleChangeData={onHandaleChangeData} clearText={clearText} afterClear={setClearText} />
                     <div className="inbox-send-msg-btn  position-absolute right-1">
                         <img src="./assets/img/right-arrow (2).png" style={{ zIndex: 999, width: "15px", height: "15px" }} onClick={() => sendCommunityDataByClick()} />
                     </div>
                 </div>
-
-
             </div>
         </Container>
 
