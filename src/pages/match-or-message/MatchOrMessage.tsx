@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
@@ -51,11 +51,11 @@ const MatchOrMessage = () => {
     navigate(`/show-profile?profileid=${id}`);
   };
 
-  const inboxData = (msgData:any) => {
+  const inboxData = (msgData: any) => {
     console.log('msgData', msgData);
     setViewProfileImg(msgData.profile_picture)
     dispatch(messageData(msgData))
-}
+  }
 
   const rewind = () => {
     setIsRewind(true);
@@ -151,10 +151,10 @@ const MatchOrMessage = () => {
           </div>
           <div>
             <div className="profile-pic">
-                <img
-                  src={viewProfileImg ?? "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
-                  onClick={() => ViewProfile(id)}
-                />
+              <img
+                src={viewProfileImg ?? "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                onClick={() => ViewProfile(id)}
+              />
             </div>
             <p className="text">View profile</p>
           </div>
@@ -173,6 +173,31 @@ const MatchOrMessage = () => {
           </div>
         </div>
       </Container>
+      <div className="subscription-main">
+        <h1>SUBSCRIBE TO CONNECT WITH YOUR MATCHES</h1>
+        <Container>
+          <Row>
+            <Col>
+              <div className="subscription-card">
+                  <h1> 1 MONTH</h1>
+                  <p>Unlimited Match</p>
+                  <p>Unlimited Message</p>
+                  <p>Community Chat</p>
+                  <Button>BUY AT $19.99</Button>
+              </div>
+            </Col>
+            <Col>
+              <div className="subscription-card subscription-card-2">
+              <h1> 1 MONTH</h1>
+                  <p>Unlimited Match</p>
+                  <p>Unlimited Message</p>
+                  <p>Community Chat</p>
+                  <Button>BUY AT $19.99</Button>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </>
   );
 };
