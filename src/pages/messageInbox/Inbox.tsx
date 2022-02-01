@@ -29,6 +29,7 @@ const Inbox = () => {
   const [selectedImage, setSelectedImage] = useState<any>();
   const [imgTog, setImgTog] = useState(false);
   const [displayData, setDisplayData] = useState(false);
+  const [displayStaticMessage, setDisplayStaticMessage] = useState<any>(false);
 
   const dispatch = useDispatch();
   const message_ID = useSelector(
@@ -76,7 +77,16 @@ const Inbox = () => {
         if (res.status === "false") {
           setChatList(null)
         } else {
+          console.log("res.matches", res.matches)
           setChatList(res);
+          if (message_ID) {
+            let displayID = res.matches.find((data: any) => message_ID === data.id)
+            if (displayID.id) {
+              setDisplayStaticMessage(true);
+              console.log("displayID", displayID.id)
+            }
+
+          }
         }
 
       })
@@ -85,9 +95,7 @@ const Inbox = () => {
       });
   }
 
-  // useEffect(() => {
-  //   getChatList()
-  // }, [chatData]);
+
 
   useEffect(() => {
     getChatList()
@@ -110,6 +118,7 @@ const Inbox = () => {
           } else {
             setChatData(res);
             setCurrentUser(res?.current_user);
+
           }
         })
         .catch((error) => {
@@ -143,6 +152,18 @@ const Inbox = () => {
     ],
   };
 
+  const staticMsg = [
+    {
+      msg: "Hello"
+    },
+    {
+      msg: "Hii"
+    },
+    {
+      msg: "How are you"
+    },
+  ]
+
   const getChat = () => {
     const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
 
@@ -165,7 +186,7 @@ const Inbox = () => {
   };
 
   const messageOpen = (item: any) => {
-    let activeChat
+    let activeChat 
     if (chatList.current_user !== item.receiver_id) {
       activeChat = chatList.chat.findIndex((data: any) => data.receiver_id === item.receiver_id)
     } else {
@@ -225,6 +246,9 @@ const Inbox = () => {
     //         console.log(error);
     //       });
     //   }
+  }
+  const sendStaticMsg = (message: string) => {
+    getMessageData(message)
   }
   const getMessageData = (message: string) => {
     if (message !== "" && selectedID) {
@@ -504,6 +528,7 @@ const Inbox = () => {
               <Col md={7} className="px-0 ">
                 <div className="ps-0 Conversation-starters-scroll">
                   <div className="Conversation-starters">
+
                     <div className="bg-white chat-top-header">
                       {width > 767 ? (
                         chatList?.current_user !== selectedData?.receiver_id ?
@@ -618,6 +643,10 @@ const Inbox = () => {
 
                             )}
 
+
+
+
+
                             {gifTog && (
                               <div className="gif-container">
                                 <div className="icon">
@@ -660,8 +689,17 @@ const Inbox = () => {
                     <div className="conversation-started">
 
                     </div>
+                    {
+
+                      <div className="d-flex  justify-content-around"> {
+                        staticMsg.map((data: any, i: number) => (
+                          <span className="staticmsg-span" onClick={() => sendStaticMsg(data.msg)}>{data.msg}<br /></span>
+                        ))
+                      }</div>
+                    }
                     <div className="input-area">
                       <div>
+
                         <div className="choose-picture">
                           <label htmlFor="imgSelect">
                             <img src="./assets/img/picture-one (1).png" />

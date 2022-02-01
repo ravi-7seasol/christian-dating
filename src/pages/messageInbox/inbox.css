@@ -230,7 +230,7 @@
 }
 
 .inbox-main .Conversation-starters .scrool {
-  height: calc(100vh - 190px);
+  height: calc(100vh - 290px);
   overflow-y: scroll;
   padding: 20px 0 34px 0;
 }
@@ -887,4 +887,10 @@
   font-size: 8px;
   margin-left: 10px;
   text-align: center;
+}
+
+.staticmsg-span{
+  border: 1px solid #e69702;
+  border-radius: 20px;
+  padding:5px 10px;
 }
