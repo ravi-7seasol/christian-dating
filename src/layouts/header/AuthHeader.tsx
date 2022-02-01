@@ -9,6 +9,7 @@ import AuthStorage from "../../helper/AuthStorage";
 import { xwwwFormUrlencoded } from "../../helper/utils";
 import { getProfileImage } from "../../redux/actions/getProfileImage";
 import { setIsLoading } from "../../redux/actions/loadingAction";
+import { userProfileImage } from "../../redux/actions/userProfileImage";
 
 
 interface Props {
@@ -42,6 +43,7 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
     ApiPost(`getsingleuser`, body)
       .then((res: any) => {
         dispatch(getProfileImage(res.user.image))
+        dispatch(userProfileImage(res.user.image))
         dispatch(setIsLoading(false))
 
       }).catch((error: any) => {
@@ -56,8 +58,10 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
     setProfile(userProfileImg)
   },[userProfileImg])
 
-
-
+  useEffect(() => {
+    getChatList()
+  }, []);
+  
   const MINUTE_MS = 5000;
 
   useEffect(() => {
@@ -153,7 +157,7 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
               <div className="profile-pic position-relative">
                 <button onClick={openMenu} style={{border:"none", background:"transparent"}}>
                 <img
-                  src={profile ? profile : profileImg ? profileImg : "./assets/img/nonprofileImg.png"}
+                  src={profile ? profile : "./assets/img/nonprofileImg.png"}
                   alt=""
                 />
                 </button>

@@ -6,7 +6,7 @@ const Prefrences = (props: any) => {
   const [prefrences, setPrefrences] = useState({
     your_story: '',
     short_bio: '',
-    relationship_status: 'single',
+    relationship_status: 'Single',
     intrusted_in_meating: '',
     relationship_want_to_build: '',
     your_intenet: '',
@@ -49,7 +49,7 @@ const Prefrences = (props: any) => {
   ]
 
   const relationStatus = [
-    { value: "Single", label: "Single" },
+    { value: "Single", label: "Single"},
     { value: "Married", label: "Married" },
     { value: "In a relationship", label: "In a relationship" },
     { value: "Divorced", label: "Divorced" },

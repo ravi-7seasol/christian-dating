@@ -78,6 +78,7 @@ const ImageSwap = (props) => {
       let data ={
         name:getProfileMatch[getProfileMatch.length - 1].name,
         profile_picture:getProfileMatch[getProfileMatch.length - 1].profile_picture,
+        rate:getProfileMatch[getProfileMatch.length - 1].rate,
       }
       props.Data(data)
     }
@@ -281,13 +282,12 @@ const ImageSwap = (props) => {
             </p>
           </div>
           <button
-            className="no-matches-button btn btn-primary"
+            className="no-matches-button btn btn-primary animation"
             onClick={() => {
               navigate("/edit-profile");
             }}
           >
-            {" "}
-            update Profile{" "}
+            update Profile
           </button>
         </div>
       )}
