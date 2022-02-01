@@ -39,7 +39,7 @@
 
 .handle-chat-scroll {
   overflow-y: auto !important;
-  height: calc(100vh - 63px);
+  height: calc(100vh - 120px);
   /* background: #000; */
   padding-right: 10px;
   border-right: 2px solid #e69702;

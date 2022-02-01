@@ -57,9 +57,9 @@ body {
   overflow-x: hidden;
 }
 
-.layout-padding {
+/* .layout-padding {
   padding: 50px 30px 30px 30px;
-}
+} */
 
 .App {
   overflow-y: auto !important;
@@ -1006,7 +1006,7 @@ input[type="date"]:before {
 
 .subscription-main {
   background: linear-gradient(180deg, #EA9F45 0%, #FDF8F1 100%);
-  height: 100vh;
+  /* height: 100vh; */
   text-align: center;
   padding-top: 30px;
 }
@@ -1021,10 +1021,9 @@ input[type="date"]:before {
 .subscription-card {
   background-color: #f5e2cd;
   width: 100%;
-  height: 60vh;
   border: 2px solid #f1a245;
   border-radius: 15px;
-  padding: 30px;
+  padding: 72px 30px 30px 30px;
 }
 
 .subscription-card h1 {
@@ -1060,7 +1059,87 @@ input[type="date"]:before {
 .subscription-card-2 {
   background-color: #f4f5dc;
   width: 100%;
-  height: 60vh;
   border: 2px solid #f1a245;
   border-radius: 15px;
 }
+
+.subscription-body{
+  padding: 0px 30px 30px 30px;
+}
+
+.subscription-card-2 .subscription-header h1{
+  color: #ffffff;
+}
+
+
+.subscription-card-2 h1 {
+  color: #f79300;
+  padding: 15px 10px;
+  border-bottom: 2px solid #d3c7bf;
+}
+
+.subscription-card-2 .subscription-header{
+  background: linear-gradient(90deg, #F79405 0%, #EFB573 100%);
+  border-radius: 12px 12px 0px 0px;
+}
+
+.subscription-card-2 p {
+  color: #000;
+  font-size: 26px;
+  font-weight: 700;
+  padding: 10px 10px;
+}
+
+.subscription-card-2 button {
+    display: inline-block;
+    border-radius: 13px;
+    background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
+    color: #000 !important;
+    border: 0 none;
+    padding: 0;
+    text-align: center;
+    padding: 10px 20px;
+    line-height: 3em;
+    margin-top: 15px;
+    letter-spacing: 0px;
+    box-shadow: none !important;
+    font: normal normal bold 18px/27px Poppins;
+    position: relative;
+  }
+
+
+  @media(max-width:574px){
+    .subscription-main h1{
+      font-size: 20px !important;
+      padding: 15px 5px;
+      margin-bottom: 15px;
+    }
+
+    .subscription-card {
+      padding: 40px 20px 25px;
+    }
+
+    .subscription-card p {
+      color: #000;
+      font-size: 20px;
+      font-weight: 500;
+      padding: 0px !important;
+    }
+
+    .subscription-card-2 p {
+      color: #000;
+      font-size: 20px;
+      font-weight: 500;
+      padding: 0px !important;
+    }
+  }
+
+
+  /* ===================================================================>Conversation Started<=================================================================== */
+
+
+  .conversation-started{
+      background-color: #e69702;
+      height: 40px;
+      width: 100%;
+  }

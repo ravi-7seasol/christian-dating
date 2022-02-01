@@ -14,7 +14,7 @@ const Layout: FC<Props> = ({ children, ...props }) => {
 
   // "layout-padding"
   return (
-    <div className= '' style={{ height: "100vh", overflowY: "auto" }}>
+    <div className= 'layout-padding' style={{ height: "100vh", overflowY: "auto" }}>
       <div {...props}>{children}</div>
     </div>
   );

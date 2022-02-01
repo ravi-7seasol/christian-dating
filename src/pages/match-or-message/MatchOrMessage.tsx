@@ -151,10 +151,10 @@ const MatchOrMessage = () => {
           </div>
           <div>
             <div className="profile-pic">
-                <img
-                  src={viewProfileImg ? viewProfileImg : "./assets/img/nonprofileImg.png"}
-                  onClick={() => ViewProfile(id)}
-                />
+              <img
+                src={viewProfileImg ? viewProfileImg : "./assets/img/nonprofileImg.png"}
+                onClick={() => ViewProfile(id)}
+              />
             </div>
             <p className="text">View profile</p>
           </div>
@@ -176,23 +176,29 @@ const MatchOrMessage = () => {
       <div className="subscription-main">
         <h1>SUBSCRIBE TO CONNECT WITH YOUR MATCHES</h1>
         <Container>
-          <Row>
-            <Col>
+          <Row className="">
+            <Col md={6} className="mb-5">
               <div className="subscription-card">
-                  <h1> 1 MONTH</h1>
-                  <p>Unlimited Match</p>
-                  <p>Unlimited Message</p>
-                  <p>Community Chat</p>
-                  <Button>BUY AT $19.99</Button>
+                <h1> 1 MONTH</h1>
+                <p>Unlimited Match</p>
+                <p>Unlimited Message</p>
+                <p>Community Chat</p>
+                <Button>BUY AT $19.99</Button>
               </div>
             </Col>
-            <Col>
-              <div className="subscription-card subscription-card-2">
-              <h1> 1 MONTH</h1>
+            <Col md={6} className="">
+              <div className="subscription-card-2">
+                <div className="subscription-header">
+                  <h1>MOST POPULAR</h1>
+                </div>
+                <div className="subscription-body">
+
+                  <h1> 3 MONTH</h1>
                   <p>Unlimited Match</p>
                   <p>Unlimited Message</p>
                   <p>Community Chat</p>
-                  <Button>BUY AT $19.99</Button>
+                  <Button>BUY AT $39.99</Button>
+                </div>
               </div>
             </Col>
           </Row>

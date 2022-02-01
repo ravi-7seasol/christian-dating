@@ -10,7 +10,7 @@ import Buttons from "../../components/Buttons";
 import CheckBox from "../../components/Checkbox";
 import InputField from "../../components/Inputfield";
 import { ApiPost, ApiPostNoAuth } from "../../helper/API/ApiData";
-import { xwwwFormUrlencoded } from "../../helper/utils";
+import { getCookie, xwwwFormUrlencoded } from "../../helper/utils";
 import Header from "../../layouts/header/Header";
 import AuthStorage from "../../helper/AuthStorage";
 import STORAGEKEY from "../../config/APP/app.config";
@@ -55,6 +55,14 @@ const Login = () => {
     if (email) {
       setLoginData({ ...loginData, email: email });
     }
+
+    const data = getCookie("login")
+    if(data) {
+      setSplash(false)
+    } else {
+      setSplash(true)
+    }
+
   }, [])
 
   const logIn = () => {
@@ -181,6 +189,16 @@ const Login = () => {
     console.log("google response failer", response);
   };
 
+const checkCookie = () => {
+  document.cookie = "login=true;"
+  setSplash(false)
+  const loginCookie = document.cookie
+  console.log("loginCookie",loginCookie);
+  
+}
+
+
+
   return (
     <>
       {
@@ -198,7 +216,7 @@ const Login = () => {
                     </div>
                   </div>
                 </div>
-                <Button style={{ width: "100%", padding: "15px"}} onClick={() => { setSplash(false) }}>Get started</Button>
+                <Button style={{ width: "100%", padding: "15px"}} onClick={checkCookie}>Get started</Button>
               </div>
             </Container>
           </div>
