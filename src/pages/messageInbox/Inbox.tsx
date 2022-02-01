@@ -28,19 +28,20 @@ const Inbox = () => {
   const [clearText, setClearText] = useState<any>(false);
   const [selectedImage, setSelectedImage] = useState<any>();
   const [imgTog, setImgTog] = useState(false);
-  const [displayData,setDisplayData]=useState(false);
+  const [displayData, setDisplayData] = useState(false);
+  const [displayStaticMessage, setDisplayStaticMessage] = useState<any>(false);
 
   const dispatch = useDispatch();
   const message_ID = useSelector(
     (state: RootStateOrAny) => state.message_Id.message_Id
   );
 
-  const message_Data = useSelector((state:RootStateOrAny)=>state.message_Data)
+  const message_Data = useSelector((state: RootStateOrAny) => state.message_Data)
 
   useEffect(() => {
     console.log('message_Data', message_Data);
   }, [message_Data])
-  
+
 
   const gotoBottom = (id: any) => {
     var element: any = document.getElementById(id);
@@ -76,7 +77,16 @@ const Inbox = () => {
         if (res.status === "false") {
           setChatList(null)
         } else {
+          console.log("res.matches", res.matches)
           setChatList(res);
+          if (message_ID) {
+            let displayID = res.matches.find((data: any) => message_ID === data.id)
+            if (displayID.id) {
+              setDisplayStaticMessage(true);
+              console.log("displayID", displayID.id)
+            }
+
+          }
         }
 
       })
@@ -85,9 +95,7 @@ const Inbox = () => {
       });
   }
 
-  // useEffect(() => {
-  //   getChatList()
-  // }, [chatData]);
+
 
   useEffect(() => {
     getChatList()
@@ -110,6 +118,7 @@ const Inbox = () => {
           } else {
             setChatData(res);
             setCurrentUser(res?.current_user);
+
           }
         })
         .catch((error) => {
@@ -143,6 +152,18 @@ const Inbox = () => {
     ],
   };
 
+  const staticMsg = [
+    {
+      msg: "Hello"
+    },
+    {
+      msg: "Hii"
+    },
+    {
+      msg: "How are you"
+    },
+  ]
+
   const getChat = () => {
     const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
 
@@ -166,7 +187,7 @@ const Inbox = () => {
 
   const messageOpen = (item: any) => {
     let activeChat 
-    if(chatList.current_user !== item.receiver_id) {
+    if (chatList.current_user !== item.receiver_id) {
       activeChat = chatList.chat.findIndex((data: any) => data.receiver_id === item.receiver_id)
     } else {
       activeChat = chatList.chat.findIndex((data: any) => data.sender_id === item.sender_id)
@@ -207,24 +228,27 @@ const Inbox = () => {
 
   const sendMsgByOnClick = () => {
     getMessageData(sendMsg)
-  //   if (sendMsg !== "" && selectedID) {
-  //     const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
-  //     const sendMessage = {
-  //       token: tokenID,
-  //       participant_id: parseInt(selectedID),
-  //       message: sendMsg,
-  //     };
-  //     const body = xwwwFormUrlencoded(sendMessage);
-  //     ApiPost("sendmessage", body)
-  //       .then((res: any) => {
-  //         setSendMsg("");
-  //         setClearText(true)
-  //         getChat();
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   }
+    //   if (sendMsg !== "" && selectedID) {
+    //     const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
+    //     const sendMessage = {
+    //       token: tokenID,
+    //       participant_id: parseInt(selectedID),
+    //       message: sendMsg,
+    //     };
+    //     const body = xwwwFormUrlencoded(sendMessage);
+    //     ApiPost("sendmessage", body)
+    //       .then((res: any) => {
+    //         setSendMsg("");
+    //         setClearText(true)
+    //         getChat();
+    //       })
+    //       .catch((error) => {
+    //         console.log(error);
+    //       });
+    //   }
+  }
+  const sendStaticMsg = (message: string) => {
+    getMessageData(message)
   }
   const getMessageData = (message: string) => {
     if (message !== "" && selectedID) {
@@ -232,9 +256,9 @@ const Inbox = () => {
       const sendMessage = {
         token: tokenID,
         participant_id: parseInt(selectedID),
-        message: message.replace(/\p{Emoji}/ug, (m:any, idx) =>
-        `&#${m.codePointAt().toString()};`
-       )
+        message: message.replace(/\p{Emoji}/ug, (m: any, idx) =>
+          `&#${m.codePointAt().toString()};`
+        )
       };
       const body = xwwwFormUrlencoded(sendMessage);
       ApiPost("sendmessage", body)
@@ -297,7 +321,7 @@ const Inbox = () => {
               {/* <div className="border-content"></div> */}
               <div>
                 <h3 className="Messages-text">Messages</h3>
-                
+
               </div>
               <div className="handle-chat-scroll">
                 <div className="messages">
@@ -310,105 +334,105 @@ const Inbox = () => {
                 </div>
                 {chatList && chatList?.chat.length ? (
                   <>
-                    {chatList?.chat.map((data: any, i: number) => 
-                      chatList.current_user !== data.receiver_id  ? 
-                      <div
-                        className={`${selectedID === data.receiver_id && "messages-focus"
-                          } messages`}
-                        key={i}
-                        onClick={() => {
-                          messageOpen(data);
-                          setDisplayData(false)
-                        }}
-                      >
-                        <div className="chat-profile-img-main">
-                          <img
-                            src={
-                              data.receiver_participant_image
-                                ? data.receiver_participant_image
-                                : "./assets/img/nonprofileImg.png"
-                            }
-                            className="chat-profile"
-                          />
-                          <div className="online"></div>
-                        </div>
+                    {chatList?.chat.map((data: any, i: number) =>
+                      chatList.current_user !== data.receiver_id ?
                         <div
-                          className={`${selectedID === data.receiver_id &&
-                            "chat-messages-click"
-                            } chat-messages`}
+                          className={`${selectedID === data.receiver_id && "messages-focus"
+                            } messages`}
+                          key={i}
+                          onClick={() => {
+                            messageOpen(data);
+                            setDisplayData(false)
+                          }}
                         >
-                          <h4>{data.receiver_name}</h4>
-                          <p>{data.last_message}</p>
-                        </div>
-                        <div
-                          className={`${selectedID === data.receiver_id &&
-                            "messages-time-click"
-                            } messages-time`}
-                        >
-                          <h6>{moment(data.last_message_time).format("LT")}</h6>
-
-                          {data.total_unread_messages !== "0" &&
-                            <div
-                              className={
-                                data.total_unread_messages
-                                  ? "messages-counts"
-                                  : ""
+                          <div className="chat-profile-img-main">
+                            <img
+                              src={
+                                data.receiver_participant_image
+                                  ? data.receiver_participant_image
+                                  : "./assets/img/nonprofileImg.png"
                               }
-                            >
-                              {data.total_unread_messages}
-                            </div>
-                          }
-                        </div>
-                      </div>
-                      :
-                      <div
-                        className={`${selectedID === data.sender_id && "messages-focus"
-                          } messages`}
-                        key={i}
-                        onClick={() => {
-                          messageOpen(data);
-                        }}
-                      >
-                        <div className="chat-profile-img-main">
-                          <img
-                            src={
-                              data.sender_participant_image
-                                ? data.sender_participant_image
-                                : "./assets/img/nonprofileImg.png"
-                            }
-                            className="chat-profile"
-                          />
-                          <div className="online"></div>
-                        </div>
-                        <div
-                          className={`${selectedID === data.sender_id &&
-                            "chat-messages-click"
-                            } chat-messages`}
-                        >
-                          <h4>{data.sender_name}</h4>
-                          <p>{data.last_message}</p>
-                        </div>
-                        <div
-                          className={`${selectedID === data.sender_id &&
-                            "messages-time-click"
-                            } messages-time`}
-                        >
-                          <h6>{moment(data.last_message_time).format("LT")}</h6>
+                              className="chat-profile"
+                            />
+                            <div className="online"></div>
+                          </div>
+                          <div
+                            className={`${selectedID === data.receiver_id &&
+                              "chat-messages-click"
+                              } chat-messages`}
+                          >
+                            <h4>{data.receiver_name}</h4>
+                            <p>{data.last_message}</p>
+                          </div>
+                          <div
+                            className={`${selectedID === data.receiver_id &&
+                              "messages-time-click"
+                              } messages-time`}
+                          >
+                            <h6>{moment(data.last_message_time).format("LT")}</h6>
 
-                          {data.total_unread_messages !== "0" &&
-                            <div
-                              className={
-                                data.total_unread_messages
-                                  ? "messages-counts"
-                                  : ""
-                              }
-                            >
-                              {data.total_unread_messages}
-                            </div>
-                          }
+                            {data.total_unread_messages !== "0" &&
+                              <div
+                                className={
+                                  data.total_unread_messages
+                                    ? "messages-counts"
+                                    : ""
+                                }
+                              >
+                                {data.total_unread_messages}
+                              </div>
+                            }
+                          </div>
                         </div>
-                      </div>
-                      
+                        :
+                        <div
+                          className={`${selectedID === data.sender_id && "messages-focus"
+                            } messages`}
+                          key={i}
+                          onClick={() => {
+                            messageOpen(data);
+                          }}
+                        >
+                          <div className="chat-profile-img-main">
+                            <img
+                              src={
+                                data.sender_participant_image
+                                  ? data.sender_participant_image
+                                  : "./assets/img/nonprofileImg.png"
+                              }
+                              className="chat-profile"
+                            />
+                            <div className="online"></div>
+                          </div>
+                          <div
+                            className={`${selectedID === data.sender_id &&
+                              "chat-messages-click"
+                              } chat-messages`}
+                          >
+                            <h4>{data.sender_name}</h4>
+                            <p>{data.last_message}</p>
+                          </div>
+                          <div
+                            className={`${selectedID === data.sender_id &&
+                              "messages-time-click"
+                              } messages-time`}
+                          >
+                            <h6>{moment(data.last_message_time).format("LT")}</h6>
+
+                            {data.total_unread_messages !== "0" &&
+                              <div
+                                className={
+                                  data.total_unread_messages
+                                    ? "messages-counts"
+                                    : ""
+                                }
+                              >
+                                {data.total_unread_messages}
+                              </div>
+                            }
+                          </div>
+                        </div>
+
                     )}
                   </>
                 ) : (
@@ -428,45 +452,46 @@ const Inbox = () => {
               <Col md={7} className="px-0 ">
                 <div className="ps-0 Conversation-starters-scroll">
                   <div className="Conversation-starters">
+
                     <div className="bg-white chat-top-header">
                       {width > 767 ? (
-                         chatList?.current_user !== selectedData?.receiver_id  ? 
-                        <div className="messages">
-                          <div className="chat-profile-img-main">
-                            <img
-                              src={displayData ? message_Data.profile_picture : selectedData?.receiver_participant_image ? selectedData?.receiver_participant_image : "./assets/img/nonprofileImg.png"}
-                              className="chat-profile"
-                            />
-                            <div className="online"></div>
+                        chatList?.current_user !== selectedData?.receiver_id ?
+                          <div className="messages">
+                            <div className="chat-profile-img-main">
+                              <img
+                                src={displayData ? message_Data.profile_picture : selectedData?.receiver_participant_image ? selectedData?.receiver_participant_image : "./assets/img/nonprofileImg.png"}
+                                className="chat-profile"
+                              />
+                              <div className="online"></div>
+                            </div>
+                            <div className="chat-messages">
+                              <h4>{displayData ? message_Data.name : selectedData?.receiver_name}</h4>
+                              <h6 className="messages-time">
+                                {moment(selectedData?.last_message_time).format(
+                                  "LT"
+                                )}
+                              </h6>
+                            </div>
                           </div>
-                          <div className="chat-messages">
-                            <h4>{displayData ? message_Data.name :selectedData?.receiver_name}</h4>
-                            <h6 className="messages-time">
-                              {moment(selectedData?.last_message_time).format(
-                                "LT"
-                              )}
-                            </h6>
-                          </div>
-                        </div>
 
-                        :
-                        <div className="messages">
-                          <div className="chat-profile-img-main">
-                            <img
-                              src={selectedData?.sender_participant_image ? selectedData?.sender_participant_image:"./assets/img/nonprofileImg.png"}
-                              className="chat-profile"
-                            />
-                            <div className="online"></div>
+                          :
+                          <div className="messages">
+                            <div className="chat-profile-img-main">
+                              <img
+                                src={selectedData?.sender_participant_image ? selectedData?.sender_participant_image : "./assets/img/nonprofileImg.png"}
+                                className="chat-profile"
+                              />
+                              <div className="online"></div>
+                            </div>
+                            <div className="chat-messages">
+                              <h4>{selectedData?.sender_name}</h4>
+                              <h6 className="messages-time">
+                                {moment(selectedData?.last_message_time).format(
+                                  "LT"
+                                )}
+                              </h6>
+                            </div>
                           </div>
-                          <div className="chat-messages">
-                            <h4>{selectedData?.sender_name}</h4>
-                            <h6 className="messages-time">
-                              {moment(selectedData?.last_message_time).format(
-                                "LT"
-                              )}
-                            </h6>
-                          </div>
-                        </div>
                       )
                         :
                         <>
@@ -474,72 +499,77 @@ const Inbox = () => {
                       }
                     </div>
                     {/* <div className="border-content"></div> */}
-                    {width < 767  && <h5 style={{ textAlign: "center" }}>Now Chatting with {displayData ? message_Data.name : chatList?.current_user !== selectedData?.receiver_id  ? selectedData?.receiver_name : selectedData?.sender_name}</h5>}
+
+                    {width < 767 && <h5 style={{ textAlign: "center" }}>Now Chatting with {displayData ? message_Data.name : chatList?.current_user !== selectedData?.receiver_id ? selectedData?.receiver_name : selectedData?.sender_name}</h5>}
                     <div className="scrool px-3" id="chatBox">
                       <div className="text-grid">
                         {chatData?.chat?.length ? (
                           <>
                             {chatData?.chat?.map(
                               (data: any, i: number) =>
-                              
-                              chatList?.current_user !== data?.receiver_id  ? 
-                                data.receiver_id === selectedID  && (
 
-                                  <div
-                                    key={i}
-                                    className={
-                                      data.sender_id !== currentUser
-                                        ? "incoming-massage-and-time"
-                                        : "massage-and-time"
-                                    }
-                                  >
+                                chatList?.current_user !== data?.receiver_id ?
+                                  data.receiver_id === selectedID && (
 
-                                    <h3
+                                    <div
+                                      key={i}
                                       className={
                                         data.sender_id !== currentUser
-                                          ? "first-text"
-                                          : "first-text-replay"
+                                          ? "incoming-massage-and-time"
+                                          : "massage-and-time"
                                       }
-                                      key={i}
                                     >
-                                      { ReactHtmlParser(data.message)}
-                                    </h3>
-                                    <p>
-                                      {moment(data.date_time).format("HH:mm")}
-                                    </p>
-                                  </div>
-                                )
 
-                                : 
+                                      <h3
+                                        className={
+                                          data.sender_id !== currentUser
+                                            ? "first-text"
+                                            : "first-text-replay"
+                                        }
+                                        key={i}
+                                      >
+                                        {ReactHtmlParser(data.message)}
+                                      </h3>
+                                      <p>
+                                        {moment(data.date_time).format("HH:mm")}
+                                      </p>
+                                    </div>
+                                  )
 
-                                data.sender_id === selectedID  && (
+                                  :
 
-                                  <div
-                                    key={i}
-                                    className={
-                                      data.sender_id !== currentUser
-                                        ? "incoming-massage-and-time"
-                                        : "massage-and-time"
-                                    }
-                                  >
+                                  data.sender_id === selectedID && (
 
-                                    <h3
+                                    <div
+                                      key={i}
                                       className={
                                         data.sender_id !== currentUser
-                                          ? "first-text"
-                                          : "first-text-replay"
+                                          ? "incoming-massage-and-time"
+                                          : "massage-and-time"
                                       }
-                                      key={i}
                                     >
-                                      { ReactHtmlParser(data.message)}
-                                    </h3>
-                                    <p>
-                                      {moment(data.date_time).format("HH:mm")}
-                                    </p>
-                                  </div>
-                                )
-                              
+
+                                      <h3
+                                        className={
+                                          data.sender_id !== currentUser
+                                            ? "first-text"
+                                            : "first-text-replay"
+                                        }
+                                        key={i}
+                                      >
+                                        {ReactHtmlParser(data.message)}
+                                      </h3>
+                                      <p>
+                                        {moment(data.date_time).format("HH:mm")}
+                                      </p>
+                                    </div>
+                                  )
+
                             )}
+
+
+
+
 
                             {gifTog && (
                               <div className="gif-container">
@@ -564,7 +594,7 @@ const Inbox = () => {
                                     onClick={() => closeImg()}
                                   />
                                 </div>
-                                <img src={URL.createObjectURL(selectedImage)} className="img-fluid"/>
+                                <img src={URL.createObjectURL(selectedImage)} className="img-fluid" />
                                 <button className="submit">
                                   <FontAwesomeIcon icon={faPaperPlane} />
                                 </button>
@@ -578,8 +608,17 @@ const Inbox = () => {
                         )}
                       </div>
                     </div>
+                    {
+
+                      <div className="d-flex  justify-content-around"> {
+                        staticMsg.map((data: any, i: number) => (
+                          <span className="staticmsg-span" onClick={() => sendStaticMsg(data.msg)}>{data.msg}<br /></span>
+                        ))
+                      }</div>
+                    }
                     <div className="input-area">
                       <div>
+
                         <div className="choose-picture">
                           <label htmlFor="imgSelect">
                             <img src="./assets/img/picture-one (1).png" />
