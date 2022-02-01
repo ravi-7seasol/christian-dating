@@ -420,7 +420,7 @@ const Inbox = () => {
 
 
 
-                {
+                {/* {
                   chatList && chatList.starter.length ? (
                     <>
                       {chatList.starter.map((data: any, i: number) =>
@@ -484,7 +484,7 @@ const Inbox = () => {
                     </>
                   )
                     : ""
-                }
+                } */}
 
 
 
