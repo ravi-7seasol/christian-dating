@@ -276,7 +276,7 @@ const Signup = () => {
                   <Buttons
                     children="Sign up"
                     onClick={goToProfileSetting}
-                    ButtonStyle="login-btn"
+                    ButtonStyle="login-btn animation"
                     disabled={false}
                   />
                   <div className="text-center w-100 mt-2 dont-have-account">

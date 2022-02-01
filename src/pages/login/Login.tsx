@@ -216,7 +216,7 @@ const checkCookie = () => {
                     </div>
                   </div>
                 </div>
-                <Button style={{ width: "100%", padding: "15px"}} onClick={checkCookie}>Get started</Button>
+                <Button style={{ width: "100%", padding: "15px", marginTop: "" }} className="animation" onClick={checkCookie}>Get started</Button>
               </div>
             </Container>
           </div>
@@ -291,7 +291,7 @@ const checkCookie = () => {
                       <Buttons
                         children="Log in"
                         onClick={logIn}
-                        ButtonStyle="login-btn"
+                        ButtonStyle="login-btn animation"
                         disabled={false}
                       />
                       <br />

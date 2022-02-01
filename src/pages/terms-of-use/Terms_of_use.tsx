@@ -1086,7 +1086,7 @@ const Terms_of_use = () => {
                 <Buttons
                   children="Back"
                   onClick={handleRedirect}
-                  ButtonStyle="login-btn"
+                  ButtonStyle="login-btn animation"
                   disabled={false}
                 />
               </div>

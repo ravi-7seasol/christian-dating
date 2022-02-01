@@ -124,7 +124,7 @@ const Profile = (props: any) => {
             <Buttons
               children={stepDone > 3 ? "See your profile!" : "Next"}
               onClick={() => handleNext()}
-              ButtonStyle="login-btn"
+              ButtonStyle="login-btn animation"
               disabled={false}
             />
           </div>

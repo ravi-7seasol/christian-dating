@@ -53,10 +53,10 @@ const PostSuccessStories = ({ show, onhide, refresh }: Props) => {
 
         </Modal.Body>
         <Modal.Footer className="add-post-model-footer">
-          <Button variant="secondary" onClick={onhide}>
+          <Button variant="secondary" onClick={onhide} className="animation">
             Close
           </Button>
-          <Button variant="primary" className="post-btn" onClick={postData}>
+          <Button variant="primary" className="post-btn animation" onClick={postData}>
             Post
           </Button>
         </Modal.Footer>
