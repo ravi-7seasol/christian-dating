@@ -647,7 +647,7 @@ const ShowProfile = () => {
                                         accept="image/*"
                                     />
                                     <div className="verified-picture">
-                                        {isVerify.is_profile_image_verified === "1" ? (
+                                        {isVerify.user?.is_profile_image_verified === "1" ? (
                                             <>
                                                 <img src="./assets/img/poltgon-group.png" alt="" />
                                                 <p>Verified picture</p>
@@ -782,7 +782,7 @@ const ShowProfile = () => {
                 <div className="editprofile-over-img-popup">
                     <div className="over-img-div">
                         <div className="verified-picture">
-                            {isVerify.is_profile_image_verified === "1" ? (
+                            {isVerify.user?.is_profile_image_verified === "1" ? (
                                 <>
                                     <p>
                                         <img src="./assets/img/poltgon-group.png" alt="" />
@@ -978,7 +978,7 @@ const ShowProfile = () => {
                                                             fromrowStyleclass=""
                                                         />)
                                                     }
-                                                    {data.Name === "short_bio" && <span style={{ color: "black", fontSize: "10px" }}>{data.value.length}/100</span>}
+                                                    {data.Name === "short_bio" && <span style={{ color: "black", fontSize: "10px" }}>{data.value?.length}/100</span>}
                                                 </span>
                                             </div>
                                         ))}
@@ -1100,7 +1100,7 @@ const ShowProfile = () => {
 
                     <div className="edit-profile-footer-btn">
                         <Buttons
-                            ButtonStyle="social-button"
+                            ButtonStyle="save-btn animation"
                             children="Save"
                             onClick={() => editProfileBtn()}
                             disabled={false}

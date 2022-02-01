@@ -276,7 +276,7 @@ const Inbox = () => {
         <Container>
           <Row>
             <Col md={5}>
-              {/* <div className="inbox-profile-img">
+              <div className="inbox-profile-img">
                 <div className="profile-content">
                   <img src="./assets/img/profile-picture.png" />
                   <h6>likes you</h6>
@@ -290,11 +290,11 @@ const Inbox = () => {
                   <h6>match</h6>
                 </div>
                 <div className="profile-content">
-                  <div className="like-counter">2.1K</div>
+                  <div className="like-counter">{chatList && chatList.viewed}</div>
                   <h6 className="like-counter-content">profile views</h6>
                 </div>
-              </div> */}
-              {/* <div className="border-content"></div> */}
+              </div>
+              <div className="border-content"></div>
               <div>
                 <h3 className="Messages-text">Messages</h3>
 
@@ -410,11 +410,87 @@ const Inbox = () => {
                         </div>
 
                     )}
+
                   </>
                 ) : (
                   // <h3 style={{ textAlign: "center" }}> No Massege Found </h3>
                   <></>
                 )}
+
+
+
+
+                {/* {
+                  chatList && chatList.starter.length ? (
+                    <>
+                      {chatList.starter.map((data: any, i: number) =>
+                        <div
+                          className={`${selectedID === data.id && "messages-focus"
+                            } messages`}
+                          key={i}
+                          onClick={() => {
+                            messageOpen(data);
+                            setDisplayData(false)
+                          }}
+                        >
+
+
+
+                          <div className="chat-profile-img-main">
+                            <img
+                              src={
+                                data.profile_picture
+                                  ? data.profile_picture
+                                  : "./assets/img/nonprofileImg.png"
+                              }
+                              className="chat-profile"
+                            />
+                            <div className="online"></div>
+                          </div>
+                          <div
+                            className={`${selectedID === data.id &&
+                              "chat-messages-click"
+                              } chat-messages`}
+                          >
+                            <h4>{data.name}</h4>
+                            <p>{data.message}</p>
+                          </div>
+                          <div
+                            className={`${selectedID === data.id &&
+                              "messages-time-click"
+                              } messages-time`}
+                          >
+                            <h6>MATCH</h6>
+
+                            {data.total_unread_messages !== "0" &&
+                              <div
+                                className={
+                                  data.total_unread_messages
+                                    ? "messages-counts"
+                                    : ""
+                                }
+                              >
+                                {data.total_unread_messages}
+                              </div>
+                            }
+                          </div>
+
+
+
+
+                        </div>
+                      )
+                      }
+                    </>
+                  )
+                    : ""
+                } */}
+
+
+
+
+
+
                 {!chatList &&
                   <div>
                     <h3 className="no-chat-found"> No Chat Found </h3>
@@ -476,7 +552,6 @@ const Inbox = () => {
 
                     {/* <div className="border-content"></div> */}
                     {width < 767 && <h5 style={{ textAlign: "center" }}>Now Chatting with {displayData ? message_Data.name : chatList?.current_user !== selectedData?.receiver_id ? selectedData?.receiver_name : selectedData?.sender_name}</h5>}
-
                     <div className="scrool px-3" id="chatBox">
                       <div className="text-grid">
                         {chatData?.chat?.length ? (

@@ -72,7 +72,7 @@ const Personal = (props: any) => {
             onChange={(e) => handleChange(e)}
             disabled={false}
             label="Let’s start with your name"
-            placeholder="John"
+            placeholder="Name"
             type="text"
             fromrowStyleclass=""
           />

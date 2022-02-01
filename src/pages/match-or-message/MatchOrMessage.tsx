@@ -17,30 +17,41 @@ import { messageData } from '../../redux/actions/messageDataAction';
 import { useNavigate } from "react-router-dom";
 const MatchOrMessage = () => {
   const navigate = useNavigate();
-  const [like, setLike] = useState(false);
+  // const [like, setLike] = useState(false);
   const [id, setId] = useState("");
   const [viewProfileImg, setViewProfileImg] = useState("");
   const [isRewind, setIsRewind] = useState(false);
   const [isSkip, setIsSkip] = useState(false);
+  const [rate, setRate] = useState('')
 
   const dispatch = useDispatch();
 
-  const likehandleChange = (rate: boolean) => {
+  useEffect(() => {
+    console.log('rate', rate);
+  }, [rate]);
+
+  // useEffect(() => {
+  //   setLike(false)
+  // }, [id]);
+
+  const likehandleChange = () => {
     let data = {
-      id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id,
-      rate: rate ? "Like" : "dislike",
+      id: id,
+      // id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id,
+      rate: rate === "Like" ? "dislike" : "Like",
       token: AuthStorage.getToken(),
     };
     const body = xwwwFormUrlencoded(data);
     ApiPost("rateprofile", body)
-      .then((res) => {
+      .then((res: any) => {
         console.log("res", res);
+        // { res.status === "true" && setLike(!like) }
         showAlert("Liked");
       })
       .catch((err) => {
         console.log("err", err);
       });
-    setLike(!like);
+    // setLike(!like);
   };
 
   const msgChange = () => {
@@ -53,6 +64,7 @@ const MatchOrMessage = () => {
 
   const inboxData = (msgData: any) => {
     console.log('msgData', msgData);
+    setRate(msgData.rate)
     setViewProfileImg(msgData.profile_picture)
     dispatch(messageData(msgData))
   }
@@ -114,7 +126,7 @@ const MatchOrMessage = () => {
       <Container>
         <div className="activity-main">
           <div className="" onClick={rewind}>
-            <div className="rewind">
+            <div className="rewind animation">
               {/* <Link to="/community"> */}
               <img src="./assets/img/Group 17.png" />
               {/* </Link> */}
@@ -122,24 +134,33 @@ const MatchOrMessage = () => {
             <p className="text">Rewind</p>
           </div>
           <div onClick={skip}>
-            <div className="skip-content">
+            <div className="skip-content animation">
               {/* <Link to="/success_stories"> */}
               <img src="./assets/img/Group 18.png" />
               {/* </Link> */}
             </div>
             <p className="text">Skip</p>
           </div>
-          <div>
-            <div className="like-content">
+          {rate === "Like" ? <div>
+            <div className="like-content-second-img">
               <img
-                src="./assets/img/Group 19.png"
-                onClick={() => likehandleChange(!like)}
+                src="./assets/img/dislike heart.png"
+                onClick={() => likehandleChange()}
               />
             </div>
-            <p className="text">Like</p>
+            <p className="text">Dislike</p>
           </div>
+            : <div>
+              <div className="like-content animation">
+                <img
+                  src="./assets/img/Group 19.png"
+                  onClick={() => likehandleChange()}
+                />
+              </div>
+              <p className="text">Like</p>
+            </div>}
           <div>
-            <div className="message-content">
+            <div className="message-content animation">
               <Link to="/inbox">
                 <img
                   src="./assets/img/Group 20.png"
@@ -150,7 +171,7 @@ const MatchOrMessage = () => {
             <p className="text">Message</p>
           </div>
           <div>
-            <div className="profile-pic">
+            <div className="profile-pic animation">
               <img
                 src={viewProfileImg ? viewProfileImg : "./assets/img/nonprofileImg.png"}
                 onClick={() => ViewProfile(id)}
