@@ -198,7 +198,7 @@ const Login = () => {
                     </div>
                   </div>
                 </div>
-                <Button style={{ width: "100%", padding: "15px", marginTop: "" }} onClick={() => { setSplash(false) }}>Get started</Button>
+                <Button style={{ width: "100%", padding: "15px"}} onClick={() => { setSplash(false) }}>Get started</Button>
               </div>
             </Container>
           </div>

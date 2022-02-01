@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 body {
   font-family: "Poppins", sans-serif;
 }
+
 .loader-center {
   position: absolute;
   height: 100vh;
@@ -13,15 +15,18 @@ body {
   top: 0;
   z-index: 9999999;
 }
+
 ::-webkit-scrollbar {
   width: 5px;
 }
+
 /* .inbox-main .Conversation-starters .text-grid::-webkit-scrollbar{
   width: 10px !important;
 } */
 .css-dq1sse-MenuList::-webkit-scrollbar {
   display: none !important;
 }
+
 .layout-padding::-webkit-scrollbar {
   display: none !important;
 }
@@ -40,6 +45,7 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #c07e03;
 }
+
 .login-card {
   width: 600px;
   margin: 0 auto;
@@ -54,6 +60,7 @@ body {
 .layout-padding {
   padding: 50px 30px 30px 30px;
 }
+
 .App {
   overflow-y: auto !important;
   overflow-x: hidden;
@@ -77,9 +84,11 @@ body {
   text-align: left;
   letter-spacing: 0px;
 }
+
 .login-header .text h5 {
   font: normal normal 600 16px/25px Poppins;
 }
+
 .login-header .text p {
   font: italic normal normal 9px/14px Poppins;
   opacity: 0.42;
@@ -89,6 +98,7 @@ body {
   width: 55px;
   height: 55px;
 }
+
 .top-baloon {
   position: absolute;
   top: -50px;
@@ -96,6 +106,7 @@ body {
   width: 177px;
   height: 177px;
 }
+
 .profile-header-baloon {
   position: fixed;
   width: 100vw;
@@ -103,6 +114,7 @@ body {
   height: 13vh;
   z-index: 1;
 }
+
 .profile-header-baloon .top-baloon {
   position: absolute;
   top: -85px;
@@ -110,10 +122,12 @@ body {
   width: 287px;
   height: 287px;
 }
+
 .profile-header-baloon .login-header {
   margin: 32px auto 0 auto;
   padding: 0 103px;
 }
+
 .top-baloon::before,
 .top-baloon::after {
   content: "";
@@ -124,17 +138,20 @@ body {
   top: 0;
   background: #e69702 0% 0% no-repeat padding-box;
 }
+
 .top-baloon::before {
   opacity: 0.06;
   border-radius: 50%;
   z-index: 9 !important;
 }
+
 .top-baloon::after {
   transform: scale(1.2);
   opacity: 0.07;
   border-radius: 50%;
   z-index: 5 !important;
 }
+
 .login-footer {
   height: 501px;
   width: 100%;
@@ -144,6 +161,7 @@ body {
   overflow: hidden;
   z-index: -1;
 }
+
 .bottom-baloon {
   width: 501px;
   height: 501px;
@@ -151,6 +169,7 @@ body {
   left: calc(50% - 250.5px);
   bottom: -444px;
 }
+
 .bottom-baloon::before,
 .bottom-baloon::after {
   content: "";
@@ -161,17 +180,20 @@ body {
   top: 0;
   background: #e69702 0% 0% no-repeat padding-box;
 }
+
 .bottom-baloon::before {
   border-radius: 50%;
   z-index: 5;
   opacity: 0.09;
 }
+
 .bottom-baloon::after {
   border-radius: 50%;
   opacity: 0.07;
   z-index: 2;
   transform: scale(1.15);
 }
+
 .login h2 {
   text-align: left;
   font: normal normal bold 35px/53px Poppins;
@@ -185,10 +207,12 @@ body {
 .round-breacket-list ol {
   counter-reset: list;
 }
-.round-breacket-list ol > li {
+
+.round-breacket-list ol>li {
   list-style: none;
 }
-.round-breacket-list ol > li:before {
+
+.round-breacket-list ol>li:before {
   content: counter(list, lower-alpha) ") ";
   counter-increment: list;
   margin-right: 10px;
@@ -202,6 +226,7 @@ body {
   opacity: 0.45;
   margin: 30px 0 0 0 !important;
 }
+
 .login .login-input {
   border: none;
   border-bottom: 1px solid #acacac;
@@ -214,9 +239,11 @@ body {
   color: #e69702;
   font-weight: bold;
 }
+
 .login .login-input:focus {
   border-color: #e69904 !important;
 }
+
 .login ::placeholder {
   text-align: left;
   font: normal normal 600 16px/25px Poppins;
@@ -224,14 +251,15 @@ body {
   color: #e69904 !important;
   opacity: 1;
 }
+
 input[type="password"]::placeholder {
   letter-spacing: 3px;
 }
+
 .login .login-btn {
   width: 100%;
   height: 63px;
-  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
-    0% no-repeat padding-box;
+  background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
   border-radius: 13px;
   opacity: 1;
   border: none;
@@ -240,16 +268,19 @@ input[type="password"]::placeholder {
   letter-spacing: 0px;
   color: #000000 !important;
 }
+
 .container_check {
   transform: scale(1.2);
   margin-right: 10px;
 }
+
 .login .rememberme-label {
   font: normal normal normal 14px/21px Poppins;
   letter-spacing: 0px;
   color: #000000;
   opacity: 1;
 }
+
 .login .forgot-password {
   font: normal normal normal 14px/21px Poppins;
   letter-spacing: 0px;
@@ -263,9 +294,11 @@ input[type="password"]::placeholder {
   opacity: 0.45;
   margin-top: 25px !important;
 }
+
 .login .dont-have-account .dont-have-account-link {
   color: #e69702;
 }
+
 .login .forgot-password:hover,
 .login .dont-have-account .dont-have-account-link:hover {
   color: #e69904 !important;
@@ -278,9 +311,11 @@ input[type="password"]::placeholder {
   color: #000000;
   opacity: 0.45;
 }
+
 .signup-with-social {
   position: relative;
 }
+
 .signup-with-social::after,
 .signup-with-social::before {
   content: "";
@@ -291,9 +326,11 @@ input[type="password"]::placeholder {
   background: #707070;
   opacity: 0.25;
 }
+
 .signup-with-social::after {
   right: 0;
 }
+
 .signup-with-social::before {
   content: "";
   position: absolute;
@@ -304,9 +341,11 @@ input[type="password"]::placeholder {
   background: #707070;
   opacity: 0.25;
 }
+
 .input-field {
   position: relative;
 }
+
 .input-field img {
   position: absolute;
   right: 0;
@@ -314,51 +353,63 @@ input[type="password"]::placeholder {
   width: 21px;
   height: 21px;
 }
+
 .signup-with-social-icons {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   margin-top: 40px;
 }
+
 .signup-with-social-icons figure:nth-child(1) img {
   width: 30px;
   height: 30px;
   cursor: pointer;
 }
+
 .signup-with-social-icons figure:nth-child(2) img {
   width: 28px;
   height: 28px;
   cursor: pointer;
 }
+
 .signup-with-social-icons figure:nth-child(3) img {
   width: 30.5px;
   height: 22.87px;
   cursor: pointer;
 }
+
 .kep-login-facebook {
   all: unset !important;
 }
+
 #insta {
   display: none;
 }
+
 #google {
   display: none;
 }
+
 figure {
   margin: 0 !important;
 }
+
 .ErrMsg {
   color: #ff4757;
   font-size: 14px;
 }
+
 .SuccessMsg {
   color: #05c105;
   font-size: 14px;
 }
+
 .header .steps {
   display: flex;
   column-gap: 5px;
 }
+
 .header .steps .step {
   width: 15px;
   height: 15px;
@@ -366,14 +417,17 @@ figure {
   opacity: 1;
   border-radius: 50%;
 }
+
 .header .steps .step.done {
   background: #e69702 0% 0% no-repeat padding-box;
 }
+
 .gender-btn {
   border: none;
   outline: none;
   margin-top: 10px;
 }
+
 .gender .male {
   width: 84px;
   height: 42px;
@@ -392,6 +446,7 @@ figure {
   /* opacity: 0.5; */
   margin-left: 10px;
 }
+
 .gender-btn.gender-active {
   box-shadow: 0px 2px 6px #00000052;
 }
@@ -404,6 +459,7 @@ figure {
   border-radius: 6px;
   opacity: 1;
 }
+
 .slector .selected {
   text-align: left;
   font: normal normal normal 16px/25px Poppins;
@@ -411,22 +467,27 @@ figure {
   color: #000000;
   opacity: 0.3;
 }
+
 .reactSelector .css-1okebmr-indicatorSeparator {
   display: none;
 }
+
 .reactSelector .css-26l3qy-menu {
   margin-top: 0 !important;
   border: 1px solid #e69702;
   padding: 0 10px !important;
   position: unset;
 }
+
 .reactSelector .css-yk16xz-control {
   border-radius: 6px !important;
 }
+
 .reactSelector .css-1pahdxg-control {
   border-color: #e69702 !important;
   box-shadow: none !important;
 }
+
 .reactSelector .css-yt9ioa-option,
 .reactSelector .css-1n7v3ny-option {
   border-bottom: 1px solid #acacac !important;
@@ -436,15 +497,19 @@ figure {
   color: #000000;
   opacity: 1;
 }
+
 .reactSelector .css-1n7v3ny-option {
   background: transparent !important;
 }
+
 .reactSelector .css-yt9ioa-option:last-child {
   border: none !important;
 }
+
 .reactSelector .css-9gakcf-option {
   background: #f7c35f !important;
 }
+
 .textarea textarea {
   width: 100%;
   height: auto;
@@ -459,12 +524,15 @@ figure {
   outline: none !important;
   border-radius: unset !important;
 }
+
 .textarea textarea:focus {
   border-bottom: 1px solid #e69904;
 }
+
 .textarea textarea::-webkit-scrollbar {
   display: none;
 }
+
 .setProfileImage .guidelines {
   text-align: left;
   font: normal normal normal 16px/25px Poppins;
@@ -473,6 +541,7 @@ figure {
   opacity: 1;
   margin: 0;
 }
+
 .setProfileImage .span-text {
   text-align: left;
   font: normal normal normal 16px/25px Poppins;
@@ -480,6 +549,7 @@ figure {
   color: #000000;
   opacity: 0.45;
 }
+
 .setProfileImage .note {
   width: 100%;
   background: #fff5e2 0% 0% no-repeat padding-box;
@@ -489,11 +559,13 @@ figure {
   display: grid;
   place-items: center;
 }
+
 .setProfileImage .note span {
   font: italic normal normal 10px/16px Poppins;
   letter-spacing: 0px;
   color: #000000;
 }
+
 .take-picture {
   width: 190px;
   height: 190px;
@@ -501,17 +573,20 @@ figure {
   margin-top: 30px;
   position: relative;
 }
+
 .take-picture .take-picture-hand {
   width: 175px;
   height: 175px;
   border-radius: 100%;
 }
+
 video {
   min-height: 100% !important;
   min-width: 100% !important;
   border-radius: 50% !important;
   object-fit: cover !important;
 }
+
 .take-picture .camera {
   position: absolute;
   width: 53px;
@@ -524,6 +599,7 @@ video {
   bottom: 8px;
   right: 16px;
 }
+
 .take-picture-text {
   display: flex;
   justify-content: center;
@@ -532,16 +608,19 @@ video {
   text-align: center;
   margin-top: 50px;
 }
+
 .take-picture-text img {
   width: 18px;
   height: 18px;
 }
+
 .take-picture-text p {
   font: normal normal bold 14px/19px AppleSystemUIFont;
   letter-spacing: 0px;
   color: #000000;
   opacity: 1;
 }
+
 .verified {
   display: flex;
   flex-direction: column;
@@ -549,26 +628,30 @@ video {
   align-items: center;
   margin-top: 80px;
 }
+
 .verified figure {
   width: 193px;
   height: 188px;
 }
+
 .verified figure img {
   width: 100%;
   height: 100%;
 }
+
 .verified h5 {
   font: normal normal bold 21px/31px Poppins;
   letter-spacing: 0px;
   color: #05c105;
   margin-top: 47px;
 }
+
 /* ==================== changing  calendar icon ===== */
 input[type="date"] {
   position: relative;
   padding: 10px;
 
-  -webkit-appearance: none !important ;
+  -webkit-appearance: none !important;
   /* -webkit-appearance: textfield !important;
   -moz-appearance: textfield !important; */
 }
@@ -593,9 +676,11 @@ input[type="date"]:before {
   right: 10px;
   color: #999;
 }
+
 .toggleIcone .css-tj5bde-Svg {
   transform: rotate(180deg);
 }
+
 /* .layout-padding {
   padding: 0;
 } */
@@ -606,48 +691,59 @@ input[type="date"]:before {
   color: #000000;
   opacity: 0.5;
 }
+
 .container-width {
   width: 545px;
   margin-top: 50px;
 }
+
 /* @media (min-width: 200px) and (max-width: 768px) { */
 @media only screen and (max-width: 768px) {
+
   /* ========== login page css start =========== */
   .main-page {
     height: unset !important;
     padding-top: 40px;
     overflow: hidden;
   }
+
   .profile-header-baloon {
     height: 12vh;
     left: 0;
     padding: 37px 0 0 22px;
   }
+
   .layout-padding {
     padding: 30px;
   }
+
   .login-card {
     all: unset;
     overflow: hidden !important;
     height: 100%;
   }
+
   .login-header {
     padding: 0;
     margin-top: 0;
   }
+
   .container-width {
     width: 100%;
   }
+
   .profile-header-baloon .top-baloon {
     width: 172px;
     height: 172px;
     top: -44px;
     right: -55px;
   }
+
   .profile-header-baloon .login-header {
     padding: 0;
     margin: 0;
   }
+
   .login-header .text h5,
   .login-header .text p {
     margin: 0;
@@ -655,17 +751,21 @@ input[type="date"]:before {
     text-align: left;
     letter-spacing: 0px;
   }
+
   .login-header .text h5 {
     font: normal normal 600 12px/18px Poppins;
   }
+
   .login-header .text p {
     font: italic normal normal 6px/9px Poppins;
     opacity: 0.42;
   }
+
   .header-logo img {
     width: 46px;
     height: 46px;
   }
+
   .login h2 {
     margin: 50px 0;
   }
@@ -678,6 +778,7 @@ input[type="date"]:before {
     opacity: 1;
     margin: 0;
   }
+
   .header-text {
     text-align: left;
     font: normal normal 600 21px/31px Poppins;
@@ -685,10 +786,12 @@ input[type="date"]:before {
     color: #000000;
     opacity: 0.5;
   }
+
   .header .steps {
     display: flex;
     column-gap: 5px;
   }
+
   .header .steps .step {
     width: 15px;
     height: 15px;
@@ -696,28 +799,35 @@ input[type="date"]:before {
     opacity: 1;
     border-radius: 50%;
   }
+
   .header .steps .step.done {
     background: #e69702 0% 0% no-repeat padding-box;
   }
+
   .slector select::before {
     display: none;
   }
+
   .reactSelector .css-1okebmr-indicatorSeparator {
     display: none;
   }
+
   .reactSelector .css-26l3qy-menu {
     margin-top: 0 !important;
     border: 1px solid #e69702;
     padding: 0 10px !important;
     position: unset;
   }
+
   .reactSelector .css-yk16xz-control {
     border-radius: 6px !important;
   }
+
   .reactSelector .css-1pahdxg-control {
     border-color: #e69702 !important;
     box-shadow: none !important;
   }
+
   .reactSelector .css-yt9ioa-option,
   .reactSelector .css-1n7v3ny-option {
     border-bottom: 1px solid #acacac !important;
@@ -727,12 +837,15 @@ input[type="date"]:before {
     color: #000000;
     opacity: 1;
   }
+
   .reactSelector .css-1n7v3ny-option {
     background: transparent !important;
   }
+
   .reactSelector .css-yt9ioa-option:last-child {
     border: none !important;
   }
+
   .take-picture {
     width: 190px;
     height: 190px;
@@ -740,17 +853,20 @@ input[type="date"]:before {
     margin-top: 30px;
     position: relative;
   }
+
   .take-picture .take-picture-hand {
     width: 175px;
     height: 175px;
     border-radius: 100%;
   }
+
   video {
     min-height: 100% !important;
     min-width: 100% !important;
     border-radius: 50% !important;
     object-fit: cover !important;
   }
+
   .take-picture .camera {
     position: absolute;
     width: 53px;
@@ -763,6 +879,7 @@ input[type="date"]:before {
     bottom: 8px;
     right: 16px;
   }
+
   .take-picture-text {
     display: flex;
     justify-content: center;
@@ -771,16 +888,19 @@ input[type="date"]:before {
     text-align: center;
     margin-top: 50px;
   }
+
   .take-picture-text img {
     width: 18px;
     height: 18px;
   }
+
   .take-picture-text p {
     font: normal normal bold 14px/19px AppleSystemUIFont;
     letter-spacing: 0px;
     color: #000000;
     opacity: 1;
   }
+
   .signup-with-social::after,
   .signup-with-social::before {
     width: 25%;
@@ -810,41 +930,52 @@ input[type="date"]:before {
 
 /* ============================================================================================================== */
 @media only screen and (max-width: 491px) {
+
   .signup-with-social::after,
   .signup-with-social::before {
     width: 15%;
   }
+
   .forgot-password-text {
     font-size: 25px !important;
   }
 }
+
 @media only screen and (max-width: 369px) {
+
   .login .rememberme-label,
   .login .forgot-password {
     font-size: 11px;
   }
+
   .login .dont-have-account {
     font-size: 11px;
   }
+
   .signup-with-social::after,
   .signup-with-social::before {
     width: 10%;
   }
+
   .setProfileImage .span-text {
     font: normal normal normal 13px/20px Poppins;
   }
+
   .setProfileImage .guidelines {
     font: normal normal normal 15px/23px Poppins;
   }
+
   .header-text {
     font: normal normal 600 18px/23px Poppins;
   }
+
   .isAlert {
     width: auto;
   }
 }
 
 @media only screen and (max-width: 320px) {
+
   .signup-with-social::after,
   .signup-with-social::before {
     width: 6%;
@@ -853,6 +984,7 @@ input[type="date"]:before {
   .login .login-label {
     font: normal normal normal 14px/23px Poppins;
   }
+
   .setProfileImage .note span {
     font: italic normal normal 9px/16px Poppins;
   }
@@ -861,4 +993,74 @@ input[type="date"]:before {
 .select {
   width: 237px !important;
   margin-left: auto !important;
+}
+
+
+/* .swap-card{
+  transition: 1.5s !important;
+} */
+
+
+
+/* ==>subscription-main<== */
+
+.subscription-main {
+  background: linear-gradient(180deg, #EA9F45 0%, #FDF8F1 100%);
+  height: 100vh;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.subscription-main h1 {
+  color: #ffffff;
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.subscription-card {
+  background-color: #f5e2cd;
+  width: 100%;
+  height: 60vh;
+  border: 2px solid #f1a245;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+.subscription-card h1 {
+  color: #f79300;
+  padding: 30px 10px;
+  border-bottom: 2px solid #d3c7bf;
+}
+
+.subscription-card p {
+  color: #000;
+  font-size: 26px;
+  font-weight: 700;
+  padding: 10px 10px;
+}
+
+.subscription-card button {
+    display: inline-block;
+    border-radius: 13px;
+    background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
+    color: #000 !important;
+    border: 0 none;
+    padding: 0;
+    text-align: center;
+    padding: 10px 20px;
+    line-height: 3em;
+    margin-top: 15px;
+    letter-spacing: 0px;
+    box-shadow: none !important;
+    font: normal normal bold 18px/27px Poppins;
+    position: relative;
+  }
+
+.subscription-card-2 {
+  background-color: #f4f5dc;
+  width: 100%;
+  height: 60vh;
+  border: 2px solid #f1a245;
+  border-radius: 15px;
 }
