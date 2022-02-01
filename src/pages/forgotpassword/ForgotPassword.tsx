@@ -111,7 +111,7 @@ const ForgotPassword = () => {
                   <Buttons
                     children="Send Email"
                     onClick={() => { forgotPassword() }}
-                    ButtonStyle="login-btn"
+                    ButtonStyle="login-btn animation"
                     disabled={false}
                   />
                   <br />
