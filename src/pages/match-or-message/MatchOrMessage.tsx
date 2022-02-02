@@ -79,7 +79,8 @@ const MatchOrMessage = () => {
   return (
     <>
       <Container>
-        <div className="match-or-message mt-3 mb-3">
+        <div className="match-or-message mt-3 mb-3 d-flex">
+          <img src="./assets/img/left-arrow.png"/>
           <p>Profiles based on preference settings</p>
         </div>
       </Container>
@@ -149,7 +150,7 @@ const MatchOrMessage = () => {
             </div>
             <p className="text">Message</p>
           </div>
-          <div>
+          <div style={{textAlign:"center"}}> 
             <div className="profile-pic">
                 <img
                   src={viewProfileImg ? viewProfileImg : "./assets/img/nonprofileImg.png"}
