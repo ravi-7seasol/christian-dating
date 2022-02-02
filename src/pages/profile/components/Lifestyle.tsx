@@ -73,6 +73,7 @@ const Lifestyle = (props:any) => {
                 options={attendChurch}
                 onChange={(e:any)=> setLifeStyle({...lifeStyle, how_often_church:e.value})}
                 value={selectValue(lifeStyle.how_often_church, 'how_often_church')}
+                isMulti={false}
               />
             </div>
           </div>
@@ -86,6 +87,7 @@ const Lifestyle = (props:any) => {
                 options={readbibal}
                 onChange={(e:any)=> setLifeStyle({...lifeStyle, read_bible:e.value})}
                 value={selectValue(lifeStyle.read_bible, 'read_bible')}
+                isMulti={false}
               />
             </div>
           </div>
@@ -99,6 +101,7 @@ const Lifestyle = (props:any) => {
                 options={workout}
                 onChange={(e:any)=> setLifeStyle({...lifeStyle, workout:e.value})}
                 value={selectValue(lifeStyle.workout, 'workout')}
+                isMulti={false}
               />
             </div>
           </div>
@@ -112,6 +115,7 @@ const Lifestyle = (props:any) => {
                 options={alcohol}
                 onChange={(e:any)=> setLifeStyle({...lifeStyle, consume_alcohol:e.value})}
                 value={selectValue(lifeStyle.consume_alcohol, 'consume_alcohol')}
+                isMulti={false}
               />
             </div>
           </div>
@@ -125,6 +129,7 @@ const Lifestyle = (props:any) => {
                 options={smoke}
                 onChange={(e:any)=> setLifeStyle({...lifeStyle, smoke:e.value})}
                 value={selectValue(lifeStyle.smoke, 'smoke')}
+                isMulti={false}
               />
             </div>
           </div>

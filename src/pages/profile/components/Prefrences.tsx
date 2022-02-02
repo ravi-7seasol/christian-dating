@@ -12,8 +12,15 @@ const Prefrences = (props: any) => {
     your_intenet: '',
     personality: ''
   })
+  const [personality, setPersonality] = useState([]);
 
   useEffect(() => {
+    let data = personality.map((item: any) => item.value).join();
+    setPrefrences({ ...prefrences, personality: data })
+}, [personality]);
+
+  useEffect(() => {
+    console.log('prefrences', prefrences);
     props.prefrencesData(prefrences)
   }, [prefrences])
 
@@ -39,19 +46,52 @@ const Prefrences = (props: any) => {
     }
   }
   const personalityOptions = [
-    { value: "Adventurous", label: "Adventurous" },
-    { value: "Introvert", label: "Introvert" },
-    { value: "Extrovert", label: "Extrovert" },
-    { value: "Homebody", label: "Homebody" },
-    { value: "Athletic", label: "Athletic" },
-    { value: "Movie buff", label: "Movie buff" },
-    { value: "Chef", label: "Chef" }
+    { value: "Active", label: "Active" },
+        { value: "Adventurous", label: "Adventurous" },
+        { value: "Athletic", label: "Athletic" },
+        { value: "Calm", label: "Calm" },
+        { value: "Caring", label: "Caring" },
+        { value: "Agreeable", label: "Agreeable" },
+        { value: "Charismatic", label: "Charismatic" },
+        { value: "Cheerful", label: "Cheerful" },
+        { value: "Compassionate", label: "Compassionate" },
+        { value: "Confident", label: "Confident" },
+        { value: "Competitive", label: "Competitive" },
+        { value: "Curious", label: "Curious" },
+        { value: "Dramatic", label: "Dramatic" },
+        { value: "Disciplined", label: "Disciplined" },
+        { value: "Empathetic", label: "Empathetic" },
+        { value: "Enthusiastic", label: "Enthusiastic" },
+        { value: "Friendly", label: "Friendly" },
+        { value: "Flexible", label: "Flexible" },
+        { value: "Freethinking", label: "Freethinking" },
+        { value: "Generous", label: "Generous" },
+        { value: "Gentle", label: "Gentle" },
+        { value: "Gracious", label: "Gracious" },
+        { value: "Hardworking", label: "Hardworking" },
+        { value: "Healthy", label: "Healthy" },
+        { value: "Loyal", label: "Loyal" },
+        { value: "Observant", label: "Observant" },
+        { value: "Organized", label: "Organized" },
+        { value: "Passionate", label: "Passionate" },
+        { value: "Perfectionist", label: "Perfectionist" },
+        { value: "Playful", label: "Playful" },
+        { value: "Prudent", label: "Prudent" },
+        { value: "Relaxed", label: "Relaxed" },
+        { value: "Reliable", label: "Reliable" },
+        { value: "Selfless", label: "Selfless" },
+        { value: "Sensitive", label: "Sensitive" },
+        { value: "Serious", label: "Serious" },
+        { value: "Tidy", label: "Tidy" },
+        { value: "Trusting", label: "Trusting" },
+        { value: "Upright", label: "Upright" },
+        { value: "Warm", label: "Warm" },
+        { value: "Witty", label: "Witty" },
   ]
 
   const relationStatus = [
     { value: "Single", label: "Single"},
-    { value: "Married", label: "Married" },
-    { value: "In a relationship", label: "In a relationship" },
+    { value: "Widowed", label: "Widowed" },
     { value: "Divorced", label: "Divorced" },
   ];
   const meetingIntrest = [
@@ -104,6 +144,7 @@ const Prefrences = (props: any) => {
                 options={relationStatus}
                 onChange={(e: any) => setPrefrences({ ...prefrences, relationship_status: e.value })}
                 value={selectValue(prefrences.relationship_status, 'relationship_status')}
+                isMulti={false}
               />
             </div>
           </div>
@@ -117,6 +158,7 @@ const Prefrences = (props: any) => {
                 options={meetingIntrest}
                 onChange={(e: any) => setPrefrences({ ...prefrences, intrusted_in_meating: e.value })}
                 value={selectValue(prefrences.intrusted_in_meating, 'intrusted_in_meating')}
+                isMulti={false}
               />
             </div>
           </div>
@@ -130,6 +172,7 @@ const Prefrences = (props: any) => {
                 options={relationbuild}
                 onChange={(e: any) => setPrefrences({ ...prefrences, relationship_want_to_build: e.value })}
                 value={selectValue(prefrences.relationship_want_to_build, 'relationship_want_to_build')}
+                isMulti={false}
               />
             </div>
           </div>
@@ -143,6 +186,7 @@ const Prefrences = (props: any) => {
                 options={intent}
                 onChange={(e: any) => setPrefrences({ ...prefrences, your_intenet: e.value })}
                 value={selectValue(prefrences.your_intenet, 'your_intenet')}
+                isMulti={false}
               />
             </div>
           </div>
@@ -154,8 +198,9 @@ const Prefrences = (props: any) => {
               <ReactSelect
                 placeholder="Select Your Personality"
                 options={personalityOptions}
-                onChange={(e: any) => setPrefrences({ ...prefrences, personality: e.value })}
-                value={selectValue(prefrences.personality, 'personality')}
+                onChange={(e: any) => setPersonality(e)}
+                value={personality}
+                isMulti={true}
               />
             </div>
           </div>

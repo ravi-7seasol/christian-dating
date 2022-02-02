@@ -709,14 +709,11 @@ const Inbox = () => {
                     </div>
                     {
 
-
-                      <div className="d-flex  justify-content-around">
-                        <Slider {...settings} > {
-                          staticMsg.map((data: any, i: number) => (
-                            <span className="staticmsg-span" onClick={() => sendStaticMsg(data.msg)}>{data.msg}<br /></span>
-                          ))
-                        } </Slider>
-                      </div>
+                      <div className="d-flex  justify-content-around"> {
+                        staticMsg.map((data: any, i: number) => (
+                          <span className="staticmsg-span" style={{cursor:"pointer"}} onClick={() => sendStaticMsg(data.msg)}>{data.msg}<br /></span>
+                        ))
+                      }</div>
                     }
                     <div className="input-area">
                       <div>
