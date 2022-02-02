@@ -10,59 +10,6 @@ import { setIsLoading } from "../../redux/actions/loadingAction";
 import { useDispatch } from "react-redux";
 
 const ImageSwap = (props) => {
-  const allData = [
-    {
-      id: 0,
-      img: "https://placeimg.com/600/300/people",
-      name: "Demo",
-      text: "This is a demo for Tinder like swipe cards",
-      address: "USA, San Francisco Bay Area | Religion: ",
-      addressspan: "Catholic",
-      firstname: "John doe 1, 36",
-      genderimg: "./assets/img/male.png",
-    },
-    {
-      id: 1,
-      img: "https://placeimg.com/600/300/animals",
-      name: "Demo",
-      text: "This is a demo for Tinder like swipe cards",
-      address: "USA, San Francisco Bay Area | Religion: ",
-      addressspan: "Catholic",
-      firstname: "John doe 2, 36",
-      genderimg: "./assets/img/male.png",
-    },
-    {
-      id: 2,
-      img: "https://placeimg.com/600/300/nature",
-      name: "Demo",
-      text: "This is a demo for Tinder like swipe cards",
-      address: "USA, San Francisco Bay Area | Religion: ",
-      addressspan: "Catholic",
-      firstname: "John doe 3, 36",
-      genderimg: "./assets/img/male.png",
-    },
-    {
-      id: 3,
-      img: "https://placeimg.com/600/300/tech",
-      name: "Demo",
-      text: "This is a demo for Tinder like swipe cards",
-      address: "USA, San Francisco Bay Area | Religion: ",
-      addressspan: "Catholic",
-      firstname: "John doe 4, 36",
-      genderimg: "./assets/img/male.png",
-    },
-    {
-      id: 4,
-      img: "https://placeimg.com/600/300/arch",
-      name: "Demo",
-      text: "This is a demo for Tinder like swipe cards",
-      address: "USA, San Francisco Bay Area | Religion: ",
-      addressspan: "Catholic",
-      firstname: "John doe 5, 36",
-      genderimg: "./assets/img/male.png",
-    },
-  ];
-  const [data, setData] = useState(allData);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -81,8 +28,19 @@ const ImageSwap = (props) => {
         rate:getProfileMatch[getProfileMatch.length - 1].rate,
       }
       props.Data(data)
+      props.rateTogChange(false)
     }
   }, [getProfileMatch]);
+
+  useEffect(() => {
+    if(props.rateChange){
+      // setGetProfileMatch({...getProfileMatch, rate : !getProfileMatch[getProfileMatch.length - 1].rate})
+      let test = getProfileMatch[getProfileMatch.length - 1].rate === null ? "Like" : getProfileMatch[getProfileMatch.length - 1].rate === "dislike" ? "Like" : "dislike"
+      let newData = [...getProfileMatch]
+      newData[newData.length-1].rate = test
+      setGetProfileMatch(newData)
+    }
+  }, [props.rateChange]);    
 
   useEffect(() => {
     let token = {
@@ -132,10 +90,6 @@ const ImageSwap = (props) => {
     }
   }, [props]);
 
-  useEffect(() => {
-    console.log("swapedProfile", swapedProfile);
-  }, [swapedProfile]);
-
   const onRewind = () => {
     setIds([]);
     setGetProfileMatch(profileMatches);
@@ -179,18 +133,8 @@ const ImageSwap = (props) => {
     };
   }, []);
 
-  const ViewProfile = (id) => {
-    console.log("clicked");
-    // navigate(`/show-profile?profileid=${id}`);
-  };
-
-  useEffect(() => {
-    console.log("getProfileMatch", getProfileMatch);
-  }, [getProfileMatch]);
-
   useEffect(() => {
     const test = document.getElementById("test");
-    console.log("test", test);
     if (test) {
       test.addEventListener("click", () => {
         // alert("hi")
@@ -231,7 +175,7 @@ const ImageSwap = (props) => {
                     <p>Verified picture</p>
                   </div>
 
-                  <div className="details">
+                  <div className={`details ${row.length - 1 === i && 'card-box-shadow'}`}>
                     <div className="">
                     {item.address && <p>{item.address} Bay Area | Religion<span> {item.addressspan} </span>
                       </p>}

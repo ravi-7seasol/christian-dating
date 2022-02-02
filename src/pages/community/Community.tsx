@@ -278,13 +278,14 @@ const Community = () => {
             <div className="select">
                 <ReactSelect placeholder="Select Category" options={topic} onChange={(e: any) => getTopicData(e.value)}
                     value={selectValue(selectedId,"category")}
+                    // isMulti={false}
                 />
             </div>
 
             <div className="community" style={{ position: "relative" }}>
                 <div className="">
                     {getTopicList?.map((item: any, i: number) => (
-                        <div className='d-flex pt-4 align-items-center' key={i}>
+                        <div className='d-flex pt-4 ' key={i}>
                             <div className='set-img-position'>
                                 <img src={item.sender_image ? item.sender_image : "./assets/img/nonprofileImg.png"} style={{ width: "55px", height: "55px", borderRadius: "100%" }} />
                                 <div className='active'></div>

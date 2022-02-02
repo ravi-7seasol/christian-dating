@@ -1039,7 +1039,7 @@ input[type="date"]:before {
   padding: 10px 10px;
 }
 
-.subscription-card button {
+.subscription-main button {
     display: inline-block;
     border-radius: 13px;
     background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
@@ -1090,7 +1090,9 @@ input[type="date"]:before {
   padding: 10px 10px;
 }
 
-.subscription-card-2 button {
+
+
+/* .subscription-card-2 button {
     display: inline-block;
     border-radius: 13px;
     background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
@@ -1105,32 +1107,99 @@ input[type="date"]:before {
     box-shadow: none !important;
     font: normal normal bold 18px/27px Poppins;
     position: relative;
-  }
+  } */
 
 
   @media(max-width:574px){
+    .subscription-main{
+      padding: 0px;
+    }
+
+    .subscription-body{
+      padding: 10px 0px;
+    }
+
     .subscription-main h1{
-      font-size: 20px !important;
-      padding: 15px 5px;
-      margin-bottom: 15px;
+      font-size: 14px !important;
+      padding: 5px;
+      margin-bottom: 0;
     }
 
     .subscription-card {
-      padding: 40px 20px 25px;
+      padding: 10px 0px;
     }
 
     .subscription-card p {
       color: #000;
-      font-size: 20px;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 0px !important;
+      margin-bottom: 5px;
+    }
+    
+    .subscription-card-2 p {
+      color: #000;
+      margin-bottom: 5px;
+      font-size: 16px;
       font-weight: 500;
       padding: 0px !important;
     }
 
-    .subscription-card-2 p {
+    .margin-bottom{
+      margin-bottom: 10px;
+    }
+
+    .subscription-main button{
+      padding: 5px 15px;
+      font-size: 12px;
+    }
+  }
+
+  @media(min-width:574px) and (max-width:768px){
+    .margin-bottom{
+      margin-bottom: 10px;
+    }
+  }
+
+  @media(min-width:574px) and (max-width:991px){
+    .subscription-main{
+      padding: 0px;
+    }
+
+    .subscription-body{
+      padding: 10px 0px;
+    }
+
+    .subscription-main h1{
+      font-size: 14px !important;
+      padding: 5px;
+      margin-bottom: 0;
+    }
+
+    .subscription-card {
+      height: 100%;
+      padding: 10px 0px;
+    }
+
+    .subscription-card p {
       color: #000;
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 500;
       padding: 0px !important;
+      margin-bottom: 5px;
+    }
+    
+    .subscription-card-2 p {
+      color: #000;
+      margin-bottom: 5px;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 0px !important;
+    }
+
+    .subscription-main button{
+      padding: 5px 15px;
+      font-size: 12px;
     }
   }
 
@@ -1138,11 +1207,11 @@ input[type="date"]:before {
   /* ===================================================================>Conversation Started<=================================================================== */
 
 
-  .conversation-started{
+  /* .conversation-started{
       background-color: #e69702;
       height: 40px;
       width: 100%;
-  }
+  } */
 
 /* mathc or message for animation end============== */
 

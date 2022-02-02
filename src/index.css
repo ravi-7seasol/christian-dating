@@ -585,6 +585,7 @@
   box-shadow: 0px 3px 6px #00000029;
   opacity: 1;
 }
+
 .activity-main .like-content-second-img {
   width: 55px;
   height: 55px;
@@ -595,13 +596,15 @@
 }
 
 .activity-main .like-content img {
-  margin: 12px;
+  margin: 13px;
   margin-top: 13px;
+  width:28px;
 }
+
 .activity-main .like-content-second-img img {
-  margin-left: 10px;
-  width: 34px;
-  margin-top: 13px;
+  margin-left: 12px;
+  width: 30px;
+  margin-top: 17px;
 }
 
 .activity-main .like-content p {
@@ -1872,9 +1875,9 @@ color-white = #fff */
   }
 
   .activity-main .like-content img {
-    width: 30px !important;
-    height: 30px !important;
-    margin: 5px !important;
+    width: 22px !important;
+    height: 22px !important;
+    margin: 9px !important;
   }
 
   .activity-main .message-content img {
@@ -1973,4 +1976,25 @@ color-white = #fff */
   /* margin-left: 10px; */
   position: absolute;
   text-align: center;
+}
+
+.inbox-profile-img .profile-content img{
+  width: 55px;
+  height: 55px;
+  border-radius: 100% !important;
+  margin-top: 5px;
+}
+
+.slick-slider{
+  padding: 0px 35px;
+}
+
+.slick-slide{
+  margin: 0 10px;
+}
+
+.set-message-content{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
 }

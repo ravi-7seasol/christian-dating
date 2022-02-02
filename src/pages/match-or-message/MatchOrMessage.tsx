@@ -15,6 +15,7 @@ import { Store } from "react-notifications-component";
 import { cssTransition, toast, ToastContainer } from "react-toastify";
 import { messageData } from '../../redux/actions/messageDataAction';
 import { useNavigate } from "react-router-dom";
+import Subscription from "../components/Subscription";
 const MatchOrMessage = () => {
   const navigate = useNavigate();
   // const [like, setLike] = useState(false);
@@ -23,21 +24,14 @@ const MatchOrMessage = () => {
   const [isRewind, setIsRewind] = useState(false);
   const [isSkip, setIsSkip] = useState(false);
   const [rate, setRate] = useState('')
+  const [subscriptionModal, setSubscriptionModal] = useState (false)
+  const [togRate, setTogRate] = useState(false);
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    console.log('rate', rate);
-  }, [rate]);
-
-  // useEffect(() => {
-  //   setLike(false)
-  // }, [id]);
 
   const likehandleChange = () => {
     let data = {
       id: id,
-      // id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id,
       rate: rate === "Like" ? "dislike" : "Like",
       token: AuthStorage.getToken(),
     };
@@ -45,8 +39,8 @@ const MatchOrMessage = () => {
     ApiPost("rateprofile", body)
       .then((res: any) => {
         console.log("res", res);
-        // { res.status === "true" && setLike(!like) }
-        showAlert("Liked");
+        { res.status === "true" && setTogRate(true)}
+        showAlert(rate === "Like" ? "Dislike" : "Like");
       })
       .catch((err) => {
         console.log("err", err);
@@ -92,7 +86,7 @@ const MatchOrMessage = () => {
     <>
       <Container>
         <div className="match-or-message mt-3 mb-3 d-flex">
-          <img src="./assets/img/left-arrow.png"/>
+          <img src="./assets/img/left-arrow.png" onClick={()=>{setSubscriptionModal(true)}}/>
           <p>Profiles based on preference settings</p>
         </div>
       </Container>
@@ -123,11 +117,13 @@ const MatchOrMessage = () => {
         isRewind={isRewind}
         changeRewind={() => setIsRewind(false)}
         changeSkip={() => setIsSkip(false)}
+        rateChange={togRate}
+        rateTogChange={setTogRate} 
       />
       <Container>
         <div className="activity-main">
-          <div className="" onClick={rewind}>
-            <div className="rewind animation">
+          <div className="">
+            <div className="rewind animation" style={{cursor:"pointer"}} onClick={rewind}>
               {/* <Link to="/community"> */}
               <img src="./assets/img/Group 17.png" />
               {/* </Link> */}
@@ -135,7 +131,7 @@ const MatchOrMessage = () => {
             <p className="text">Rewind</p>
           </div>
           <div onClick={skip}>
-            <div className="skip-content animation">
+            <div className="skip-content animation"  style={{cursor:"pointer"}} onClick={skip}>
               {/* <Link to="/success_stories"> */}
               <img src="./assets/img/Group 18.png" />
               {/* </Link> */}
@@ -143,25 +139,23 @@ const MatchOrMessage = () => {
             <p className="text">Skip</p>
           </div>
           {rate === "Like" ? <div>
-            <div className="like-content-second-img">
+            <div className="like-content-second-img" style={{cursor:"pointer"}} onClick={() => likehandleChange()}>
               <img
-                src="./assets/img/dislike heart.png"
-                onClick={() => likehandleChange()}
+                src="./assets/img/Group 19.png"
               />
             </div>
             <p className="text">Dislike</p>
           </div>
             : <div>
-              <div className="like-content animation">
+              <div className="like-content animation" style={{cursor:"pointer"}} onClick={() => likehandleChange()}>
                 <img
-                  src="./assets/img/Group 19.png"
-                  onClick={() => likehandleChange()}
+                  src="./assets/img/dislike heart.png"
                 />
               </div>
               <p className="text">Like</p>
             </div>}
-          <div>
-            <div className="message-content animation">
+            <div className="set-message-content">
+            <div className="message-content animation" style={{cursor:"pointer"}} onClick={() => msgChange()}>
               <Link to="/inbox">
                 <img
                   src="./assets/img/Group 20.png"
@@ -172,10 +166,9 @@ const MatchOrMessage = () => {
             <p className="text">Message</p>
           </div>
           <div style={{textAlign:"center"}}>
-            <div className="profile-pic animation">
+          <div className="profile-pic animation" style={{cursor:"pointer"}} onClick={() => ViewProfile(id)}>
               <img
                 src={viewProfileImg ? viewProfileImg : "./assets/img/nonprofileImg.png"}
-                onClick={() => ViewProfile(id)}
               />
             </div>
             <p className="text">View profile</p>
@@ -195,37 +188,9 @@ const MatchOrMessage = () => {
           </div>
         </div>
       </Container>
-      <div className="subscription-main">
-        <h1>SUBSCRIBE TO CONNECT WITH YOUR MATCHES</h1>
-        <Container>
-          <Row className="">
-            <Col md={6} className="mb-5">
-              <div className="subscription-card">
-                <h1> 1 MONTH</h1>
-                <p>Unlimited Match</p>
-                <p>Unlimited Message</p>
-                <p>Community Chat</p>
-                <Button>BUY AT $19.99</Button>
-              </div>
-            </Col>
-            <Col md={6} className="">
-              <div className="subscription-card-2">
-                <div className="subscription-header">
-                  <h1>MOST POPULAR</h1>
-                </div>
-                <div className="subscription-body">
-
-                  <h1> 3 MONTH</h1>
-                  <p>Unlimited Match</p>
-                  <p>Unlimited Message</p>
-                  <p>Community Chat</p>
-                  <Button>BUY AT $39.99</Button>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+     {
+       subscriptionModal && <Subscription show ={subscriptionModal} onHide={()=>setSubscriptionModal(false)}/>
+     }
     </>
   );
 };

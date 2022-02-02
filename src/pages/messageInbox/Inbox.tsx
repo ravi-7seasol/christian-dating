@@ -13,6 +13,7 @@ import { setIsLoading } from "../../redux/actions/loadingAction";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import ReactHtmlParser from "react-html-parser";
 import moment from "moment";
+import Slider from "react-slick";
 
 const Inbox = () => {
   const { innerWidth: width, innerHeight: height } = window;
@@ -160,7 +161,13 @@ const Inbox = () => {
       msg: "Hii"
     },
     {
-      msg: "How are you"
+      msg: "How are you?"
+    },
+    {
+      msg: "I am fine"
+    },
+    {
+      msg: "What about you?"
     },
   ]
 
@@ -220,7 +227,7 @@ const Inbox = () => {
 
     const getChatData = {
       token: tokenID,
-      participant_id: selectedChatId,
+      participant_id: selectedID,
     };
 
     const body = xwwwFormUrlencoded(getChatData);
@@ -283,6 +290,7 @@ const Inbox = () => {
           getChat();
           setSendMsg("");
           setClearText(true)
+          getChatList();
         })
         .catch((error) => {
           console.log(error);
@@ -311,24 +319,34 @@ const Inbox = () => {
     setSelectedImage(undefined);
   };
 
+  const settings = {
+    className: "slider variable-width",
+    dots: false,
+    infinite: false,
+    centerMode: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    variableWidth: true
+  }
+
   return (
     <>
       <div className="inbox-main px-3">
         <Container>
           <Row>
-            <Col md={5}>
-              <div className="inbox-profile-img">
-                <div className="profile-content">
-                  <img src="./assets/img/profile-picture.png" />
-                  <h6>likes you</h6>
+            <Col md={5} className="p-0">
+              <div className="inbox-profile-img mt-3">
+                <div className="profile-content" style={{ textAlign: "center" }}>
+                  <img src={chatList?.liked_by ? chatList.liked_by : "./assets/img/nonprofileImg.png"} />
+                  {chatList?.liked_by.length > 0 && <h6>likes you</h6>}
                 </div>
-                <div className="profile-content">
-                  <img src="./assets/img/profile-picture.png" />
-                  <h6>you like</h6>
+                <div className="profile-content" style={{ textAlign: "center" }}>
+                  <img src={chatList?.likes[0]?.profile_picture ? chatList.likes[0].profile_picture : "./assets/img/nonprofileImg.png"} />
+                  {chatList?.likes.length && <h6>you like</h6>}
                 </div>
-                <div className="profile-content">
-                  <img src="./assets/img/profile-picture.png" />
-                  <h6>match</h6>
+                <div className="profile-content" style={{ textAlign: "center" }}>
+                  <img src={chatList?.matches ? chatList.matches[chatList.matches.length - 1].profile_picture : "./assets/img/nonprofileImg.png"} />
+                  {chatList?.matches.length && <h6>match</h6>}
                 </div>
                 <div className="profile-content">
                   <div className="like-counter">{chatList && chatList.viewed}</div>
@@ -336,9 +354,8 @@ const Inbox = () => {
                 </div>
               </div>
               <div className="border-content"></div>
-              <div>
+              <div style={{ textAlign: "center" }}>
                 <h3 className="Messages-text">Messages</h3>
-
               </div>
               <div className="handle-chat-scroll">
                 <div className="messages">
@@ -514,10 +531,6 @@ const Inbox = () => {
                               </div>
                             } */}
                           </div>
-
-
-
-
                         </div>
                       )
                       }
@@ -611,7 +624,6 @@ const Inbox = () => {
                                           : "massage-and-time"
                                       }
                                     >
-
                                       <h3
                                         className={
                                           data.sender_id !== currentUser
@@ -627,11 +639,8 @@ const Inbox = () => {
                                       </p>
                                     </div>
                                   )
-
                                   :
-
                                   data.sender_id === selectedID && (
-
                                     <div
                                       key={i}
                                       className={
@@ -640,7 +649,6 @@ const Inbox = () => {
                                           : "massage-and-time"
                                       }
                                     >
-
                                       <h3
                                         className={
                                           data.sender_id !== currentUser
@@ -656,13 +664,7 @@ const Inbox = () => {
                                       </p>
                                     </div>
                                   )
-
                             )}
-
-
-
-
-
                             {gifTog && (
                               <div className="gif-container">
                                 <div className="icon">
@@ -707,11 +709,14 @@ const Inbox = () => {
                     </div>
                     {
 
-                      <div className="d-flex  justify-content-around"> {
-                        staticMsg.map((data: any, i: number) => (
-                          <span className="staticmsg-span" onClick={() => sendStaticMsg(data.msg)}>{data.msg}<br /></span>
-                        ))
-                      }</div>
+
+                      <div className="d-flex  justify-content-around">
+                        <Slider {...settings} > {
+                          staticMsg.map((data: any, i: number) => (
+                            <span className="staticmsg-span" onClick={() => sendStaticMsg(data.msg)}>{data.msg}<br /></span>
+                          ))
+                        } </Slider>
+                      </div>
                     }
                     <div className="input-area">
                       <div>
