@@ -278,7 +278,7 @@ const Community = () => {
             <div className="select">
                 <ReactSelect placeholder="Select Category" options={topic} onChange={(e: any) => getTopicData(e.value)}
                     value={selectValue(selectedId,"category")}
-                    // isMulti={false}
+                    isMulti={false}
                 />
             </div>
 
