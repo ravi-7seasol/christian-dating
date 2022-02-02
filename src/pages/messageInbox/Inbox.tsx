@@ -56,7 +56,7 @@ const Inbox = () => {
       getChatList()
       // messageOpen(selectedData)
       if (selectedData) {
-        messageOpen(selectedData)
+        messageOpen(selectedData, "")
       }
     }, MINUTE_MS);
 
@@ -185,20 +185,37 @@ const Inbox = () => {
       });
   };
 
-  const messageOpen = (item: any) => {
-    let activeChat 
+  const messageOpen = (item: any, flag: string) => {
+    setDisplayData(false)
+    let activeChat
+    let activeMatchChat
     if (chatList.current_user !== item.receiver_id) {
       activeChat = chatList.chat.findIndex((data: any) => data.receiver_id === item.receiver_id)
-    } else {
+    } else if (chatList.current_user === item.receiver_id) {
       activeChat = chatList.chat.findIndex((data: any) => data.sender_id === item.sender_id)
+    }
+    else if (chatList.current_user !== item.id) {
+      activeMatchChat = chatList.starter.findIndex((data: any) => data.id === item.id)
     }
     const selectedChatId = chatList.current_user !== item.receiver_id ? item.receiver_id : item.sender_id
 
-    chatList.chat[activeChat].total_unread_messages = "0"
+    if (flag === "chat") {
+      setSelectedID(selectedChatId);
+      setTog(true);
+      setSelectedData(item);
+    } else if (flag === "starter") {
+      setSelectedID(item.id);
+      setTog(true);
+      setSelectedData(item);
+    }
 
-    setSelectedID(selectedChatId);
-    setTog(true);
-    setSelectedData(item);
+
+    // if (activeChat) {
+    //   chatList.chat[activeChat].total_unread_messages = "0"
+    // }
+
+
+
     const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
 
     const getChatData = {
@@ -341,8 +358,8 @@ const Inbox = () => {
                             } messages`}
                           key={i}
                           onClick={() => {
-                            messageOpen(data);
-                            setDisplayData(false)
+                            messageOpen(data, "chat");
+
                           }}
                         >
                           <div className="chat-profile-img-main">
@@ -390,7 +407,7 @@ const Inbox = () => {
                             } messages`}
                           key={i}
                           onClick={() => {
-                            messageOpen(data);
+                            messageOpen(data, "chat");
                           }}
                         >
                           <div className="chat-profile-img-main">
@@ -444,7 +461,7 @@ const Inbox = () => {
 
 
 
-                {/* {
+                {
                   chatList && chatList.starter.length ? (
                     <>
                       {chatList.starter.map((data: any, i: number) =>
@@ -453,8 +470,7 @@ const Inbox = () => {
                             } messages`}
                           key={i}
                           onClick={() => {
-                            messageOpen(data);
-                            setDisplayData(false)
+                            messageOpen(data, "starter");
                           }}
                         >
 
@@ -486,7 +502,7 @@ const Inbox = () => {
                           >
                             <h6>MATCH</h6>
 
-                            {data.total_unread_messages !== "0" &&
+                            {/* {data.total_unread_messages !== "0" &&
                               <div
                                 className={
                                   data.total_unread_messages
@@ -496,7 +512,7 @@ const Inbox = () => {
                               >
                                 {data.total_unread_messages}
                               </div>
-                            }
+                            } */}
                           </div>
 
 
@@ -508,7 +524,7 @@ const Inbox = () => {
                     </>
                   )
                     : ""
-                } */}
+                }
 
 
 
@@ -535,13 +551,13 @@ const Inbox = () => {
                           <div className="messages">
                             <div className="chat-profile-img-main">
                               <img
-                                src={displayData ? message_Data.profile_picture : selectedData?.receiver_participant_image ? selectedData?.receiver_participant_image : "./assets/img/nonprofileImg.png"}
+                                src={displayData ? message_Data.profile_picture : selectedData?.receiver_participant_image ? selectedData?.receiver_participant_image : selectedData?.profile_picture ? selectedData?.profile_picture : "./assets/img/nonprofileImg.png"}
                                 className="chat-profile"
                               />
                               <div className="online"></div>
                             </div>
                             <div className="chat-messages">
-                              <h4>{displayData ? message_Data.name : selectedData?.receiver_name}</h4>
+                              <h4>{displayData ? message_Data.name : selectedData?.receiver_name ? selectedData?.receiver_name : selectedData?.name}</h4>
                               <h6 className="messages-time">
                                 {moment(selectedData?.last_message_time).format(
                                   "LT"
@@ -576,7 +592,7 @@ const Inbox = () => {
                     </div>
 
                     {/* <div className="border-content"></div> */}
-                    {width < 767 && <h5 style={{ textAlign: "center" }}>Now Chatting with {displayData ? message_Data.name : chatList?.current_user !== selectedData?.receiver_id ? selectedData?.receiver_name : selectedData?.sender_name}</h5>}
+                    {width < 767 && <h5 style={{ textAlign: "center" }}>Now Chatting with {displayData ? message_Data.name : selectedData?.receiver_name ? selectedData?.receiver_name : selectedData?.name ? selectedData?.name : selectedData?.sender_name}</h5>}
                     <div className="scrool px-3" id="chatBox">
                       <div className="text-grid">
                         {chatData?.chat?.length ? (
