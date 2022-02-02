@@ -76,6 +76,13 @@ const ShowProfile = () => {
             value: "",
         },
     ]);
+    const [personality, setPersonality] = useState([
+        {
+            value: "",
+            label: ""
+        }
+    ]);
+
     const [imgName, setImgName] = useState("");
     const [isVerify, setIsVerify] = useState<any>("");
 
@@ -114,12 +121,8 @@ const ShowProfile = () => {
             return alcohol.find((data: any) => data.value === value);
         } else if (type === "smoke") {
             return smoke.find((data: any) => data.value === value);
-        } else if (type === "personality") {
-            return personalityOptions.find((data: any) => data.value === value);
-        }
-        else if (type === "intrusted_in_meating") {
+        } else if (type === "intrusted_in_meating") {
             return meetingIntrest.find((data: any) => data.value === value);
-
         }
     };
 
@@ -148,44 +151,45 @@ const ShowProfile = () => {
             .then((res: any) => {
                 setEditProfileData({
                     ...editProfileData,
-                    name: res.user.name,
-                    dob: res.user.dob,
-                    address: res.user.address,
-                    gender: res.user.gender,
-                    denomination: res.user.denomination,
-                    your_story: res.user.your_story,
-                    short_bio: res.user.short_bio,
-                    relationship_status: res.user.relationship_status,
-                    intrusted_in_meating: res.user.intrusted_in_meating,
-                    relationship_want_to_build: res.user.relationship_want_to_build,
-                    your_intenet: res.user.your_intenet,
-                    how_often_church: res.user.how_often_church,
-                    read_bible: res.user.read_bible,
-                    workout: res.user.workout,
-                    consume_alcohol: res.user.consume_alcohol,
-                    smoke: res.user.smoke,
-                    body_type: res.user.body_type,
-                    career: res.user.career,
-                    children: res.user.children,
-                    city: res.user.city,
-                    code: res.user.code,
-                    country: res.user.country,
-                    education: res.user.education,
-                    email: res.user.email,
-                    id: res.user.id,
-                    image: res.user.image,
-                    is_active: res.user.is_active,
-                    is_verify: res.user.is_verify,
-                    language: res.user.language,
-                    mobile_no: res.user.mobile_no,
-                    pets: res.user.pets,
-                    profile_picture: res.user.profile_picture,
-                    state: res.user.state,
-                    personality: res.user.personality,
+                    name: res.user[0].name,
+                    dob: res.user[0].dob,
+                    address: res.user[0].address,
+                    gender: res.user[0].gender,
+                    denomination: res.user[0].denomination,
+                    your_story: res.user[0].your_story,
+                    short_bio: res.user[0].short_bio,
+                    relationship_status: res.user[0].relationship_status,
+                    intrusted_in_meating: res.user[0].intrusted_in_meating,
+                    relationship_want_to_build: res.user[0].relationship_want_to_build,
+                    your_intenet: res.user[0].your_intenet,
+                    how_often_church: res.user[0].read_bible,
+                    workout: res.user[0].workout,
+                    consume_alcohol: res.user[0].consume_alcohol,
+                    smoke: res.user[0].smoke,
+                    body_type: res.user[0].body_type,
+                    career: res.user[0].career,
+                    children: res.user[0].children,
+                    city: res.user[0].city,
+                    code: res.user[0].code,
+                    country: res.user[0].country,
+                    education: res.user[0].education,
+                    email: res.user[0].email,
+                    id: res.user[0].id,
+                    image: res.user[0].image,
+                    is_active: res.user[0].is_active,
+                    is_verify: res.user[0].is_verify,
+                    language: res.user[0].language,
+                    mobile_no: res.user[0].mobile_no,
+                    pets: res.user[0].pets,
+                    profile_picture: res.user[0].profile_picture,
+                    state: res.user[0].state,
                     token: AuthStorage.getToken(),
                 });
+                setPersonality(
+                    res.user[0].personality.split(",").map((data: any) => ({ value: data, label: data }))
+                )
                 setFunFacts(
-                    res.user.funfacts.split(",").map((data: any) => ({ value: data }))
+                    res.user[0].funfacts.split(",").map((data: any) => ({ value: data }))
                 );
                 dispatch(setIsLoading(false));
             })
@@ -329,6 +333,16 @@ const ShowProfile = () => {
             setEditProfileData({ ...editProfileData, intrusted_in_meating: e.value })
         }
     };
+
+    useEffect(() => {
+        let data = personality.map((item: any) => item.value).join();
+        setEditProfileData({ ...editProfileData, personality: data })
+    }, [personality]);
+
+
+    const handleChangePersonality = (e: any) => {
+        setPersonality(e)
+    }
 
     const accordion = [
         {
@@ -502,8 +516,7 @@ const ShowProfile = () => {
 
     const relationOption = [
         { value: "Single", label: "Single" },
-        { value: "Married", label: "Married" },
-        { value: "In a relationship", label: "In a relationship" },
+        { value: "Widowed", label: "Widowed" },
         { value: "Divorced", label: "Divorced" },
     ];
 
@@ -524,13 +537,47 @@ const ShowProfile = () => {
     ];
 
     const personalityOptions = [
+        { value: "Active", label: "Active" },
         { value: "Adventurous", label: "Adventurous" },
-        { value: "Introvert", label: "Introvert" },
-        { value: "Extrovert", label: "Extrovert" },
-        { value: "Homebody", label: "Homebody" },
         { value: "Athletic", label: "Athletic" },
-        { value: "Movie buff", label: "Movie buff" },
-        { value: "Chef", label: "Chef" }
+        { value: "Calm", label: "Calm" },
+        { value: "Caring", label: "Caring" },
+        { value: "Agreeable", label: "Agreeable" },
+        { value: "Charismatic", label: "Charismatic" },
+        { value: "Cheerful", label: "Cheerful" },
+        { value: "Compassionate", label: "Compassionate" },
+        { value: "Confident", label: "Confident" },
+        { value: "Competitive", label: "Competitive" },
+        { value: "Curious", label: "Curious" },
+        { value: "Dramatic", label: "Dramatic" },
+        { value: "Disciplined", label: "Disciplined" },
+        { value: "Empathetic", label: "Empathetic" },
+        { value: "Enthusiastic", label: "Enthusiastic" },
+        { value: "Friendly", label: "Friendly" },
+        { value: "Flexible", label: "Flexible" },
+        { value: "Freethinking", label: "Freethinking" },
+        { value: "Generous", label: "Generous" },
+        { value: "Gentle", label: "Gentle" },
+        { value: "Gracious", label: "Gracious" },
+        { value: "Hardworking", label: "Hardworking" },
+        { value: "Healthy", label: "Healthy" },
+        { value: "Loyal", label: "Loyal" },
+        { value: "Observant", label: "Observant" },
+        { value: "Organized", label: "Organized" },
+        { value: "Passionate", label: "Passionate" },
+        { value: "Perfectionist", label: "Perfectionist" },
+        { value: "Playful", label: "Playful" },
+        { value: "Prudent", label: "Prudent" },
+        { value: "Relaxed", label: "Relaxed" },
+        { value: "Reliable", label: "Reliable" },
+        { value: "Selfless", label: "Selfless" },
+        { value: "Sensitive", label: "Sensitive" },
+        { value: "Serious", label: "Serious" },
+        { value: "Tidy", label: "Tidy" },
+        { value: "Trusting", label: "Trusting" },
+        { value: "Upright", label: "Upright" },
+        { value: "Warm", label: "Warm" },
+        { value: "Witty", label: "Witty" },
     ]
     const attendChurch = [
         { value: "Habitually", label: "Habitually" },
@@ -619,6 +666,7 @@ const ShowProfile = () => {
                                     editProfileData.relationship_status,
                                     "relationship_status"
                                 )}
+                                isMulti={false}
                             />
                         </div>
                     </div>
@@ -752,6 +800,7 @@ const ShowProfile = () => {
                                                     options={denominationOptions}
                                                     onChange={(e: any) => setEditProfileData({ ...editProfileData, denomination: e.value })}
                                                     value={selectValue(editProfileData.denomination, "denomination")}
+                                                    isMulti={false}
                                                 />
                                             </div>
                                         </div>
@@ -831,6 +880,7 @@ const ShowProfile = () => {
                                             options={denominationOptions}
                                             onChange={(e: any) => setEditProfileData({ ...editProfileData, denomination: e.value })}
                                             value={selectValue(editProfileData.denomination, "denomination")}
+                                            isMulti={false}
                                         />
                                     </div>
                                 </div>
@@ -956,10 +1006,12 @@ const ShowProfile = () => {
                                                         <ReactSelect
                                                             options={setlectOption(data.Name)}
                                                             placeholder={placeholderOption(data.Name)}
-                                                            onChange={(e: any) =>
+                                                            onChange={data.Name === "personality" ? (e: any) =>
+                                                                handleChangePersonality(e) : (e: any) =>
                                                                 handleChangeOptionSelect(e, data.Name)
                                                             }
-                                                            value={selectValue(data.value, data.Name)}
+                                                            value={data.Name === "personality" ? personality : selectValue(data.value, data.Name)}
+                                                            isMulti={data.Name === "personality" ? true : false}
                                                         />
                                                     ) : (
                                                         <InputField
@@ -1023,6 +1075,7 @@ const ShowProfile = () => {
                                                 handleChangeOptionSelect(e, item.Name)
                                             }
                                             value={selectValue(item.detail, item.Name)}
+                                            isMulti={false}
                                         /> : <InputField
                                             name={item.Name}
                                             maxLength={undefined}

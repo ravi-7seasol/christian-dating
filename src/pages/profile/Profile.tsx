@@ -37,7 +37,8 @@ const Profile = (props: any) => {
     read_bible: '',
     workout: '',
     consume_alcohol: '',
-    smoke: ''
+    smoke: '',
+    personality:'',
 
   })
 
@@ -85,7 +86,7 @@ const Profile = (props: any) => {
   }
 
   const prefrences = (data: any) => {
-    setProfile({ ...profile, your_story: data.your_story, short_bio: data.short_bio, relationship_status: data.relationship_status, intrusted_in_meating: data.intrusted_in_meating, relationship_want_to_build: data.relationship_want_to_build, your_intenet: data.your_intenet })
+    setProfile({ ...profile, your_story: data.your_story, short_bio: data.short_bio, relationship_status: data.relationship_status, intrusted_in_meating: data.intrusted_in_meating, relationship_want_to_build: data.relationship_want_to_build, your_intenet: data.your_intenet, personality: data.personality })
   }
 
   const lifeStyle = (data: any) => {

@@ -20,3 +20,5 @@ export const USERPROFILEIMAGE = "USER_PROFILE_IMAGE";
 
 export const MESSAGEID = "MESSAGEID";
 export const MESSAGEDATA = "MESSAGEDATA";
+
+export const USEREXPIRED = "USEREXPIRED"

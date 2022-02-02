@@ -16,20 +16,38 @@ import { useEffect } from "react";
 import AuthStorage from "../helper/AuthStorage";
 import ForgotPassword from "./forgotpassword/ForgotPassword";
 import EditProfile from '../pages/profile/components/EditProfile'
+import { RootStateOrAny, useSelector } from "react-redux";
 
 const Index = () => {
   const loction = useLocation()
   const navigate = useNavigate()
-  const forLayout = ["/", "/signup", "/profile","/forgot-password", "/terms-of-use", "/privacy-policy"]
+  const forLayout = ["/", "/signup", "/profile", "/forgot-password", "/terms-of-use", "/privacy-policy"]
   const forAuthLayout = ["/show-profile", "/inbox", "/match_or_message", "/community", "/success_stories", "/edit-profile"]
+  const expiredRoute = ["/inbox", "/community"]
 
   // const dispatch = useDispatch();
+  const userExpired = useSelector((state: RootStateOrAny) => state.user_Expired.user_expired)
+
+  useEffect(() => {
+    if (userExpired === "expired") {
+      if (expiredRoute.includes(loction.pathname)) {
+        navigate("/match_or_message")
+      }
+    }
+  }, [userExpired]);
+
+
   useEffect(() => {
     console.log("loction", loction);
-
     if (AuthStorage.isUserAuthenticated()) {
-      if(!forAuthLayout.includes(loction.pathname)){
+      if (!forAuthLayout.includes(loction.pathname)) {
         navigate("/match_or_message")
+      } else {
+        if (userExpired === "expired") {
+          if (expiredRoute.includes(loction.pathname)) {
+            navigate("/match_or_message")
+          }
+        }
       }
       // ApiGet("user/validate")
       //   .then((res) => {
@@ -43,7 +61,7 @@ const Index = () => {
     } else {
       if (!forLayout.includes(loction.pathname)) {
         navigate("/");
-      } 
+      }
     }
   }, []);
 

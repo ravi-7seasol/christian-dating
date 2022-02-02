@@ -444,7 +444,7 @@ const Inbox = () => {
 
 
 
-                {/* {
+                {
                   chatList && chatList.starter.length ? (
                     <>
                       {chatList.starter.map((data: any, i: number) =>
@@ -508,7 +508,7 @@ const Inbox = () => {
                     </>
                   )
                     : ""
-                } */}
+                }
 
 
 
@@ -693,7 +693,7 @@ const Inbox = () => {
 
                       <div className="d-flex  justify-content-around"> {
                         staticMsg.map((data: any, i: number) => (
-                          <span className="staticmsg-span" onClick={() => sendStaticMsg(data.msg)}>{data.msg}<br /></span>
+                          <span className="staticmsg-span" style={{cursor:"pointer"}} onClick={() => sendStaticMsg(data.msg)}>{data.msg}<br /></span>
                         ))
                       }</div>
                     }

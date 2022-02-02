@@ -113,7 +113,7 @@ const Personal = (props: any) => {
             <label className="login-label">Denomination</label>
 
             <div className="reactSelector mt-3">
-              <ReactSelect placeholder="Choose denomination" options={options} onChange={(e: any) => setPersonal({ ...personal, denomination: e.value })} value={selectValue(personal.denomination, "denomination")} />
+              <ReactSelect placeholder="Choose denomination" options={options} onChange={(e: any) => setPersonal({ ...personal, denomination: e.value })} value={selectValue(personal.denomination, "denomination")} isMulti={false}/>
             </div>
           </div>
           <InputField

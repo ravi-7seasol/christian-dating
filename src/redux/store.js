@@ -10,6 +10,7 @@ import { getProfileImageReducer } from './reducers/getProfileImageReducer';
 import { messageIdReducer } from './reducers/messageIdReducer';
 import { messageDataReducer } from './reducers/messageDataReducer';
 import { userProfileImageReducer } from './reducers/userProfileImageReducer';
+import { userExpiredReducer } from './reducers/userExpiredReducer';
 const middleware = [thunk];
 
 const rootReducer = combineReducers({
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   user_profile_Image:userProfileImageReducer,
   message_Id:messageIdReducer,
   message_Data:messageDataReducer,
+  user_Expired:userExpiredReducer,
 });
 
 

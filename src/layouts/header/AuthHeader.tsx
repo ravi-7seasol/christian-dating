@@ -9,6 +9,7 @@ import AuthStorage from "../../helper/AuthStorage";
 import { xwwwFormUrlencoded } from "../../helper/utils";
 import { getProfileImage } from "../../redux/actions/getProfileImage";
 import { setIsLoading } from "../../redux/actions/loadingAction";
+import { userExpired } from "../../redux/actions/userExpiredAction";
 import { userProfileImage } from "../../redux/actions/userProfileImage";
 
 
@@ -18,6 +19,7 @@ interface Props {
 const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
   const location = useLocation();
   const navigate = useNavigate();
+
   const [showProfile, setShowProfile] = useState(false);
   const [navpopup, setNavpopup] = useState(false)
   const [chatList, setChatList] = useState<any>();
@@ -31,6 +33,7 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
   };
   const profileImg = useSelector((state: RootStateOrAny) => state.profile_Image.profileImage)
   const userProfileImg = useSelector((state: RootStateOrAny) => state.user_profile_Image.profileImage)
+  const userExpired = useSelector((state: RootStateOrAny) => state.user_Expired.user_expired)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -42,8 +45,9 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
 
     ApiPost(`getsingleuser`, body)
       .then((res: any) => {
-        dispatch(getProfileImage(res.user.image))
-        dispatch(userProfileImage(res.user.image))
+        dispatch(getProfileImage(res.user[0].image))
+        dispatch(userProfileImage(res.user[0].image))
+        dispatch(userExpired(res.user[0].if_expired))
         dispatch(setIsLoading(false))
 
       }).catch((error: any) => {
@@ -185,7 +189,7 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
           <div className="nav-popup">
             <div className="nav-links">
               <Link to="/match_or_message" onClick={() =>setNavpopup(false)} >Match or Message</Link>
-              <Link to="/community" onClick={() =>setNavpopup(false)}>Community</Link>
+              <Link to="/match_or_message" onClick={() =>setNavpopup(false)}>Community</Link> 
               <Link to="/inbox" onClick={() =>setNavpopup(false)}>Inbox {chatList && <span className={ chatList ? "messages-counts" : "" } > {chatList} </span> }</Link>
               <Link to="/success_stories" onClick={() =>setNavpopup(false)}>Success stories</Link>
             </div>
