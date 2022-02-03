@@ -905,3 +905,8 @@
   border-radius: 20px;
   padding:5px 10px;
 }
+
+.Conversation-starters .slick-slide
+{
+  opacity: 1 !important;
+}

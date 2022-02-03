@@ -1998,3 +1998,7 @@ color-white = #fff */
     flex-direction: column;
     align-items: center;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}

@@ -169,6 +169,21 @@ const Inbox = () => {
     {
       msg: "What about you?"
     },
+    {
+      msg: "Hello"
+    },
+    {
+      msg: "Hii"
+    },
+    {
+      msg: "How are you?"
+    },
+    {
+      msg: "I am fine"
+    },
+    {
+      msg: "What about you?"
+    }
   ]
 
   const getChat = () => {
@@ -324,9 +339,11 @@ const Inbox = () => {
     dots: false,
     infinite: false,
     centerMode: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    variableWidth: true
+    swipeToSlide: true,
+    // slidesToShow: 5,
+    slidesToScroll: 3,
+    variableWidth: true,
+    initialSlide: 0,
   }
 
   return (
@@ -372,7 +389,7 @@ const Inbox = () => {
                       chatList.current_user !== data.receiver_id ?
                         <div
                           className={`${selectedID === data.receiver_id && "messages-focus"
-                            } messages`}
+                            } messages cursor-pointer`}
                           key={i}
                           onClick={() => {
                             messageOpen(data, "chat");
@@ -421,7 +438,7 @@ const Inbox = () => {
                         :
                         <div
                           className={`${selectedID === data.sender_id && "messages-focus"
-                            } messages`}
+                            } messages cursor-pointer`}
                           key={i}
                           onClick={() => {
                             messageOpen(data, "chat");
@@ -484,7 +501,7 @@ const Inbox = () => {
                       {chatList.starter.map((data: any, i: number) =>
                         <div
                           className={`${selectedID === data.id && "messages-focus"
-                            } messages`}
+                            } messages cursor-pointer`}
                           key={i}
                           onClick={() => {
                             messageOpen(data, "starter");
@@ -538,11 +555,6 @@ const Inbox = () => {
                   )
                     : ""
                 }
-
-
-
-
-
 
                 {!chatList &&
                   <div>
@@ -707,14 +719,13 @@ const Inbox = () => {
                     <div className="conversation-started">
 
                     </div>
-                    {
-
-                      <div className="d-flex  justify-content-around"> {
-                        staticMsg.map((data: any, i: number) => (
-                          <span className="staticmsg-span" style={{cursor:"pointer"}} onClick={() => sendStaticMsg(data.msg)}>{data.msg}<br /></span>
-                        ))
-                      }</div>
-                    }
+                    <div className="d-flex  justify-content-around">
+                        <Slider {...settings} > {
+                          staticMsg.map((data: any, i: number) => (
+                            <span className="staticmsg-span cursor-pointer" onClick={() => sendStaticMsg(data.msg)}>{data.msg}<br /></span>
+                          ))
+                        } </Slider>
+                      </div>
                     <div className="input-area">
                       <div>
 
