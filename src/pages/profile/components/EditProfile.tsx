@@ -684,6 +684,10 @@ const ShowProfile = () => {
                                         onClick={() => {
                                             textInput.current.click();
                                         }}
+                                        onError={({ currentTarget }) => {
+                                            currentTarget.onerror = null;
+                                            currentTarget.src = "./assets/img/nonprofileImg.png";
+                                        }}
                                     />
                                     <input
                                         type="file"

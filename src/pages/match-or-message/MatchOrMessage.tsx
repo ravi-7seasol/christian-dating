@@ -181,6 +181,10 @@ const MatchOrMessage = () => {
             <div className="profile-pic animation" style={{ cursor: "pointer" }} onClick={() => ViewProfile(id)}>
               <img
                 src={viewProfileImg ? viewProfileImg : "./assets/img/nonprofileImg.png"}
+                onError={({ currentTarget }) => {
+                  currentTarget.onerror = null;
+                  currentTarget.src = "./assets/img/nonprofileImg.png";
+                }}
               />
             </div>
             <p className="text">View profile</p>

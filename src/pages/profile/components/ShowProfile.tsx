@@ -329,6 +329,10 @@ const ShowProfile = () => {
                     }
                     alt=""
                     className=""
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null;
+                      currentTarget.src = "./assets/img/nonprofileImg.png";
+                    }}
                   />
                   <div className="verified-picture">
                     {isVerify && isVerify.user?.is_profile_image_verified === "1" ? (

@@ -169,6 +169,10 @@ const ImageSwap = (props) => {
                         ? item.profile_picture
                         : "./assets/img/nonprofileImg.png"
                     }
+                    onError={({ currentTarget }) => {
+                    currentTarget.onerror = null; 
+                    currentTarget.src = "./assets/img/nonprofileImg.png";
+                  }}
                   />
                   <div className="tinder-verified">
                     <img src="./assets/img/poltgon-group.png"/>
