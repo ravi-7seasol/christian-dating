@@ -123,7 +123,7 @@
 .successStories-main .post-btn {
   position: fixed;
   background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0%
-    0% no-repeat padding-box;
+    0% no-repeat padding-box !important;
   font-weight: 600;
   border: none;
   bottom: 20px;
