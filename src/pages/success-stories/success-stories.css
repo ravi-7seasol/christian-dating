@@ -13,11 +13,17 @@
 
 .successStories-main .card-position {
   position: absolute;
-  top: 250px !important;
+  top: 250px!important;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  height: calc(100vh - 220px) !important;
+  overflow-y: auto !important;
   width: 100%;
+}
+
+.successStories-main .card-position::-webkit-scrollbar{
+  display: none;
 }
 
 .successStories-main .card-main {
@@ -169,6 +175,7 @@
   .successStories-main .card-position {
     position: absolute !important;
     top: 115px !important;
+    height: calc(100vh - 112px) !important;
   }
 
   .successStories-main .card-main {
