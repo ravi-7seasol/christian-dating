@@ -471,6 +471,14 @@
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
+
+  .now-chatting-with {
+    text-align: center;
+    font-size: 18px !important;
+    line-height: 1 !important;
+    margin-bottom: 1px !important;
+  }
+
   .divider-div {
     width: 100%;
     height: 2px;
@@ -572,6 +580,7 @@
 
   .inbox-main .messages {
     display: flex;
+    padding: 2px;
   }
 
   .inbox-main .messages .messages-content {
@@ -605,7 +614,7 @@
   }
 
   .inbox-main .Messages-text {
-    margin: 10px 0;
+    margin: 1px 0;
     font-size: 20px;
   }
 
@@ -909,4 +918,15 @@
 .Conversation-starters .slick-slide
 {
   opacity: 1 !important;
+}
+
+.Conversation-starters .slick-slider {
+  width: 88vw;;
+}
+
+@media (min-width:600px   ) and (max-width: 767px) {
+  .Conversation-starters .slick-slider {
+    width: 71vw;;
+  }
+  
 }

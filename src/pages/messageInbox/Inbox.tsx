@@ -343,7 +343,7 @@ const Inbox = () => {
     // slidesToShow: 5,
     slidesToScroll: 3,
     variableWidth: true,
-    initialSlide: 0,
+    // initialSlide: 0,
   }
 
   return (
@@ -405,7 +405,7 @@ const Inbox = () => {
                               }
                               className="chat-profile"
                             />
-                            <div className="online"></div>
+                            {data.if_online === "1" && <div className="online"></div>}
                           </div>
                           <div
                             className={`${selectedID === data.receiver_id &&
@@ -453,7 +453,7 @@ const Inbox = () => {
                               }
                               className="chat-profile"
                             />
-                            <div className="online"></div>
+                            {data.if_online === "1" && <div className="online"></div>}
                           </div>
                           <div
                             className={`${selectedID === data.sender_id &&
@@ -492,9 +492,6 @@ const Inbox = () => {
                   <></>
                 )}
 
-
-
-
                 {
                   chatList && chatList.starter.length ? (
                     <>
@@ -507,9 +504,6 @@ const Inbox = () => {
                             messageOpen(data, "starter");
                           }}
                         >
-
-
-
                           <div className="chat-profile-img-main">
                             <img
                               src={
@@ -519,7 +513,7 @@ const Inbox = () => {
                               }
                               className="chat-profile"
                             />
-                            <div className="online"></div>
+                            {data.if_online === "1" && <div className="online"></div>}
                           </div>
                           <div
                             className={`${selectedID === data.id &&
@@ -534,19 +528,13 @@ const Inbox = () => {
                               "messages-time-click"
                               } messages-time`}
                           >
-                            <h6>MATCH</h6>
+                            <h6>MATCH {(data.matched_by_interest === "yes" || data.dob_matched === "yes") ? "by " : ""}
+                              {(data.matched_by_interest === "yes" || data.dob_matched === "no") ? "Interest"
+                                : (data.matched_by_interest === "no" || data.dob_matched === "yes") ? "Age"
+                                  : (data.matched_by_interest === "Yes" || data.dob_matched === "yes") && "Interest & Age"
+                              }
+                            </h6>
 
-                            {/* {data.total_unread_messages !== "0" &&
-                              <div
-                                className={
-                                  data.total_unread_messages
-                                    ? "messages-counts"
-                                    : ""
-                                }
-                              >
-                                {data.total_unread_messages}
-                              </div>
-                            } */}
                           </div>
                         </div>
                       )
@@ -559,7 +547,6 @@ const Inbox = () => {
                 {!chatList &&
                   <div>
                     <h3 className="no-chat-found"> No Chat Found </h3>
-                    {/* <h3 className="Messages-text">No Chat Found</h3> */}
                   </div>
                 }
               </div>
@@ -579,7 +566,7 @@ const Inbox = () => {
                                 src={displayData ? message_Data.profile_picture : selectedData?.receiver_participant_image ? selectedData?.receiver_participant_image : selectedData?.profile_picture ? selectedData?.profile_picture : "./assets/img/nonprofileImg.png"}
                                 className="chat-profile"
                               />
-                              <div className="online"></div>
+                              {selectedData.if_online === "1" && <div className="online"></div>}
                             </div>
                             <div className="chat-messages">
                               <h4>{displayData ? message_Data.name : selectedData?.receiver_name ? selectedData?.receiver_name : selectedData?.name}</h4>
@@ -598,7 +585,7 @@ const Inbox = () => {
                                 src={selectedData?.sender_participant_image ? selectedData?.sender_participant_image : "./assets/img/nonprofileImg.png"}
                                 className="chat-profile"
                               />
-                              <div className="online"></div>
+                              {selectedData.if_online === "1" && <div className="online"></div>}
                             </div>
                             <div className="chat-messages">
                               <h4>{selectedData?.sender_name}</h4>
@@ -617,7 +604,7 @@ const Inbox = () => {
                     </div>
 
                     {/* <div className="border-content"></div> */}
-                    {width < 767 && <h5 style={{ textAlign: "center" }}>Now Chatting with {displayData ? message_Data.name : selectedData?.receiver_name ? selectedData?.receiver_name : selectedData?.name ? selectedData?.name : selectedData?.sender_name}</h5>}
+                    {width < 767 && <h5 className="now-chatting-with" >Now Chatting with {displayData ? message_Data.name : selectedData?.receiver_name ? selectedData?.receiver_name : selectedData?.name ? selectedData?.name : selectedData?.sender_name}</h5>}
                     <div className="scrool px-3" id="chatBox">
                       <div className="text-grid">
                         {chatData?.chat?.length ? (
@@ -720,12 +707,12 @@ const Inbox = () => {
 
                     </div>
                     <div className="d-flex  justify-content-around">
-                        <Slider {...settings} > {
-                          staticMsg.map((data: any, i: number) => (
-                            <span className="staticmsg-span cursor-pointer" onClick={() => sendStaticMsg(data.msg)}>{data.msg}<br /></span>
-                          ))
-                        } </Slider>
-                      </div>
+                      <Slider {...settings} > {
+                        staticMsg.map((data: any, i: number) => (
+                          <span className="staticmsg-span cursor-pointer" onClick={() => sendStaticMsg(data.msg)}>{data.msg}<br /></span>
+                        ))
+                      } </Slider>
+                    </div>
                     <div className="input-area">
                       <div>
 
