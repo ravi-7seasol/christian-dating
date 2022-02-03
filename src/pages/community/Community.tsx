@@ -316,6 +316,10 @@ const Community = () => {
                       height: "55px",
                       borderRadius: "100%",
                     }}
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null; // prevents looping
+                      currentTarget.src = "./assets/img/nonprofileImg.png";
+                    }} 
                   />
                   {item.if_online === "1" ? <div className="active"></div> : ""}
                 </div>
@@ -341,9 +345,13 @@ const Community = () => {
                             : "./assets/img/nonprofileImg.png"
                     }
                     style={{ width: "55px", height: "55px", borderRadius: "100%" }}
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null; // prevents looping
+                      currentTarget.src = "./assets/img/nonprofileImg.png";
+                    }} 
                 />
             }
-        })}
+          })}
         </div>
       </div>
       {/* </Container> */}
@@ -352,7 +360,10 @@ const Community = () => {
           <div className="icon">
             <FontAwesomeIcon icon={faTimesCircle} onClick={() => closeGif()} />
           </div>
-          <img src={gif} className="gifbig img-fluid"></img>
+          <img src={gif} className="gifbig img-fluid" onError={({ currentTarget }) => {
+                      currentTarget.onerror = null; // prevents looping
+                      currentTarget.src = "./assets/img/nonprofileImg.png";
+                    }} ></img>
 
           <button className="submit">
             <FontAwesomeIcon icon={faPaperPlane} />
@@ -364,7 +375,10 @@ const Community = () => {
           <div className="icon">
             <FontAwesomeIcon icon={faTimesCircle} onClick={() => closeImg()} />
           </div>
-          <img src={URL.createObjectURL(selectedImage)} className="img-fluid" />
+          <img src={URL.createObjectURL(selectedImage)} className="img-fluid" onError={({ currentTarget }) => {
+                      currentTarget.onerror = null; // prevents looping
+                      currentTarget.src = "./assets/img/nonprofileImg.png";
+                    }} />
           <button className="submit">
             <FontAwesomeIcon icon={faPaperPlane} />
           </button>
@@ -378,7 +392,10 @@ const Community = () => {
       <div className="fotterinput d-flex align-items-center">
         <div className="d-flex">
           <label htmlFor="imgSelect" className="choose-picture">
-            <img src="./assets/img/picture-one (1).png" />
+            <img src="./assets/img/picture-one (1).png" onError={({ currentTarget }) => {
+                      currentTarget.onerror = null; // prevents looping
+                      currentTarget.src = "./assets/img/nonprofileImg.png";
+                    }} />
             <input
               type="file"
               onChange={(e) => {
@@ -397,6 +414,10 @@ const Community = () => {
             <img
               src="./assets/img/gift (1).png"
               onClick={() => setOpenGift(!openGift)}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src = "./assets/img/nonprofileImg.png";
+              }} 
             />
             {openGift && (
               <div className="gifts">
@@ -407,6 +428,10 @@ const Community = () => {
                     onClick={() => {
                       openGif(data.src);
                     }}
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null; // prevents looping
+                      currentTarget.src = "./assets/img/nonprofileImg.png";
+                    }} 
                   />
                 ))}
               </div>
@@ -425,6 +450,10 @@ const Community = () => {
               src="./assets/img/right-arrow (2).png"
               style={{ zIndex: 999, width: "15px", height: "15px" }}
               onClick={() => sendCommunityDataByClick()}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src = "./assets/img/nonprofileImg.png";
+              }} 
             />
           </div>
         </div>
