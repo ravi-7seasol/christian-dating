@@ -786,7 +786,7 @@ const ShowProfile = () => {
                                                 handleChange(e);
                                             }}
                                             disabled={false}
-                                            label="Address :"
+                                            label="Location :"
                                             placeholder="address"
                                             type="text"
                                             fromrowStyleclass=""
@@ -867,7 +867,7 @@ const ShowProfile = () => {
                                         handleChange(e);
                                     }}
                                     disabled={false}
-                                    label="Address : "
+                                    label="Location : "
                                     placeholder="address"
                                     type="text"
                                     fromrowStyleclass=""
