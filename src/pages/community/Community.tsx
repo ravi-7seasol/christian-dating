@@ -332,16 +332,18 @@ const Community = () => {
           </div>
         </div>
         <div className="online-users community">
-          {getTopicList?.map((item: any, i: number) => (
-            <img
-              src={
-                item.sender_image
-                  ? item.sender_image
-                  : "./assets/img/nonprofileImg.png"
-              }
-              style={{ width: "55px", height: "55px", borderRadius: "100%" }}
-            />
-          ))}
+          {getTopicList?.map((item: any, i: number) => {
+            if (item.if_online === "1") {
+                return <img
+                    src={
+                        item.sender_image
+                            ? item.sender_image
+                            : "./assets/img/nonprofileImg.png"
+                    }
+                    style={{ width: "55px", height: "55px", borderRadius: "100%" }}
+                />
+            }
+        })}
         </div>
       </div>
       {/* </Container> */}

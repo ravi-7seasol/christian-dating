@@ -354,7 +354,7 @@ const Inbox = () => {
             <Col md={5} className="p-0">
               <div className="inbox-profile-img mt-3">
                 <div className="profile-content" style={{ textAlign: "center" }}>
-                  <img src={chatList?.liked_by ? chatList.liked_by : "./assets/img/nonprofileImg.png"} />
+                  <img src={chatList?.liked_by[0]?.profile_picture ? chatList?.liked_by[0]?.profile_picture : "./assets/img/nonprofileImg.png"} />
                   {chatList?.liked_by.length > 0 && <h6>likes you</h6>}
                 </div>
                 <div className="profile-content" style={{ textAlign: "center" }}>
