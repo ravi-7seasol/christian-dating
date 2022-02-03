@@ -160,8 +160,7 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
             <Nav className="ml-auto">
               <div className="navLinks">
                 <Link to="/match_or_message">Match or Message</Link>
-                {/* <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/community">Community</Link></span> */}
-                <span ><Link to="/community">Community</Link></span>
+                <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/community">Community</Link></span>
                 <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/inbox">Inbox {chatList && <span className={chatList ? "messages-counts-header" : ""} > {chatList} </span>}</Link></span>
                 {/* .inbox-main .messages-counts */}
                 <Link to="/success_stories">Success stories</Link>
