@@ -94,6 +94,10 @@ const SuccessStories = () => {
                           ? data?.thumb_image
                           : "./assets/img/nonprofileImg.png"
                       }
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src = "./assets/img/nonprofileImg.png";
+                      }}
                     />
                   </div>
                   <div className="person-name">
