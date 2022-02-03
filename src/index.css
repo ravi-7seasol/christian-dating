@@ -2003,3 +2003,9 @@ color-white = #fff */
 .cursor-pointer {
   cursor: pointer;
 }
+
+.online-users{
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
