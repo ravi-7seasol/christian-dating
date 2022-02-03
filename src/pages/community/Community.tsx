@@ -279,7 +279,7 @@ const Community = () => {
     if (type === "category") {
       return topic && topic.find((data: any) => data.value === value);
     }
-  };
+  }; 
 
   return (
     <Container>
@@ -334,7 +334,11 @@ const Community = () => {
         <div className="online-users community">
           {getTopicList?.map((item: any, i: number) => {
             if (item.if_online === "1") {
-                return <img
+                return (
+                <>
+                <div>
+
+                <img
                     src={
                         item.sender_image
                             ? item.sender_image
@@ -342,6 +346,9 @@ const Community = () => {
                     }
                     style={{ width: "55px", height: "55px", borderRadius: "100%" }}
                 />
+                </div>
+                </>
+                )
             }
         })}
         </div>

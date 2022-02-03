@@ -859,7 +859,7 @@
   margin-top: 15px;
 }
 
-.edit-profile-footer-btn .save-btn {
+.edit-profile-footer-btn .save-btn, .add-post-model-footer .save-btn{
   background: transparent linear-gradient(180deg, #f7c35f 0%, #e69702 100%) 0% 0% no-repeat padding-box;
   border-radius: 13px;
   opacity: 1;
@@ -872,6 +872,10 @@
   /* margin-bottom: 15px; */
 }
 
+.add-post-model-footer .save-btn{
+  padding: 8px !important;
+  margin: 3px;
+}
 .personal-details .login-input {
   /* border: none; */
   /* border-bottom: 1px solid #000 !important; */
@@ -1216,7 +1220,7 @@
     background-repeat: no-repeat !important;
     background-size: cover !important;
     position: relative;
-    /* padding: 100px 0; */
+    padding-top: 10px;
     width: 100vw !important;
   }
 

@@ -145,7 +145,7 @@ const MatchOrMessage = () => {
             </div>
             <p className="text">Rewind</p>
           </div>
-          <div onClick={skip}>
+          <div>
             <div className="skip-content animation" style={{ cursor: "pointer" }} onClick={skip}>
               {/* <Link to="/success_stories"> */}
               <img src="./assets/img/Group 18.png" />

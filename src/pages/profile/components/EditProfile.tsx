@@ -848,7 +848,7 @@ const ShowProfile = () => {
                         </div>
                         <div className="over-img-popup">
                             <div>
-                                <div className="Change-Profile-mb">
+                                <div className="Change-Profile-mb animation">
                                     <label htmlFor="imgSelect" className="Change-Profile-btn">
                                         Change Profile
                                     </label>
