@@ -300,7 +300,7 @@ const Community = () => {
         />
       </div>
       <div className="d-flex">
-        <div className="community" style={{ position: "relative",width:"100%" }}>
+        <div className="community" style={{ position: "relative",width:"100%",borderRight:"2px solid #E3E3E3" }}>
           <div className="">
             {getTopicList?.map((item: any, i: number) => (
               <div className="d-flex pt-4 align-items-center" key={i}>

@@ -2008,4 +2008,12 @@ color-white = #fff */
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  /* height: calc(100vh - 274px);
+  overflow-y: auto; */
+  margin-left: 10px;
+}
+
+
+.community::-webkit-scrollbar {
+  display: none;
 }
