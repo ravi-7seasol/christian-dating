@@ -691,7 +691,7 @@ const ShowProfile = () => {
                                     />
                                     <input
                                         type="file"
-                                        style={{ opacity: "0" }}
+                                        style={{ opacity: "0", height:0, width:0 }}
                                         ref={textInput}
                                         onChange={(e) => handleChnage(e)}
                                         id="img"

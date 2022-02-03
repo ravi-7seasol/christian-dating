@@ -138,18 +138,14 @@ const MatchOrMessage = () => {
       <Container>
         <div className="activity-main">
           <div className="">
-            <div className="rewind animation" style={{ cursor: "pointer" }} onClick={rewind}>
-              {/* <Link to="/community"> */}
+            <div className="rewind animation" style={{ cursor: "pointer" }} onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : rewind()}>
               <img src="./assets/img/Group 17.png" />
-              {/* </Link> */}
             </div>
             <p className="text">Rewind</p>
           </div>
           <div onClick={skip}>
             <div className="skip-content animation" style={{ cursor: "pointer" }} onClick={skip}>
-              {/* <Link to="/success_stories"> */}
               <img src="./assets/img/Group 18.png" />
-              {/* </Link> */}
             </div>
             <p className="text">Skip</p>
           </div>
