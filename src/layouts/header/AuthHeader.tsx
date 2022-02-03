@@ -172,6 +172,10 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
                   <img
                     src={profile ? profile : "./assets/img/nonprofileImg.png"}
                     alt=""
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null;
+                      currentTarget.src = "./assets/img/nonprofileImg.png";
+                    }}
                   />
                 </button>
                 <div className="notification"></div>

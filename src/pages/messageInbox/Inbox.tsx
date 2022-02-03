@@ -207,6 +207,10 @@ const Inbox = () => {
       });
   };
 
+  useEffect(() => {
+    getChat()
+  }, [selectedID]);
+
   const messageOpen = (item: any, flag: string) => {
     setDisplayData(false)
     let activeChat
@@ -354,15 +358,27 @@ const Inbox = () => {
             <Col md={5} className="p-0">
               <div className="inbox-profile-img mt-3">
                 <div className="profile-content" style={{ textAlign: "center" }}>
-                  <img src={chatList?.liked_by ? chatList.liked_by : "./assets/img/nonprofileImg.png"} />
+                  <img src={chatList?.liked_by[0]?.profile_picture ? chatList?.liked_by[0]?.profile_picture : "./assets/img/nonprofileImg.png"}
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null;
+                      currentTarget.src = "./assets/img/nonprofileImg.png";
+                    }} />
                   {chatList?.liked_by.length > 0 && <h6>likes you</h6>}
                 </div>
                 <div className="profile-content" style={{ textAlign: "center" }}>
-                  <img src={chatList?.likes[0]?.profile_picture ? chatList.likes[0].profile_picture : "./assets/img/nonprofileImg.png"} />
+                  <img src={chatList?.likes[0]?.profile_picture ? chatList.likes[0].profile_picture : "./assets/img/nonprofileImg.png"}
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null;
+                      currentTarget.src = "./assets/img/nonprofileImg.png";
+                    }} />
                   {chatList?.likes.length && <h6>you like</h6>}
                 </div>
                 <div className="profile-content" style={{ textAlign: "center" }}>
-                  <img src={chatList?.matches ? chatList.matches[chatList.matches.length - 1].profile_picture : "./assets/img/nonprofileImg.png"} />
+                  <img src={chatList?.matches ? chatList.matches[chatList.matches.length - 1].profile_picture : "./assets/img/nonprofileImg.png"}
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null;
+                      currentTarget.src = "./assets/img/nonprofileImg.png";
+                    }} />
                   {chatList?.matches.length && <h6>match</h6>}
                 </div>
                 <div className="profile-content">
@@ -403,6 +419,10 @@ const Inbox = () => {
                                   ? data.receiver_participant_image
                                   : "./assets/img/nonprofileImg.png"
                               }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src = "./assets/img/nonprofileImg.png";
+                              }}
                               className="chat-profile"
                             />
                             {data.if_online === "1" && <div className="online"></div>}
@@ -451,6 +471,10 @@ const Inbox = () => {
                                   ? data.sender_participant_image
                                   : "./assets/img/nonprofileImg.png"
                               }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src = "./assets/img/nonprofileImg.png";
+                              }}
                               className="chat-profile"
                             />
                             {data.if_online === "1" && <div className="online"></div>}
@@ -511,6 +535,10 @@ const Inbox = () => {
                                   ? data.profile_picture
                                   : "./assets/img/nonprofileImg.png"
                               }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src = "./assets/img/nonprofileImg.png";
+                              }}
                               className="chat-profile"
                             />
                             {data.if_online === "1" && <div className="online"></div>}
@@ -565,8 +593,12 @@ const Inbox = () => {
                               <img
                                 src={displayData ? message_Data.profile_picture : selectedData?.receiver_participant_image ? selectedData?.receiver_participant_image : selectedData?.profile_picture ? selectedData?.profile_picture : "./assets/img/nonprofileImg.png"}
                                 className="chat-profile"
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onerror = null;
+                                  currentTarget.src = "./assets/img/nonprofileImg.png";
+                                }}
                               />
-                              {selectedData.if_online === "1" && <div className="online"></div>}
+                              {selectedData?.if_online === "1" && <div className="online"></div>}
                             </div>
                             <div className="chat-messages">
                               <h4>{displayData ? message_Data.name : selectedData?.receiver_name ? selectedData?.receiver_name : selectedData?.name}</h4>
@@ -584,8 +616,12 @@ const Inbox = () => {
                               <img
                                 src={selectedData?.sender_participant_image ? selectedData?.sender_participant_image : "./assets/img/nonprofileImg.png"}
                                 className="chat-profile"
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onerror = null;
+                                  currentTarget.src = "./assets/img/nonprofileImg.png";
+                                }}
                               />
-                              {selectedData.if_online === "1" && <div className="online"></div>}
+                              {selectedData?.if_online === "1" && <div className="online"></div>}
                             </div>
                             <div className="chat-messages">
                               <h4>{selectedData?.sender_name}</h4>
