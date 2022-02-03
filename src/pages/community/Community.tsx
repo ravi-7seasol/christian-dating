@@ -93,7 +93,7 @@ const Community = () => {
 
     const [getTopicList, setGetTopicList] = useState([]);
     const [topic, setTopic] = useState<any>();
-    const [selectedId, setSelectedId] = useState<any>(); 
+    const [selectedId, setSelectedId] = useState<any>();
     const [setMsgToCommunity, setSendMsgToCommunity] = useState('');
     const [clearText, setClearText] = useState<any>(false);
     const [openGift, setOpenGift] = useState(false);
@@ -123,7 +123,7 @@ const Community = () => {
                 })
 
                 setTopic(topicslist)
-                if(topicslist.length) {
+                if (topicslist.length) {
                     getTopicData(topicslist[0].value)
                     setSelectedId(topicslist[0].value)
                 }
@@ -135,8 +135,8 @@ const Community = () => {
     }, [])
 
     useEffect(() => {
-        console.log("topic", topic && topic);  
-        console.log("topic[0].value", topic && topic[0].value);  
+        console.log("topic", topic && topic);
+        console.log("topic[0].value", topic && topic[0].value);
 
         // const data = {
         //     topic_id: e.value,
@@ -152,6 +152,18 @@ const Community = () => {
         //         dispatch(setIsLoading(false))
         //     })
     }, [topic]);
+
+    const MINUTE_MS = 5000;
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if(selectedId){
+                getCommunityData()
+            }
+        }, MINUTE_MS);
+
+        return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+    })
 
     const getCommunityData = () => {
         const data = {
@@ -178,9 +190,9 @@ const Community = () => {
             const sendMessageToCommunity = {
                 token: tokenID,
                 topic_id: selectedId,
-                message: message.replace(/\p{Emoji}/ug, (m:any, idx) =>
-                `&#${m.codePointAt().toString()};`
-               )
+                message: message.replace(/\p{Emoji}/ug, (m: any, idx) =>
+                    `&#${m.codePointAt().toString()};`
+                )
             }
             const body = xwwwFormUrlencoded(sendMessageToCommunity);
             ApiPost('sendcommunitymessage', body)
@@ -277,18 +289,18 @@ const Community = () => {
             </div>
             <div className="select">
                 <ReactSelect placeholder="Select Category" options={topic} onChange={(e: any) => getTopicData(e.value)}
-                    value={selectValue(selectedId,"category")}
-                    // isMulti={false}
+                    value={selectValue(selectedId, "category")}
+                    isMulti={false}
                 />
             </div>
 
             <div className="community" style={{ position: "relative" }}>
                 <div className="">
                     {getTopicList?.map((item: any, i: number) => (
-                        <div className='d-flex pt-4 ' key={i}>
+                        <div className='d-flex pt-4 align-items-center' key={i}>
                             <div className='set-img-position'>
                                 <img src={item.sender_image ? item.sender_image : "./assets/img/nonprofileImg.png"} style={{ width: "55px", height: "55px", borderRadius: "100%" }} />
-                                <div className='active'></div>
+                                {item.if_online === "1" ? <div className='active'></div> : ''}
                             </div>
                             <div>
                                 <h6 className='Name ml-3' style={{ color: item.namecolor }} >{item.sender_name}</h6>
@@ -316,7 +328,7 @@ const Community = () => {
                     <div className="icon">
                         <FontAwesomeIcon icon={faTimesCircle} onClick={() => closeImg()} />
                     </div>
-                    <img src={URL.createObjectURL(selectedImage)} className='img-fluid'/>
+                    <img src={URL.createObjectURL(selectedImage)} className='img-fluid' />
                     <button className="submit"><FontAwesomeIcon icon={faPaperPlane} /></button>
                 </div>
             }

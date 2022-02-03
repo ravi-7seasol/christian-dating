@@ -11,12 +11,12 @@ import { getProfileImage } from "../../redux/actions/getProfileImage";
 import { setIsLoading } from "../../redux/actions/loadingAction";
 import { userExpired } from "../../redux/actions/userExpiredAction";
 import { userProfileImage } from "../../redux/actions/userProfileImage";
-
+import Subscription from "../../pages/components/Subscription";
 
 interface Props {
   showMenu: any;
 }
-const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
+const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -24,6 +24,7 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
   const [navpopup, setNavpopup] = useState(false)
   const [chatList, setChatList] = useState<any>();
   const [profile, setProfile] = useState<any>();
+  const [subscriptionModal, setSubscriptionModal] = useState(false);
 
   const openMenu = () => {
     setShowProfile(!showProfile);
@@ -33,7 +34,7 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
   };
   const profileImg = useSelector((state: RootStateOrAny) => state.profile_Image.profileImage)
   const userProfileImg = useSelector((state: RootStateOrAny) => state.user_profile_Image.profileImage)
-  const userExpired = useSelector((state: RootStateOrAny) => state.user_Expired.user_expired)
+  const userExpiredData = useSelector((state: RootStateOrAny) => state.user_Expired.user_expired)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -60,12 +61,19 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
 
   useEffect(() => {
     setProfile(userProfileImg)
-  },[userProfileImg])
+  }, [userProfileImg])
 
   useEffect(() => {
     getChatList()
   }, []);
-  
+
+  useEffect(() => {
+    if (subscriptionModal === true) {
+      navigate("match_or_message")
+    }
+  }, [subscriptionModal]);
+
+
   const MINUTE_MS = 5000;
 
   useEffect(() => {
@@ -100,18 +108,18 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
   }
 
   useEffect(() => {
-    console.log('chatList',chatList);
+    console.log('chatList', chatList);
   }, [chatList]);
-  
+
   useEffect(() => {
-    if(showProfile ){
+    if (showProfile) {
       setShowProfile(false)
     }
-    else if(navpopup){
+    else if (navpopup) {
       setNavpopup(false)
     }
   }, [showMenu]);
-  
+
   const logOut = () => {
     AuthStorage.deauthenticateUser()
   }
@@ -140,7 +148,7 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
               className=" align-top uncommon-logo"
               onClick={handleRedirect}
             />
-            <button onClick={() => { setNavpopup(!navpopup) }} style={{border:"none", background:"transparent"}}><img src="./assets/img/application-menu.png" className="menu-logo" alt="" height="5%"/></button>
+            <button onClick={() => { setNavpopup(!navpopup) }} style={{ border: "none", background: "transparent" }}><img src="./assets/img/application-menu.png" className="menu-logo" alt="" height="5%" /></button>
           </Navbar.Brand>
 
           <Navbar.Collapse
@@ -150,32 +158,33 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
               <h1 className="" >{location.pathname === "/show-profile" && "Profile" || location.pathname === "/match_or_message" && "Match or Message" || location.pathname === "/inbox" && "Inbox" || location.pathname === "/community" && "Community"}</h1>
             </div>
             <Nav className="ml-auto">
-              <div className="navLinks" >
+              <div className="navLinks">
                 <Link to="/match_or_message">Match or Message</Link>
-                <Link to="/community">Community</Link>
-                <Link to="/inbox">Inbox {chatList && <span className={ chatList ? "messages-counts-header" : "" } > {chatList} </span> }</Link>
+                {/* <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/community">Community</Link></span> */}
+                <span ><Link to="/community">Community</Link></span>
+                <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/inbox">Inbox {chatList && <span className={chatList ? "messages-counts-header" : ""} > {chatList} </span>}</Link></span>
                 {/* .inbox-main .messages-counts */}
                 <Link to="/success_stories">Success stories</Link>
               </div>
 
               <div className="profile-pic position-relative">
-                <button onClick={openMenu} style={{border:"none", background:"transparent"}}>
-                <img
-                  src={profile ? profile : "./assets/img/nonprofileImg.png"}
-                  alt=""
-                />
+                <button onClick={openMenu} style={{ border: "none", background: "transparent" }}>
+                  <img
+                    src={profile ? profile : "./assets/img/nonprofileImg.png"}
+                    alt=""
+                  />
                 </button>
                 <div className="notification"></div>
                 {showProfile && (
                   <div className="auth-show-profile">
                     <ul>
-                      <li onClick={() =>setShowProfile(false)}>
+                      <li onClick={() => setShowProfile(false)}>
                         <Link to="/edit-profile">Edit Profile</Link>
                       </li>
-                      <li onClick={() =>setShowProfile(false)}>
+                      <li onClick={() => setShowProfile(false)}>
                         <Link to="/show-profile">My Profile</Link>
                       </li>
-                      <li onClick={() =>setShowProfile(false)}>
+                      <li onClick={() => setShowProfile(false)}>
                         <Link onClick={logOut} to={""}>logout</Link>
                       </li>
                     </ul>
@@ -188,14 +197,17 @@ const AuthHeader: React.FC<Props> = ({showMenu, ...props}) => {
         {navpopup &&
           <div className="nav-popup">
             <div className="nav-links">
-              <Link to="/match_or_message" onClick={() =>setNavpopup(false)} >Match or Message</Link>
-              <Link to="/match_or_message" onClick={() =>setNavpopup(false)}>Community</Link> 
-              <Link to="/inbox" onClick={() =>setNavpopup(false)}>Inbox {chatList && <span className={ chatList ? "messages-counts" : "" } > {chatList} </span> }</Link>
-              <Link to="/success_stories" onClick={() =>setNavpopup(false)}>Success stories</Link>
+              <span><Link to="/match_or_message" onClick={() => setNavpopup(false)} >Match or Message</Link></span>
+              <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/community" onClick={() => setNavpopup(false)}>Community</Link> </span>
+              <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/inbox" onClick={() => setNavpopup(false)}>Inbox {chatList && <span className={chatList ? "messages-counts" : ""} > {chatList} </span>}</Link></span>
+              <span><Link to="/success_stories" onClick={() => setNavpopup(false)}>Success stories</Link></span>
             </div>
           </div>
         }
       </Navbar>
+      {
+        subscriptionModal && <Subscription show={subscriptionModal} onHide={() => setSubscriptionModal(false)} />
+      }
     </>
   );
 };

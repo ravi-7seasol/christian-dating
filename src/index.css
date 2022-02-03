@@ -221,6 +221,10 @@
   margin: 10px 10px;
 }
 
+.nav-popup .nav-links span{
+  margin: 10px 0px;
+}
+
 /* ============================================>Profile<============================================ */
 
 .set-backbtn-singlebtn {
@@ -596,9 +600,9 @@
 }
 
 .activity-main .like-content img {
-  margin: 13px;
-  margin-top: 13px;
-  width:28px;
+  margin: 14px;
+    margin-top: 22px;
+    width: 24px;
 }
 
 .activity-main .like-content-second-img img {
@@ -634,7 +638,6 @@
   font: normal normal normal 12px/18px Poppins;
   letter-spacing: 0px;
   color: #000000;
-  text-transform: lowercase;
   opacity: 0.48;
   text-align: center;
   margin: 15px 0 0 0;
@@ -1528,7 +1531,6 @@
     font: normal normal normal 12px/18px Poppins;
     letter-spacing: 0px;
     color: #000000;
-    text-transform: lowercase;
     opacity: 0.48;
     text-align: center;
     font-size: 14px;
@@ -1701,7 +1703,6 @@
     font: normal normal normal 12px/18px Poppins;
     letter-spacing: 0px;
     color: #000000;
-    text-transform: lowercase;
     opacity: 0.48;
     font-size: 16px;
     text-align: center;

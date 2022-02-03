@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import ImageSwap from "../../components/imageswap/ImageSwap";
@@ -24,10 +24,24 @@ const MatchOrMessage = () => {
   const [isRewind, setIsRewind] = useState(false);
   const [isSkip, setIsSkip] = useState(false);
   const [rate, setRate] = useState('')
-  const [subscriptionModal, setSubscriptionModal] = useState (false)
+  const [subscriptionModal, setSubscriptionModal] = useState(false)
   const [togRate, setTogRate] = useState(false);
 
+  const userExpiredData = useSelector((state: RootStateOrAny) => state.user_Expired.user_expired)
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log("userExpiredData", userExpiredData);
+  }, [userExpiredData]);
+
+  useEffect(() => {
+    if (subscriptionModal) {
+      navigate("/match_or_message")
+    }
+  }, [subscriptionModal]);
+
+
 
   const likehandleChange = () => {
     let data = {
@@ -39,7 +53,7 @@ const MatchOrMessage = () => {
     ApiPost("rateprofile", body)
       .then((res: any) => {
         console.log("res", res);
-        { res.status === "true" && setTogRate(true)}
+        { res.status === "true" && setTogRate(true) }
         showAlert(rate === "Like" ? "Dislike" : "Like");
       })
       .catch((err) => {
@@ -49,6 +63,7 @@ const MatchOrMessage = () => {
   };
 
   const msgChange = () => {
+    navigate("/inbox")
     dispatch(messageId(id));
   };
   const ViewProfile = (id: any) => {
@@ -86,7 +101,7 @@ const MatchOrMessage = () => {
     <>
       <Container>
         <div className="match-or-message mt-3 mb-3 d-flex">
-          <img src="./assets/img/left-arrow.png" onClick={()=>{setSubscriptionModal(true)}}/>
+          <img src="./assets/img/left-arrow.png" />
           <p>Profiles based on preference settings</p>
         </div>
       </Container>
@@ -118,12 +133,12 @@ const MatchOrMessage = () => {
         changeRewind={() => setIsRewind(false)}
         changeSkip={() => setIsSkip(false)}
         rateChange={togRate}
-        rateTogChange={setTogRate} 
+        rateTogChange={setTogRate}
       />
       <Container>
         <div className="activity-main">
           <div className="">
-            <div className="rewind animation" style={{cursor:"pointer"}} onClick={rewind}>
+            <div className="rewind animation" style={{ cursor: "pointer" }} onClick={rewind}>
               {/* <Link to="/community"> */}
               <img src="./assets/img/Group 17.png" />
               {/* </Link> */}
@@ -131,7 +146,7 @@ const MatchOrMessage = () => {
             <p className="text">Rewind</p>
           </div>
           <div onClick={skip}>
-            <div className="skip-content animation"  style={{cursor:"pointer"}} onClick={skip}>
+            <div className="skip-content animation" style={{ cursor: "pointer" }} onClick={skip}>
               {/* <Link to="/success_stories"> */}
               <img src="./assets/img/Group 18.png" />
               {/* </Link> */}
@@ -139,7 +154,7 @@ const MatchOrMessage = () => {
             <p className="text">Skip</p>
           </div>
           {rate === "Like" ? <div>
-            <div className="like-content-second-img" style={{cursor:"pointer"}} onClick={() => likehandleChange()}>
+            <div className="like-content-second-img" style={{ cursor: "pointer" }} onClick={() => likehandleChange()}>
               <img
                 src="./assets/img/Group 19.png"
               />
@@ -147,26 +162,23 @@ const MatchOrMessage = () => {
             <p className="text">Dislike</p>
           </div>
             : <div>
-              <div className="like-content animation" style={{cursor:"pointer"}} onClick={() => likehandleChange()}>
+              <div className="like-content animation" style={{ cursor: "pointer" }} onClick={() => likehandleChange()}>
                 <img
                   src="./assets/img/dislike heart.png"
                 />
               </div>
               <p className="text">Like</p>
             </div>}
-            <div className="set-message-content">
-            <div className="message-content animation" style={{cursor:"pointer"}} onClick={() => msgChange()}>
-              <Link to="/inbox">
-                <img
-                  src="./assets/img/Group 20.png"
-                  onClick={() => msgChange()}
-                />
-              </Link>
+          <div className="set-message-content">
+            <div className="message-content animation" style={{ cursor: "pointer" }} onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : msgChange()}>
+              <img
+                src="./assets/img/Group 20.png"
+              />
             </div>
             <p className="text">Message</p>
           </div>
-          <div style={{textAlign:"center"}}>
-          <div className="profile-pic animation" style={{cursor:"pointer"}} onClick={() => ViewProfile(id)}>
+          <div style={{ textAlign: "center" }}>
+            <div className="profile-pic animation" style={{ cursor: "pointer" }} onClick={() => ViewProfile(id)}>
               <img
                 src={viewProfileImg ? viewProfileImg : "./assets/img/nonprofileImg.png"}
               />
@@ -188,9 +200,9 @@ const MatchOrMessage = () => {
           </div>
         </div>
       </Container>
-     {
-       subscriptionModal && <Subscription show ={subscriptionModal} onHide={()=>setSubscriptionModal(false)}/>
-     }
+      {
+        subscriptionModal && <Subscription show={subscriptionModal} onHide={() => setSubscriptionModal(false)} />
+      }
     </>
   );
 };
