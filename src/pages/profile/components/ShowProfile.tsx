@@ -445,7 +445,11 @@ const ShowProfile = () => {
                           <p>{data.label}</p>
                         </div>
                         <div className="col-lg-8 col-md-8 col-sm-7">
-                          <span>{data.value}</span>
+                          {item.Header === "Personality" ?
+                            <span>{data.value.replaceAll(",",", ")}</span>
+                            :
+                            <span>{data.value}</span>
+                          }
                         </div>
                       </div>
                     ))}
