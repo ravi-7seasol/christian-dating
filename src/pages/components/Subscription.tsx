@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
+import { ApiPost } from '../../helper/API/ApiData';
 
 interface Props {
     show: boolean;
@@ -7,10 +8,25 @@ interface Props {
 
 }
 const Subscription = ({ show, onHide, ...props }: Props) => {
+    const [packages, setPackages] = useState<any>();
+
+    useEffect(() => {
+        let body = "";
+        ApiPost("getpackages", body)
+            .then((res: any) => {
+                console.log("res", res)
+                setPackages(res.packages)
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
+
+
     return (
         <>
 
-            <Modal
+            {packages && <Modal
                 {...props}
                 size="xl"
                 // aria-labelledby="contained-modal-title-vcenter"
@@ -26,31 +42,36 @@ const Subscription = ({ show, onHide, ...props }: Props) => {
                     <div className="subscription-main">
                         <h1>SUBSCRIBE TO CONNECT WITH YOUR MATCHES</h1>
                         <Container>
-                            <Row className="">
-                                <Col md={6} className="margin-bottom">
-                                    <div className="subscription-card">
-                                        <h1> 1 MONTH</h1>
-                                        <p>Unlimited Match</p>
-                                        <p>Unlimited Message</p>
-                                        <p>Community Chat</p>
-                                        <Button>BUY AT $19.99</Button>
-                                    </div>
-                                </Col>
-                                <Col md={6} className="">
-                                    <div className="subscription-card-2">
-                                        <div className="subscription-header">
-                                            <h1>MOST POPULAR</h1>
-                                        </div>
-                                        <div className="subscription-body">
+                            <Row className="">{
+                                packages?.map((data: any, i: number) => (
+                                    data.is_popular === "0" ?
+                                        <Col md={6} className="margin-bottom">
+                                            <div className="subscription-card">
+                                                <h1>{data.title}</h1>
+                                                {data.features.split(',').map((name: any, i: number) => (
+                                                    <p>{name}</p>
+                                                ))}
+                                                <Button>BUY AT ${data.price}</Button>
+                                            </div>
+                                        </Col> : <Col md={6} className="">
+                                            <div className="subscription-card-2">
+                                                <div className="subscription-header">
+                                                    <h1>MOST POPULAR</h1>
+                                                </div>
+                                                <div className="subscription-body">
 
-                                            <h1> 3 MONTH</h1>
-                                            <p>Unlimited Match</p>
-                                            <p>Unlimited Message</p>
-                                            <p>Community Chat</p>
-                                            <Button>BUY AT $39.99</Button>
-                                        </div>
-                                    </div>
-                                </Col>
+                                                    <h1>{data.title}</h1>
+                                                    {data.features.split(',').map((name: any, i: number) => (
+                                                        <p>{name}</p>
+                                                    ))}
+                                                    <Button>BUY AT ${data.price}</Button>
+                                                </div>
+                                            </div>
+                                        </Col>
+                                ))
+                            }
+
+
                             </Row>
                             <Button variant="secondary" onClick={onHide} className='mb-3'>
                                 No Thanks
@@ -58,7 +79,7 @@ const Subscription = ({ show, onHide, ...props }: Props) => {
                         </Container>
                     </div>
                 </Modal.Body>
-            </Modal>
+            </Modal>}
 
             <Modal
                 {...props}
