@@ -39,7 +39,6 @@ const Inbox = () => {
 
   const message_Data = useSelector((state: RootStateOrAny) => state.message_Data)
 
-
   const gotoBottom = (id: any) => {
     var element: any = document.getElementById(id);
     element.scrollTop = element.scrollHeight - element.clientHeight;
@@ -74,7 +73,7 @@ const Inbox = () => {
         if (res.status === "false") {
           setChatList(null)
         } else {
-          console.log("res.matches", res.matches)
+
           setChatList(res);
           if (message_ID) {
             let displayID = res.matches.find((data: any) => message_ID === data.id)
@@ -210,33 +209,27 @@ const Inbox = () => {
   const messageOpen = (item: any, flag: string) => {
     setDisplayData(false)
     let activeChat
-    let activeMatchChat
-    if (chatList.current_user !== item.receiver_id) {
-      activeChat = chatList.chat.findIndex((data: any) => data.receiver_id === item.receiver_id)
-    } else if (chatList.current_user === item.receiver_id) {
-      activeChat = chatList.chat.findIndex((data: any) => data.sender_id === item.sender_id)
+    if (chatList?.chat && chatList.current_user !== item.receiver_id) {
+      activeChat = chatList.chat.findIndex((data: any) => data.receiver_id === item.receiver_id).toString()
+    } else if (chatList?.chat && chatList.current_user === item.receiver_id) {
+      activeChat = chatList.chat.findIndex((data: any) => data.sender_id === item.sender_id).toString()
     }
-    else if (chatList.current_user !== item.id) {
-      activeMatchChat = chatList.starter.findIndex((data: any) => data.id === item.id)
-    }
+
     const selectedChatId = chatList.current_user !== item.receiver_id ? item.receiver_id : item.sender_id
 
     if (flag === "chat") {
       setSelectedID(selectedChatId);
       setTog(true);
       setSelectedData(item);
+      if (activeChat) {
+        chatList.chat[activeChat].total_unread_messages = "0"
+        setChatList(chatList)
+      }
     } else if (flag === "starter") {
       setSelectedID(item.id);
       setTog(true);
       setSelectedData(item);
     }
-
-
-    // if (activeChat) {
-    //   chatList.chat[activeChat].total_unread_messages = "0"
-    // }
-
-
 
     const tokenID = AuthStorage.getStorageData(STORAGEKEY.token);
 
