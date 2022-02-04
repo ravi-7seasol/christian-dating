@@ -99,9 +99,11 @@ const MatchOrMessage = () => {
 
   return (
     <>
+    <div>
       <Container>
         <div className="match-or-message mt-3 mb-3 d-flex">
-          <img src="./assets/img/left-arrow.png" />
+        <div className="top-baloons"></div>
+          {/* <img src="./assets/img/left-arrow.png" /> */}
           <p>Profiles based on preference settings</p>
         </div>
       </Container>
@@ -198,8 +200,12 @@ const MatchOrMessage = () => {
               step.
             </p>
           </div>
-        </div>
+       </div>
       </Container>
+          <div className="content-footer-baloon">
+             <div className="bottom-baloons"></div>
+          </div>
+      </div>
       {
         subscriptionModal && <Subscription show={subscriptionModal} onHide={() => setSubscriptionModal(false)} />
       }

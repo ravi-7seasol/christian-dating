@@ -283,6 +283,7 @@ const Community = () => {
 
   return (
     <Container>
+      <div className="top-baloons"></div>
       <div className="community-popup">
         <p>
           “So now the case is closed. There remains no accusing voice of
@@ -465,6 +466,9 @@ const Community = () => {
           </div>
         </div>
       </div>
+      <div className="content-footer-baloon">
+             <div className="bottom-baloons"></div>
+          </div>
     </Container>
   );
 };

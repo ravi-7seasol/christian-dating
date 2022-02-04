@@ -349,6 +349,7 @@ const Inbox = () => {
   return (
     <>
       <div className="inbox-main px-3">
+         <div className="top-baloons"></div>
         <Container>
           <Row>
             <Col md={5} className="p-0">
@@ -814,6 +815,9 @@ const Inbox = () => {
             )}
           </Row>
         </Container>
+        <div className="content-footer-baloon">
+             <div className="bottom-baloons"></div>
+          </div>
       </div>
     </>
   );
