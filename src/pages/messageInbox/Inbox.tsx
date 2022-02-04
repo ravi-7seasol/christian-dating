@@ -430,7 +430,7 @@ const Inbox = () => {
                               } chat-messages`}
                           >
                             <h4>{data.receiver_name}</h4>
-                            <p>{data.last_message}</p>
+                            <p>{ReactHtmlParser(data.last_message)}</p>
                           </div>
                           <div
                             className={`${selectedID === data.receiver_id &&
