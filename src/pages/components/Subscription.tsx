@@ -17,6 +17,7 @@ const Subscription = ({ show, onHide, ...props }: Props) => {
                 show={show}
                 centered
                 onHide={onHide}
+                className='subscription-modal'
             >
                 {/* <Modal show={show} onHide={onHide}> */}
                 {/* <Modal.Header closeButton>
@@ -26,8 +27,8 @@ const Subscription = ({ show, onHide, ...props }: Props) => {
                     <div className="subscription-main">
                         <h1>SUBSCRIBE TO CONNECT WITH YOUR MATCHES</h1>
                         <Container>
-                            <Row className="">
-                                <Col md={6} className="margin-bottom">
+                            <Row className="subscription-card-main">
+                                <Col xs={6} className="subscription-card-col margin-bottom">
                                     <div className="subscription-card">
                                         <h1> 1 MONTH</h1>
                                         <p>Unlimited Match</p>
@@ -36,13 +37,12 @@ const Subscription = ({ show, onHide, ...props }: Props) => {
                                         <Button>BUY AT $19.99</Button>
                                     </div>
                                 </Col>
-                                <Col md={6} className="">
+                                <Col xs={6} className="subscription-card-col">
                                     <div className="subscription-card-2">
                                         <div className="subscription-header">
                                             <h1>MOST POPULAR</h1>
                                         </div>
                                         <div className="subscription-body">
-
                                             <h1> 3 MONTH</h1>
                                             <p>Unlimited Match</p>
                                             <p>Unlimited Message</p>
@@ -52,7 +52,7 @@ const Subscription = ({ show, onHide, ...props }: Props) => {
                                     </div>
                                 </Col>
                             </Row>
-                            <Button variant="secondary" onClick={onHide} className='mb-3'>
+                            <Button variant="secondary" onClick={onHide} className='mb-2 mt-2'>
                                 No Thanks
                             </Button>
                         </Container>

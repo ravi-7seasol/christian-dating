@@ -161,7 +161,7 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
               <div className="navLinks">
                 <Link to="/match_or_message">Match or Message</Link>
                 <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/community">Community</Link></span>
-                <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/inbox">Inbox {chatList && <span className={chatList ? "messages-counts-header" : ""} > {chatList} </span>}</Link></span>
+                <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/inbox">Inbox {chatList && <span className={chatList ? "messages-counts-header" : ""} > {parseInt(chatList) > 99 ? `99+` : chatList} </span>}</Link></span>
                 {/* .inbox-main .messages-counts */}
                 <Link to="/success_stories">Success stories</Link>
               </div>
