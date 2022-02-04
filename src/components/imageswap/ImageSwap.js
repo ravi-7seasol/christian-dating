@@ -181,8 +181,8 @@ const ImageSwap = (props) => {
 
                   <div className={`details ${row.length - 1 === i && 'card-box-shadow'}`}>
                     <div className="">
-                    {item.address && <p>{item.address} Bay Area | Religion<span> {item.addressspan} </span>
-                      </p>}
+                    <p>{item.address && `${item.address} Bay Area`} {item.address && item.denomination && "|" } {item.denomination && `Religion`} {item.denomination && <span> {item.denomination} </span>} </p> 
+          
                       <div className="d-flex align-items-center justify-content-between mt-3">
                         <div className="d-flex align-items-center">
                           <h5 className="name-age">{item.name}</h5>

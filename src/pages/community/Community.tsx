@@ -106,6 +106,7 @@ const Community = () => {
   const [gifTog, setGifTog] = useState(false);
   const [imgTog, setImgTog] = useState(false);
   const [selectedImage, setSelectedImage] = useState<any>();
+  let temp: any[] = [];
 
   const dispatch = useDispatch();
 
@@ -279,7 +280,7 @@ const Community = () => {
     if (type === "category") {
       return topic && topic.find((data: any) => data.value === value);
     }
-  }; 
+  };
 
   return (
     <Container>
@@ -300,7 +301,7 @@ const Community = () => {
         />
       </div>
       <div className="d-flex">
-        <div className="community" style={{ position: "relative",width:"100%",borderRight:"2px solid #E3E3E3" }}>
+        <div className="community" style={{ position: "relative", width: "100%", borderRight: "2px solid #E3E3E3" }}>
           <div className="">
             {getTopicList?.map((item: any, i: number) => (
               <div className="d-flex pt-4 align-items-center" key={i}>
@@ -319,7 +320,7 @@ const Community = () => {
                     onError={({ currentTarget }) => {
                       currentTarget.onerror = null; // prevents looping
                       currentTarget.src = "./assets/img/nonprofileImg.png";
-                    }} 
+                    }}
                   />
                   {item.if_online === "1" ? <div className="active"></div> : ""}
                 </div>
@@ -338,25 +339,25 @@ const Community = () => {
         <div className="online-users community">
           {getTopicList?.map((item: any, i: number) => {
             if (item.if_online === "1") {
+              if (!temp.includes(item.sender_id)) {
+                temp.push(item.sender_id)
                 return (
-                <>
-                <div>
-
-                <img
-                    src={
+                  <div>
+                    <img
+                      src={
                         item.sender_image
-                            ? item.sender_image
-                            : "./assets/img/nonprofileImg.png"
-                    }
-                    style={{ width: "55px", height: "55px", borderRadius: "100%" }}
-                    onError={({ currentTarget }) => {
-                      currentTarget.onerror = null; // prevents looping
-                      currentTarget.src = "./assets/img/nonprofileImg.png";
-                    }} 
-                />
-                </div>
-                </>
+                          ? item.sender_image
+                          : "./assets/img/nonprofileImg.png"
+                      }
+                      style={{ width: "55px", height: "55px", borderRadius: "100%" }}
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null; // prevents looping
+                        currentTarget.src = "./assets/img/nonprofileImg.png";
+                      }}
+                    />
+                  </div>
                 )
+              }
             }
           })}
         </div>
@@ -368,9 +369,9 @@ const Community = () => {
             <FontAwesomeIcon icon={faTimesCircle} onClick={() => closeGif()} />
           </div>
           <img src={gif} className="gifbig img-fluid" onError={({ currentTarget }) => {
-                      currentTarget.onerror = null; // prevents looping
-                      currentTarget.src = "./assets/img/nonprofileImg.png";
-                    }} ></img>
+            currentTarget.onerror = null; // prevents looping
+            currentTarget.src = "./assets/img/nonprofileImg.png";
+          }} ></img>
 
           <button className="submit">
             <FontAwesomeIcon icon={faPaperPlane} />
@@ -383,9 +384,9 @@ const Community = () => {
             <FontAwesomeIcon icon={faTimesCircle} onClick={() => closeImg()} />
           </div>
           <img src={URL.createObjectURL(selectedImage)} className="img-fluid" onError={({ currentTarget }) => {
-                      currentTarget.onerror = null; // prevents looping
-                      currentTarget.src = "./assets/img/nonprofileImg.png";
-                    }} />
+            currentTarget.onerror = null; // prevents looping
+            currentTarget.src = "./assets/img/nonprofileImg.png";
+          }} />
           <button className="submit">
             <FontAwesomeIcon icon={faPaperPlane} />
           </button>
@@ -400,9 +401,9 @@ const Community = () => {
         <div className="d-flex">
           <label htmlFor="imgSelect" className="choose-picture">
             <img src="./assets/img/picture-one (1).png" onError={({ currentTarget }) => {
-                      currentTarget.onerror = null; // prevents looping
-                      currentTarget.src = "./assets/img/nonprofileImg.png";
-                    }} />
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src = "./assets/img/nonprofileImg.png";
+            }} />
             <input
               type="file"
               onChange={(e) => {
@@ -424,7 +425,7 @@ const Community = () => {
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null; // prevents looping
                 currentTarget.src = "./assets/img/nonprofileImg.png";
-              }} 
+              }}
             />
             {openGift && (
               <div className="gifts">
@@ -438,7 +439,7 @@ const Community = () => {
                     onError={({ currentTarget }) => {
                       currentTarget.onerror = null; // prevents looping
                       currentTarget.src = "./assets/img/nonprofileImg.png";
-                    }} 
+                    }}
                   />
                 ))}
               </div>
@@ -460,7 +461,7 @@ const Community = () => {
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null; // prevents looping
                 currentTarget.src = "./assets/img/nonprofileImg.png";
-              }} 
+              }}
             />
           </div>
         </div>
