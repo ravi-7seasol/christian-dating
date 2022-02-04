@@ -131,6 +131,9 @@ const SuccessStories = () => {
         onhide={() => setPostData(false)}
         refresh={refreshData}
       />
+       <div className="content-footer-baloon">
+             <div className="bottom-baloons"></div>
+          </div>
     </>
   );
 };

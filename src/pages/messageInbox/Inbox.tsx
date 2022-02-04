@@ -39,10 +39,6 @@ const Inbox = () => {
 
   const message_Data = useSelector((state: RootStateOrAny) => state.message_Data)
 
-  useEffect(() => {
-    console.log('message_Data', message_Data);
-  }, [message_Data])
-
 
   const gotoBottom = (id: any) => {
     var element: any = document.getElementById(id);
@@ -353,6 +349,7 @@ const Inbox = () => {
   return (
     <>
       <div className="inbox-main px-3">
+         <div className="top-baloons"></div>
         <Container>
           <Row>
             <Col md={5} className="p-0">
@@ -371,7 +368,7 @@ const Inbox = () => {
                       currentTarget.onerror = null;
                       currentTarget.src = "./assets/img/nonprofileImg.png";
                     }} />
-                  {chatList?.likes.length && <h6>you like</h6>}
+                  {chatList?.likes.length > 0 && <h6>you like</h6>}
                 </div>
                 <div className="profile-content" style={{ textAlign: "center" }}>
                   <img src={chatList?.matches ? chatList.matches[chatList.matches.length - 1].profile_picture : "./assets/img/nonprofileImg.png"}
@@ -379,11 +376,11 @@ const Inbox = () => {
                       currentTarget.onerror = null;
                       currentTarget.src = "./assets/img/nonprofileImg.png";
                     }} />
-                  {chatList?.matches.length && <h6>match</h6>}
+                  {chatList?.matches.length > 0 && <h6>match</h6>}
                 </div>
                 <div className="profile-content">
                   <div className="like-counter">{chatList && chatList.viewed}</div>
-                  <h6 className="like-counter-content">profile views</h6>
+                  {chatList?.viewed.length > 0 && <h6 className="like-counter-content">profile views</h6>}
                 </div>
               </div>
               <div className="border-content"></div>
@@ -818,6 +815,9 @@ const Inbox = () => {
             )}
           </Row>
         </Container>
+        <div className="content-footer-baloon">
+             <div className="bottom-baloons"></div>
+          </div>
       </div>
     </>
   );

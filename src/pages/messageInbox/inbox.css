@@ -738,7 +738,7 @@
     /* position: fixed; */
     left: 0;
     padding-bottom: 10px;
-    background: #fff;
+    background: transparent;
     bottom: -100px;
     width: 100%;
   }
