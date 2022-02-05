@@ -202,7 +202,7 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
             <div className="nav-links">
               <span><Link to="/match_or_message" onClick={() => setNavpopup(false)} >Match or Message</Link></span>
               <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/community" onClick={() => setNavpopup(false)}>Community</Link> </span>
-              <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/inbox" onClick={() => setNavpopup(false)}>Inbox {chatList && <span className={chatList ? "messages-counts" : ""} > {chatList} </span>}</Link></span>
+              <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/inbox" onClick={() => setNavpopup(false)}>Inbox {chatList && <span className={chatList ? "messages-counts" : ""} >  {parseInt(chatList) > 99 ? `99+` : chatList} </span>}</Link></span>
               <span><Link to="/success_stories" onClick={() => setNavpopup(false)}>Success stories</Link></span>
             </div>
           </div>
