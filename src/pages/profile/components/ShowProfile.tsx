@@ -308,8 +308,6 @@ const ShowProfile = () => {
                 />
               </Link>
             </div>
-            {/* single-btn */}
-            {/* social-button */}
             <Buttons
               ButtonStyle=" single-btn"
               onClick={() => { }}

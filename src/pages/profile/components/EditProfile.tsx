@@ -877,7 +877,7 @@ const ShowProfile = () => {
                                     fromrowStyleclass=""
                                 />
                                 <div className="editprofile-slector">
-                                    <label htmlFor="" className='login-label'>Religion</label>
+                                    <label htmlFor="" className='login-label'>Denomination</label>
                                     <div className="reactSelector mt-3">
                                         <ReactSelect
                                             placeholder="Choose Denomination"
