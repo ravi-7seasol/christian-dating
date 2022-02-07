@@ -123,6 +123,8 @@ const ShowProfile = () => {
             return smoke.find((data: any) => data.value === value);
         } else if (type === "intrusted_in_meating") {
             return meetingIntrest.find((data: any) => data.value === value);
+        } else if (type === "your_intenet") {
+            return intent.find((data: any) => data.value === value);
         }
     };
 
@@ -292,6 +294,12 @@ const ShowProfile = () => {
         else if (value === "personality") {
             return personalityOptions;
         }
+        else if (value === "your_intenet") {
+            return intent
+        }
+        else if (value === "intrusted_in_meating") {
+            return meetingIntrest
+        }
     };
     const placeholderOption = (value: string) => {
         let placeHolder = "";
@@ -331,6 +339,8 @@ const ShowProfile = () => {
         }
         else if (value === "intrusted_in_meating") {
             setEditProfileData({ ...editProfileData, intrusted_in_meating: e.value })
+        } else if (value === "your_intenet") {
+            setEditProfileData({ ...editProfileData, your_intenet: e.value })
         }
     };
 
@@ -457,11 +467,11 @@ const ShowProfile = () => {
     ];
 
     const personal = [
-        {
-            Name: "your_intenet",
-            label: "I’m looking for:",
-            detail: editProfileData.your_intenet,
-        },
+        // {
+        //     Name: "your_intenet",
+        //     label: "I’m looking for:",
+        //     detail: editProfileData.your_intenet,
+        // },
         {
             Name: "body_type",
             label: "Body type:",
@@ -494,7 +504,7 @@ const ShowProfile = () => {
         },
         {
             Name: "intrusted_in_meating",
-            label: "Interested in Meating:",
+            label: "Interested in Meeting:",
             detail: editProfileData.intrusted_in_meating,
         },
         {
@@ -606,6 +616,11 @@ const ShowProfile = () => {
         { value: "Male", label: "Male" },
         { value: "Female", label: "Female" },
     ];
+    const intent = [
+        { value: "I want to build a friendship", label: "I want to build a friendship" },
+        { value: "I want to date with intent to marry", label: "I want to date with intent to marry" },
+
+    ];
 
     const selectOption = (value: string, name: string) => {
         let option: any[] = [];
@@ -691,7 +706,7 @@ const ShowProfile = () => {
                                     />
                                     <input
                                         type="file"
-                                        style={{ opacity: "0", height:0, width:0 }}
+                                        style={{ opacity: "0", height: 0, width: 0 }}
                                         ref={textInput}
                                         onChange={(e) => handleChnage(e)}
                                         id="img"
@@ -811,7 +826,7 @@ const ShowProfile = () => {
 
                                         <InputField
                                             name="your_story"
-                                            maxLength={undefined}
+                                            maxLength={100}
                                             value={editProfileData.your_story}
                                             lablestyleClass="login-label"
                                             InputstyleClass="login-input"
@@ -824,6 +839,7 @@ const ShowProfile = () => {
                                             type="text"
                                             fromrowStyleclass="Enter the name"
                                         />
+                                        <span style={{ color: "black", fontSize: "10px" }}>{editProfileData.your_story.length}/100</span>
                                     </div>
                                 </div>
                             </Col>
@@ -959,7 +975,7 @@ const ShowProfile = () => {
                             <div className="about-mi">
                                 <InputField
                                     name="your_story"
-                                    maxLength={undefined}
+                                    maxLength={100}
                                     value={editProfileData.your_story}
                                     lablestyleClass="login-label"
                                     InputstyleClass="login-input"
@@ -972,6 +988,7 @@ const ShowProfile = () => {
                                     type="text"
                                     fromrowStyleclass=""
                                 />
+                                <span style={{ color: "black", fontSize: "10px" }}>{editProfileData.your_story.length}/100</span>
                             </div>
                         </div>
                     </div>
@@ -1072,8 +1089,8 @@ const ShowProfile = () => {
                                 </div>
                                 <div className="col-lg-9 col-md-9 col-sm-12">
                                     {
-                                        item.Name === "intrusted_in_meating" ? <ReactSelect
-                                            options={meetingIntrest}
+                                        item.Name === "intrusted_in_meating" || item.Name === "your_intenet" ? <ReactSelect
+                                            options={setlectOption(item.Name)}
                                             placeholder={"Select Your Intrest"}
                                             onChange={(e: any) =>
                                                 handleChangeOptionSelect(e, item.Name)

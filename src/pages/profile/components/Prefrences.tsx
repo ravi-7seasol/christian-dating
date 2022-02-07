@@ -17,7 +17,7 @@ const Prefrences = (props: any) => {
   useEffect(() => {
     let data = personality.map((item: any) => item.value).join();
     setPrefrences({ ...prefrences, personality: data })
-}, [personality]);
+  }, [personality]);
 
   useEffect(() => {
     console.log('prefrences', prefrences);
@@ -47,50 +47,50 @@ const Prefrences = (props: any) => {
   }
   const personalityOptions = [
     { value: "Active", label: "Active" },
-        { value: "Adventurous", label: "Adventurous" },
-        { value: "Athletic", label: "Athletic" },
-        { value: "Calm", label: "Calm" },
-        { value: "Caring", label: "Caring" },
-        { value: "Agreeable", label: "Agreeable" },
-        { value: "Charismatic", label: "Charismatic" },
-        { value: "Cheerful", label: "Cheerful" },
-        { value: "Compassionate", label: "Compassionate" },
-        { value: "Confident", label: "Confident" },
-        { value: "Competitive", label: "Competitive" },
-        { value: "Curious", label: "Curious" },
-        { value: "Dramatic", label: "Dramatic" },
-        { value: "Disciplined", label: "Disciplined" },
-        { value: "Empathetic", label: "Empathetic" },
-        { value: "Enthusiastic", label: "Enthusiastic" },
-        { value: "Friendly", label: "Friendly" },
-        { value: "Flexible", label: "Flexible" },
-        { value: "Freethinking", label: "Freethinking" },
-        { value: "Generous", label: "Generous" },
-        { value: "Gentle", label: "Gentle" },
-        { value: "Gracious", label: "Gracious" },
-        { value: "Hardworking", label: "Hardworking" },
-        { value: "Healthy", label: "Healthy" },
-        { value: "Loyal", label: "Loyal" },
-        { value: "Observant", label: "Observant" },
-        { value: "Organized", label: "Organized" },
-        { value: "Passionate", label: "Passionate" },
-        { value: "Perfectionist", label: "Perfectionist" },
-        { value: "Playful", label: "Playful" },
-        { value: "Prudent", label: "Prudent" },
-        { value: "Relaxed", label: "Relaxed" },
-        { value: "Reliable", label: "Reliable" },
-        { value: "Selfless", label: "Selfless" },
-        { value: "Sensitive", label: "Sensitive" },
-        { value: "Serious", label: "Serious" },
-        { value: "Tidy", label: "Tidy" },
-        { value: "Trusting", label: "Trusting" },
-        { value: "Upright", label: "Upright" },
-        { value: "Warm", label: "Warm" },
-        { value: "Witty", label: "Witty" },
+    { value: "Adventurous", label: "Adventurous" },
+    { value: "Athletic", label: "Athletic" },
+    { value: "Calm", label: "Calm" },
+    { value: "Caring", label: "Caring" },
+    { value: "Agreeable", label: "Agreeable" },
+    { value: "Charismatic", label: "Charismatic" },
+    { value: "Cheerful", label: "Cheerful" },
+    { value: "Compassionate", label: "Compassionate" },
+    { value: "Confident", label: "Confident" },
+    { value: "Competitive", label: "Competitive" },
+    { value: "Curious", label: "Curious" },
+    { value: "Dramatic", label: "Dramatic" },
+    { value: "Disciplined", label: "Disciplined" },
+    { value: "Empathetic", label: "Empathetic" },
+    { value: "Enthusiastic", label: "Enthusiastic" },
+    { value: "Friendly", label: "Friendly" },
+    { value: "Flexible", label: "Flexible" },
+    { value: "Freethinking", label: "Freethinking" },
+    { value: "Generous", label: "Generous" },
+    { value: "Gentle", label: "Gentle" },
+    { value: "Gracious", label: "Gracious" },
+    { value: "Hardworking", label: "Hardworking" },
+    { value: "Healthy", label: "Healthy" },
+    { value: "Loyal", label: "Loyal" },
+    { value: "Observant", label: "Observant" },
+    { value: "Organized", label: "Organized" },
+    { value: "Passionate", label: "Passionate" },
+    { value: "Perfectionist", label: "Perfectionist" },
+    { value: "Playful", label: "Playful" },
+    { value: "Prudent", label: "Prudent" },
+    { value: "Relaxed", label: "Relaxed" },
+    { value: "Reliable", label: "Reliable" },
+    { value: "Selfless", label: "Selfless" },
+    { value: "Sensitive", label: "Sensitive" },
+    { value: "Serious", label: "Serious" },
+    { value: "Tidy", label: "Tidy" },
+    { value: "Trusting", label: "Trusting" },
+    { value: "Upright", label: "Upright" },
+    { value: "Warm", label: "Warm" },
+    { value: "Witty", label: "Witty" },
   ]
 
   const relationStatus = [
-    { value: "Single", label: "Single"},
+    { value: "Single", label: "Single" },
     { value: "Widowed", label: "Widowed" },
     { value: "Divorced", label: "Divorced" },
   ];
@@ -123,7 +123,9 @@ const Prefrences = (props: any) => {
               value={prefrences.your_story}
               onChange={(e) => handleChange(e)}
               name='your_story'
+              maxLength={100}
             ></textarea>
+            <span style={{ color: "black" }}>{prefrences.your_story.length}/100</span>
           </div>
           <div className="textarea">
             <label className="login-label">Short Bio</label>
