@@ -5,9 +5,11 @@ import { ApiPost } from '../../helper/API/ApiData';
 interface Props {
     show: boolean;
     onHide: () => void;
+    packageData:any;
+    packageData2:any;
 
 }
-const Subscription = ({ show, onHide, ...props }: Props) => {
+const Subscription = ({ show, onHide, packageData, packageData2, ...props }: Props) => {
     const [packages, setPackages] = useState<any>();
 
     useEffect(() => {
@@ -22,6 +24,13 @@ const Subscription = ({ show, onHide, ...props }: Props) => {
             });
     }, []);
 
+    const handleClick = () => {        
+        packageData(packages[0].id)
+    }
+
+    const handleClick2 = () => {
+        packageData2(packages[1].id)
+    }
 
     return (
         <>
@@ -52,7 +61,8 @@ const Subscription = ({ show, onHide, ...props }: Props) => {
                                                 {data.features.split(',').map((name: any, i: number) => (
                                                     <p>{name}</p>
                                                 ))}
-                                                <Button>BUY AT ${data.price}</Button>
+                                                {/* <Button>BUY AT ${data.price}</Button> */}
+                                                <button onClick={()=>handleClick()}>BUY AT ${data.price}</button>
                                             </div>
                                         </Col> : <Col md={6} className="subscription-card-col">
                                             <div className="subscription-card-2">
@@ -65,7 +75,8 @@ const Subscription = ({ show, onHide, ...props }: Props) => {
                                                     {data.features.split(',').map((name: any, i: number) => (
                                                         <p>{name}</p>
                                                     ))}
-                                                    <Button>BUY AT ${data.price}</Button>
+                                                    {/* <Button>BUY AT ${data.price}</Button> */}
+                                                    <button onClick={() => handleClick2()}>BUY AT ${data.price}</button>
                                                 </div>
                                             </div>
                                         </Col>

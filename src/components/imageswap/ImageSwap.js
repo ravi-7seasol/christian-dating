@@ -29,6 +29,7 @@ const ImageSwap = (props) => {
       }
       props.Data(data)
       props.rateTogChange(false)
+      props.matchProfile(getProfileMatch[getProfileMatch.length - 1].percent_match)
     }
   }, [getProfileMatch]);
 
@@ -120,7 +121,7 @@ const ImageSwap = (props) => {
       let id = ids.map((data) => data).join(",");
       let token = {
         token: AuthStorage.getToken(),
-        // user_ids: id,
+        user_ids: id,
       };
       const body = xwwwFormUrlencoded(token);
       ApiPost("postswapids", body)
@@ -137,7 +138,6 @@ const ImageSwap = (props) => {
     const test = document.getElementById("test");
     if (test) {
       test.addEventListener("click", () => {
-        // alert("hi")
         console.log("clicked");
       });
     }
@@ -181,7 +181,7 @@ const ImageSwap = (props) => {
 
                   <div className={`details ${row.length - 1 === i && 'card-box-shadow'}`}>
                     <div className="">
-                    <p>{item.address && `${item.address} Bay Area`} {item.address && item.denomination && "|" } {item.denomination && `Religion`} {item.denomination && <span> {item.denomination} </span>} </p> 
+                    <p>{item.address && item.address} {item.address && item.denomination && "|" } {item.denomination && `Religion`} {item.denomination && <span> {item.denomination} </span>} </p> 
           
                       <div className="d-flex align-items-center justify-content-between mt-3">
                         <div className="d-flex align-items-center">

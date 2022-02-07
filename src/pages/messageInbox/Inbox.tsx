@@ -444,7 +444,7 @@ const Inbox = () => {
                           >
                             <h6>{moment(data.last_message_time).format("LT")}</h6>
 
-                            {data.total_unread_messages !== "0" &&
+                            {/* {data.total_unread_messages !== "0" &&
                               <div
                                 className={
                                   data.total_unread_messages
@@ -454,7 +454,7 @@ const Inbox = () => {
                               >
                                 {data.total_unread_messages}
                               </div>
-                            }
+                            } */}
                           </div>
                         </div>
                         :
@@ -497,7 +497,7 @@ const Inbox = () => {
                           >
                             <h6>{moment(data.last_message_time).format("LT")}</h6>
 
-                            {data.total_unread_messages !== "0" &&
+                            {/* {data.total_unread_messages !== "0" &&
                               <div
                                 className={
                                   data.total_unread_messages
@@ -507,7 +507,7 @@ const Inbox = () => {
                               >
                                 {data.total_unread_messages}
                               </div>
-                            }
+                            } */}
                           </div>
                         </div>
 

@@ -16,6 +16,7 @@ import { cssTransition, toast, ToastContainer } from "react-toastify";
 import { messageData } from '../../redux/actions/messageDataAction';
 import { useNavigate } from "react-router-dom";
 import Subscription from "../components/Subscription";
+import Payment from "../components/Payment";
 const MatchOrMessage = () => {
   const navigate = useNavigate();
   // const [like, setLike] = useState(false);
@@ -26,6 +27,9 @@ const MatchOrMessage = () => {
   const [rate, setRate] = useState('')
   const [subscriptionModal, setSubscriptionModal] = useState(false)
   const [togRate, setTogRate] = useState(false);
+  const [paymentModal, setPaymentModal] = useState(false);
+  const [getPackage, setGetPackage] = useState();
+  const [profileMatch, setProfileMatch] = useState();
 
   const userExpiredData = useSelector((state: RootStateOrAny) => state.user_Expired.user_expired)
 
@@ -41,7 +45,13 @@ const MatchOrMessage = () => {
     }
   }, [subscriptionModal]);
 
-
+  useEffect(() => {
+    if(getPackage){
+      setSubscriptionModal(false)
+      setPaymentModal(true)
+    }   
+  }, [getPackage]);
+  
 
   const likehandleChange = () => {
     let data = {
@@ -97,6 +107,26 @@ const MatchOrMessage = () => {
     });
   };
 
+  const stripePayment = (paymentId:any) => {
+    console.log("final id => ",paymentId);    
+    if(paymentId && getPackage){
+      let data = {
+        token: AuthStorage.getToken(),
+        email: AuthStorage.getStorageJsonData("userData").email,
+        package_id: getPackage,
+        stripeToken:paymentId
+      };
+      const body = xwwwFormUrlencoded(data);
+      ApiPost("paywithstripe", body)
+        .then((res: any) => {
+          console.log("res", res);
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
+    }
+  }
+
   return (
     <>
     <div>
@@ -136,6 +166,7 @@ const MatchOrMessage = () => {
         changeSkip={() => setIsSkip(false)}
         rateChange={togRate}
         rateTogChange={setTogRate}
+        matchProfile={setProfileMatch}
       />
       <Container>
         <div className="activity-main">
@@ -196,7 +227,7 @@ const MatchOrMessage = () => {
           <div className="message-bottom-popup-body">
             <p className="message-bottom-popup-body-text">
               Could she be the one? you both have a match rating of{" "}
-              <span> 89%</span>! Try sending her a message to make the first
+              <span>{profileMatch}</span>! Try sending her a message to make the first
               step.
             </p>
           </div>
@@ -207,7 +238,10 @@ const MatchOrMessage = () => {
           </div>
       </div>
       {
-        subscriptionModal && <Subscription show={subscriptionModal} onHide={() => setSubscriptionModal(false)} />
+        subscriptionModal && <Subscription show={subscriptionModal} onHide={() => setSubscriptionModal(false)} packageData={setGetPackage} packageData2={setGetPackage}/>
+      }
+      {
+        paymentModal && <Payment show = {paymentModal} onHide = {() => {setPaymentModal(false)}} paymentDone={(paymentId:any) => stripePayment(paymentId)}/>
       }
     </>
   );

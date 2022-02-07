@@ -83,7 +83,7 @@ const ShowProfile = () => {
     if (profileid) {
       pid = profileid;
     } else {
-      pid = AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id;
+      pid = AuthStorage.getStorageJsonData(STORAGEKEY.userData).userId ?? AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id;
     }
     const id = {
       id: pid,
@@ -136,7 +136,6 @@ const ShowProfile = () => {
           lifestyle: res.user[0].lifestyle,
           personality: res.user[0].personality,
         });
-        console.log("SingleUser", res);
         dispatch(getProfileImage(res.user.image));
         dispatch(setIsLoading(false));
       })
@@ -144,7 +143,7 @@ const ShowProfile = () => {
         console.log(error);
         dispatch(setIsLoading(false));
       });
-  }, []);
+  }, [profileid]);
 
   useEffect(() => {
     const id = {
@@ -308,8 +307,6 @@ const ShowProfile = () => {
                 />
               </Link>
             </div>
-            {/* single-btn */}
-            {/* social-button */}
             <Buttons
               ButtonStyle=" single-btn"
               onClick={() => { }}
@@ -409,7 +406,19 @@ const ShowProfile = () => {
                   "years"
                 )}
               </h5>
-              <img src="./assets/img/male.png" alt="" className="ml-3" />
+              {getProfileData.gender === "male" ? (
+                <img
+                  src="./assets/img/male.png"
+                  alt=""
+                  className="ml-3"
+                />
+              ) : (
+                <img
+                  src="./assets/img/female.png"
+                  alt=""
+                  className="ml-3"
+                />
+              )}
             </div>
             {/* <p className="about-mi">{getProfileData.short_bio}</p> */}
             {/* <p className="about-mi"></p> */}
@@ -446,7 +455,7 @@ const ShowProfile = () => {
                         </div>
                         <div className="col-lg-8 col-md-8 col-sm-7">
                           {item.Header === "Personality" ?
-                            <span>{data.value.replaceAll(",",", ")}</span>
+                            <span>{data.value.replaceAll(",", ", ")}</span>
                             :
                             <span>{data.value}</span>
                           }

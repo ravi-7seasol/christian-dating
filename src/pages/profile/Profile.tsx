@@ -43,17 +43,27 @@ const Profile = (props: any) => {
   })
 
   const [stepDone, setStepDone] = useState(1);
-  const nevigate = useNavigate();
+  const [images, setImages] = useState<any>();
+  const navigate = useNavigate();
   const dispatch = useDispatch()
 
   const handleNext = () => {
+    
     dispatch(setIsLoading(true))
-
     if (stepDone < 5) {
-      setStepDone(stepDone + 1);
-      dispatch(setIsLoading(false))
+      if(stepDone == 4 && images > 2){
+        setStepDone(stepDone + 1);
+        dispatch(setIsLoading(false))
+      }else if(stepDone == 1 || stepDone == 2 || stepDone == 3){
+        setStepDone(stepDone + 1);
+        dispatch(setIsLoading(false))
+      }else{
+        alert('You have not take minimum 3 pictures')
+        setStepDone(stepDone)
+        dispatch(setIsLoading(false))
+      }
 
-    } else {
+    } else if(stepDone == 5) {
       const body = xwwwFormUrlencoded(profile);
 
       ApiPost('updateprofile', body)
@@ -61,7 +71,7 @@ const Profile = (props: any) => {
           console.log("res", res);
           dispatch(setIsLoading(false))
           if (res.status === "true") {
-            nevigate("/show-profile");
+            navigate("/show-profile");
           }
           else {
             dispatch(setIsLoading(false))
@@ -113,7 +123,7 @@ const Profile = (props: any) => {
         {stepDone === 1 && <Personal personalData={personal} />}
         {stepDone === 2 && <Prefrences prefrencesData={prefrences} />}
         {stepDone === 3 && <Lifestyle lifeStyleData={lifeStyle} />}
-        {stepDone >= 4 && <SetProfileImage stepDone={stepDone} />}
+        {stepDone >= 4 && <SetProfileImage stepDone={stepDone} images={setImages}/>}
 
         <div className="login">
           <div
