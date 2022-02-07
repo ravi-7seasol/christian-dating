@@ -159,7 +159,7 @@ const Login = () => {
     ApiPost("signupusersocial", body)
       .then((res: any) => {
         console.log("res", res)
-        if (res.msg === "User Successfully logged in") {
+        if (res.msg === "User Successfully logged in ") {
           AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
           setErrorMsg(res.msg);
           let newData = res

@@ -15,7 +15,7 @@ const SuccessStories = () => {
   const [second, setSecond] = useState(false);
   const [postData, setPostData] = useState(false);
   const [storySort, setStorysort] = useState({
-    sort: "asc",
+    sort: "desc",
   });
   const [storiesData, setStoriesData] = useState([]);
   const [selectedID, setSelectedID] = useState("");

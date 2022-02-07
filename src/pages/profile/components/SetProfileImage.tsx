@@ -2,18 +2,21 @@ import React, { useState, useRef } from "react";
 import Webcam from "react-webcam";
 
 
-const SetProfileImage = ({ stepDone }: any) => {
+const SetProfileImage = ({ stepDone, images }: any) => {
   const [photo, setPhoto] = useState();
   const [camOpen, setCamOpen] = useState(false);
   const webcamRef = useRef<any>();
+  const [takeImage, setTakeImage] = useState<any>([]);
 
   const openCamera = () => {
     setCamOpen(true);
   }
   const capture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
+    takeImage.push(imageSrc)
     setPhoto(imageSrc);
     setCamOpen(false)
+    images(takeImage.length)
   };
   const videoConstraints = {
     facingMode: "user"

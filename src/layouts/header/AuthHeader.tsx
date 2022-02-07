@@ -12,6 +12,7 @@ import { setIsLoading } from "../../redux/actions/loadingAction";
 import { userExpired } from "../../redux/actions/userExpiredAction";
 import { userProfileImage } from "../../redux/actions/userProfileImage";
 import Subscription from "../../pages/components/Subscription";
+import Payment from "../../pages/components/Payment";
 
 interface Props {
   showMenu: any;
@@ -25,8 +26,11 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
   const [chatList, setChatList] = useState<any>();
   const [profile, setProfile] = useState<any>();
   const [subscriptionModal, setSubscriptionModal] = useState(false);
+  const [getPackage, setGetPackage] = useState();
+  const [paymentModal, setPaymentModal] = useState(false);
 
   const openMenu = () => {
+    setNavpopup(false)
     setShowProfile(!showProfile);
   };
   const handleRedirect = () => {
@@ -36,6 +40,36 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
   const userProfileImg = useSelector((state: RootStateOrAny) => state.user_profile_Image.profileImage)
   const userExpiredData = useSelector((state: RootStateOrAny) => state.user_Expired.user_expired)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (getPackage) {
+      if (getPackage) {
+        setSubscriptionModal(false)
+        setPaymentModal(true)
+      }
+    }
+  }, [getPackage]);
+
+  const stripePayment = (paymentId: any) => {
+    console.log("paymentId",paymentId);
+    if (paymentId && getPackage) {
+      let data = {
+        token: AuthStorage.getToken(),
+        email: AuthStorage.getStorageJsonData("userData").email,
+        package_id: getPackage,
+        stripeToken: paymentId
+      };
+      const body = xwwwFormUrlencoded(data);
+      ApiPost("paywithstripe", body)
+        .then((res: any) => {
+          console.log("res", res);
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
+    }
+  }
+
 
   useEffect(() => {
     dispatch(setIsLoading(true))
@@ -141,14 +175,14 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
         </div>
       </div> */}
       <Navbar bg="light" className="authnave " >
-        <Container>
+        <Container onClick={() => {navpopup && setNavpopup(false); showProfile && setShowProfile(false)}}>
           <Navbar.Brand >
             <img
               src="./assets/img/Group 28.png"
               className=" align-top uncommon-logo"
               onClick={handleRedirect}
             />
-            <button onClick={() => { setNavpopup(!navpopup) }} style={{ border: "none", background: "transparent" }}><img src="./assets/img/application-menu.png" className="menu-logo" alt="" height="5%" /></button>
+            <button onClick={() => { setNavpopup(!navpopup); setShowProfile(false) }} style={{ border: "none", background: "transparent" }}><img src="./assets/img/application-menu.png" className="menu-logo" alt="" height="5%" /></button>
           </Navbar.Brand>
 
           <Navbar.Collapse
@@ -209,7 +243,10 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
         }
       </Navbar>
       {
-        subscriptionModal && <Subscription show={subscriptionModal} onHide={() => setSubscriptionModal(false)} />
+        subscriptionModal && <Subscription show={subscriptionModal} onHide={() => setSubscriptionModal(false)} packageData={setGetPackage} packageData2={setGetPackage} />
+      }
+      {
+        paymentModal && <Payment show={paymentModal} onHide={() => { setPaymentModal(false) }} paymentDone={(paymentId: any) => stripePayment(paymentId)} />
       }
     </>
   );
