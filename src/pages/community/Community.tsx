@@ -203,6 +203,7 @@ const Community = () => {
         .then((res: any) => {
           getCommunityData();
           dispatch(setIsLoading(false));
+          setClearText(true)
         })
         .catch((error) => {
           console.log(error);
@@ -468,8 +469,8 @@ const Community = () => {
         </div>
       </div>
       <div className="content-footer-baloon">
-             <div className="bottom-baloons"></div>
-          </div>
+        <div className="bottom-baloons"></div>
+      </div>
     </Container>
   );
 };

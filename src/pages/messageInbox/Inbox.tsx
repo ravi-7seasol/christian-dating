@@ -14,6 +14,7 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import ReactHtmlParser from "react-html-parser";
 import moment from "moment";
 import Slider from "react-slick";
+import { useNavigate } from "react-router-dom";
 
 const Inbox = () => {
   const { innerWidth: width, innerHeight: height } = window;
@@ -33,6 +34,7 @@ const Inbox = () => {
   const [displayStaticMessage, setDisplayStaticMessage] = useState<any>(false);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const message_ID = useSelector(
     (state: RootStateOrAny) => state.message_Id.message_Id
   );
@@ -41,7 +43,9 @@ const Inbox = () => {
 
   const gotoBottom = (id: any) => {
     var element: any = document.getElementById(id);
-    element.scrollTop = element.scrollHeight - element.clientHeight;
+    if (element) {
+      element.scrollTop = element.scrollHeight - element.clientHeight;
+    }
   }
 
 
@@ -244,7 +248,9 @@ const Inbox = () => {
       .then((res: any) => {
         setChatData(res);
         setCurrentUser(res.current_user);
-        gotoBottom("chatBox")
+        if (selectedID) {
+          gotoBottom("chatBox")
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -326,6 +332,11 @@ const Inbox = () => {
     setImgTog(false);
     setSelectedImage(undefined);
   };
+  const ViewProfile = (id: any) => {
+    // console.log("clicked");
+    navigate(`/show-profile?profileid=${id}`);
+
+  };
 
   const settings = {
     className: "slider variable-width",
@@ -342,7 +353,7 @@ const Inbox = () => {
   return (
     <>
       <div className="inbox-main px-3">
-         <div className="top-baloons"></div>
+        <div className="top-baloons"></div>
         <Container>
           <Row>
             <Col md={5} className="p-0">
@@ -414,6 +425,7 @@ const Inbox = () => {
                                 currentTarget.src = "./assets/img/nonprofileImg.png";
                               }}
                               className="chat-profile"
+                              onClick={() => ViewProfile(data.receiver_id)}
                             />
                             {data.if_online === "1" && <div className="online"></div>}
                           </div>
@@ -466,6 +478,7 @@ const Inbox = () => {
                                 currentTarget.src = "./assets/img/nonprofileImg.png";
                               }}
                               className="chat-profile"
+
                             />
                             {data.if_online === "1" && <div className="online"></div>}
                           </div>
@@ -530,6 +543,7 @@ const Inbox = () => {
                                 currentTarget.src = "./assets/img/nonprofileImg.png";
                               }}
                               className="chat-profile"
+                              onClick={() => ViewProfile(data.id)}
                             />
                             {data.if_online === "1" && <div className="online"></div>}
                           </div>
@@ -809,8 +823,8 @@ const Inbox = () => {
           </Row>
         </Container>
         <div className="content-footer-baloon">
-             <div className="bottom-baloons"></div>
-          </div>
+          <div className="bottom-baloons"></div>
+        </div>
       </div>
     </>
   );
