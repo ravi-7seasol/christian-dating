@@ -74,7 +74,8 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
   useEffect(() => {
     dispatch(setIsLoading(true))
     const id = {
-      id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id
+      id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id,
+      viewer: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id
     }
     const body = xwwwFormUrlencoded(id);
 
@@ -195,7 +196,7 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
               <div className="navLinks">
                 <Link to="/match_or_message">Match or Message</Link>
                 <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/community">Community</Link></span>
-                <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/inbox">Inbox {chatList && <span className={chatList ? "messages-counts-header" : ""} > {parseInt(chatList) > 99 ? `99+` : chatList} </span>}</Link></span>
+                <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/inbox">Inbox {chatList !== '0' && <span className={chatList ? "messages-counts-header" : ""} > {parseInt(chatList) > 99 ? `99+` : chatList} </span>}</Link></span>
                 {/* .inbox-main .messages-counts */}
                 <Link to="/success_stories">Success stories</Link>
               </div>
@@ -236,7 +237,7 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
             <div className="nav-links">
               <span><Link to="/match_or_message" onClick={() => setNavpopup(false)} >Match or Message</Link></span>
               <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/community" onClick={() => setNavpopup(false)}>Community</Link> </span>
-              <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/inbox" onClick={() => setNavpopup(false)}>Inbox {chatList && <span className={chatList ? "messages-counts" : ""} >  {parseInt(chatList) > 99 ? `99+` : chatList} </span>}</Link></span>
+              <span onClick={() => userExpiredData && userExpiredData === "expired" ? setSubscriptionModal(true) : ''}><Link to="/inbox" onClick={() => setNavpopup(false)}>Inbox {chatList !== "0" && <span className={chatList ? "messages-counts" : ""} >  {parseInt(chatList) > 99 ? `99+` : chatList} </span>}</Link></span>
               <span><Link to="/success_stories" onClick={() => setNavpopup(false)}>Success stories</Link></span>
             </div>
           </div>

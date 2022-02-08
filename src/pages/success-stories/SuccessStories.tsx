@@ -103,7 +103,7 @@ const SuccessStories = () => {
                   <div className="person-name">
                     <h6>{data.name}</h6>
                     <p>
-                      {data.city}, {data.state}
+                      {data.address}
                     </p>
                   </div>
                   {selectedID === i.toString() && (

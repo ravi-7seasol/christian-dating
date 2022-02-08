@@ -108,17 +108,24 @@ const Login = () => {
     const body = xwwwFormUrlencoded(code)
     ApiPost("signupusersocial", body)
       .then((res: any) => {
-        console.log("res", res)
-        if (res.msg === "User Successfully logged in") {
-          AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
-          setErrorMsg(res.msg);
-          let newData = res
-          delete newData.token
-          delete newData.msg
-          AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
-          // if (res.msg === "User Successfully logged in") {
-          navigate("/profile");
-          // }
+        if (res.token !== "") {
+          if(res.username){
+            AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
+            setErrorMsg(res.msg);
+            let newData = res
+            delete newData.token
+            delete newData.msg
+            AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
+            navigate("/match_or_message");
+          }else{
+            AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
+            setErrorMsg(res.msg);
+            let newData = res
+            delete newData.token
+            delete newData.msg
+            AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
+            navigate("/profile");
+          }
         } else {
           toast.error("User Not Loggin", {
             // position: toast.POSITION.TOP_CENTER,
@@ -158,19 +165,28 @@ const Login = () => {
     const body = xwwwFormUrlencoded(code)
     ApiPost("signupusersocial", body)
       .then((res: any) => {
-        console.log("res", res)
-        if (res.msg === "User Successfully logged in ") {
-          AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
-          setErrorMsg(res.msg);
-          let newData = res
-          delete newData.token
-          delete newData.msg
-          AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
-          // if (res.msg === "User Successfully logged in") {
-          navigate("/profile");
-          // }
+        if (res.token !== "") {
+          if(res.username){
+            AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
+            setErrorMsg(res.msg);
+            let newData = res
+            delete newData.token
+            delete newData.msg
+            AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
+            navigate("/match_or_message");
+          }else{
+            AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
+            setErrorMsg(res.msg);
+            let newData = res
+            delete newData.token
+            delete newData.msg
+            AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
+            navigate("/profile");
+          }
         }
         else {
+          console.log('error log');
+
           toast.error("User Not Loggin", {
             // position: toast.POSITION.TOP_CENTER,
             transition: cssTransition({

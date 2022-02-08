@@ -32,6 +32,7 @@ const Inbox = () => {
   const [imgTog, setImgTog] = useState(false);
   const [displayData, setDisplayData] = useState(false);
   const [displayStaticMessage, setDisplayStaticMessage] = useState<any>(false);
+  const [sticker, setSticker] = useState<any>();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -256,6 +257,21 @@ const Inbox = () => {
         console.log(error);
         gotoBottom("chatBox")
       });
+
+    const getStickerData = {
+      token: tokenID
+    };
+
+    const body1 = xwwwFormUrlencoded(getStickerData);
+
+    ApiPost("getuserstickers", body1)
+      .then((res: any) => {
+        // setChatData({...chatData, res.gifts})
+        setSticker(res.gifts)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const [sendMsg, setSendMsg] = useState("");
@@ -348,6 +364,27 @@ const Inbox = () => {
     slidesToScroll: 3,
     variableWidth: true,
     // initialSlide: 0,
+  }  
+
+  const sendSticker = () => {
+    
+      const sendStickr = {
+        token: AuthStorage.getStorageData(STORAGEKEY.token),
+        gift_id: gif.id,
+        receiver_id: selectedData.receiver_id ?? selectedData.id
+      };
+      const body = xwwwFormUrlencoded(sendStickr);
+      ApiPost("sendstickers", body)
+        .then((res: any) => {
+          setGifTog(false)
+          getChat();
+          // setSendMsg("");
+          // setClearText(true)
+          // getChatList();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   }
 
   return (
@@ -444,7 +481,7 @@ const Inbox = () => {
                           >
                             <h6>{moment(data.last_message_time).format("LT")}</h6>
 
-                            {/* {data.total_unread_messages !== "0" &&
+                            {data.total_unread_messages !== "0" &&
                               <div
                                 className={
                                   data.total_unread_messages
@@ -454,7 +491,7 @@ const Inbox = () => {
                               >
                                 {data.total_unread_messages}
                               </div>
-                            } */}
+                            }
                           </div>
                         </div>
                         :
@@ -497,7 +534,7 @@ const Inbox = () => {
                           >
                             <h6>{moment(data.last_message_time).format("LT")}</h6>
 
-                            {/* {data.total_unread_messages !== "0" &&
+                            {data.total_unread_messages !== "0" &&
                               <div
                                 className={
                                   data.total_unread_messages
@@ -507,7 +544,7 @@ const Inbox = () => {
                               >
                                 {data.total_unread_messages}
                               </div>
-                            } */}
+                            }
                           </div>
                         </div>
 
@@ -644,7 +681,15 @@ const Inbox = () => {
                     </div>
 
                     {/* <div className="border-content"></div> */}
-                    {width < 767 && <h5 className="now-chatting-with" >Now Chatting with {displayData ? message_Data.name : selectedData?.receiver_name ? selectedData?.receiver_name : selectedData?.name ? selectedData?.name : selectedData?.sender_name}</h5>}
+                    {width < 767 && <h5 className="now-chatting-with" >
+                      Now Chatting with{" "}
+                      {/* {displayData ? message_Data.name : selectedData?.receiver_name ? selectedData?.receiver_name : selectedData?.name ? selectedData?.name : selectedData?.sender_name} */}
+                      {displayData ?
+                        message_Data.name :
+                        'sender_name' in selectedData ?
+                          chatList.current_user !== selectedData.receiver_id ? selectedData?.receiver_name : selectedData.sender_name : selectedData?.name
+                      }
+                    </h5>}
                     <div className="scrool px-3" id="chatBox">
                       <div className="text-grid">
                         {chatData?.chat?.length ? (
@@ -671,7 +716,7 @@ const Inbox = () => {
                                         }
                                         key={i}
                                       >
-                                        {ReactHtmlParser(data.message)}
+                                        {data.type === "message" ? ReactHtmlParser(data.message) : data.image}
                                       </h3>
                                       <p>
                                         {moment(data.date_time).format("HH:mm")}
@@ -712,9 +757,9 @@ const Inbox = () => {
                                     onClick={() => closeGif()}
                                   />
                                 </div>
-                                <img src={gif} className="gifbig img-fluid"></img>
+                                <img src={gif.image} className="gifbig img-fluid"></img>
 
-                                <button className="submit">
+                                <button className="submit" onClick={() => sendSticker()}>
                                   <FontAwesomeIcon icon={faPaperPlane} />
                                 </button>
                               </div>
@@ -780,12 +825,23 @@ const Inbox = () => {
                           />
                           {openGift && (
                             <div className="gifts">
-                              {gifList.gif.map((data: any, i: number) => (
+                              {chatData.stickers.map((data: any, i: number) => (
                                 <img
-                                  src={data.src}
+                                  src={data.image}
+                                  alt={data.title}
                                   key={i}
                                   onClick={() => {
-                                    openGif(data.src);
+                                    openGif(data);
+                                  }}
+                                />
+                              ))}
+                              {sticker && sticker.map((item: any, i: number) => (
+                                <img
+                                  src={item.image}
+                                  alt={item.title}
+                                  key={i}
+                                  onClick={() => {
+                                    openGif(item);
                                   }}
                                 />
                               ))}
