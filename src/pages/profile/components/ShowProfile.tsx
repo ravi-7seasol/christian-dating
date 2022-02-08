@@ -87,6 +87,7 @@ const ShowProfile = () => {
     }
     const id = {
       id: pid,
+      viewer: pid
     };
     console.log("id", id);
 

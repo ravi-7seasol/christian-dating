@@ -30,6 +30,7 @@ const ImageSwap = (props) => {
       props.Data(data)
       props.rateTogChange(false)
       props.matchProfile(getProfileMatch[getProfileMatch.length - 1].percent_match)
+      props.gender(getProfileMatch[getProfileMatch.length - 1].gender)
     }
   }, [getProfileMatch]);
 

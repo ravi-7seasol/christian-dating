@@ -145,7 +145,8 @@ const ShowProfile = () => {
     useEffect(() => {
         dispatch(setIsLoading(true));
         const id = {
-            id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id,
+            id: AuthStorage.getStorageJsonData(STORAGEKEY.userData).userId ?? AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id,
+            viewer: AuthStorage.getStorageJsonData(STORAGEKEY.userData).userId ?? AuthStorage.getStorageJsonData(STORAGEKEY.userData).user_id
         };
         const body = xwwwFormUrlencoded(id);
 
@@ -514,7 +515,7 @@ const ShowProfile = () => {
         },
         {
             Name: "your_intenet",
-            label: "Your Intenet:",
+            label: "Your Intent:",
             detail: editProfileData.your_intenet,
         },
     ];

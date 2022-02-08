@@ -30,6 +30,7 @@ const MatchOrMessage = () => {
   const [paymentModal, setPaymentModal] = useState(false);
   const [getPackage, setGetPackage] = useState();
   const [profileMatch, setProfileMatch] = useState();
+  const [gender, setGender] = useState();
 
   const userExpiredData = useSelector((state: RootStateOrAny) => state.user_Expired.user_expired)
 
@@ -167,6 +168,7 @@ const MatchOrMessage = () => {
         rateChange={togRate}
         rateTogChange={setTogRate}
         matchProfile={setProfileMatch}
+        gender={setGender}
       />
       <Container>
         <div className="activity-main">
@@ -226,8 +228,8 @@ const MatchOrMessage = () => {
           </div>
           <div className="message-bottom-popup-body">
             <p className="message-bottom-popup-body-text">
-              Could she be the one? you both have a match rating of{" "}
-              <span>{profileMatch}</span>! Try sending her a message to make the first
+              Could {gender === "male" ? 'he' : 'she'} be the one? you both have a match rating of{" "}
+              <span>{profileMatch}</span>! Try sending {gender === "male" ? 'him' : 'her'} a message to make the first
               step.
             </p>
           </div>
@@ -241,7 +243,8 @@ const MatchOrMessage = () => {
         subscriptionModal && <Subscription show={subscriptionModal} onHide={() => setSubscriptionModal(false)} packageData={setGetPackage} packageData2={setGetPackage}/>
       }
       {
-        paymentModal && <Payment show = {paymentModal} onHide = {() => {setPaymentModal(false)}} paymentDone={(paymentId:any) => stripePayment(paymentId)}/>
+        paymentModal && <Payment show = {paymentModal} onHide = {() => {setPaymentModal(false)}} />
+        // paymentDone={(paymentId:any) => stripePayment(paymentId)}
       }
     </>
   );
