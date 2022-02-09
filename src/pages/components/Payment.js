@@ -1,35 +1,27 @@
-import {
-    CardElement,
-    useStripe,
-    useElements,
-} from '@stripe/react-stripe-js';
+import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 
 const Payment = (props) => {
-    const stripe = useStripe();
-    const elements = useElements();
+    const [cardDetails, setCardDetails] = useState({
+        name: '',
+        email: '',
+        cardNumber: 0,
+        month: 0,
+        year: 0,
+        cvv: 0,
+    });
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        props.stripe.createToken()
-        .then(payload => console.log(payload))
-        if (elements == null) {
-            return;
-        }
+    const handleChange = (e) => {
+        setCardDetails({
+            ...cardDetails,
+            [e.target.name]: e.target.value
+        })
+    }
 
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
-            type: 'card',
-            card: elements.getElement(CardElement),
-        });
-        if (paymentMethod) {
-            props.paymentDone(paymentMethod.id)
-            props.onHide()
-            console.log("paymentMethod", paymentMethod);
-        }
-        if (error) {
-            console.log("error", error);
-        }
-    };
+    const submit = (e) => {
+        e.preventDefault()
+        console.log("====");
+    }
 
     return (
         <Modal
@@ -37,14 +29,15 @@ const Payment = (props) => {
         onHide={props.onHide}
         centered>
             <Modal.Body>
-                <div>
-                    <form onSubmit={handleSubmit}>
-                        <CardElement />
-                        <button type="submit" disabled={!stripe || !elements}>
-                            Pay
-                        </button>
-                    </form>
-                </div>
+                <form id="paymentFrm" onSubmit={() => submit()}>
+                    <input type='text' placeholder='Enter Name' id="name" name='name' onChange={(e) => handleChange(e)} value={cardDetails.name} />
+                    <input type='email' placeholder='Enter Email' id="email" name='email' onChange={(e) => handleChange(e)} value={cardDetails.email} />
+                    <input type='number' placeholder='Enter Card Number' id="card-number" name='cardNumber' onChange={(e) => handleChange(e)} value={cardDetails.cardNumber} />
+                    <input type='number' placeholder='Enter Month' id="card-expiry-month" name='month' onChange={(e) => handleChange(e)} value={cardDetails.month} />
+                    <input type='number' placeholder='Enter Year' id="card-expiry-year" name='year' onChange={(e) => handleChange(e)} value={cardDetails.year} />
+                    <input type='number' placeholder='Enter CVV' id="card-cvc" name='cvv' onChange={(e) => handleChange(e)} value={cardDetails.cvv} />
+                    <button type='submit' id="payBtn" >Submit</button>
+                </form>
             </Modal.Body>
         </Modal>
     );

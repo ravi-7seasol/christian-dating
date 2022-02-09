@@ -250,7 +250,7 @@ const Inbox = () => {
         setChatData(res);
         setCurrentUser(res.current_user);
         if (selectedID) {
-          gotoBottom("chatBox")
+          // gotoBottom("chatBox")
         }
       })
       .catch((error) => {
@@ -708,7 +708,7 @@ const Inbox = () => {
                                           : "massage-and-time"
                                       }
                                     >
-                                      <h3
+                                      {data.type === "message" ? <h3
                                         className={
                                           data.sender_id !== currentUser
                                             ? "first-text"
@@ -716,8 +716,18 @@ const Inbox = () => {
                                         }
                                         key={i}
                                       >
-                                        {data.type === "message" ? ReactHtmlParser(data.message) : data.image}
+                                        {ReactHtmlParser(data.message)}
                                       </h3>
+                                       : <span
+                                        className={
+                                          data.sender_id !== currentUser
+                                            ? "first-text-img"
+                                            : "first-text-replay-img"
+                                        }
+                                        key={i}
+                                      >
+                                        {<img src={data.image} width="100%" height="100%" />}
+                                      </span>}
                                       <p>
                                         {moment(data.date_time).format("HH:mm")}
                                       </p>
@@ -733,7 +743,7 @@ const Inbox = () => {
                                           : "massage-and-time"
                                       }
                                     >
-                                      <h3
+                                      { data.type === "message" ? <h3
                                         className={
                                           data.sender_id !== currentUser
                                             ? "first-text"
@@ -743,6 +753,16 @@ const Inbox = () => {
                                       >
                                         {ReactHtmlParser(data.message)}
                                       </h3>
+                                      : <span
+                                        className={
+                                          data.sender_id !== currentUser
+                                            ? "first-text-img"
+                                            : "first-text-replay-img"
+                                        }
+                                        key={i}
+                                      >
+                                        {<img src={data.image} width="100%" height="100%"/>}
+                                      </span>}
                                       <p>
                                         {moment(data.date_time).format("HH:mm")}
                                       </p>
