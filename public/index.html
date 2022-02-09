@@ -25,9 +25,97 @@
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap"
     rel="stylesheet">
 
-  <script src="https://unpkg.com/react-stripe-elements@latest/dist/react-stripe-elements.min.js"></script>
-  <!-- <script src="https://js.stripe.com/v3/"></script> -->
+
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <script>
+    var total_amount = '200';
+    var currency = 'USD';
+    var stripe_key = 'sk_test_TMbUaFbCy6vreanBfGa64frP00mxfxxHiv';
+
+    $(document).ready(function () {
+      $(document).on("keyup", "#card-expiry-month", function () {
+        console.log($(this).val().length);
+        if ($(this).val().length > 2) {
+          $(this).val($(this).val().slice(0, -1));
+        }
+      });
+
+      $(document).on("keyup", "#card-expiry-year", function () {
+        console.log($(this).val().length);
+        if ($(this).val().length > 2) {
+          $(this).val($(this).val().slice(0, -1));
+        }
+      });
+    });				
+  </script>
+
+  <!-- Stripe JavaScript library -->
+
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+  <!-- Below code for Stripe payment form -->
+  <script type="text/javascript">
+    //set your publishable key
+    Stripe.setPublishableKey('pk_test_Vq7vPui3v2LZPWCzT9LBeaVv00RAS7HwZ1');
+
+    //callback to handle the response from stripe
+    function stripeResponseHandler(status, response) {
+      if (response.error) {
+        //enable the submit button
+        $('#payBtn').removeAttr("disabled");
+        //display the errors on the form
+        $('#payment-errors').addClass('alert alert-danger');
+        $("#payment-errors").html(response.error.message);
+      } else {
+        var form$ = $("#paymentFrm");
+        //get token id
+        var token = response['id'];
+        //insert the token into the form
+        form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+        //submit form to the server
+        //form$.get(0).submit();
+      }
+    }
+    $(document).ready(function () {
+      //on form submit
+      $("#paymentFrm").submit(function (event) {
+        //disable the submit button to prevent repeated clicks
+        $('#payBtn').attr("disabled", "disabled");
+
+        //create single-use token to charge the user
+        Stripe.createToken({
+          number: $('#card-number').val(),
+          cvc: $('#card-cvc').val(),
+          exp_month: $('#card-expiry-month').val(),
+          exp_year: $('#card-expiry-year').val()
+        }, stripeResponseHandler);
+
+        //submit from callback
+        return false;
+      });
+    });
+  </script>
+
+
+
+
+  <!-- <script src="https://unpkg.com/react-stripe-elements@latest/dist/react-stripe-elements.min.js"></script> -->
+  <!-- <script src="https://js.stripe.com/v3/"></script> -->
+  <!-- <script type="text/javascript" src="https://js.stripe.com/v2/"></script> -->
   <script>
     (function (d) {
       var config = {
