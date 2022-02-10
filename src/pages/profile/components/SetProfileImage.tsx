@@ -52,6 +52,7 @@ const SetProfileImage = ({ stepDone, images }: any) => {
             <div className="camera">
               <img src="./assets/img/camera.png" alt="camera" onClick={openCamera} />
             </div>
+            { camOpen && <button onClick={capture}>Capture</button>}
           </div>
           <div className="take-picture-text">
             <img src="./assets/img/Group27.png" alt="camera" onClick={capture} />
