@@ -364,34 +364,34 @@ const Inbox = () => {
     slidesToScroll: 3,
     variableWidth: true,
     // initialSlide: 0,
-  }  
+  }
 
   const sendSticker = () => {
-    
-      const sendStickr = {
-        token: AuthStorage.getStorageData(STORAGEKEY.token),
-        gift_id: gif.id,
-        receiver_id: selectedData.receiver_id !== currentUser ? selectedData.receiver_id : selectedData.sender_id ?? selectedData.id
-      };
-      const body = xwwwFormUrlencoded(sendStickr);
-      ApiPost("sendstickers", body)
-        .then((res: any) => {
-          setGifTog(false)
-          getChat();
-          // setSendMsg("");
-          // setClearText(true)
-          // getChatList();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+
+    const sendStickr = {
+      token: AuthStorage.getStorageData(STORAGEKEY.token),
+      gift_id: gif.id,
+      receiver_id: selectedData.receiver_id !== currentUser ? selectedData.receiver_id : selectedData.sender_id ?? selectedData.id
+    };
+    const body = xwwwFormUrlencoded(sendStickr);
+    ApiPost("sendstickers", body)
+      .then((res: any) => {
+        setGifTog(false)
+        getChat();
+        // setSendMsg("");
+        // setClearText(true)
+        // getChatList();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
     <>
       <div className="inbox-main px-3">
         <div className="top-baloons"></div>
-        <Container onClick={() => {openGift && setOpenGift(false); gifTog && setGifTog(false)}}>
+        <Container onClick={() => { openGift && setOpenGift(false); gifTog && setGifTog(false) }}>
           <Row>
             <Col md={5} className="p-0">
               <div className="inbox-profile-img mt-3">
@@ -718,16 +718,16 @@ const Inbox = () => {
                                       >
                                         {ReactHtmlParser(data.message)}
                                       </h3>
-                                       : <span
-                                        className={
-                                          data.sender_id !== currentUser
-                                            ? "first-text-img"
-                                            : "first-text-replay-img"
-                                        }
-                                        key={i}
-                                      >
-                                        {<img src={data.image} width="100%" height="100%" />}
-                                      </span>}
+                                        : <span
+                                          className={
+                                            data.sender_id !== currentUser
+                                              ? "first-text-img"
+                                              : "first-text-replay-img"
+                                          }
+                                          key={i}
+                                        >
+                                          {<img src={data.image} width="100%" height="100%" />}
+                                        </span>}
                                       <p>
                                         {moment(data.date_time).format("HH:mm")}
                                       </p>
@@ -743,7 +743,7 @@ const Inbox = () => {
                                           : "massage-and-time"
                                       }
                                     >
-                                      { data.type === "message" ? <h3
+                                      {data.type === "message" ? <h3
                                         className={
                                           data.sender_id !== currentUser
                                             ? "first-text"
@@ -753,16 +753,16 @@ const Inbox = () => {
                                       >
                                         {ReactHtmlParser(data.message)}
                                       </h3>
-                                      : <span
-                                        className={
-                                          data.sender_id !== currentUser
-                                            ? "first-text-img"
-                                            : "first-text-replay-img"
-                                        }
-                                        key={i}
-                                      >
-                                        {<img src={data.image} width="100%" height="100%"/>}
-                                      </span>}
+                                        : <span
+                                          className={
+                                            data.sender_id !== currentUser
+                                              ? "first-text-img"
+                                              : "first-text-replay-img"
+                                          }
+                                          key={i}
+                                        >
+                                          {<img src={data.image} width="100%" height="100%" />}
+                                        </span>}
                                       <p>
                                         {moment(data.date_time).format("HH:mm")}
                                       </p>
@@ -802,6 +802,35 @@ const Inbox = () => {
                         ) : (
                           <div style={{ textAlign: "center" }}>
                             <h5>No chat data</h5>
+                            {gifTog && (
+                              <div className="gif-container">
+                                <div className="icon">
+                                  <FontAwesomeIcon
+                                    icon={faTimesCircle}
+                                    onClick={() => closeGif()}
+                                  />
+                                </div>
+                                <img src={gif.image} className="gifbig img-fluid"></img>
+
+                                <button className="submit" onClick={() => sendSticker()}>
+                                  <FontAwesomeIcon icon={faPaperPlane} />
+                                </button>
+                              </div>
+                            )}
+                            {imgTog && (
+                              <div className="gif-container">
+                                <div className="icon">
+                                  <FontAwesomeIcon
+                                    icon={faTimesCircle}
+                                    onClick={() => closeImg()}
+                                  />
+                                </div>
+                                <img src={URL.createObjectURL(selectedImage)} className="img-fluid" />
+                                <button className="submit">
+                                  <FontAwesomeIcon icon={faPaperPlane} />
+                                </button>
+                              </div>
+                            )}
                           </div>
                         )}
                       </div>
