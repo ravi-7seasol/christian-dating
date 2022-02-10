@@ -281,7 +281,7 @@ const ShowProfile = () => {
       detail: getProfileData.relationship_want_to_build,
     },
     {
-      label: "Your Interest:",
+      label: "Your Intent:",
       detail: getProfileData.your_intenet,
     },
   ];

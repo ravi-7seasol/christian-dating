@@ -25,11 +25,11 @@ const Subscription = ({ show, onHide, packageData, packageData2, ...props }: Pro
     }, []);
 
     const handleClick = () => {        
-        packageData(packages[0].id)
+        packageData(packages[0])
     }
 
     const handleClick2 = () => {
-        packageData2(packages[1].id)
+        packageData2(packages[1])
     }
 
     return (

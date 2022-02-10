@@ -28,7 +28,7 @@ const MatchOrMessage = () => {
   const [subscriptionModal, setSubscriptionModal] = useState(false)
   const [togRate, setTogRate] = useState(false);
   const [paymentModal, setPaymentModal] = useState(false);
-  const [getPackage, setGetPackage] = useState();
+  const [getPackage, setGetPackage] = useState<any>();
   const [profileMatch, setProfileMatch] = useState();
   const [gender, setGender] = useState();
 
@@ -109,13 +109,13 @@ const MatchOrMessage = () => {
   };
 
   const stripePayment = (paymentId:any) => {
-    console.log("final id => ",paymentId);    
+    console.log("final token with id => ",paymentId);    
     if(paymentId && getPackage){
       let data = {
         token: AuthStorage.getToken(),
-        email: AuthStorage.getStorageJsonData("userData").email,
-        package_id: getPackage,
-        stripeToken:paymentId
+        email: paymentId.email,
+        package_id: getPackage.id,
+        stripeToken: paymentId.id
       };
       const body = xwwwFormUrlencoded(data);
       ApiPost("paywithstripe", body)
@@ -243,8 +243,7 @@ const MatchOrMessage = () => {
         subscriptionModal && <Subscription show={subscriptionModal} onHide={() => setSubscriptionModal(false)} packageData={setGetPackage} packageData2={setGetPackage}/>
       }
       {
-        paymentModal && <Payment show = {paymentModal} onHide = {() => {setPaymentModal(false)}} />
-        // paymentDone={(paymentId:any) => stripePayment(paymentId)}
+        paymentModal && <Payment show = {paymentModal} onHide = {() => {setPaymentModal(false)}} paymentDone={(paymentId:any) => stripePayment(paymentId)} pkgData={getPackage.price}/>
       }
     </>
   );

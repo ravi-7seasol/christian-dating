@@ -74,14 +74,14 @@ const Login = () => {
         if (rememberMe) {
           AuthStorage.setStorageData(STORAGEKEY.email, loginData.email, rememberMe);
         }
-        if (res) {
+        if (res.status === "true") {    
           AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
-          setErrorMsg(res.msg);
+          let newData = res
+          delete newData.token
+          delete newData.msg
+          AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
         }
-        let newData = res
-        delete newData.token
-        delete newData.msg
-        AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
+        setErrorMsg(res.msg);
         if (res.status === "true" && location.search === "?from=signup") {
           navigate("/profile");
         }

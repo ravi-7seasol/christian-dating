@@ -250,7 +250,7 @@ const Inbox = () => {
         setChatData(res);
         setCurrentUser(res.current_user);
         if (selectedID) {
-          // gotoBottom("chatBox")
+          gotoBottom("chatBox")
         }
       })
       .catch((error) => {
@@ -371,7 +371,7 @@ const Inbox = () => {
       const sendStickr = {
         token: AuthStorage.getStorageData(STORAGEKEY.token),
         gift_id: gif.id,
-        receiver_id: selectedData.receiver_id ?? selectedData.id
+        receiver_id: selectedData.receiver_id !== currentUser ? selectedData.receiver_id : selectedData.sender_id ?? selectedData.id
       };
       const body = xwwwFormUrlencoded(sendStickr);
       ApiPost("sendstickers", body)
@@ -391,7 +391,7 @@ const Inbox = () => {
     <>
       <div className="inbox-main px-3">
         <div className="top-baloons"></div>
-        <Container>
+        <Container onClick={() => {openGift && setOpenGift(false); gifTog && setGifTog(false)}}>
           <Row>
             <Col md={5} className="p-0">
               <div className="inbox-profile-img mt-3">

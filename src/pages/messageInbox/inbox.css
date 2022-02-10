@@ -11,23 +11,26 @@
 
 .inbox-main .input-area .send-gift .gifts {
   position: absolute;
-  top: -110px;
+  bottom: 44px;
   left: 0;
-  width: 200px;
-  height: 100px;
-  box-shadow: 5px 3px 10px rgba(0, 0, 0, 0.3);
+  width: 300px;
+  max-height: 300px;
+  box-shadow: 5px 3px 10px rgb(0 0 0 / 30%);
   z-index: 555 !important;
   border-radius: 5px;
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
+  grid-column-gap: 5px;
   column-gap: 5px;
+  overflow: auto;
   background: #ffffff;
 }
 
 .inbox-main .input-area .send-gift .gifts img {
   width: 40px;
   height: 40px;
+  margin-bottom: 5px;
 }
 
 /* <<<<======================Web view=======================>>>> */
