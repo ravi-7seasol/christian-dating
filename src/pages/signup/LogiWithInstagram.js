@@ -20,23 +20,23 @@ const LogiWithInstagram = () => {
         const body = xwwwFormUrlencoded(code)
         ApiPost("signupusersocial", body)
             .then((res) => {
-                if (res.token !== "") {
-                    if(res.username){
-                      AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
-                      let newData = res
-                      delete newData.token
-                      delete newData.msg
-                      AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
-                      navigate("/match_or_message");
-                    }else{
-                      AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
-                      let newData = res
-                      delete newData.token
-                      delete newData.msg
-                      AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
-                      navigate("/profile");
+                if (res.token !== "" && res.status !== "false") {
+                    if (res.username) {
+                        AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
+                        let newData = res
+                        delete newData.token
+                        delete newData.msg
+                        AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
+                        navigate("/match_or_message");
+                    } else {
+                        AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
+                        let newData = res
+                        delete newData.token
+                        delete newData.msg
+                        AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
+                        navigate("/profile");
                     }
-                  } else {
+                } else {
                     toast.error("User Not Registered", {
                         // position: toast.POSITION.TOP_CENTER,
                         transition: cssTransition({

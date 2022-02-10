@@ -108,7 +108,7 @@ const Login = () => {
     const body = xwwwFormUrlencoded(code)
     ApiPost("signupusersocial", body)
       .then((res: any) => {
-        if (res.token !== "") {
+        if (res.token !== "" && res.status !== "false") {
           if(res.username){
             AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
             setErrorMsg(res.msg);
@@ -165,7 +165,7 @@ const Login = () => {
     const body = xwwwFormUrlencoded(code)
     ApiPost("signupusersocial", body)
       .then((res: any) => {
-        if (res.token !== "") {
+        if (res.token !== "" && res.status !== "false") {
           if(res.username){
             AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
             setErrorMsg(res.msg);
@@ -232,7 +232,7 @@ const checkCookie = () => {
                     </div>
                   </div>
                 </div>
-                <Button style={{ width: "100%", padding: "15px", marginTop: "" }} className="animation" onClick={checkCookie}>Get started</Button>
+                <Button style={{ width: "100%", padding: "15px", marginTop: "" }} className="animation onactive-btn" onClick={checkCookie}>Get started</Button>
               </div>
             </Container>
           </div>
@@ -307,7 +307,7 @@ const checkCookie = () => {
                       <Buttons
                         children="Log in"
                         onClick={logIn}
-                        ButtonStyle="login-btn animation"
+                        ButtonStyle="login-btn animation onactive-btn"
                         disabled={false}
                       />
                       <br />

@@ -72,13 +72,13 @@ const PostSuccessStories = ({ show, onhide, refresh }: Props) => {
         <Modal.Footer className="add-post-model-footer">
           <div className="edit-profile-footer-btn">
             <Buttons
-              ButtonStyle="save-btn animation"
+              ButtonStyle="save-btn animation onactive-btn"
               children="Cancel"
               onClick={() => onhide()}
               disabled={false}
             />
             <Buttons
-              ButtonStyle="save-btn animation"
+              ButtonStyle="save-btn animation onactive-btn"
               children="Post"
               onClick={() => postData()}
               disabled={false}

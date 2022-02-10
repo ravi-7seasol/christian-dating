@@ -58,7 +58,8 @@ const Profile = (props: any) => {
         setStepDone(stepDone + 1);
         dispatch(setIsLoading(false))
       }else{
-        alert('You have not take minimum 3 pictures')
+        alert(`You have not take minimum 3 pictures`)
+        // alert(images === undefined ? 'you have not take any pictures' : `you have take only ${images} pictures `)
         setStepDone(stepDone)
         dispatch(setIsLoading(false))
       }
@@ -135,7 +136,7 @@ const Profile = (props: any) => {
             <Buttons
               children={stepDone > 3 ? "See your profile!" : "Next"}
               onClick={() => handleNext()}
-              ButtonStyle="login-btn animation"
+              ButtonStyle="login-btn animation onactive-btn"
               disabled={false}
             />
           </div>

@@ -120,7 +120,7 @@ const SuccessStories = () => {
               onClick={() => {
                 setPostData(true);
               }}
-              ButtonStyle="post-btn animation"
+              ButtonStyle="post-btn animation onactive-btn"
             >
               +
             </Buttons>

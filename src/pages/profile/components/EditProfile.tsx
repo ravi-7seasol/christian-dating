@@ -840,7 +840,7 @@ const ShowProfile = () => {
                                             type="text"
                                             fromrowStyleclass="Enter the name"
                                         />
-                                        <span style={{ color: "black", fontSize: "10px" }}>{editProfileData.your_story.length}/100</span>
+                                        <span style={{ color: "black", fontSize: "10px" }}>{editProfileData.your_story?.length}/100</span>
                                     </div>
                                 </div>
                             </Col>
@@ -989,7 +989,7 @@ const ShowProfile = () => {
                                     type="text"
                                     fromrowStyleclass=""
                                 />
-                                <span style={{ color: "black", fontSize: "10px" }}>{editProfileData.your_story.length}/100</span>
+                                <span style={{ color: "black", fontSize: "10px" }}>{editProfileData.your_story?.length}/100</span>
                             </div>
                         </div>
                     </div>
@@ -1175,7 +1175,7 @@ const ShowProfile = () => {
 
                     <div className="edit-profile-footer-btn">
                         <Buttons
-                            ButtonStyle="save-btn animation"
+                            ButtonStyle="save-btn animation onactive-btn"
                             children="Save"
                             onClick={() => editProfileBtn()}
                             disabled={false}

@@ -523,7 +523,7 @@ const Privacy_Policy = () => {
                 <Buttons
                   children="Back"
                   onClick={handleRedirect}
-                  ButtonStyle="login-btn animation"
+                  ButtonStyle="login-btn animation onactive-btn"
                   disabled={false}
                 />
               </div>

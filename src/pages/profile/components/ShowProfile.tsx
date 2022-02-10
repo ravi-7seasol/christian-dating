@@ -309,7 +309,7 @@ const ShowProfile = () => {
               </Link>
             </div>
             <Buttons
-              ButtonStyle=" single-btn"
+              ButtonStyle=" single-btn onactive-btn"
               onClick={() => { }}
               children={getProfileData.relationship_status}
             />

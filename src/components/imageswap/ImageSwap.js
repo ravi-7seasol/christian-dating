@@ -231,7 +231,7 @@ const ImageSwap = (props) => {
             </p>
           </div>
           <button
-            className="no-matches-button btn btn-primary animation"
+            className="no-matches-button btn btn-primary animation onactive-btn"
             onClick={() => {
               navigate("/edit-profile");
             }}
