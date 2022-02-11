@@ -27,6 +27,7 @@ import GoogleLogin from "react-google-login";
 const GoogleAppId =
   "1043350539750-lldkb9r1i0pc3d3l66lupb9np2olict4.apps.googleusercontent.com";
 const FacbookAppId = "634703847650865";
+// const FacbookAppId = "695040758535782";
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -108,7 +109,7 @@ const Login = () => {
     const body = xwwwFormUrlencoded(code)
     ApiPost("signupusersocial", body)
       .then((res: any) => {
-        if (res.token !== "" && res.status !== "false") {
+        if (res.token !== undefined && res.status !== "false") {
           if(res.username){
             AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
             setErrorMsg(res.msg);

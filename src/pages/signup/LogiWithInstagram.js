@@ -5,7 +5,9 @@ import STORAGEKEY from '../../config/APP/app.config';
 import { ApiPost } from '../../helper/API/ApiData';
 import AuthStorage from '../../helper/AuthStorage';
 import { xwwwFormUrlencoded } from '../../helper/utils';
-const FacbookAppId = "634703847650865"
+// const FacbookAppId = "634703847650865"
+const FacbookAppId = "695040758535782";
+const InstagramId = "354837396252319"
 
 const LogiWithInstagram = () => {
 
@@ -66,7 +68,7 @@ const LogiWithInstagram = () => {
             </figure>
             <div id="insta" >
                 <InstagramLogin
-                    clientId={FacbookAppId}
+                    clientId={InstagramId}
                     buttonText="Login"
                     onSuccess={responseInstagram}
                     onFailure={failureResponseInstagram}

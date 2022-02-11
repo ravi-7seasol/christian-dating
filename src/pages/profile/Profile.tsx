@@ -58,8 +58,8 @@ const Profile = (props: any) => {
         setStepDone(stepDone + 1);
         dispatch(setIsLoading(false))
       }else{
-        alert(`You have not take minimum 3 pictures`)
-        // alert(images === undefined ? 'you have not take any pictures' : `you have take only ${images} pictures `)
+        // alert(`You have not take minimum 3 pictures`)
+        alert(images === undefined ? 'you have not taken any pictures' : `you have taken only ${images} pictures `)
         setStepDone(stepDone)
         dispatch(setIsLoading(false))
       }

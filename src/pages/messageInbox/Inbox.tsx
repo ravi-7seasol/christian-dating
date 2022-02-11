@@ -49,7 +49,12 @@ const Inbox = () => {
     }
   }
 
-
+  useEffect(() => {
+    if(gif){
+      gotoBottom("chatBox")
+    }
+  }, [gif])
+  
   const MINUTE_MS = 5000;
 
   useEffect(() => {
