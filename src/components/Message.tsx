@@ -6,11 +6,11 @@ import moment from "moment";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { setChatState, setMessageState } from "../redux/actions/chatDataAction";
 import TextareaAutosize from "react-textarea-autosize";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 import { dateFunction } from "../helper/utils";
 
 const Message: React.FC<any> = ({ id, data }) => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const [text, setText] = useState("");
   const [messages, setMessages] = useState<any[]>([]);
 
@@ -231,7 +231,7 @@ const Message: React.FC<any> = ({ id, data }) => {
                   id="textArea"
                   rows={4}
                   maxRows={5}
-                  placeholder={t("Chat.Enter_Message")}
+                  placeholder="Enter_Message"
                   onChange={(e) => setText(e.target.value)}
                   value={text}
                 />
