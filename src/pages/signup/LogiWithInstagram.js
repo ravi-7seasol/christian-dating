@@ -16,42 +16,42 @@ const LogiWithInstagram = () => {
 
     const responseInstagram = (response) => {
         console.log("instagram response ======= response", response);
-        // const code = {
-        //     code: response.googleId,
-        //     email: response.profileObj.email
-        // }
-        // const body = xwwwFormUrlencoded(code)
-        // ApiPost("signupusersocial", body)
-        //     .then((res) => {
-        //         if (res.token !== "" && res.status !== "false") {
-        //             if (res.username) {
-        //                 AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
-        //                 let newData = res
-        //                 delete newData.token
-        //                 delete newData.msg
-        //                 AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
-        //                 navigate("/match_or_message");
-        //             } else {
-        //                 AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
-        //                 let newData = res
-        //                 delete newData.token
-        //                 delete newData.msg
-        //                 AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
-        //                 navigate("/profile");
-        //             }
-        //         } else {
-        //             toast.error("User Not Registered", {
-        //                 // position: toast.POSITION.TOP_CENTER,
-        //                 transition: cssTransition({
-        //                     enter: "animate__animated animate__bounceIn",
-        //                     exit: "animate__animated animate__bounceOut"
-        //                 })
-        //             })
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         console.log("err", err)
-        //     })
+        const code = {
+            code: response,
+            email: 'test@test.com'
+        }
+        const body = xwwwFormUrlencoded(code)
+        ApiPost("signupusersocial", body)
+            .then((res) => {
+                if (res.token !== "" && res.status !== "false") {
+                    if (res.username) {
+                        AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
+                        let newData = res
+                        delete newData.token
+                        delete newData.msg
+                        AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
+                        navigate("/match_or_message");
+                    } else {
+                        AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
+                        let newData = res
+                        delete newData.token
+                        delete newData.msg
+                        AuthStorage.setStorageData(STORAGEKEY.userData, JSON.stringify(newData), true)
+                        navigate("/profile");
+                    }
+                } else {
+                    toast.error("User Not Registered", {
+                        // position: toast.POSITION.TOP_CENTER,
+                        transition: cssTransition({
+                            enter: "animate__animated animate__bounceIn",
+                            exit: "animate__animated animate__bounceOut"
+                        })
+                    })
+                }
+            })
+            .catch((err) => {
+                console.log("err", err)
+            })
     };
 
     const failureResponseInstagram = (response) => {
