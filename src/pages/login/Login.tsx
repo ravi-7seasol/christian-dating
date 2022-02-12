@@ -90,8 +90,8 @@ const Login = () => {
           navigate("/match_or_message")
         }
       }).catch((error) => {
-        console.log(error);
         dispatch(setIsLoading(false))
+        console.log(error);
 
       })
   }
@@ -329,8 +329,8 @@ const checkCookie = () => {
                             autoLoad={false}
                             fields="name,email,picture"
                             onClick={componentClicked}
-                            callback={responseFacebook}
-                            onFailure={failureResponseFacebook}
+                            callback={() => responseFacebook}
+                            onFailure={() => failureResponseFacebook}
                             icon={
                               <img
                                 src="./assets/img/facebook-icon.png"
@@ -352,8 +352,8 @@ const checkCookie = () => {
                             clientId={GoogleAppId}
                             autoLoad={false}
                             buttonText=""
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle1}
+                            onSuccess={() => responseGoogle}
+                            onFailure={() => responseGoogle1}
                           // cookiePolicy={'single_host_origin'}
                           // icon={<img src="./assets/img/gmail-icon.png" alt="icon" />}
                           />
