@@ -48,23 +48,24 @@ const Profile = (props: any) => {
   const dispatch = useDispatch()
 
   const handleNext = () => {
-    
+
     dispatch(setIsLoading(true))
-    if (stepDone < 5) {
-      if(stepDone == 4 && images > 2){
+    if (stepDone < 3) {
+      if (stepDone == 3) {
         setStepDone(stepDone + 1);
         dispatch(setIsLoading(false))
-      }else if(stepDone == 1 || stepDone == 2 || stepDone == 3){
+      } else if (stepDone == 1 || stepDone == 2) {
         setStepDone(stepDone + 1);
-        dispatch(setIsLoading(false))
-      }else{
-        // alert(`You have not take minimum 3 pictures`)
-        alert(images === undefined ? 'you have not taken any pictures' : `you have taken only ${images} pictures `)
-        setStepDone(stepDone)
         dispatch(setIsLoading(false))
       }
+      // else {
+      //   alert(`You have not take minimum 3 pictures`)
+      //   // alert(images === undefined ? 'you have not take any pictures' : `you have take only ${images} pictures `)
+      //   setStepDone(stepDone)
+      //   dispatch(setIsLoading(false))
+      // }
 
-    } else if(stepDone == 5) {
+    } else if (stepDone == 3) {
       const body = xwwwFormUrlencoded(profile);
 
       ApiPost('updateprofile', body)
@@ -72,7 +73,7 @@ const Profile = (props: any) => {
           console.log("res", res);
           dispatch(setIsLoading(false))
           if (res.status === "true") {
-            navigate("/show-profile");
+            navigate("/set_profile_image");
           }
           else {
             dispatch(setIsLoading(false))
@@ -117,24 +118,24 @@ const Profile = (props: any) => {
               <div className={`step ${stepDone >= 1 && "done"}`}></div>
               <div className={`step ${stepDone >= 2 && "done"} `}></div>
               <div className={`step ${stepDone >= 3 && "done"} `}></div>
-              <div className={`step ${stepDone >= 4 && "done"} `}></div>
+              {/* <div className={`step ${stepDone >= 4 && "done"} `}></div> */}
             </div>
           </div>
         </div>
         {stepDone === 1 && <Personal personalData={personal} />}
         {stepDone === 2 && <Prefrences prefrencesData={prefrences} />}
         {stepDone === 3 && <Lifestyle lifeStyleData={lifeStyle} />}
-        {stepDone >= 4 && <SetProfileImage stepDone={stepDone} images={setImages}/>}
+        {/* {stepDone >= 4 && <SetProfileImage stepDone={stepDone} images={setImages} />} */}
 
         <div className="login">
           <div
             style={{
-              marginTop: stepDone > 4 ? "8rem" : "4rem",
+              marginTop: stepDone > 3 ? "8rem" : "4rem",
               marginBottom: "1rem",
             }}
           >
             <Buttons
-              children={stepDone > 3 ? "See your profile!" : "Next"}
+              children={stepDone > 2 ? "Submit" : "Next"}
               onClick={() => handleNext()}
               ButtonStyle="login-btn animation onactive-btn"
               disabled={false}
