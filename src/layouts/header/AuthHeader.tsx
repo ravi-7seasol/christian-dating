@@ -28,6 +28,7 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
   const [subscriptionModal, setSubscriptionModal] = useState(false);
   const [getPackage, setGetPackage] = useState<any>();
   const [paymentModal, setPaymentModal] = useState(false);
+  const [isImageVerify, setIsImageVerify] = useState<any>();
 
   const openMenu = () => {
     setNavpopup(false)
@@ -84,7 +85,14 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
         dispatch(getProfileImage(res.user[0].image))
         dispatch(userProfileImage(res.user[0].image))
         dispatch(userExpired(res.user[0].if_expired))
+        setIsImageVerify(res.user[0].is_profile_image_verified)
         dispatch(setIsLoading(false))
+        if (res.user[0].is_profile_image_verified === "0") {
+          navigate("/set_profile_image")
+        }
+        else {
+          navigate("match_or_message")
+        }
 
       }).catch((error: any) => {
         console.log(error);
@@ -175,7 +183,7 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
           </div>
         </div>
       </div> */}
-      <Navbar bg="light" className="authnave " >
+      { isImageVerify==="1" && <Navbar bg="light" className="authnave " >
         <Container onClick={() => {navpopup && setNavpopup(false); showProfile && setShowProfile(false)}}>
           <Navbar.Brand >
             <img
@@ -242,7 +250,7 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
             </div>
           </div>
         }
-      </Navbar>
+      </Navbar>}
       {
         subscriptionModal && <Subscription show={subscriptionModal} onHide={() => setSubscriptionModal(false)} packageData={setGetPackage} packageData2={setGetPackage} />
       }

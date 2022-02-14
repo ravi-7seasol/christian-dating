@@ -118,14 +118,14 @@ const Profile = (props: any) => {
               <div className={`step ${stepDone >= 1 && "done"}`}></div>
               <div className={`step ${stepDone >= 2 && "done"} `}></div>
               <div className={`step ${stepDone >= 3 && "done"} `}></div>
-              {/* <div className={`step ${stepDone >= 4 && "done"} `}></div> */}
+               {/* <div className={`step ${stepDone >= 4 && "done"} `}></div>  */}
             </div>
           </div>
         </div>
         {stepDone === 1 && <Personal personalData={personal} />}
         {stepDone === 2 && <Prefrences prefrencesData={prefrences} />}
         {stepDone === 3 && <Lifestyle lifeStyleData={lifeStyle} />}
-        {/* {stepDone >= 4 && <SetProfileImage stepDone={stepDone} images={setImages} />} */}
+         {/* {stepDone >= 4 && <SetProfileImage stepDone={stepDone} images={setImages} />} */}
 
         <div className="login">
           <div
