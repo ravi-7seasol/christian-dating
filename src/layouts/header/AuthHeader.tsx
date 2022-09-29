@@ -52,7 +52,7 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
   }, [getPackage]);
 
   const stripePayment = (paymentId: any) => {
-    console.log("paymentId", paymentId);
+    console.log("paymentId",paymentId);
     if (paymentId && getPackage) {
       let data = {
         token: AuthStorage.getToken(),
@@ -183,8 +183,8 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
           </div>
         </div>
       </div> */}
-      {isImageVerify==="1" && <Navbar bg="light" className="authnave " >
-        <Container onClick={() => { navpopup && setNavpopup(false); showProfile && setShowProfile(false) }}>
+      { isImageVerify==="1" && <Navbar bg="light" className="authnave " >
+        <Container onClick={() => {navpopup && setNavpopup(false); showProfile && setShowProfile(false)}}>
           <Navbar.Brand >
             <img
               src="./assets/img/Group 28.png"
@@ -255,7 +255,7 @@ const AuthHeader: React.FC<Props> = ({ showMenu, ...props }) => {
         subscriptionModal && <Subscription show={subscriptionModal} onHide={() => setSubscriptionModal(false)} packageData={setGetPackage} packageData2={setGetPackage} />
       }
       {
-        paymentModal && <Payment show={paymentModal} onHide={() => { setPaymentModal(false) }} paymentDone={(paymentId: any) => stripePayment(paymentId)} pkgData={getPackage.price} />
+        paymentModal && <Payment show={paymentModal} onHide={() => { setPaymentModal(false) }} paymentDone={(paymentId: any) => stripePayment(paymentId)} pkgData={getPackage.price}/>
       }
     </>
   );

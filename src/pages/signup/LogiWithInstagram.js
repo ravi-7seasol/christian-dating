@@ -5,7 +5,10 @@ import STORAGEKEY from '../../config/APP/app.config';
 import { ApiPost } from '../../helper/API/ApiData';
 import AuthStorage from '../../helper/AuthStorage';
 import { xwwwFormUrlencoded } from '../../helper/utils';
-const FacbookAppId = "634703847650865"
+// const FacbookAppId = "634703847650865"
+// const FacbookAppId = "695040758535782";
+const InstagramId = "354837396252319"
+// const InstagramId = "IGQVJXclp3cU5TcFdnNElTR2l2X25WZAVRiV1ljZA3lXR05HVHhTT2k4cVAxT1llTW5PbW56OTJRa0tVNWpneHVUZAHBUNHN1MDVlTFpsN0xUbXJGU2pNZAkcyOWNlVE1fb2VDb3M1dVJ2OVI5bGRyVHlpRQZDZD"
 
 const LogiWithInstagram = () => {
 
@@ -14,8 +17,8 @@ const LogiWithInstagram = () => {
     const responseInstagram = (response) => {
         console.log("instagram response ======= response", response);
         const code = {
-            code: response.googleId,
-            email: response.profileObj.email
+            code: response,
+            email: 'test@test.com'
         }
         const body = xwwwFormUrlencoded(code)
         ApiPost("signupusersocial", body)
@@ -66,11 +69,12 @@ const LogiWithInstagram = () => {
             </figure>
             <div id="insta" >
                 <InstagramLogin
-                    clientId={FacbookAppId}
+                    clientId={InstagramId}
                     buttonText="Login"
                     onSuccess={responseInstagram}
                     onFailure={failureResponseInstagram}
-                />
+                    scope={'user_profile'}
+                    />
             </div>
         </div>
     )

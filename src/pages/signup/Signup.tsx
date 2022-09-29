@@ -24,6 +24,7 @@ import STORAGEKEY from "../../config/APP/app.config";
 const GoogleAppId =
   "1043350539750-lldkb9r1i0pc3d3l66lupb9np2olict4.apps.googleusercontent.com";
 const FacbookAppId = "634703847650865";
+// const FacbookAppId = "695040758535782";
 
 const Signup = () => {
   const navigate = useNavigate();

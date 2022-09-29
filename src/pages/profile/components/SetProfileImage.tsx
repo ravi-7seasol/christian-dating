@@ -221,7 +221,7 @@ const SetProfileImage = ({ stepDone, images }: any) => {
               ButtonStyle="login-btn animation onactive-btn"
             // disabled={openBtn}
             />}
-            {/* <button disabled={openBtn} onClick={() => { handleVerify() }}>See Your Profile</button> */}
+             {/* <button disabled={openBtn} onClick={() => { handleVerify() }}>See Your Profile</button>  */}
             <br /><br />
             {/* <Buttons
               children="Logout"
@@ -229,7 +229,7 @@ const SetProfileImage = ({ stepDone, images }: any) => {
               ButtonStyle="login-btn animation onactive-btn"
               disabled={false}
             /> */}
-            {/* <button onClick={() => { handleLogout() }}>Logout</button> */}
+             {/* <button onClick={() => { handleLogout() }}>Logout</button>  */}
           </div>
         </div>
 

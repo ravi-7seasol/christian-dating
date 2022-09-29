@@ -231,7 +231,7 @@ const Message: React.FC<any> = ({ id, data }) => {
                   id="textArea"
                   rows={4}
                   maxRows={5}
-                  placeholder="Enter_Message"
+                  // placeholder={t("Chat.Enter_Message")}
                   onChange={(e) => setText(e.target.value)}
                   value={text}
                 />

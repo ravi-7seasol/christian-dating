@@ -27,6 +27,7 @@ import GoogleLogin from "react-google-login";
 const GoogleAppId =
   "1043350539750-lldkb9r1i0pc3d3l66lupb9np2olict4.apps.googleusercontent.com";
 const FacbookAppId = "634703847650865";
+// const FacbookAppId = "695040758535782";
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -89,8 +90,8 @@ const Login = () => {
           navigate("/match_or_message")
         }
       }).catch((error) => {
-        console.log(error);
         dispatch(setIsLoading(false))
+        console.log(error);
 
       })
   }
@@ -108,7 +109,7 @@ const Login = () => {
     const body = xwwwFormUrlencoded(code)
     ApiPost("signupusersocial", body)
       .then((res: any) => {
-        if (res.token !== "" && res.status !== "false") {
+        if (res.token !== undefined && res.status !== "false") {
           if(res.username){
             AuthStorage.setStorageData(STORAGEKEY.token, res.token, true);
             setErrorMsg(res.msg);
@@ -328,8 +329,8 @@ const checkCookie = () => {
                             autoLoad={false}
                             fields="name,email,picture"
                             onClick={componentClicked}
-                            callback={responseFacebook}
-                            onFailure={failureResponseFacebook}
+                            callback={() => responseFacebook}
+                            onFailure={() => failureResponseFacebook}
                             icon={
                               <img
                                 src="./assets/img/facebook-icon.png"
@@ -351,8 +352,8 @@ const checkCookie = () => {
                             clientId={GoogleAppId}
                             autoLoad={false}
                             buttonText=""
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle1}
+                            onSuccess={() => responseGoogle}
+                            onFailure={() => responseGoogle1}
                           // cookiePolicy={'single_host_origin'}
                           // icon={<img src="./assets/img/gmail-icon.png" alt="icon" />}
                           />
